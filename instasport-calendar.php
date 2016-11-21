@@ -2,10 +2,10 @@
 <?php
 /**
  * Plugin Name: Instasport Calendar
- * Description: Instasport Calendar
+ * Description: Instasport Calendar as Wordpress plugin
  * Version: 1.0.0
  * Author: Artem Sunduchkov
- * Author URI: http://instasport.co
+ * Author URI: https://instasport.com.ua
  * License: GPL2
  */
 
