@@ -28,7 +28,7 @@ function instasport_shortcodes_init()
         $url .= '/schedule/';
 
         // secure output
-        $o = '<a href="' . esc_url($url) . '">' . $content . '</a>';
+        $o = '<strong><a href="' . esc_url($url) . '">' . $content . '</a></strong><br><br>';
         error_log($o);
 
         return $o;
