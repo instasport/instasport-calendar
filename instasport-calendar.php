@@ -1,4 +1,3 @@
-
 <?php
 /**
  * Plugin Name: Instasport Calendar
@@ -16,11 +15,21 @@ function instasport_shortcodes_init()
         // normalize attribute keys, lowercase
         $atts = array_change_key_case((array)$atts, CASE_LOWER);
 
-        // override default attributes with user attributes
-        $wporg_atts = shortcode_atts(['slug' => '/',], $atts, $tag);
+        // override default attributes with slug attributes
+        $parsed = shortcode_atts(['slug' => '/',], $atts, $tag);
 
         // create output
-        $o = '<a href="https://instasport.co/club/"' . $wporg_atts['slug'] . '/schedule/>' . $content . '</a>';
+        $url = 'https://instasport.co/club/';
+
+        if ( isset( $parsed['slug'] ) ) {
+            $url .= $parsed['slug'];
+        }
+
+        $url .= '/schedule/';
+
+        // secure output
+        $o = '<a href="' . esc_url($url) . '">' . $content . '</a>';
+        error_log($o);
 
         return $o;
     }
