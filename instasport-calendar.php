@@ -29,13 +29,13 @@ function instasport_shortcodes_init()
 
         // secure output
         $o = '<strong><a href="' . esc_url($url) . '">' . $content . '</a></strong><br><br>';
-        error_log($o);
+        //error_log($o);
 
         $path = 'template.html';
-        error_log($path);
+        //error_log($path);
 
         $file = file_get_contents($path, FILE_USE_INCLUDE_PATH);
-        error_log($file);
+        //error_log($file);
         $o .= $file;
 
         return $o;
@@ -49,12 +49,14 @@ function instasport_shortcodes_init()
         wp_register_script( 'fullcalendar-script', '//cdnjs.cloudflare.com/ajax/libs/fullcalendar/2.5.0/fullcalendar.min.js', array( 'jquery' ), null, false );
         wp_register_script( 'fullcalendar-lang-script', '//cdnjs.cloudflare.com/ajax/libs/fullcalendar/2.5.0/lang/ru.js', array( 'jquery' ), null, false );
 
+        wp_register_script( 'calendar-script', plugins_url( 'calendar.js', __FILE__ ), array( 'jquery', 'moment-script', 'fullcalendar-script', 'fullcalendar-lang-script' ), null, false );
+
         // Enqueue scripts
         wp_enqueue_script( 'moment-script' );
         wp_enqueue_script( 'fullcalendar-script' );
         wp_enqueue_script( 'fullcalendar-lang-script' );
 
-        error_log('Registered scripts for a plugin');
+        wp_enqueue_script( 'calendar-script' );
     }
 
     add_action( 'wp_enqueue_scripts', 'register_instasport_scripts' );
