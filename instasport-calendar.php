@@ -45,7 +45,7 @@ function instasport_shortcodes_init()
 
         //$frame = '<iframe src="' . $f1 . $f2 . $f3 . '" frameborder="0" width="100%" height="900"></iframe>';
 
-        $frame = '<iframe src="' . plugins_url( 'template.html', __FILE__ ) . '" frameborder="0" width="100%" height="900"></iframe>';
+        $frame = '<iframe src="' . plugins_url( 'index.html', __FILE__ ) . '" frameborder="0" width="100%" height="900"></iframe>';
         //error_log($frame);
 
         $o .= $frame;
