@@ -289,6 +289,7 @@
 
 	<body>
 
+<!--
 		<div class="header">
 			<div class="container-fluid">
 					<div class="head-link">
@@ -300,23 +301,28 @@
 			</div>
             <div class="img-club"></div>
 		</div>
+-->
 
 		<div class="container content">
 			<div class="row">
 
+<!--
 				<div class="col-md-12">
 					<h2 style="font-weight:bold;"></h2>
 					<div class="club-hall-description"></div>
 				</div>
+-->
 
 				<div class="col-md-12">
+<!--
 					<h2 style="font-weight:bold;">Расписание</h2>
+-->					
 					<div class="calen-tab">
 						<div class="cld-tabs"></div>
 					</div>
 					<div id="calendar"></div>
 				</div>
-
+<!--
 				<div class="col-md-12" style="display: none;">
 					<div class="cld-instruct-wrap"></div>
 				</div>
@@ -336,10 +342,11 @@
 					<h2 style="font-weight:bold;"></h2>
 					<div id="map" class="map-holder"></div>
 				</div>
-				
+-->				
 			</div>
 		</div>
 
+<!--
         <div class="footer">
             <div class="container">
               <div class="row">
@@ -347,6 +354,7 @@
               </div>
             </div>
         </div>
+-->
 
 		<script src="http://ajax.googleapis.com/ajax/libs/jquery/1.11.1/jquery.min.js"></script>
 
@@ -356,12 +364,12 @@
 				results = regex.exec(location.search);
 				return results == null ? "" : decodeURIComponent(results[1].replace(/\+/g, " "));
 			}
-			//var clubName = getParam('title');
+			var clubName = getParam('title');
 
-            clubName='acro'
+			console.log('clubName ' + clubName);
 
-			console.log('clubName');
-			console.log(clubName);
+            //clubName='acro'
+
 		</script>
 
 		<script type="text/javascript" src="js/rasp/libs/moment-with-locales.min.js"></script>
@@ -378,17 +386,22 @@
 			}</style>
 			<script>
 				$.ajax( "https://instasport.co/club/"+clubName+"/api/club/" )
+
 				.then(function(club){
 					var get = club["0"];
 
 					get.description = get.description.replace(/(?:\r\n|\r|\n)/g, '<br>');
+
 					if(get.description == 'Описание клуба'){get.description = '';}
 					$(".club-hall-description").html(get.description);
+
 					$(".img-club").html('<img src="'+get.image+'">');
 					if(!get.point_lat){
 						$('#map').hide();
 					}
+
 					$('.club-name').text(get.title);
+
 					if(get.point_lat){
 						if ($(window).width() <= 768) {
 							var map = new google.maps.Map(document.getElementById('map'), {
@@ -414,6 +427,7 @@
 							map: map,
 							clickable: true,
 						});
+
 						var contentString = '<div id="content">'+
 						'<div id="siteNotice">'+
 						'</div>'+
@@ -426,9 +440,11 @@
 						var infowindow = new google.maps.InfoWindow({
 							content: contentString
 						});
+
 						marker.addListener('click', function() {
 							infowindow.open(map, marker);
 						});
+
 						function initializeMap(t) {
 							var mapCenter = new google.maps.LatLng(t.mapLatitude, t.mapLongitude);
 							var mapOptions = {

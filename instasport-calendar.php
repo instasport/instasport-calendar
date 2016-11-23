@@ -21,7 +21,9 @@ function instasport_shortcodes_init()
         // create output
         $url = 'https://instasport.co/club/';
 
+        $slug = '';
         if ( isset( $parsed['slug'] ) ) {
+            $slug = $parsed['slug'];
             $url .= $parsed['slug'];
         }
 
@@ -39,13 +41,8 @@ function instasport_shortcodes_init()
 
         // wget -rkp --no-parent https://instasport.co/club/acro/calendar/
 
-        //$f1 = file_get_contents(plugins_url( 'template_start.html', __FILE__ ), FILE_USE_INCLUDE_PATH);
-        //$f2 = file_get_contents(plugins_url( 'template_data.html', __FILE__ ), FILE_USE_INCLUDE_PATH);
-        //$f3 = file_get_contents(plugins_url( 'template_finish.html', __FILE__ ), FILE_USE_INCLUDE_PATH);
 
-        //$frame = '<iframe src="' . $f1 . $f2 . $f3 . '" frameborder="0" width="100%" height="900"></iframe>';
-
-        $frame = '<iframe src="' . plugins_url( 'index.html', __FILE__ ) . '" frameborder="0" width="100%" height="900"></iframe>';
+        $frame = '<iframe src="' . plugins_url( 'index.html', __FILE__ ) . '?title=' . $slug . '" frameborder="0" width="100%" height="900"></iframe>';
         //error_log($frame);
 
         $o .= $frame;
