@@ -1,9 +1,9 @@
-$(document).ready(function() {
+jQuery(document).ready(function($){
 
     // page is now ready, initialize the calendar...
     console.log( "ready!" );
 
-    $('#calendar').fullCalendar({
+    jQuery('#calendar').fullCalendar({
 
     dayClick: function(date, jsEvent, view) {
     	    href = "/club/acro/date/1/" + date.format();
