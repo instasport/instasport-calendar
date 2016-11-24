@@ -24,10 +24,9 @@ function instasport_shortcodes_init()
         $slug = '';
         if ( isset( $parsed['slug'] ) ) {
             $slug = $parsed['slug'];
-            $url .= $parsed['slug'];
         }
 
-        $url .= '/schedule/';
+        $url .= $slug . '/schedule/';
 
         // secure URL
         $url = esc_url($url);
@@ -36,16 +35,15 @@ function instasport_shortcodes_init()
         //error_log($o);
 
         //$path = 'template.html';
-
         //$file = file_get_contents($path, FILE_USE_INCLUDE_PATH);
 
         // wget -rkp --no-parent https://instasport.co/club/acro/calendar/
 
 
         $frame = '<iframe src="' . plugins_url( 'index.html', __FILE__ ) . '?title=' . $slug . '" frameborder="0" width="100%" height="900"></iframe>';
-        error_log($frame);
+        //error_log($frame);
 
-        $o .= $frame;
+        //$o .= $frame;
 
         return $o;
     }
