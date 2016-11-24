@@ -4,15 +4,13 @@
 
 	<meta charset="UTF-8"/>
 	<meta name="viewport" content="width=device-width">
-    <title>acro</title>
+
+    <title>Calendar</title>
 
 	<link rel="stylesheet" href="css/bootstrap-grid-12.css"/>
 	<link rel="stylesheet" href="js/rasp/css/style.css"/>
 	<link rel="stylesheet" href="css/fonts.css"/>
 	<link rel="stylesheet" type="text/css" href="js/rasp/libs/fullcalendar/fullcalendar.min.css">
-
-    <link rel="apple-touch-icon" href="img/favicon.png">
-  	<link rel="shortcut icon" href="img/favicon.png">
 
 	<style type="text/css">
 		@import url("css/flaticon.css");
@@ -285,76 +283,20 @@
 				background: rgba(0,0,0,.2);
 			}
 		</style>
-	</head>
+</head>
 
 	<body>
 
-<!--
-		<div class="header">
-			<div class="container-fluid">
-					<div class="head-link">
-						<a href="#" class="back-link"><i class="flaticon-angle-pointing-to-left"></i>Calendar</a>
-					</div>
-					<div class="head-name">
-						<h1 class="club-name"></h1>
-					</div>
-			</div>
-            <div class="img-club"></div>
-		</div>
--->
-
 		<div class="container content">
 			<div class="row">
-
-<!--
 				<div class="col-md-12">
-					<h2 style="font-weight:bold;"></h2>
-					<div class="club-hall-description"></div>
-				</div>
--->
-
-				<div class="col-md-12">
-<!--
-					<h2 style="font-weight:bold;">Расписание</h2>
--->					
 					<div class="calen-tab">
 						<div class="cld-tabs"></div>
 					</div>
 					<div id="calendar"></div>
 				</div>
-<!--
-				<div class="col-md-12" style="display: none;">
-					<div class="cld-instruct-wrap"></div>
-				</div>
-
-				<div class="col-md-12" style="display: none;">
-					<h2 style="font-weight:bold;">Наш зал</h2>
-					<div class="cld-hall-img-wrap">
-						<img src="default-image.svg" class="cld-hall-img">
-						<span class="cld-hall-img-name"></span>
-					</div><br />
-				</div>
-
-				<div class="col-md-12">
-					<div class="club"></div>
-				</div>
-				<div class="col-md-12">
-					<h2 style="font-weight:bold;"></h2>
-					<div id="map" class="map-holder"></div>
-				</div>
--->				
 			</div>
 		</div>
-
-<!--
-        <div class="footer">
-            <div class="container">
-              <div class="row">
-                <p class="copyright">&copy; 2016</p>
-              </div>
-            </div>
-        </div>
--->
 
 		<script src="http://ajax.googleapis.com/ajax/libs/jquery/1.11.1/jquery.min.js"></script>
 
@@ -366,9 +308,7 @@
 			}
 			var clubName = getParam('title');
 
-			console.log('clubName ' + clubName);
-
-            //clubName='acro'
+			console.log('club slug ' + clubName);
 
 		</script>
 
@@ -376,87 +316,8 @@
 		<script type="text/javascript" src="js/rasp/libs/fullcalendar/fullcalendar.min.js"></script>
 		<script type="text/javascript" src="js/rasp/libs/fullcalendar/lang/ru.js"></script>
 		<script type="text/javascript" src="js/rasp/main.js"></script>
-		<script type="text/javascript" src="js/rasp/staff.js"></script> 
 
-		<script src="https://maps.googleapis.com/maps/api/js?key=AIzaSyD-NQ4XoAYgLpRPNORufFdao0BqjKM1lYI" type="text/javascript"></script>
+			
+	</body>
 
-		<style>
-			#map {
-				color: #444;
-			}</style>
-			<script>
-				$.ajax( "https://instasport.co/club/"+clubName+"/api/club/" )
-
-				.then(function(club){
-					var get = club["0"];
-
-					get.description = get.description.replace(/(?:\r\n|\r|\n)/g, '<br>');
-
-					if(get.description == 'Описание клуба'){get.description = '';}
-					$(".club-hall-description").html(get.description);
-
-					$(".img-club").html('<img src="'+get.image+'">');
-					if(!get.point_lat){
-						$('#map').hide();
-					}
-
-					$('.club-name').text(get.title);
-
-					if(get.point_lat){
-						if ($(window).width() <= 768) {
-							var map = new google.maps.Map(document.getElementById('map'), {
-							center: {lat:Number(get.point_lat), lng:Number(get.point_lon)},
-							zoom: 13,
-							zoomControl: false,
-							scaleControl: false,
-							scrollwheel: false,
-							navigationControl: false,
-							mapTypeControl: false,
-							scaleControl: false,
-							draggable: false,
-						});
-						} else{
-							var map = new google.maps.Map(document.getElementById('map'), {
-							center: {lat:Number(get.point_lat), lng:Number(get.point_lon)},
-							zoom: 13,
-						});
-						}
-						var marker =	new google.maps.Marker({
-							icon: 'img/map-icon.png',
-							position: new google.maps.LatLng(Number(get.point_lat),Number(get.point_lon)),
-							map: map,
-							clickable: true,
-						});
-
-						var contentString = '<div id="content">'+
-						'<div id="siteNotice">'+
-						'</div>'+
-						'<h1 id="firstHeading" class="firstHeading">'+get.title+'</h1>'+
-						'<div id="bodyContent">'+
-						'<p>'+get.description+'</p>'+
-						'<p>Сайт клуба, <a href="'+get.website+'">'+get.website+'</a></p>'+
-						'</div>'+
-						'</div>';
-						var infowindow = new google.maps.InfoWindow({
-							content: contentString
-						});
-
-						marker.addListener('click', function() {
-							infowindow.open(map, marker);
-						});
-
-						function initializeMap(t) {
-							var mapCenter = new google.maps.LatLng(t.mapLatitude, t.mapLongitude);
-							var mapOptions = {
-								zoom: t.zoom,
-								center: mapCenter,
-								scrollwheel: false,
-								navigationControl: false,
-								mapTypeId: google.maps.MapTypeId.ROADMAP
-							};
-						};
-					}
-				});
-			</script>
-		</body>
-		</html>
+</html>

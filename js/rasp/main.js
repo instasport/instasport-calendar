@@ -44,7 +44,7 @@ $(document).ready(function() {
 						eventArr = _this.hallFilter(tabId);
 
 						buildingEvents = _this.rebuildEventsArr(eventArr);
-						staff.init(hallArr[hallIndex].instructor);
+						//staff.init(hallArr[hallIndex].instructor);
 						_this.init(buildingEvents, hallArr[hallIndex].time_open, hallArr[hallIndex].time_close);
 
 						$('.cld-hall-img').prop('src', hallArr[hallIndex].image).attr('width','100%');
@@ -59,7 +59,7 @@ $(document).ready(function() {
 								$(this).addClass('current');
 								eventArr = _this.hallFilter(tabId);
 								buildingEvents = _this.rebuildEventsArr(eventArr);
-								staff.init(hallArr[hallIndex].instructor);
+								//staff.init(hallArr[hallIndex].instructor);
 								_this.init(buildingEvents, hallArr[hallIndex].time_open, hallArr[hallIndex].time_close);
 								$('.cld-hall-img').prop('src', hallArr[hallIndex].image);
 								$('.cld-hall-img-name').text(hallArr[hallIndex].title+' ( '+hallArr[hallIndex].description+' ) ');
@@ -226,7 +226,7 @@ $(document).ready(function() {
 		}
 
 		var app = new calendarApp();
-		var staff = new staffApp();
+		//var staff = new staffApp();
 
 		app.loadData(function(resp){
 			if(!resp){
