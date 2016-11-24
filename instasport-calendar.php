@@ -16,7 +16,7 @@ function instasport_shortcodes_init()
         $atts = array_change_key_case((array)$atts, CASE_LOWER);
 
         // override default attributes with slug attributes
-        $parsed = shortcode_atts(['slug' => '/',], $atts, $tag);
+        $parsed = shortcode_atts(['slug' => '/', 'height' => '900',], $atts, $tag);
 
         // create output
         $url = 'https://instasport.co/club/';
@@ -25,6 +25,12 @@ function instasport_shortcodes_init()
         if ( isset( $parsed['slug'] ) ) {
             $slug = $parsed['slug'];
         }
+
+        $height = 900;
+        if ( isset( $parsed['height'] ) ) {
+            $height = $parsed['height'];
+        }
+
 
         $url .= $slug . '/schedule/';
 
@@ -39,8 +45,7 @@ function instasport_shortcodes_init()
 
         // wget -rkp --no-parent https://instasport.co/club/acro/calendar/
 
-
-        $frame = '<iframe src="' . plugins_url( 'index.html', __FILE__ ) . '?title=' . $slug . '" frameborder="0" width="100%" height="900"></iframe>';
+        $frame = '<iframe src="' . plugins_url( 'index.html', __FILE__ ) . '?title=' . $slug . '" frameborder="0" width="100%" height="' . $height . '"></iframe>';
         //error_log($frame);
 
         $o .= $frame;

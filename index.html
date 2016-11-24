@@ -300,6 +300,17 @@
 
 		<script src="//ajax.googleapis.com/ajax/libs/jquery/1.11.1/jquery.min.js"></script>
 
+        <script type="text/javascript">
+        	function getUrlVars() {
+                var vars = {};
+                var parts = window.location.href.replace(/[?&]+([^=&]+)=([^&]*)/gi,    
+                function(m,key,value) {
+                    vars[key] = value;
+                });
+            return vars;
+        }
+        </script>
+
 		<script>
 			function getParam(name) {
 				var regex = new RegExp("[\\?&]" + name + "=([^&#]*)"),
