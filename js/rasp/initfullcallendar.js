@@ -32,7 +32,8 @@ $(document).ready(function() {
 				$(this).closest("td.day").addClass("choosen");
 				var date = $(this).closest("td.day").attr("data-date");
 				$("#calendarModal .modal-header .title").text(date);
-				$("#calendar-data div[data-date="+date+"]").each(function(){
+				var hallID = $(".calen-tab .cld-tabs .cld-tab.current").attr("data-hall-id");
+				$("#calendar-data div[data-date="+date+"][data-hall="+hallID+"]").each(function(){
 					var time = $(this).attr("data-time");
 					var timeEnd = $(this).attr("data-end-time");
 					var seats = $(this).attr("data-seats");
@@ -1104,7 +1105,8 @@ function pastIntoEventsOnDayTODAY(){
 	var todayDate = $(".mycalendars .mymonthcalendar table tr td.day.active.today").attr("data-date");
 	//alert(todayDate);
 			if(todayDate != ""){
-				$("#calendar-data div[data-date="+todayDate+"]").each(function(){
+				var hallID = $(".calen-tab .cld-tabs .cld-tab.current").attr("data-hall-id");
+				$("#calendar-data div[data-date="+todayDate+"][data-hall="+hallID+"]").each(function(){
 					var time = $(this).attr("data-time");
 					var timeEnd = $(this).attr("data-end-time");
 					var seats = $(this).attr("data-seats");
