@@ -445,7 +445,7 @@
 .switch-type-mycalendars{
 	position: absolute;
 	z-index: -100;
-	top: -5000px;
+	top: -50000px; 
 }
 
 
