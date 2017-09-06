@@ -606,6 +606,7 @@ function custFullCallendar(){
 	//$("").(function(){
 	//	$(this).addClass("today");
 	//});
+	$(".mycalendars .mycalendar.mymonthcalendar").show();
 	pastIntoEventsOnDayTODAY();
 	puttingPreloaderIntoCenterOfBlock("hide");
 }
@@ -1236,7 +1237,7 @@ function calendarDATA(){
 
 	    	if(typeCalendar == "month"){
 	    		$(".mycalendars .mycalendar").hide();
-	    		$(".mycalendars .mycalendar.mymonthcalendar").show();
+	    		$(".mycalendars .mycalendar.mymonthcalendar").hide();
 	    		custFullCallendar();
 	    	}else if(typeCalendar == "week"){
 	    		$(".mycalendars .mycalendar").hide();

@@ -444,12 +444,12 @@ function intacalendar_create_db(){
     $results = $wpdb->get_results( "SELECT * FROM $table_name WHERE id = 1" );
     if(count($results) == 0){
         //Default styles for BUTTONS to switch halls of calendar 
-        $switch_halls_button_bg = '#333';
-        $switch_halls_button_bg_hover = '#666';
-        $switch_halls_button_bg_active = '#ccc';
-        $switch_halls_button_color = '#fff';
-        $switch_halls_button_color_hover = '#fff';
-        $switch_halls_button_color_active = '#000';
+        $switch_halls_button_bg = '#ccc';
+        $switch_halls_button_bg_hover = '#ccc';
+        $switch_halls_button_bg_active = '#000';
+        $switch_halls_button_color = '#000';
+        $switch_halls_button_color_hover = '#000';
+        $switch_halls_button_color_active = '#fff';
 
         //Default styles for Next,Prev BUTTONS and title of current month of calendar 
         $title_current_month_color = '#000';
@@ -467,8 +467,8 @@ function intacalendar_create_db(){
         $date_number_color_today = '#fff';
         $date_number_bg_today_hover = '#666';
         $date_number_color_today_hover = '#fff';
-        $date_number_bg_choosen = 'yellow';
-        $date_number_color_choosen = 'black';
+        $date_number_bg_choosen = 'red';
+        $date_number_color_choosen = '#fff';
         $date_number_bg_choosen_hover = 'red';
         $date_number_color_choosen_hover = '#fff';
 

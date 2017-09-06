@@ -346,6 +346,14 @@
 	vertical-align: top;
 	padding: 5px 0px;
 }
+#events-on-day table tr td,
+#events-on-day table tr,
+#events-on-day table{
+	border: none!important;
+}
+#events-on-day table tr{
+	border-bottom: 1px solid #ccc!important;
+}
 #events-on-day table tr td span{
 	color: #999;
 }
