@@ -1,6 +1,11 @@
 $(document).ready(function() {
-	var hallUrl = "https://instasport.co/club/"+clubName+"/api/hall/?format=json",
-		calendarUrl = "https://instasport.co/club/"+clubName+"/api/calendar/?format=json",
+	var club = $(".intaclub").text();
+	//var hallUrl = "https://instasport.co/club/"+clubName+"/api/hall/?format=json",
+	//	calendarUrl = "https://instasport.co/club/"+clubName+"/api/calendar/?format=json",
+	//var hallUrl = "https://instasport.co/club/"+club+"/api/hall/?format=json",
+	//	calendarUrl = "https://instasport.co/club/"+club+"/api/calendar/?format=json", 
+	var hallUrl = "https://instasport.co/club/"+club+"/api/hall/?format=json",
+		calendarUrl = "https://instasport.co/club/"+club+"/api/schedule/dates/2017-09-01/2017-10-01/?format=json",
 		// proxy = "proxy.php?url=",
 		proxy = "",
 		eventArr = [],
@@ -92,7 +97,20 @@ $(document).ready(function() {
 					lang: lang,
 					timezone: true,
 					contentHeight: 'auto',
-					defaultView: 'agendaWeek',
+					//defaultView: 'agendaWeek',
+					views: {
+				        month: {
+				            titleFormat: "MMMM YYYY",                  
+				        },
+				        week: {
+				            columnFormat: "D.MM.YYYY",
+				            titleFormat: "DD.MM.YYYY",            
+				        },
+				        day: {
+				            titleFormat: "DD.MM.YYYY",
+				            /*columnFormat: "dddd d", */          
+				        }
+				    },
 					header: {
 						left: 'prev,next today',
 						center: 'title',
@@ -106,11 +124,32 @@ $(document).ready(function() {
 					},
 					minTime: open,
 					maxTime: close,
-					eventSources: [{
-						events: cldEvent,
+					//events: cldEvent,
+					events: {
+					        url: "https://instasport.co/club/"+club+"/api/schedule/dates",
+					        data: function() { // a function that returns an object
+					            return {
+					                //date1: "2017-08-01",
+					                format: "json"
+					            };
+					        }
+					    },
+					/*eventSources: [{
+						//events: cldEvent,
+						events: {
+					        url: cldEvent,
+					        data: function() { // a function that returns an object
+					            return {
+					                dynamic_value: 5
+					            };
+					        }
+					    },
 						color: bgColor,
 						textColor: txtColor 
-					}]
+					}],*/
+					eventAfterAllRender: function(event, element) {
+				        calendarDATA();
+				    },
 				});	
 				oldEvents = true;			
 			}

@@ -1,0 +1,491 @@
+.mycalendars{
+	position: relative;
+}
+.mycalendars .mycalendar{
+	display: none;
+}
+
+/*		MYMONTHCALENDAR
+***************************************************************/
+.mycalendars .mymonthcalendar table{
+	width: 100%;
+}
+.mycalendars .mymonthcalendar table thead tr:nth-child(1){
+	/*text-decoration: underline;*/
+	border: none;
+}
+.mycalendars .mymonthcalendar table thead tr:nth-child(2) td{
+	/*text-decoration: underline;*/
+	text-align: center;
+}
+.mycalendars .mymonthcalendar table thead tr:nth-child(1) td:nth-child(2){
+	text-align: center;
+	text-transform: uppercase;
+}
+.mycalendars .mymonthcalendar table thead tr:nth-child(1) td:nth-child(1){
+	text-align: center;
+}
+.mycalendars .mymonthcalendar table thead tr:nth-child(1) td:nth-child(3){
+	text-align: center;
+}
+.mycalendars .mymonthcalendar table thead tr:nth-child(1) td a{
+	box-shadow: none;
+	text-transform: uppercase;
+	font-size: 1.2em;
+}
+.mycalendars .mymonthcalendar table thead tr:nth-child(1) td a:hover{
+	/*text-decoration: underline;*/
+}
+.mycalendars .mymonthcalendar table tr td.day{
+	width: 14.2777%;
+	padding: 5px;
+	vertical-align: top;
+}
+
+
+.mycalendars .mymonthcalendar table tr td.day:nth-child(1){
+	/*border-left: 1px solid #eeeeee;*/
+}
+.mycalendars .mymonthcalendar table tr td.day .events{
+	display: none;
+}
+.mycalendars .mymonthcalendar table tr td.day .show{
+	text-align: center;
+	font-size: 12px;
+	line-height: 12px;
+	height: 100%;
+	width: 100%;
+	padding: 14px 0px;
+	position: relative;
+}
+/*@media(max-width: 800px){*/
+	.mycalendars .mymonthcalendar.w800px table tr td.day .show{
+		font-size: 10px;
+		line-height: 10px;
+	}
+/*}*/
+.mycalendars .mymonthcalendar table tr td.day .show .event-on-day a{
+	box-shadow: none;
+}
+.mycalendars .mymonthcalendar table tr td.day .show .event-on-day a:hover{
+	text-decoration: underline;
+}
+.mycalendars .mymonthcalendar table tr td.day .show .day-number{
+	width: 20px;
+	height: 20px;
+	line-height: 20px;
+	text-align: center;
+	position: absolute;
+	top: 0px;
+	left: 0px;
+}
+/*.mycalendars .mymonthcalendar table tr td.day[data-day-week=sunday] .show .day-number{
+	color: #a0a0a0;
+}
+.mycalendars .mymonthcalendar table tr td.day[data-day-week=saturday] .show .day-number{
+	color: #a0a0a0;
+}*/
+
+
+
+.mycalendars .mymonthcalendar table tr td.day .show .event-on-day{
+	padding-top: 14px;
+}
+
+
+
+/*@media(max-width: 700px){*/
+	.mycalendars .mymonthcalendar.w700px table tr td.day .show .events-on-day{
+		display: none;
+	}
+	.mycalendars .mymonthcalendar.w700px table tr td.day{
+		
+	}
+	.mycalendars .mymonthcalendar.w700px table tr td.day .show .day-number{
+		width: 30px;
+		height: 30px;
+		line-height: 30px;
+		padding: 0px;
+		text-align: center;
+		border-radius: 15px;
+		margin: auto;
+		position: relative;
+	}
+	/*.mycalendars .mymonthcalendar.w700px table tr td.active .show .day-number{
+		background-color: #fcefe1;
+		color: black;
+	}*/
+	.mycalendars .mymonthcalendar.w700px table tr td.day.active .show .day-number{
+		cursor: pointer;
+	}
+/*}*/
+
+
+
+
+/*		WEEKCALENDAR
+***************************************************************/
+.mycalendar.myweekcalendar{
+
+}
+.mycalendar.myweekcalendar table{
+	width: 100%;
+}
+.mycalendar.myweekcalendar table tr td{
+	width: 12.9999%;
+	font-size: 12px;
+	line-height: 12px;
+	text-align: center;
+	border-right: 1px solid #eeeeee;
+}
+@media(max-width: 800px){
+	.mycalendar.myweekcalendar table tr td{
+		font-size: 10px;
+		line-height: 10px;
+	}
+}
+.mycalendar.myweekcalendar table tr td:nth-child(1){
+	width: 15.9999%;
+	border-left: 1px solid #eeeeee;
+}
+.mycalendar.myweekcalendar table thead tr:nth-child(1) td{
+	border: none;
+}
+.mycalendar.myweekcalendar table tr td a{
+	display: inline-block;
+	padding: 5px 0px;
+	border: none;
+	box-shadow: none;
+}
+.mycalendar.myweekcalendar table tr td a:hover{
+	text-decoration: underline;
+}
+
+.mycalendar.myweekcalendar table tr td a.hidden{
+	display: none;
+	margin: auto;
+	height: 20px;
+	width: 20px;
+	padding: 0px;
+	border: none;
+	box-shadow: none;
+	background-color: red;
+	border-radius: 10px;
+	margin-bottom: 10px;
+	margin-top: 10px;
+}
+
+/*@media(max-width: 700px){*/
+	.mycalendar.myweekcalendar.w700px table tbody tr td a{
+		display: none;
+	}
+	.mycalendar.myweekcalendar.w700px table tbody tr td a.hidden{
+		display: block;
+	}
+/*}*/
+
+.mycalendar.myweekcalendar table thead tr td:nth-child(2){
+	background: none;
+}
+.mycalendar.myweekcalendar table tbody tr:nth-child(odd){
+	background-color: #f7f7f7;
+}
+
+
+
+
+
+
+
+
+/*		DAYCALENDAR
+***************************************************************/
+.mycalendar.mydaycalendar{
+
+}
+.mycalendar.mydaycalendar table{
+	width: 100%;
+}
+.mycalendar.mydaycalendar table thead tr:nth-child(1) td:nth-child(3){
+	text-align: right;
+	width: 150px;
+}
+.mycalendar.mydaycalendar table thead tr:nth-child(1) td:nth-child(2){
+	text-align: center;
+}
+.mycalendar.mydaycalendar table thead tr:nth-child(1) td:nth-child(1){
+	text-align: left;
+}
+.mycalendar.mydaycalendar table tr td{
+	font-size: 12px;
+	line-height: 12px;
+	text-align: center;
+	border-right: 1px solid #eeeeee;
+}
+@media(max-width: 800px){
+	/*.mycalendar.mydaycalendar table tr td{
+		font-size: 10px;
+		line-height: 10px;
+	}*/
+}
+.mycalendar.mydaycalendar table tr td:nth-child(1){
+	width: 150px;
+	border-left: 1px solid #eeeeee;
+}
+.mycalendar.mydaycalendar table thead tr:nth-child(1) td{
+	border: none;
+}
+.mycalendar.mydaycalendar table tr td .event a{
+	display: inline-block;
+	padding: 12px 0px;
+	border: none;
+	box-shadow: none;
+}
+.mycalendar.mydaycalendar table tr td .event a:hover{
+	text-decoration: underline;
+}
+
+.mycalendar.myweekcalendar table thead tr td:nth-child(2){
+	background: none;
+}
+.mycalendar.myweekcalendar table tbody tr:nth-child(odd){
+	background-color: #f7f7f7;
+}
+
+
+
+
+
+
+
+
+
+/*		BUTTONS FOR SWITCH TYPE OF CALENDAR
+***************************************************************/
+.switch-type-mycalendars{
+
+}
+.switch-type-mycalendars button{
+	background: none;
+	height: auto;
+	width: auto;
+	padding: 10px 20px;
+	background-color: #333;
+	color: white;
+	font-size: 16px;
+	font-weight: 100; 
+}
+.switch-type-mycalendars button.active{
+	background-color: #ccc;
+	color: black;
+}
+
+
+
+
+
+
+/*		BUTTONS(SPAN) FOR SWITCH HALL OF CALENDAR
+***************************************************************/
+.switch-halls-mycalendar{
+	padding-bottom: 30px;
+}
+.switch-halls-mycalendar span{
+	display: inline-block;
+	padding: 10px 10px;
+	color: white;
+	font-size: 14px;
+	margin: 5px;
+	margin-left: 0px;
+	cursor: pointer;
+	max-width: 170px;
+	text-align: center;
+}
+.switch-halls-mycalendar span.active{
+	color: black;
+}
+
+@media(max-width: 500px){
+	.switch-halls-mycalendar span{
+		padding: 10px 5px;
+		max-width: 120px;
+		font-size: 12px;
+		text-align: center;
+	}
+	.switch-halls-mycalendar span{
+		text-align: center;
+	}
+}
+
+
+
+
+
+
+/*		EVENTS ON DAY
+***************************************************************/
+#events-on-day{
+	padding-bottom: 20px;
+}
+#events-on-day table{
+	margin: 0px;
+}
+#events-on-day table tr td:nth-child(1){
+	width: 100px;
+	text-align: right;
+	padding-right: 10px;
+}
+#events-on-day table tr td:nth-child(3){
+	padding-left: 10px;
+}
+#events-on-day table tr td{
+	vertical-align: top;
+	padding: 5px 0px;
+}
+#events-on-day table tr td span{
+	color: #999;
+}
+#events-on-day table tr td:nth-child(1) span{
+	font-size: 0.8em;
+}
+#events-on-day table tr td.color-line{
+	width: 5px;
+	padding: 5px 0px;
+	position: relative;
+}
+#events-on-day table tr td.color-line div:nth-child(1){
+	width: 100%;
+	background: white;
+	height: 3px!important;
+	position: absolute;
+	top: 0px;
+	left: 0px;
+}
+#events-on-day table tr td.color-line div:nth-child(2){
+	width: 100%;
+	background: white;
+	height: 3px!important;
+	position: absolute;
+	bottom: 0px;
+	left: 0px;
+}
+
+#events-on-day table:nth-child(1) tr td.color-line{
+	background: #11abf5;
+}
+#events-on-day table:nth-child(2) tr td.color-line{
+	background: #11f557;
+}
+#events-on-day table:nth-child(3) tr td.color-line{
+	background: #f57711;
+}
+#events-on-day table:nth-child(4) tr td.color-line{
+	background: #f5e811;
+}
+#events-on-day table:nth-child(5) tr td.color-line{
+	background: #e811f5;
+}
+#events-on-day table:nth-child(6) tr td.color-line{
+	background: #1116f5;
+}
+#events-on-day table:nth-child(7) tr td.color-line{
+	background: #11f5cd;
+}
+#events-on-day table:nth-child(8) tr td.color-line{
+	background: #f5b211;
+}
+#events-on-day table:nth-child(9) tr td.color-line{
+	background: #a7f511;
+}
+#events-on-day table:nth-child(10) tr td.color-line{
+	background: #bd11f5;
+}
+#events-on-day table:nth-child(11) tr td.color-line{
+	background: #c2f511;
+}
+#events-on-day table:nth-child(12) tr td.color-line{
+	background: #11f587;
+}
+#events-on-day table:nth-child(13) tr td.color-line{
+	background: #cdf511;
+}
+#events-on-day table:nth-child(14) tr td.color-line{
+	background: #11a2f5;
+}
+#events-on-day table:nth-child(15) tr td.color-line{
+	background: #f5a211;
+}
+#events-on-day table:nth-child(16) tr td.color-line{
+	background: #f5115c;
+}
+#events-on-day table:nth-child(17) tr td.color-line{
+	background: #11a2f5;
+}
+#events-on-day table:nth-child(18) tr td.color-line{
+	background: #cdf511;
+}
+#events-on-day table:nth-child(19) tr td.color-line{
+	background: #11f587;
+}
+#events-on-day table:nth-child(20) tr td.color-line{
+	background: #a7f511;
+}
+
+
+
+
+
+
+
+/*		HIDE MEIN CALENDAR AND ALL RELATED ELEMENTS OF PAGE
+***************************************************************/
+#calendar,
+.calen-tab,
+#calendar-data,
+.switch-type-mycalendars{
+	position: absolute;
+	z-index: -100;
+	top: -5000px;
+}
+
+
+
+
+
+
+
+/* PRELOADER CALENDAR
+-----------------------------------------------------------------------------*/
+.mycalendars .preloader{
+  position: absolute;
+  height: 100%;
+  width: 100%;
+  background: rgba(0,0,0, 0.6);
+  top: 0px;
+  left: 0px;
+  z-index: 10;
+  display: block;
+}
+.mycalendars .preloader4 {
+   width:35px;
+   height:35px;
+   margin: auto;
+   display:block;
+   padding:0px;
+   border-radius:100%;
+   border:2px solid;
+   border-top-color:rgba(255,255,255, 0.65);
+   border-bottom-color:rgba(255,255,255, 0.15);
+   border-left-color:rgba(255,255,255, 0.65);
+   border-right-color:rgba(255,255,255, 0.15);
+   -webkit-animation: preloader4 0.8s linear infinite;
+   animation: preloader4 0.8s linear infinite;
+}
+@keyframes preloader4 {
+   from {transform: rotate(0deg);}
+   to {transform: rotate(360deg);}
+}
+@-webkit-keyframes preloader4 {
+   from {-webkit-transform: rotate(0deg);}
+   to {-webkit-transform: rotate(360deg);}
+}

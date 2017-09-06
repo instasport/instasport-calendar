@@ -12,6 +12,9 @@
 	<link rel="stylesheet" href="css/fonts.css"/>
 	<link rel="stylesheet" type="text/css" href="js/rasp/libs/fullcalendar/fullcalendar.min.css">
 
+	<!-- 		   		-->
+	<link rel="stylesheet" type="text/css" href="css/mycalendars.css">
+
 	<style type="text/css">
 		@import url("css/flaticon.css");
 		.flaticon-angle-pointing-to-left:before {font-size: 14px; margin-left: 0; margin-right: 5px;}
@@ -287,16 +290,20 @@
 
 	<body>
 
-		<div class="container content">
+		<!--<div class="container content">
 			<div class="row">
-				<div class="col-md-12">
+				<div class="col-md-12">-->
+
+					<?php include("mycalendar.php");?>
+
 					<div class="calen-tab">
 						<div class="cld-tabs"></div>
 					</div>
 					<div id="calendar"></div>
-				</div>
+					
+		<!--		</div>
 			</div>
-		</div>
+		</div>-->
 
 		<script src="//ajax.googleapis.com/ajax/libs/jquery/1.11.1/jquery.min.js"></script>
 
@@ -319,7 +326,7 @@
 			}
 			var clubName = getParam('title');
 
-			console.log('club slug ' + clubName);
+			//console.log('club slug ' + clubName);
 
 		</script>
 
