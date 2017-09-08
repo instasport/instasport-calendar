@@ -1,4 +1,4 @@
-$(document).ready(function() {
+jQuery(document).ready(function($) {
 	var club = $(".intaclub").text();
 	//var hallUrl = "https://instasport.co/club/"+clubName+"/api/hall/?format=json",
 	//	calendarUrl = "https://instasport.co/club/"+clubName+"/api/calendar/?format=json",

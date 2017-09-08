@@ -1,4 +1,4 @@
- $(document).ready(function() {
+ jQuery(document).ready(function($) {
   
   //alert(1212);
   $("#calendarModal .close").click(function(){

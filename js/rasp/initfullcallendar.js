@@ -1,4 +1,4 @@
-$(document).ready(function() {
+jQuery(document).ready(function($) {
 		
 
 		////PADDING to preload while calendar is loading
@@ -97,6 +97,11 @@ $(document).ready(function() {
 			}
 		});
 
+
+		$(".mymonthcalendar .active-circle div").on("click", function(){
+			//alert(1212);
+			$(this).closest(".show").find(".day-number").click();
+		});
 
 
 
@@ -308,7 +313,7 @@ $(document).ready(function() {
 
 
 
-$(window).resize(function() {
+jQuery(window).resize(function($) {
 	//apllyAprWievToCalendar();
 });
 
@@ -317,11 +322,11 @@ $(window).resize(function() {
 
 function puttingPreloaderIntoCenterOfBlock(action){
 	if(action == "show"){
-		var preloaderPaddingTop = ((parseInt($(".mycalendars").css("height"), 10))/2)-20;
+		var preloaderPaddingTop = ((parseInt(jQuery(".mycalendars").css("height"), 10))/2)-20;
 		//alert(preloaderPaddingTop);
-		$(".mycalendars .preloader").css("padding-top",preloaderPaddingTop+"px").show();
+		jQuery(".mycalendars .preloader").css("padding-top",preloaderPaddingTop+"px").show();
 	}else if(action == "hide"){
-		$(".mycalendars .preloader").hide();
+		jQuery(".mycalendars .preloader").hide();
 	}
 }
 
@@ -376,11 +381,11 @@ function apllyAprWievToCalendar(){
 
 //Functionality of buttons of type month
 function funcTypeCalButtons(){
-	$(".switch-type-mycalendars button").removeClass("active");
-	var activeTypeCalendarButtonIndex = $("#calendar .fc-right .fc-button-group .fc-state-active").index();
-	if(activeTypeCalendarButtonIndex == 0){$(".switch-type-mycalendars button.month").addClass("active");}
-	if(activeTypeCalendarButtonIndex == 1){$(".switch-type-mycalendars button.week").addClass("active");}
-	if(activeTypeCalendarButtonIndex == 2){$(".switch-type-mycalendars button.day").addClass("active");}
+	jQuery(".switch-type-mycalendars button").removeClass("active");
+	var activeTypeCalendarButtonIndex = jQuery("#calendar .fc-right .fc-button-group .fc-state-active").index();
+	if(activeTypeCalendarButtonIndex == 0){jQuery(".switch-type-mycalendars button.month").addClass("active");}
+	if(activeTypeCalendarButtonIndex == 1){jQuery(".switch-type-mycalendars button.week").addClass("active");}
+	if(activeTypeCalendarButtonIndex == 2){jQuery(".switch-type-mycalendars button.day").addClass("active");}
 }
 
 
@@ -389,24 +394,24 @@ function funcTypeCalButtons(){
 
 //Functionality of buttons of type month
 function funcHallsCalButtons(){
-	$(".switch-halls-mycalendar").text("");
-	var quantityHalls = $(".calen-tab .cld-tab").length;
+	jQuery(".switch-halls-mycalendar").text("");
+	var quantityHalls = jQuery(".calen-tab .cld-tab").length;
 	if(quantityHalls > 0){
-		$(".calen-tab .cld-tab").each(function(){
-			var hall = $(this).attr("data-hall-id");
-			var title = $(this).text();
+		jQuery(".calen-tab .cld-tab").each(function(){
+			var hall = jQuery(this).attr("data-hall-id");
+			var title = jQuery(this).text();
 			var active = "";
-			if($(this).hasClass("current")){active="active";}
-			$(".switch-halls-mycalendar").append("<span class='"+active+"' data-hall='"+hall+"'>"+title+"</span>");
+			if(jQuery(this).hasClass("current")){active="active";}
+			jQuery(".switch-halls-mycalendar").append("<span class='"+active+"' data-hall='"+hall+"'>"+title+"</span>");
 		});
 	}
 	
-	$(".switch-halls-mycalendar span").click(function(){
-		var hall = $(this).attr("data-hall");
-		$(".calen-tab .cld-tab[data-hall-id="+hall+"]").click();
+	jQuery(".switch-halls-mycalendar span").click(function(){
+		var hall = jQuery(this).attr("data-hall");
+		jQuery(".calen-tab .cld-tab[data-hall-id="+hall+"]").click();
 	});
 
-	if(quantityHalls == 1){$(".switch-halls-mycalendar").hide();}
+	if(quantityHalls == 1){jQuery(".switch-halls-mycalendar").hide();}
 }
 
 
@@ -421,17 +426,17 @@ function custFullCallendar(){
 	//calendarDATA();
 
 
-	$(".mycalendar table tbody tr td").removeClass("active");
-	$(".mycalendar table tbody tr td").attr("data-date", "");
-	$(".mycalendar table tbody tr td").find(".events-on-day").text("");
-	var hallID = $(".calen-tab .cld-tabs .cld-tab.current").attr("data-hall-id");
+	jQuery(".mycalendar table tbody tr td").removeClass("active");
+	jQuery(".mycalendar table tbody tr td").attr("data-date", "");
+	jQuery(".mycalendar table tbody tr td").find(".events-on-day").text("");
+	var hallID = jQuery(".calen-tab .cld-tabs .cld-tab.current").attr("data-hall-id");
 	//$(".price-time .block .preloader").hide();
 	//$(".price-time .block .mycalendar").animate({"opacity":"1"}, 300);
 
-	var monthToday = $("#calendar .fc-center>h2").text();
+	var monthToday = jQuery("#calendar .fc-center>h2").text();
 	var monthCurrent = monthToday.split(" ")[0];
 	var yearCurrent = monthToday.split(" ")[1];
-	$(".mycalendar table thead tr td.month-today").text(monthCurrent+" "+yearCurrent);
+	jQuery(".mycalendar table thead tr td.month-today").text(monthCurrent+" "+yearCurrent);
 	var justMonth = monthToday.split(" ")[0];
 	//alert(justMonth[0]);
 	
@@ -471,19 +476,19 @@ function custFullCallendar(){
 	
 	var i = 1;
 	var data = new Array();
-	$("#calendar .fc-day-grid>.fc-week").each(function(){
+	jQuery("#calendar .fc-day-grid>.fc-week").each(function(){
 		//console.log(i);
-		$(this).find(".fc-content-skeleton").find("table").find("thead").find("tr").find("td").each(function(){
+		jQuery(this).find(".fc-content-skeleton").find("table").find("thead").find("tr").find("td").each(function(){
 			//$(this).find("td").each(function(){
 
 				//console.log(i);
-				var dataDate = $(this).attr("data-date");
+				var dataDate = jQuery(this).attr("data-date");
 				//var dataTime = $(this).attr("data-time");
 				//var dataTimeEnd = $(this).attr("data-end-time");
 				//var dataSeats = $(this).attr("data-seats");
 				//var dataUrl = $(this).attr("data-url");
 				//var dataTitle = $(this).attr("data-title");
-				var numberDay = $(this).text();
+				var numberDay = jQuery(this).text();
 				//var currentDay = false;
 				//if($(this).hasClass("fc-today")){
 				//	currentDay = true;
@@ -506,13 +511,13 @@ function custFullCallendar(){
 
 	var i = 1;
 	//var dataCount = count(data);
-	$(".mycalendar table tbody tr").each(function(){
+	jQuery(".mycalendar table tbody tr").each(function(){
 		//console.log(data[i]['date']);
-		$(this).find("td").each(function(){
+		jQuery(this).find("td").each(function(){
 
 			//console.log(data[i]['day-number']);
 			 
-			var quantity = $("#calendar-data div[data-date="+data[i]['date']+"][data-hall="+hallID+"]").length;
+			var quantity = jQuery("#calendar-data div[data-date="+data[i]['date']+"][data-hall="+hallID+"]").length;
 			if(quantity > 0){
 				var date = data[i]['date'];
 				//if(data[i]['day-current']){
@@ -542,16 +547,16 @@ function custFullCallendar(){
 						+"</tr>"
 						+"</table>");*/
 				//}
-				$(this).addClass("active").attr("data-date", date).attr("data-day-number", data[i]['day-number']);
-				$(this).find(".day-number").text(data[i]['day-number']);
-				$("#calendar-data div[data-date="+data[i]['date']+"][data-hall="+hallID+"]").each(function(){
-					var time = $(this).attr("data-time");
-					var url = $(this).attr("data-url");
-					var title = $(this).text();
+				jQuery(this).addClass("active").attr("data-date", date).attr("data-day-number", data[i]['day-number']);
+				jQuery(this).find(".day-number").text(data[i]['day-number']);
+				jQuery("#calendar-data div[data-date="+data[i]['date']+"][data-hall="+hallID+"]").each(function(){
+					var time = jQuery(this).attr("data-time");
+					var url = jQuery(this).attr("data-url");
+					var title = jQuery(this).text();
 					//var 
 					
 					//$(this).find(".day-number")
-					$(".mycalendar table tbody tr td[data-date="+date+"]").find(".events-on-day").append('<div class="event-on-day">'
+					jQuery(".mycalendar table tbody tr td[data-date="+date+"]").find(".events-on-day").append('<div class="event-on-day">'
 						+'<a target="_blank" href="'+url+'">'
 						+'<span class="time">'+time.split(":")[0]+'.'+time.split(":")[1]+'</span><br/>'
 						+'<span class="title">'+title+'</span>'
@@ -564,7 +569,7 @@ function custFullCallendar(){
 				});
 			}else{
 				var date = data[i]['date'];
-				$(this).attr("data-date", date).find(".day-number").text(data[i]['day-number']);
+				jQuery(this).attr("data-date", date).find(".day-number").text(data[i]['day-number']);
 			}
 			
 			
@@ -602,12 +607,12 @@ function custFullCallendar(){
 	    mm='0'+mm;
 	} 
 	var today = yyyy+'-'+mm+'-'+dd; //alert(today);
-	$(".mycalendar table tbody tr td").removeClass("today");
-	$(".mycalendar table tbody tr td[data-date="+today+"]").addClass("today");
+	jQuery(".mycalendar table tbody tr td").removeClass("today");
+	jQuery(".mycalendar table tbody tr td[data-date="+today+"]").addClass("today");
 	//$("").(function(){
 	//	$(this).addClass("today");
 	//});
-	$(".mycalendars .mycalendar.mymonthcalendar").show();
+	jQuery(".mycalendars .mycalendar.mymonthcalendar").show();
 	pastIntoEventsOnDayTODAY();
 	puttingPreloaderIntoCenterOfBlock("hide");
 }
@@ -623,15 +628,15 @@ function custFullCallendarWeek(){
 	//// calling function for getting data for callendar
 	//calendarDATA();
 
-	var hallID = $(".calen-tab .cld-tabs .cld-tab.current").attr("data-hall-id");
-	$(".mycalendar.myweekcalendar table tbody").text("");
+	var hallID = jQuery(".calen-tab .cld-tabs .cld-tab.current").attr("data-hall-id");
+	jQuery(".mycalendar.myweekcalendar table tbody").text("");
 	//$(".mycalendar table tbody tr td").attr("data-date", "");
 	//$(".mycalendar table tbody tr td").find(".events-on-day").text("");
 	//$(".price-time .block .preloader").hide();
 	//$(".price-time .block .mycalendar").animate({"opacity":"1"}, 300);
 
-	var weekToday = $("#calendar .fc-center>h2").text();
-	$(".mycalendar.myweekcalendar table thead tr td.week-today").text(weekToday);
+	var weekToday = jQuery("#calendar .fc-center>h2").text();
+	jQuery(".mycalendar.myweekcalendar table thead tr td.week-today").text(weekToday);
 	//weekToday = weekToday.replace(/\u2013|\u2014/g, "-");
 	
 	//var weekTodayBeginDay = weekToday.split("-")[0]; //alert(weekTodayBegin);
@@ -642,20 +647,35 @@ function custFullCallendarWeek(){
 	//if(weekTodayBeginDay.split(".")[1] != undefined){
 		//alert(weekTodayBeginDay.split(".")[1]);
 	//}
-	var mondayDate = $("#calendar .fc-view-container .fc-widget-header table tr th").eq(1).attr("data-date");
-	var tuesdayDate = $("#calendar .fc-view-container .fc-widget-header table tr th").eq(2).attr("data-date");
-	var wednesdayDate = $("#calendar .fc-view-container .fc-widget-header table tr th").eq(3).attr("data-date");
-	var thursdayDate = $("#calendar .fc-view-container .fc-widget-header table tr th").eq(4).attr("data-date");
-	var fridayDate = $("#calendar .fc-view-container .fc-widget-header table tr th").eq(5).attr("data-date");
-	var saturdayDate = $("#calendar .fc-view-container .fc-widget-header table tr th").eq(6).attr("data-date");
-	var sundayDate = $("#calendar .fc-view-container .fc-widget-header table tr th").eq(7).attr("data-date");
+	var mondayDate = jQuery("#calendar .fc-view-container .fc-widget-header table tr th").eq(1).attr("data-date");
+	var tuesdayDate = jQuery("#calendar .fc-view-container .fc-widget-header table tr th").eq(2).attr("data-date");
+	var wednesdayDate = jQuery("#calendar .fc-view-container .fc-widget-header table tr th").eq(3).attr("data-date");
+	var thursdayDate = jQuery("#calendar .fc-view-container .fc-widget-header table tr th").eq(4).attr("data-date");
+	var fridayDate = jQuery("#calendar .fc-view-container .fc-widget-header table tr th").eq(5).attr("data-date");
+	var saturdayDate = jQuery("#calendar .fc-view-container .fc-widget-header table tr th").eq(6).attr("data-date");
+	var sundayDate = jQuery("#calendar .fc-view-container .fc-widget-header table tr th").eq(7).attr("data-date");
 
 	//for create TABLE
 	var times = new Array();
 	var i = 1;
-	$("#calendar-data div[data-date="+mondayDate+"]").each(function(){
+	jQuery("#calendar-data div[data-date="+mondayDate+"]").each(function(){
 		var flag = true;
-		var time = $(this).attr("data-time");
+		var time = jQuery(this).attr("data-time");
+		times.forEach(function(currentValue, index, arr){
+			if(currentValue == time){
+				flag = false;
+				return flag;
+			}
+		});
+		if(flag){
+			//console.log("true");
+			times[i] = jQuery(this).attr("data-time");
+			i++;
+		}
+	});
+	jQuery("#calendar-data div[data-date="+tuesdayDate+"]").each(function(){
+		var flag = true;
+		var time = jQuery(this).attr("data-time");
 		times.forEach(function(currentValue, index, arr){
 			if(currentValue == time){
 				flag = false;
@@ -668,9 +688,9 @@ function custFullCallendarWeek(){
 			i++;
 		}
 	});
-	$("#calendar-data div[data-date="+tuesdayDate+"]").each(function(){
+	jQuery("#calendar-data div[data-date="+wednesdayDate+"]").each(function(){
 		var flag = true;
-		var time = $(this).attr("data-time");
+		var time = jQuery(this).attr("data-time");
 		times.forEach(function(currentValue, index, arr){
 			if(currentValue == time){
 				flag = false;
@@ -679,13 +699,13 @@ function custFullCallendarWeek(){
 		});
 		if(flag){
 			//console.log("true");
-			times[i] = $(this).attr("data-time");
+			times[i] = jQuery(this).attr("data-time");
 			i++;
 		}
 	});
-	$("#calendar-data div[data-date="+wednesdayDate+"]").each(function(){
+	jQuery("#calendar-data div[data-date="+thursdayDate+"]").each(function(){
 		var flag = true;
-		var time = $(this).attr("data-time");
+		var time = jQuery(this).attr("data-time");
 		times.forEach(function(currentValue, index, arr){
 			if(currentValue == time){
 				flag = false;
@@ -694,13 +714,13 @@ function custFullCallendarWeek(){
 		});
 		if(flag){
 			//console.log("true");
-			times[i] = $(this).attr("data-time");
+			times[i] = jQuery(this).attr("data-time");
 			i++;
 		}
 	});
-	$("#calendar-data div[data-date="+thursdayDate+"]").each(function(){
+	jQuery("#calendar-data div[data-date="+fridayDate+"]").each(function(){
 		var flag = true;
-		var time = $(this).attr("data-time");
+		var time = jQuery(this).attr("data-time");
 		times.forEach(function(currentValue, index, arr){
 			if(currentValue == time){
 				flag = false;
@@ -709,13 +729,13 @@ function custFullCallendarWeek(){
 		});
 		if(flag){
 			//console.log("true");
-			times[i] = $(this).attr("data-time");
+			times[i] = jQuery(this).attr("data-time");
 			i++;
 		}
 	});
-	$("#calendar-data div[data-date="+fridayDate+"]").each(function(){
+	jQuery("#calendar-data div[data-date="+saturdayDate+"]").each(function(){
 		var flag = true;
-		var time = $(this).attr("data-time");
+		var time = jQuery(this).attr("data-time");
 		times.forEach(function(currentValue, index, arr){
 			if(currentValue == time){
 				flag = false;
@@ -724,13 +744,13 @@ function custFullCallendarWeek(){
 		});
 		if(flag){
 			//console.log("true");
-			times[i] = $(this).attr("data-time");
+			times[i] = jQuery(this).attr("data-time");
 			i++;
 		}
 	});
-	$("#calendar-data div[data-date="+saturdayDate+"]").each(function(){
+	jQuery("#calendar-data div[data-date="+sundayDate+"]").each(function(){
 		var flag = true;
-		var time = $(this).attr("data-time");
+		var time = jQuery(this).attr("data-time");
 		times.forEach(function(currentValue, index, arr){
 			if(currentValue == time){
 				flag = false;
@@ -739,22 +759,7 @@ function custFullCallendarWeek(){
 		});
 		if(flag){
 			//console.log("true");
-			times[i] = $(this).attr("data-time");
-			i++;
-		}
-	});
-	$("#calendar-data div[data-date="+sundayDate+"]").each(function(){
-		var flag = true;
-		var time = $(this).attr("data-time");
-		times.forEach(function(currentValue, index, arr){
-			if(currentValue == time){
-				flag = false;
-				return flag;
-			}
-		});
-		if(flag){
-			//console.log("true");
-			times[i] = $(this).attr("data-time");
+			times[i] = jQuery(this).attr("data-time");
 			i++;
 		}
 	});
@@ -766,7 +771,7 @@ function custFullCallendarWeek(){
 
 	times.forEach(function(currentValue, index, arr){
 		//console.log(currentValue);
-		$(".mycalendar.myweekcalendar table tbody").append('<tr class="time-line" data-time="'+currentValue+'">'
+		jQuery(".mycalendar.myweekcalendar table tbody").append('<tr class="time-line" data-time="'+currentValue+'">'
 						+'<td class="time">'
 						+currentValue.split(":")[0]+'.'+currentValue.split(":")[1]
 						+'</td>'
@@ -797,14 +802,14 @@ function custFullCallendarWeek(){
 	//events['saturday'] = new Array();
 	//events['sunday'] = new Array();
 
-	$("#calendar-data div[data-date="+mondayDate+"][data-hall="+hallID+"]").each(function(){
-		var id = $(this).attr("data-id");
-		var date = $(this).attr("data-date");
-		var time = $(this).attr("data-time");
-		var url = $(this).attr("data-url");
-		var title = $(this).text();
+	jQuery("#calendar-data div[data-date="+mondayDate+"][data-hall="+hallID+"]").each(function(){
+		var id = jQuery(this).attr("data-id");
+		var date = jQuery(this).attr("data-date");
+		var time = jQuery(this).attr("data-time");
+		var url = jQuery(this).attr("data-url");
+		var title = jQuery(this).text();
 		//events['monday'][time] = new Array();
-		$(".mycalendar.myweekcalendar table tbody tr[data-time='"+time+"']").find("td.monday").append("<div>"
+		jQuery(".mycalendar.myweekcalendar table tbody tr[data-time='"+time+"']").find("td.monday").append("<div>"
 			+"<a target='_blank' href='"+url+"'>"
 			+title
 			+"</a>"
@@ -812,14 +817,14 @@ function custFullCallendarWeek(){
 			+"</div>"); 
 	});
 
-	$("#calendar-data div[data-date="+tuesdayDate+"][data-hall="+hallID+"]").each(function(){
-		var id = $(this).attr("data-id");
-		var date = $(this).attr("data-date");
-		var time = $(this).attr("data-time");
-		var url = $(this).attr("data-url");
-		var title = $(this).text();
+	jQuery("#calendar-data div[data-date="+tuesdayDate+"][data-hall="+hallID+"]").each(function(){
+		var id = jQuery(this).attr("data-id");
+		var date = jQuery(this).attr("data-date");
+		var time = jQuery(this).attr("data-time");
+		var url = jQuery(this).attr("data-url");
+		var title = jQuery(this).text();
 		//events['monday'][time] = new Array();
-		$(".mycalendar.myweekcalendar table tbody tr[data-time='"+time+"']").find("td.tuesday").append("<div>"
+		jQuery(".mycalendar.myweekcalendar table tbody tr[data-time='"+time+"']").find("td.tuesday").append("<div>"
 			+"<a href='"+url+"'>"
 			+title
 			+"</a>"
@@ -827,14 +832,14 @@ function custFullCallendarWeek(){
 			+"</div>"); 
 	});
 
-	$("#calendar-data div[data-date="+wednesdayDate+"][data-hall="+hallID+"]").each(function(){
+	jQuery("#calendar-data div[data-date="+wednesdayDate+"][data-hall="+hallID+"]").each(function(){
 		var id = $(this).attr("data-id");
 		var date = $(this).attr("data-date");
 		var time = $(this).attr("data-time");
 		var url = $(this).attr("data-url");
 		var title = $(this).text();
 		//events['monday'][time] = new Array();
-		$(".mycalendar.myweekcalendar table tbody tr[data-time='"+time+"']").find("td.wednesday").append("<div>"
+		jQuery(".mycalendar.myweekcalendar table tbody tr[data-time='"+time+"']").find("td.wednesday").append("<div>"
 			+"<a href='"+url+"'>"
 			+title
 			+"</a>"
@@ -842,14 +847,14 @@ function custFullCallendarWeek(){
 			+"</div>"); 
 	});
 
-	$("#calendar-data div[data-date="+thursdayDate+"][data-hall="+hallID+"]").each(function(){
-		var id = $(this).attr("data-id");
-		var date = $(this).attr("data-date");
-		var time = $(this).attr("data-time");
-		var url = $(this).attr("data-url");
-		var title = $(this).text();
+	jQuery("#calendar-data div[data-date="+thursdayDate+"][data-hall="+hallID+"]").each(function(){
+		var id = jQuery(this).attr("data-id");
+		var date = jQuery(this).attr("data-date");
+		var time = jQuery(this).attr("data-time");
+		var url = jQuery(this).attr("data-url");
+		var title = jQuery(this).text();
 		//events['monday'][time] = new Array();
-		$(".mycalendar.myweekcalendar table tbody tr[data-time='"+time+"']").find("td.thursday").append("<div>"
+		jQuery(".mycalendar.myweekcalendar table tbody tr[data-time='"+time+"']").find("td.thursday").append("<div>"
 			+"<a href='"+url+"'>"
 			+title
 			+"</a>"
@@ -857,14 +862,14 @@ function custFullCallendarWeek(){
 			+"</div>"); 
 	});
 
-	$("#calendar-data div[data-date="+fridayDate+"][data-hall="+hallID+"]").each(function(){
-		var id = $(this).attr("data-id");
-		var date = $(this).attr("data-date");
-		var time = $(this).attr("data-time");
-		var url = $(this).attr("data-url");
-		var title = $(this).text();
+	jQuery("#calendar-data div[data-date="+fridayDate+"][data-hall="+hallID+"]").each(function(){
+		var id = jQuery(this).attr("data-id");
+		var date = jQuery(this).attr("data-date");
+		var time = jQuery(this).attr("data-time");
+		var url = jQuery(this).attr("data-url");
+		var title = jQuery(this).text();
 		//events['monday'][time] = new Array();
-		$(".mycalendar.myweekcalendar table tbody tr[data-time='"+time+"']").find("td.friday").append("<div>"
+		jQuery(".mycalendar.myweekcalendar table tbody tr[data-time='"+time+"']").find("td.friday").append("<div>"
 			+"<a href='"+url+"'>"
 			+title
 			+"</a>"
@@ -872,14 +877,14 @@ function custFullCallendarWeek(){
 			+"</div>"); 
 	});
 
-	$("#calendar-data div[data-date="+saturdayDate+"][data-hall="+hallID+"]").each(function(){
-		var id = $(this).attr("data-id");
-		var date = $(this).attr("data-date");
-		var time = $(this).attr("data-time");
-		var url = $(this).attr("data-url");
-		var title = $(this).text();
+	jQuery("#calendar-data div[data-date="+saturdayDate+"][data-hall="+hallID+"]").each(function(){
+		var id = jQuery(this).attr("data-id");
+		var date = jQuery(this).attr("data-date");
+		var time = jQuery(this).attr("data-time");
+		var url = jQuery(this).attr("data-url");
+		var title = jQuery(this).text();
 		//events['monday'][time] = new Array();
-		$(".mycalendar.myweekcalendar table tbody tr[data-time='"+time+"']").find("td.saturday").append("<div>"
+		jQuery(".mycalendar.myweekcalendar table tbody tr[data-time='"+time+"']").find("td.saturday").append("<div>"
 			+"<a href='"+url+"'>"
 			+title
 			+"</a>"
@@ -887,14 +892,14 @@ function custFullCallendarWeek(){
 			+"</div>"); 
 	});
 
-	$("#calendar-data div[data-date="+sundayDate+"][data-hall="+hallID+"]").each(function(){
-		var id = $(this).attr("data-id");
-		var date = $(this).attr("data-date");
-		var time = $(this).attr("data-time");
-		var url = $(this).attr("data-url");
-		var title = $(this).text();
+	jQuery("#calendar-data div[data-date="+sundayDate+"][data-hall="+hallID+"]").each(function(){
+		var id = jQuery(this).attr("data-id");
+		var date = jQuery(this).attr("data-date");
+		var time = jQuery(this).attr("data-time");
+		var url = jQuery(this).attr("data-url");
+		var title = jQuery(this).text();
 		//events['monday'][time] = new Array();
-		$(".mycalendar.myweekcalendar table tbody tr[data-time='"+time+"']").find("td.sunday").append("<div>"
+		jQuery(".mycalendar.myweekcalendar table tbody tr[data-time='"+time+"']").find("td.sunday").append("<div>"
 			+"<a href='"+url+"'>"
 			+title
 			+"</a>"
@@ -919,18 +924,18 @@ function custFullCallendarDay(){
 	//// calling function for getting data for callendar
 	//calendarDATA();
 
-	var hallID = $(".calen-tab .cld-tabs .cld-tab.current").attr("data-hall-id");
-	$(".mycalendar.mydaycalendar table tbody").text("");
+	var hallID = jQuery(".calen-tab .cld-tabs .cld-tab.current").attr("data-hall-id");
+	jQuery(".mycalendar.mydaycalendar table tbody").text("");
 	//$(".mycalendar table tbody tr td").attr("data-date", "");
 	//$(".mycalendar table tbody tr td").find(".events-on-day").text("");
 	//$(".price-time .block .preloader").hide();
 	//$(".price-time .block .mycalendar").animate({"opacity":"1"}, 300);
 
-	var dayToday = $("#calendar .fc-center>h2").text();
-	$(".mycalendar.mydaycalendar table thead tr td.day-today").text(dayToday);
+	var dayToday = jQuery("#calendar .fc-center>h2").text();
+	jQuery(".mycalendar.mydaycalendar table thead tr td.day-today").text(dayToday);
 
-	var dayOfWeekToday = $("#calendar .fc-day-header").text();
-	$(".mycalendar.mydaycalendar table thead tr td.day-week-today").text(dayOfWeekToday);
+	var dayOfWeekToday = jQuery("#calendar .fc-day-header").text();
+	jQuery(".mycalendar.mydaycalendar table thead tr td.day-week-today").text(dayOfWeekToday);
 	
 	var dayTodayForEvent = dayToday.split(".")[2]+"-"+dayToday.split(".")[1]+"-"+dayToday.split(".")[0];
 	//console.log(dayTodayForEvent);
@@ -955,11 +960,11 @@ function custFullCallendarDay(){
 	//for create TABLE
 	var times = new Array();
 	var i = 1;
-	$("#calendar-data div[data-date="+dayTodayForEvent+"][data-hall="+hallID+"]").each(function(){
+	jQuery("#calendar-data div[data-date="+dayTodayForEvent+"][data-hall="+hallID+"]").each(function(){
 		times[i] = new Array();
-		times[i]['time'] = $(this).attr("data-time");
-		times[i]['url'] = $(this).attr("data-url");
-		times[i]['title'] = $(this).text();
+		times[i]['time'] = jQuery(this).attr("data-time");
+		times[i]['url'] = jQuery(this).attr("data-url");
+		times[i]['title'] = jQuery(this).text();
 		i++;
 	});
 	
@@ -972,13 +977,13 @@ function custFullCallendarDay(){
 	
 	times.forEach(function(currentValue, index, arr){
 		//console.log(currentValue);
-		if($(".mycalendar.mydaycalendar table tbody tr[data-time='"+times[index]['time']+"']").attr("data-time") != undefined){
+		if(jQuery(".mycalendar.mydaycalendar table tbody tr[data-time='"+times[index]['time']+"']").attr("data-time") != undefined){
 			console.log('isset');	
-			$(".mycalendar.mydaycalendar table tbody tr[data-time='"+times[index]['time']+"'] td.events")
+			jQuery(".mycalendar.mydaycalendar table tbody tr[data-time='"+times[index]['time']+"'] td.events")
 					.append("<div class='event'><a target='_blank' href='"+times[index]['url']+"'>"+times[index]['title']+"</a></div>");
 		}else{
 			console.log('noisset');
-			$(".mycalendar.mydaycalendar table tbody").append('<tr class="time-line" data-time="'+times[index]['time']+'">'
+			jQuery(".mycalendar.mydaycalendar table tbody").append('<tr class="time-line" data-time="'+times[index]['time']+'">'
 						+'<td class="time">'
 						+times[index]['time'].split(":")[0]+"."+times[index]['time'].split(":")[1]
 						+'</td>'
@@ -1016,7 +1021,7 @@ function custFullCallendarDay(){
 
 function setBeginEndDateValues(){
 
-	var activeTypeCalendarButtonIndex = $("#calendar .fc-right .fc-button-group .fc-state-active").index();
+	var activeTypeCalendarButtonIndex = jQuery("#calendar .fc-right .fc-button-group .fc-state-active").index();
 	var typeCalendar = "";
 	if(activeTypeCalendarButtonIndex == 0){
 		typeCalendar = "month";
@@ -1033,18 +1038,18 @@ function setBeginEndDateValues(){
 
 
 	if(typeCalendar == "month"){
-		var beginDate = $("#calendar .fc-day-grid>.fc-week").first().find(".fc-content-skeleton")
+		var beginDate = jQuery("#calendar .fc-day-grid>.fc-week").first().find(".fc-content-skeleton")
 						.find("table")
 						.find("thead")
 						.find("tr")
 						.find("td").first().attr("data-date");
-		var endDate = $("#calendar .fc-day-grid>.fc-week").last().find(".fc-content-skeleton")
+		var endDate = jQuery("#calendar .fc-day-grid>.fc-week").last().find(".fc-content-skeleton")
 						.find("table")
 						.find("thead")
 						.find("tr")
 						.find("td").last().attr("data-date");
 	}else if(typeCalendar == "week"){
-		var weekToday = $("#calendar .fc-center>h2").text();
+		var weekToday = jQuery("#calendar .fc-center>h2").text();
 
 		weekToday = weekToday.replace(/\u2013|\u2014/g, "-");
 		
@@ -1079,7 +1084,7 @@ function setBeginEndDateValues(){
 		//alert(beginDate+"-"+endDate);
 
 	}else if(typeCalendar == "day"){
-		var today = $("#calendar .fc-center>h2").text();
+		var today = jQuery("#calendar .fc-center>h2").text();
 		var beginDate = today.trim().split(".")[2]+"-"
 						+today.trim().split(".")[1]+"-"
 						+today.trim().split(".")[0];
@@ -1090,8 +1095,8 @@ function setBeginEndDateValues(){
 		//alert(beginDate+" - "+endDate);
 	}
 
-	$(".date-interval .date-begin").text(beginDate);
-	$(".date-interval .date-end").text(endDate);
+	jQuery(".date-interval .date-begin").text(beginDate);
+	jQuery(".date-interval .date-end").text(endDate);
 
 }
 
@@ -1102,17 +1107,17 @@ function setBeginEndDateValues(){
 
 function pastIntoEventsOnDayTODAY(){
 
-	var todayDate = $(".mycalendars .mymonthcalendar table tr td.day.active.today").attr("data-date");
+	var todayDate = jQuery(".mycalendars .mymonthcalendar table tr td.day.active.today").attr("data-date");
 	//alert(todayDate);
 			if(todayDate != ""){
-				var hallID = $(".calen-tab .cld-tabs .cld-tab.current").attr("data-hall-id");
-				$("#calendar-data div[data-date="+todayDate+"][data-hall="+hallID+"]").each(function(){
-					var time = $(this).attr("data-time");
-					var timeEnd = $(this).attr("data-end-time");
-					var seats = $(this).attr("data-seats");
+				var hallID = jQuery(".calen-tab .cld-tabs .cld-tab.current").attr("data-hall-id");
+				jQuery("#calendar-data div[data-date="+todayDate+"][data-hall="+hallID+"]").each(function(){
+					var time = jQuery(this).attr("data-time");
+					var timeEnd = jQuery(this).attr("data-end-time");
+					var seats = jQuery(this).attr("data-seats");
 					//var seats = 2;
-					var url = $(this).attr("data-url");
-					var title = $(this).text();
+					var url = jQuery(this).attr("data-url");
+					var title = jQuery(this).text();
 
 					var messageSeats = "";
 					if(parseInt(seats, 10) == 0){messageSeats = "нет мест";}
@@ -1151,7 +1156,7 @@ function pastIntoEventsOnDayTODAY(){
 						}
 					}
 
-					$("#events-on-day").append("<table>"
+					jQuery("#events-on-day").append("<table>"
 						+"<tr>"
 						+"<td>"
 						+time.split(":")[0]+"."+time.split(":")[1]+"<br/>"
@@ -1177,18 +1182,18 @@ function pastIntoEventsOnDayTODAY(){
 //// FUNCtionallity of calendar
 function calendarDATA(){
 	puttingPreloaderIntoCenterOfBlock("show");
-	$("#calendar-data").text("");
-	$("#events-on-day").text("");
+	jQuery("#calendar-data").text("");
+	jQuery("#events-on-day").text("");
 	funcTypeCalButtons();
 	funcHallsCalButtons();
 	setBeginEndDateValues();
 
-	var beginDate = $(".date-interval .date-begin").text();
-	var endDate = $(".date-interval .date-end").text();
+	var beginDate = jQuery(".date-interval .date-begin").text();
+	var endDate = jQuery(".date-interval .date-end").text();
 	
-	var hallID = $(".calen-tab .cld-tabs .cld-tab.current").attr("data-hall-id");
-	var club = $(".intaclub").text();
-	var activeTypeCalendarButtonIndex = $("#calendar .fc-right .fc-button-group .fc-state-active").index();
+	var hallID = jQuery(".calen-tab .cld-tabs .cld-tab.current").attr("data-hall-id");
+	var club = jQuery(".intaclub").text();
+	var activeTypeCalendarButtonIndex = jQuery("#calendar .fc-right .fc-button-group .fc-state-active").index();
 	var typeCalendar = "";
 	var link = "";
 	if(activeTypeCalendarButtonIndex == 0){
@@ -1207,9 +1212,9 @@ function calendarDATA(){
 
 	//if($("#calendar-data").attr("data-full") == "notfull"){
 		//$.getJSON( "https://instasport.co/club/acro/api/calendar/", function( data ) {
-		$.getJSON( "https://instasport.co/club/"+club+"/api/schedule/dates/"+beginDate+"/"+endDate+"/?format=json", function( data ) {
-		  	$("#calendar-data").attr("data-full", "full");
-		  	$.each(data, function(i, v) {
+		jQuery.getJSON( "https://instasport.co/club/"+club+"/api/schedule/dates/"+beginDate+"/"+endDate+"/?format=json", function( data ) {
+		  	jQuery("#calendar-data").attr("data-full", "full");
+		  	jQuery.each(data, function(i, v) {
 		        var id = v.id;
 		        var startAll = v.start
 		        //var endAll = v.end duration
@@ -1224,10 +1229,10 @@ function calendarDATA(){
 		        //console.log(startTime);
 		        //var start = "2017-07-31T11:00:00+03:00",
 		        if(hallID == undefined){
-		        	$("#calendar-data").append("<div data-seats='"+seats+"' data-end-time='"+endTime+"' data-id='"+id+"' data-date='"+startDate+"' data-time='"+startTime+"' data-url='"+url+"'>"+title+"</div>");
+		        	jQuery("#calendar-data").append("<div data-seats='"+seats+"' data-end-time='"+endTime+"' data-id='"+id+"' data-date='"+startDate+"' data-time='"+startTime+"' data-url='"+url+"'>"+title+"</div>");
 		        }else{
 		        	//if(hall == hallID){
-		        		$("#calendar-data").append("<div data-seats='"+seats+"' data-end-time='"+endTime+"' data-id='"+id+"' data-date='"+startDate+"' data-hall='"+hall+"' data-time='"+startTime+"' data-url='"+url+"'>"+title+"</div>");
+		        		jQuery("#calendar-data").append("<div data-seats='"+seats+"' data-end-time='"+endTime+"' data-id='"+id+"' data-date='"+startDate+"' data-hall='"+hall+"' data-time='"+startTime+"' data-url='"+url+"'>"+title+"</div>");
 		        		//console.log(hall);
 		        	//}
 		        }
@@ -1238,16 +1243,16 @@ function calendarDATA(){
 	    	});
 
 	    	if(typeCalendar == "month"){
-	    		$(".mycalendars .mycalendar").hide();
-	    		$(".mycalendars .mycalendar.mymonthcalendar").hide();
+	    		jQuery(".mycalendars .mycalendar").hide();
+	    		jQuery(".mycalendars .mycalendar.mymonthcalendar").hide();
 	    		custFullCallendar();
 	    	}else if(typeCalendar == "week"){
-	    		$(".mycalendars .mycalendar").hide();
-	    		$(".mycalendars .mycalendar.myweekcalendar").show();
+	    		jQuery(".mycalendars .mycalendar").hide();
+	    		jQuery(".mycalendars .mycalendar.myweekcalendar").show();
 	    		custFullCallendarWeek();
 	    	}else if(typeCalendar == "day"){
-	    		$(".mycalendars .mycalendar").hide();
-	    		$(".mycalendars .mycalendar.mydaycalendar").show();
+	    		jQuery(".mycalendars .mycalendar").hide();
+	    		jQuery(".mycalendars .mycalendar.mydaycalendar").show();
 	    		custFullCallendarDay();
 	    	}
 

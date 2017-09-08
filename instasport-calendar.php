@@ -174,7 +174,7 @@ function instasport_shortcodes_init()
         wp_enqueue_style('modal-style.css');
         wp_enqueue_style('mycalendars.css');
         wp_enqueue_script('fontawesome');
-        wp_enqueue_script('jquery.min.js');
+        //wp_enqueue_script('jquery.min.js');
         //wp_enqueue_script('modal.js');
         //wp_enqueue_script('bootstrap.min.js');
         wp_enqueue_script('initfullcallendar.js');
@@ -262,7 +262,8 @@ function instasport_shortcodes_init()
         width: 10px;
         height: 10px;
         margin: auto;
-        border-radius: 5px; 
+        border-radius: 5px;
+        cursor: pointer; 
     }
     
 
