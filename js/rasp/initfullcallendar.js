@@ -1182,6 +1182,7 @@ function pastIntoEventsOnDayTODAY(){
 //// FUNCtionallity of calendar
 function calendarDATA(){
 	puttingPreloaderIntoCenterOfBlock("show");
+	jQuery(".mycalendars .mymonthcalendar table tr td.day").removeClass("choosen");
 	jQuery("#calendar-data").text("");
 	jQuery("#events-on-day").text("");
 	funcTypeCalButtons();
