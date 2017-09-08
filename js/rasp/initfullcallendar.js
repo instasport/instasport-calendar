@@ -1212,7 +1212,7 @@ function calendarDATA(){
 
 	//if($("#calendar-data").attr("data-full") == "notfull"){
 		//$.getJSON( "https://instasport.co/club/acro/api/calendar/", function( data ) {
-		jQuery.getJSON( "https://instasport.co/club/"+club+"/api/schedule/dates/"+beginDate+"/"+endDate+"/?format=json", function( data ) {
+		jQuery.getJSON( "https://instasport.co/club/"+club+"/api/schedule/dates/"+beginDate+"/"+endDate+"/hall/"+hallID+"?format=json", function( data ) {
 		  	jQuery("#calendar-data").attr("data-full", "full");
 		  	jQuery.each(data, function(i, v) {
 		        var id = v.id;
