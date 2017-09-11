@@ -24,7 +24,7 @@ function intacalendar_admin(){
         $table_name = $wpdb->prefix."intacalendar_options";
         $wpdb->update( 
             $table_name, 
-            [ 
+            array(
                 'switch_halls_button_bg' => $_POST['switch_halls_button_bg'],  // string
                 'switch_halls_button_bg_hover' => $_POST['switch_halls_button_bg_hover'],   // integer (number)
                 'switch_halls_button_bg_active' => $_POST['switch_halls_button_bg_active'],
@@ -50,8 +50,8 @@ function intacalendar_admin(){
                 'date_number_color_choosen' => $_POST['date_number_color_choosen'],
                 'date_number_bg_choosen_hover' => $_POST['date_number_bg_choosen_hover'],
                 'date_number_color_choosen_hover' => $_POST['date_number_color_choosen_hover'],
-            ], 
-            ['id' => 1] 
+            ), 
+            array('id' => 1) 
             /*array( 
                 '%s',   // value1
                 '%d'    // value2
@@ -166,7 +166,7 @@ function intacalendar_admin(){
 
 function instasport_shortcodes_init()
 {
-    function instasport_shortcode($atts = [], $content = null, $tag = '')
+    function instasport_shortcode($atts = array(), $content = null, $tag = '')
     {
         global $wpdb;
 
@@ -189,7 +189,7 @@ function instasport_shortcodes_init()
         //echo $result->switch_halls_button_bg;
 
 
-        $parsed = shortcode_atts(['slug' => '/', 'height' => '900',], $atts, $tag);
+        $parsed = shortcode_atts(array('slug' => '/', 'height' => '900',), $atts, $tag);
 
 
         include("mycalendar.php");
