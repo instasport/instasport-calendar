@@ -333,6 +333,7 @@
 }
 #events-on-day table{
 	margin: 0px;
+	width: 100%;
 }
 #events-on-day table tr td:nth-child(1){
 	width: 100px;

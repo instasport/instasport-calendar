@@ -22,8 +22,10 @@ jQuery(document).ready(function($) {
 
 
 		$(".mycalendars .mymonthcalendar table tr td.day .show .day-number").click(function(){
+			var inplace = $(".inplace").text(); 
 			//$("#calendarModal .modal-body").text("");  
 			$("#events-on-day").text("");
+			$("#calendarModal .modal-body").text("");
 			var disp = $(this).parent().find(".events-on-day").css("display");
 			if(disp == "none" && $(this).closest("td.day").hasClass("active")){
 				//alert(121);
@@ -78,21 +80,41 @@ jQuery(document).ready(function($) {
 					}
 					//endTime1 = parseInt(endTime1, 10);
 					//var endTime2 = timeEnd.split(":")[1];
-					$("#events-on-day").append("<table>"
-						+"<tr>"
-						+"<td>"
-						+time.split(":")[0]+"."+time.split(":")[1]+"<br/>"
-						+"<span>"+endTime1+endTime2+"</span>" 
-						+"</td>"
-						+"<td class='color-line'><div></div><div></div></td>"
-						+"<td>"
-						+"<a target='_blank' href='"+url+"'>"+title+"</a><br/>"
-						+"<span>"+messageSeats+"</span>"
-						+"</td>"
-						+"</tr>"
-						+"</table>");
+					if(inplace == "true"){
+						$("#calendarModal .modal-body").append("<table>"
+							+"<tr>"
+							+"<td>"
+							+time.split(":")[0]+"."+time.split(":")[1]+"<br/>"
+							+"<span>"+endTime1+endTime2+"</span>" 
+							+"</td>"
+							+"<td class='color-line'><div></div><div></div></td>"
+							+"<td>"
+							+"<a target='_blank' href='"+url+"'>"+title+"</a><br/>"
+							+"<span>"+messageSeats+"</span>"
+							+"</td>"
+							+"</tr>"
+							+"</table>");
+
+					}else{
+						$("#events-on-day").append("<table>"
+							+"<tr>"
+							+"<td>"
+							+time.split(":")[0]+"."+time.split(":")[1]+"<br/>"
+							+"<span>"+endTime1+endTime2+"</span>" 
+							+"</td>"
+							+"<td class='color-line'><div></div><div></div></td>"
+							+"<td>"
+							+"<a target='_blank' href='"+url+"'>"+title+"</a><br/>"
+							+"<span>"+messageSeats+"</span>"
+							+"</td>"
+							+"</tr>"
+							+"</table>");
+					}
 				});
-				//$("#calendarModal").css({"display":"block"});
+				
+				if(inplace == "true"){
+					$("#calendarModal").css({"display":"block"});
+				}
 
 			}
 		});
@@ -425,7 +447,7 @@ function custFullCallendar(){
 	//// calling function for getting data for callendar
 	//calendarDATA();
 
-
+	
 	jQuery(".mycalendar table tbody tr td").removeClass("active");
 	jQuery(".mycalendar table tbody tr td").attr("data-date", "");
 	jQuery(".mycalendar table tbody tr td").find(".events-on-day").text("");
@@ -556,12 +578,13 @@ function custFullCallendar(){
 					//var 
 					
 					//$(this).find(".day-number")
-					jQuery(".mycalendar table tbody tr td[data-date="+date+"]").find(".events-on-day").append('<div class="event-on-day">'
-						+'<a target="_blank" href="'+url+'">'
-						+'<span class="time">'+time.split(":")[0]+'.'+time.split(":")[1]+'</span><br/>'
-						+'<span class="title">'+title+'</span>'
-						+'</a>'
-						+'</div>');
+
+						jQuery(".mycalendar table tbody tr td[data-date="+date+"]").find(".events-on-day").append('<div class="event-on-day">'
+							+'<a target="_blank" href="'+url+'">'
+							+'<span class="time">'+time.split(":")[0]+'.'+time.split(":")[1]+'</span><br/>'
+							+'<span class="title">'+title+'</span>'
+							+'</a>'
+							+'</div>');
 
 					/*$(".mycalendar table tbody tr td[data-date="+date+"]").find(".events").append('<div class="item" data-time="'+time+'" data-url="'+url+'">'
 						+title
@@ -613,7 +636,12 @@ function custFullCallendar(){
 	//	$(this).addClass("today");
 	//});
 	jQuery(".mycalendars .mycalendar.mymonthcalendar").show();
-	pastIntoEventsOnDayTODAY();
+	
+	//var inplace = jQuery(".inplace").text();
+	if(jQuery(".inplace").text() == "false"){
+		pastIntoEventsOnDayTODAY();
+	}
+	
 	puttingPreloaderIntoCenterOfBlock("hide");
 }
 
@@ -1108,6 +1136,7 @@ function setBeginEndDateValues(){
 function pastIntoEventsOnDayTODAY(){
 
 	var todayDate = jQuery(".mycalendars .mymonthcalendar table tr td.day.active.today").attr("data-date");
+	
 	//alert(todayDate);
 			if(todayDate != ""){
 				var hallID = jQuery(".calen-tab .cld-tabs .cld-tab.current").attr("data-hall-id");
@@ -1155,6 +1184,7 @@ function pastIntoEventsOnDayTODAY(){
 							endTime1 = endTime1+" часа";
 						}
 					}
+
 
 					jQuery("#events-on-day").append("<table>"
 						+"<tr>"

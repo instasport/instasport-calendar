@@ -189,9 +189,9 @@ function instasport_shortcodes_init()
         //echo $result->switch_halls_button_bg;
 
 
-        $parsed = shortcode_atts(array('slug' => '/', 'height' => '900',), $atts, $tag);
+        $parsed = shortcode_atts(array('slug' => '/', 'inplace' => 'false',), $atts, $tag);
 
-
+        ob_start();
         include("mycalendar.php");
 ?>
 
@@ -302,6 +302,7 @@ function instasport_shortcodes_init()
             <div class="date-end"></div>
         </div>
         <div style="display: none;" class="intaclub"><?=$parsed['slug'];?></div>
+        <div style="display: none;" class="inplace"><?=$parsed['inplace'];?></div>
         <div class="calen-tab">
             <div class="cld-tabs"></div>
         </div>
@@ -311,6 +312,9 @@ function instasport_shortcodes_init()
 
 <?php
         include("modal.php");
+
+        $output = ob_get_clean();
+        return $output;
         /*
         print_r($atts);
 

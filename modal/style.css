@@ -2,7 +2,7 @@
 .modal {
     display: none; /* Hidden by default */
     position: fixed; /* Stay in place */
-    z-index: 1; /* Sit on top */
+    z-index: 9999; /* Sit on top */
     left: 0;
     top: 0;
     width: 100%; /* Full width */
@@ -86,6 +86,138 @@
     animation-name: animatetop;
     animation-duration: 0.4s
 }
+
+
+
+
+
+
+
+
+
+#calendarModal .modal-body table{
+    margin: 0px;
+    width: 100%;
+}
+#calendarModal .modal-body table tr td:nth-child(1){
+    width: 100px;
+    text-align: right;
+    padding-right: 10px;
+}
+#calendarModal .modal-body table tr td:nth-child(3){
+    padding-left: 10px;
+}
+#calendarModal .modal-body table tr td{
+    vertical-align: top;
+    padding: 5px 0px;
+}
+#calendarModal .modal-body table tr td,
+#calendarModal .modal-body table tr,
+#calendarModal .modal-body table{
+    border: none!important;
+}
+#calendarModal .modal-body table tr{
+    border-bottom: 1px solid #ccc!important;
+}
+#calendarModal .modal-body table tr td span{
+    color: #999;
+}
+#calendarModal .modal-body table tr td:nth-child(1) span{
+    font-size: 0.8em;
+}
+#calendarModal .modal-body table tr td.color-line{
+    width: 5px;
+    padding: 5px 0px;
+    position: relative;
+}
+#calendarModal .modal-body table tr td.color-line div:nth-child(1){
+    width: 100%;
+    background: white;
+    height: 3px!important;
+    position: absolute;
+    top: 0px;
+    left: 0px;
+}
+#calendarModal .modal-body table tr td.color-line div:nth-child(2){
+    width: 100%;
+    background: white;
+    height: 3px!important;
+    position: absolute;
+    bottom: 0px;
+    left: 0px;
+}
+
+#calendarModal .modal-body table:nth-child(1) tr td.color-line{
+    background: #11abf5;
+}
+#calendarModal .modal-body table:nth-child(2) tr td.color-line{
+    background: #11f557;
+}
+#calendarModal .modal-body table:nth-child(3) tr td.color-line{
+    background: #f57711;
+}
+#calendarModal .modal-body table:nth-child(4) tr td.color-line{
+    background: #f5e811;
+}
+#calendarModal .modal-body table:nth-child(5) tr td.color-line{
+    background: #e811f5;
+}
+#calendarModal .modal-body table:nth-child(6) tr td.color-line{
+    background: #1116f5;
+}
+#calendarModal .modal-body table:nth-child(7) tr td.color-line{
+    background: #11f5cd;
+}
+#calendarModal .modal-body table:nth-child(8) tr td.color-line{
+    background: #f5b211;
+}
+#calendarModal .modal-body table:nth-child(9) tr td.color-line{
+    background: #a7f511;
+}
+#calendarModal .modal-body table:nth-child(10) tr td.color-line{
+    background: #bd11f5;
+}
+#calendarModal .modal-body table:nth-child(11) tr td.color-line{
+    background: #c2f511;
+}
+#calendarModal .modal-body table:nth-child(12) tr td.color-line{
+    background: #11f587;
+}
+#calendarModal .modal-body table:nth-child(13) tr td.color-line{
+    background: #cdf511;
+}
+#calendarModal .modal-body table:nth-child(14) tr td.color-line{
+    background: #11a2f5;
+}
+#calendarModal .modal-body table:nth-child(15) tr td.color-line{
+    background: #f5a211;
+}
+#calendarModal .modal-body table:nth-child(16) tr td.color-line{
+    background: #f5115c;
+}
+#calendarModal .modal-body table:nth-child(17) tr td.color-line{
+    background: #11a2f5;
+}
+#calendarModal .modal-body table:nth-child(18) tr td.color-line{
+    background: #cdf511;
+}
+#calendarModal .modal-body table:nth-child(19) tr td.color-line{
+    background: #11f587;
+}
+#calendarModal .modal-body table:nth-child(20) tr td.color-line{
+    background: #a7f511;
+}
+
+
+
+
+
+
+
+
+
+
+
 
 /* Add Animation */
 @-webkit-keyframes animatetop {
