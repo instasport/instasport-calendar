@@ -482,9 +482,9 @@
 		<table>
 			<thead>
 				<tr>
-				    <td class="week-prev"><a href="#"><i class="fa fa-arrow-left" aria-hidden="true"></i></a></td>
+				    <td class="week-prev"><a href="#"><i class="fa fa-chevron-left" aria-hidden="true"></i></a></td>
 				    <td colspan="6" class="week-today">август 2017</td>
-				    <td class="week-next"><a href="#"><i class="fa fa-arrow-right" aria-hidden="true"></i></a></td>
+				    <td class="week-next"><a href="#"><i class="fa fa-chevron-right" aria-hidden="true"></i></a></td>
 				</tr>
 				<tr>
 				    <td class="fortime"></td>

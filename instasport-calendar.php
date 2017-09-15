@@ -9,7 +9,7 @@
  */
 add_action('admin_menu','intacalendar_admin_actions');
 function intacalendar_admin_actions(){
-    add_options_page('IntaCalendar','IntaCalendar','manage_options',__FILE__,'intacalendar_admin');
+    add_options_page('IntaCalendar','Instasport Calendar','manage_options',__FILE__,'intacalendar_admin');
 }
 
 function intacalendar_admin(){
@@ -50,6 +50,10 @@ function intacalendar_admin(){
                 'date_number_color_choosen' => $_POST['date_number_color_choosen'],
                 'date_number_bg_choosen_hover' => $_POST['date_number_bg_choosen_hover'],
                 'date_number_color_choosen_hover' => $_POST['date_number_color_choosen_hover'],
+                //Main Styles for calendar  
+                'type_calendar' => $_POST['type_calendar'],
+                'name_club' => $_POST['name_club'],
+                'enable_modal' => $_POST['enable_modal'],
             ), 
             array('id' => 1) 
             /*array( 
@@ -88,6 +92,24 @@ function intacalendar_admin(){
     //echo $result->switch_halls_button_bg;
 ?>
         <form method="post" action=""> 
+            
+            <h2>Главные настройки</h2>
+
+            <input type="text" name="name_club" value="<?=$result->name_club;?>">
+            - Название клуба (для API) <br />
+
+            <select name="type_calendar">
+                <option <?php if($result->type_calendar == "month"){echo "selected='selected'";}?> value="month">Месяц</option>
+                <option <?php if($result->type_calendar == "week"){echo "selected='selected'";}?> value="week">Неделя</option>
+            </select>
+            - Вид календаря <br />
+
+            <select name="enable_modal">
+                <option <?php if($result->type_calendar == "false"){echo "selected='selected'";}?> value="false">Отключено</option>
+                <option <?php if($result->type_calendar == "true"){echo "selected='selected'";}?> value="true">Включено</option>
+            </select>
+            - Настройки модального окна <br />
+
             <h2>Цвет кнопок переключения залов</h2>
             
             <input type="text" name="switch_halls_button_bg" value="<?=$result->switch_halls_button_bg;?>">
@@ -189,7 +211,7 @@ function instasport_shortcodes_init()
         //echo $result->switch_halls_button_bg;
 
 
-        $parsed = shortcode_atts(array('slug' => '/', 'inplace' => 'false',), $atts, $tag);
+        $parsed = shortcode_atts(array('slug' => '/', 'inplace' => 'false', 'type' => 'month',), $atts, $tag);
 
         ob_start();
         include("mycalendar.php");
@@ -300,9 +322,10 @@ function instasport_shortcodes_init()
         <div style="display: none;" class="date-interval">
             <div class="date-begin"></div>
             <div class="date-end"></div>
-        </div>
-        <div style="display: none;" class="intaclub"><?=$parsed['slug'];?></div>
-        <div style="display: none;" class="inplace"><?=$parsed['inplace'];?></div>
+        </div> 
+        <div style="display: none;" class="intaclub"><?=$result->name_club;?></div>
+        <div style="display: none;" class="inplace"><?=$result->enable_modal;?></div>
+        <div style="display: none;" class="typecalendar-to-show"><?=$result->type_calendar;?></div>
         <div class="calen-tab">
             <div class="cld-tabs"></div>
         </div>
@@ -437,6 +460,9 @@ function intacalendar_create_db(){
       date_number_color_choosen varchar(50) NOT NULL,
       date_number_bg_choosen_hover varchar(50) NOT NULL,
       date_number_color_choosen_hover varchar(50) NOT NULL,
+      type_calendar ENUM('month', 'week') NOT NULL,
+      name_club varchar(100) NOT NULL,
+      enable_modal ENUM('true', 'false') NOT NULL,
       PRIMARY KEY  (id)
     ) $charset_collate;";
     

@@ -1,5 +1,12 @@
 jQuery(document).ready(function($) {
 	var club = $(".intaclub").text();
+	var typeCalendarView = $(".typecalendar-to-show").text();
+	var defaultView = "";
+	if(typeCalendarView == "month"){
+		defaultView = "month";
+	}else if(typeCalendarView == "week"){
+		defaultView = "agendaWeek";
+	}
 	//var hallUrl = "https://instasport.co/club/"+clubName+"/api/hall/?format=json",
 	//	calendarUrl = "https://instasport.co/club/"+clubName+"/api/calendar/?format=json",
 	//var hallUrl = "https://instasport.co/club/"+club+"/api/hall/?format=json",
@@ -97,7 +104,7 @@ jQuery(document).ready(function($) {
 					lang: lang,
 					timezone: true,
 					contentHeight: 'auto',
-					//defaultView: 'agendaWeek',
+					defaultView: defaultView,
 					views: {
 				        month: {
 				            titleFormat: "MMMM YYYY",                  
