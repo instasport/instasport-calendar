@@ -59,6 +59,7 @@
 .modal-body {padding: 2px 16px;}
 .modal-body a{
     box-shadow: none;
+    color: black;
 }
 .modal-body a:hover,
 .modal-body a:focus{
@@ -86,6 +87,7 @@
     -webkit-animation-duration: 0.4s;
     animation-name: animatetop;
     animation-duration: 0.4s
+    z-index: 9999;
 }
 
 

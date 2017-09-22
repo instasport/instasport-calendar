@@ -1,5 +1,10 @@
  jQuery(document).ready(function($) {
   
+
+  
+  showHideCalendar();
+
+
   //alert(1212);
   $("#calendarModal .close").click(function(){
     $("#calendarModal").css({"display":"none"});
@@ -31,3 +36,24 @@
   }*/
 
 });
+
+
+
+jQuery(window).resize(function(){
+  showHideCalendar();
+});
+
+
+
+ function showHideCalendar(){
+    var widthForMycalendarMobile = parseInt(jQuery(".for-mycalendar-mobile").css("width"), 10);
+    var widthForMycalendarDesktop = parseInt(jQuery(".for-mycalendar-desktop").css("width"), 10);
+    console.log(widthForMycalendarMobile+" - "+widthForMycalendarDesktop);
+    if(widthForMycalendarMobile < 900 || widthForMycalendarDesktop < 900){
+      jQuery(".mycalendar-desktop").hide();
+      jQuery(".mycalendar-mobile").show();
+    }else{
+      jQuery(".mycalendar-desktop").show();
+      jQuery(".mycalendar-mobile").hide();
+    }
+ }

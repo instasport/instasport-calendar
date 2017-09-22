@@ -82,6 +82,7 @@
 	position: absolute;
 	top: 0px;
 	left: 0px;
+	box-shadow: none;
 }
 /*.mycalendars .mymonthcalendar table tr td.day[data-day-week=sunday] .show .day-number{
 	color: #a0a0a0;
@@ -141,6 +142,7 @@
 	line-height: 12px;
 	text-align: center;
 }
+
 .mycalendar.myweekcalendar table tbody tr td,
 .mycalendar.myweekcalendar table tbody tr,
 .mycalendar.myweekcalendar table{
@@ -234,6 +236,11 @@
 	/*background-color: #f7f7f7;*/
 }
 
+
+.mycalendar-desktop .mycalendar.myweekcalendar table tbody tr td{
+	font-size: 8px!important;
+	line-height: 8px!important;
+}
 
 
 
@@ -489,9 +496,9 @@
 .calen-tab,
 #calendar-data,
 .switch-type-mycalendars{
-	position: absolute; 
+	/*position: absolute; 
 	z-index: -100;
-	top: -50000px;
+	top: -50000px;*/
 }
 
 

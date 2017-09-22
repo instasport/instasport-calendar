@@ -100,7 +100,7 @@ jQuery(document).ready(function($) {
 					$('#calendar').fullCalendar( 'destroy' );
 					oldEvents = false;
 				}
-				$('#calendar').fullCalendar({
+				$('#calendar-mobile').fullCalendar({
 					lang: lang,
 					timezone: true,
 					contentHeight: 'auto',
@@ -132,7 +132,7 @@ jQuery(document).ready(function($) {
 					minTime: open,
 					maxTime: close,
 					//events: cldEvent,
-					events: {
+					/*events: {
 					        url: "https://instasport.co/club/"+club+"/api/schedule/dates",
 					        data: function() { // a function that returns an object
 					            return {
@@ -140,7 +140,7 @@ jQuery(document).ready(function($) {
 					                format: "json"
 					            };
 					        }
-					    },
+					    },*/
 					/*eventSources: [{
 						//events: cldEvent,
 						events: {
@@ -155,9 +155,71 @@ jQuery(document).ready(function($) {
 						textColor: txtColor 
 					}],*/
 					eventAfterAllRender: function(event, element) {
-				        calendarDATA();
+				        alert("first calendar is rendered!!!");
+				        //calendarDATA();
 				    },
 				});	
+
+				$('#calendar-desktop').fullCalendar({
+					lang: lang,
+					timezone: true,
+					contentHeight: 'auto',
+					defaultView: defaultView,
+					views: {
+				        month: {
+				            titleFormat: "MMMM YYYY",                  
+				        },
+				        week: {
+				            columnFormat: "D.MM.YYYY",
+				            titleFormat: "DD.MM.YYYY",            
+				        },
+				        day: {
+				            titleFormat: "DD.MM.YYYY",
+				            /*columnFormat: "dddd d", */          
+				        }
+				    },
+					header: {
+						left: 'prev,next today',
+						center: 'title',
+						right: 'month,agendaWeek,agendaDay'
+					},
+					buttonText: {
+						today: toDayBtnTxt,
+						month: monthTxt,
+						agendaWeek: agendaWeekTxt,
+						agendaDay: agendaDayTxt
+					},
+					minTime: open,
+					maxTime: close,
+					//events: cldEvent,
+					/*events: {
+					        url: "https://instasport.co/club/"+club+"/api/schedule/dates",
+					        data: function() { // a function that returns an object
+					            return {
+					                //date1: "2017-08-01",
+					                format: "json"
+					            };
+					        }
+					    },*/
+					/*eventSources: [{
+						//events: cldEvent,
+						events: {
+					        url: cldEvent,
+					        data: function() { // a function that returns an object
+					            return {
+					                dynamic_value: 5
+					            };
+					        }
+					    },
+						color: bgColor,
+						textColor: txtColor 
+					}],*/
+					eventAfterAllRender: function(event, element) {
+				        //calendarDATA();
+				        //alert("second calendar is rendered!!!");
+				    },
+				});
+
 				oldEvents = true;			
 			}
 			this.getHalls = function(){
