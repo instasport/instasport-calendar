@@ -1,7 +1,7 @@
 <div class="for-mycalendar-mobile">
 <div class="mycalendar-mobile">
 	<div class="switch-halls-mycalendar"></div>
-	<div class="switch-type-mycalendars">
+	<div class="switch-type-mycalendars" style="display: none;">
 		<span class="month switch-btn" data-type-cal="month">Месяц</span>
 		<span class="week switch-btn" data-type-cal="agendaWeek">Неделя</span>
 	</div>

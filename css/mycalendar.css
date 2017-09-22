@@ -14,6 +14,10 @@
 	margin: 0px;
 }
 
+.mycalendar{
+	display: none;
+}
+
 .mycalendar a{
 	text-decoration: none!important;
 	-webkit-transition: all 0s; 
@@ -42,7 +46,9 @@
 	color: black;
 	padding: 5px 10px;
 	margin-right: 5px;
+	margin-bottom: 5px;
 	cursor: pointer;
+	display: inline-block;
 }
 .switch-halls-mycalendar .switch-btn.active{
 	background: #000;

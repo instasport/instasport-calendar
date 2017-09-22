@@ -48,18 +48,19 @@ jQuery(document).ready(function($) {
 					
 					
 					
-					//console.log(_this.hallOpen+" - "+_this.hallClose);
-
-					$.each(hallArr, function(key, val){
-						if(key == 0){
-							//$(_this.divClassMyCal).append('<div class="cld-tab current" data-hall-id="'+val.id+'">'+val.title+'</div>');
-							$(_this.divClassMyCal).find(".switch-halls-mycalendar")
-												  .append('<span class="switch-btn active" data-hall-id="'+val.id+'">'+val.title+'</span>');
-						}else{
-							$(_this.divClassMyCal).find(".switch-halls-mycalendar")
-												  .append('<span class="switch-btn" data-hall-id="'+val.id+'">'+val.title+'</span>');
-						}
-					});
+					//console.log(hallArr.length);
+					if(hallArr.length > 1){
+						$.each(hallArr, function(key, val){
+							if(key == 0){
+								//$(_this.divClassMyCal).append('<div class="cld-tab current" data-hall-id="'+val.id+'">'+val.title+'</div>');
+								$(_this.divClassMyCal).find(".switch-halls-mycalendar")
+													  .append('<span class="switch-btn active" data-hall-id="'+val.id+'">'+val.title+'</span>');
+							}else{
+								$(_this.divClassMyCal).find(".switch-halls-mycalendar")
+													  .append('<span class="switch-btn" data-hall-id="'+val.id+'">'+val.title+'</span>');
+							}
+						});
+					}
 
 
 						$(_this.divClassMyCal+' .switch-halls-mycalendar').on('click', '.switch-btn', function(){
@@ -1730,6 +1731,7 @@ jQuery(document).ready(function($) {
 		this.getCalendarList = function(list){
 			var _this = this;
 			var len = 0;
+			_this.calendarListArr = [];
 			//alert(hallUrl);
 			//alert(_this.calendarUrl);
 			apiQuery(_this.calendarUrl, function(data){
