@@ -448,7 +448,7 @@ jQuery(document).ready(function($) {
 			var currDateMonth = currDateObj.getMonth() + 1;
 			if(currDateMonth < 10){currDateMonth = "0"+currDateMonth;}
 			_this.currentDate = currDateObj.getFullYear()+"-"+currDateMonth+"-"+currDateDay;
-			console.log(_this.defaultView);
+			//console.log(_this.defaultView);
 			
 			$(".switch-type-mycalendars .switch-btn").removeClass("active");
 			if(_this.defaultView == "agendaWeek"){
@@ -510,7 +510,7 @@ jQuery(document).ready(function($) {
   			//console.log(nameCurrentMonth+" "+currentYear);
 
 			if(_this.divIdCal == "#calendar-desktop"){
-				$(_this.divClassMyCal+" .mycalendar.mymonthcalendar table tbody tr td .hide-events").text("");
+				$(_this.divClassMyCal+" .mycalendar.mymonthcalendar table tbody tr td .events").text("");
 				//$(_this.divClassMyCal+" .mycalendar.mymonthcalendar table thead tr td.today").text(titleCalendar);
 				
 				var arrDate = "";
@@ -541,16 +541,18 @@ jQuery(document).ready(function($) {
 							}
 
 						});
-						
+						//console.log(result.length);
+						var k = 1;
 						result.forEach(function(currentValue, index, arr){
 							
+							/*
 							var lengthEvents = $(_this.divClassMyCal+" .mycalendar.mymonthcalendar table tbody tr td[data-date='"+arrDate[i][0].date+"']")
 											.find(".events")
 											.find(".item-event")
-											.length;
+											.length;*/
 							
-							if(lengthEvents < 2){
-
+							if(k < 3){
+								//console.log(lengthEvents);
 								var duration = currentValue.duration;
 								var seats = currentValue.seats;
 								//var seats = 2;
@@ -566,21 +568,21 @@ jQuery(document).ready(function($) {
 								var endTime1 = duration.split(":")[0];
 								var endTime2 = duration.split(":")[1];
 								if(endTime1 == "00"){
-									endTime1 = "";
-									endTime2 = endTime2+" м.";
+									//endTime1 = "";
+									endTime2 = ":"+endTime2;
 								}else{
 									if(endTime2 == "00"){
-										endTime2 = "";
+										endTime2 = ":00";
 										
 									}else{
 										endTime2 = parseInt(endTime2, 10);
-										endTime2 = " "+endTime2+" м.";
+										endTime2 = ":"+endTime2;
 									}
 									endTime1 = parseInt(endTime1, 10);
 									if(endTime1 == 1){
-										endTime1 = endTime1+" час";
+										//endTime1 = endTime1+" час";
 									}else if(endTime1 > 1){
-										endTime1 = endTime1+" часа";
+										//endTime1 = endTime1+" часа";
 									}
 								}
 
@@ -589,6 +591,7 @@ jQuery(document).ready(function($) {
 										.append("<table class='item-event'><tr>"
 											+"<td>"
 												+"<div>"+timeBegin.split(":")[0]+"."+timeBegin.split(":")[1]+"</div>"
+												+"<div class='item-event-duration'>"+endTime1+endTime2+"</div>"
 											+"</td>"
 											+"<td>"
 												+"<div class='item-event-title'>"
@@ -597,11 +600,10 @@ jQuery(document).ready(function($) {
 													+"<a target='_blank' href='"+url+"'></a>"
 												+"</div>"
 												+"<div class='item-event-seats'>"+messageSeats+"</div>"
-												+"<div class='item-event-duration'>"+endTime1+endTime2+"</div>"
 											+"</td>"
 											+"</tr></table>");
 							}else{
-								console.log(1212);
+								//console.log(1212);
 								var lengthMoreEvents = $(_this.divClassMyCal+" .mycalendar.mymonthcalendar table tbody tr td[data-date='"+arrDate[i][0].date+"']")
 										.find(".events")
 										.find(".more-items").length;
@@ -612,6 +614,7 @@ jQuery(document).ready(function($) {
 								}
 							}
 
+							k++;
 							/*
 							var dateEvent = currentValue.start.split("T")[0];
 							var startEvent = (currentValue.start.split("T")[1]).split("+")[0];
@@ -701,7 +704,7 @@ jQuery(document).ready(function($) {
 				$(_this.divClassMyCal+" .mycalendar.mymonthcalendar table tbody tr td .hide-events").text("");
 				$(_this.divClassMyCal+" .mycalendar.mymonthcalendar table tbody tr td").removeClass("active");
 				$(_this.divClassMyCal+" .mycalendar.mymonthcalendar table tbody tr td").removeClass("choosen");
-				console.log(_this.choosenTD+" - "+_this.divClassMyCal);
+				//console.log(_this.choosenTD+" - "+_this.divClassMyCal);
 				//if(_this.choosenTD){
 				//$(_this.divClassMyCal+" .mycalendar.mymonthcalendar table tbody tr td[data-date='"+_this.choosenTD+"']").addClass("choosen");
 				//}
@@ -1109,6 +1112,7 @@ jQuery(document).ready(function($) {
 				//console.log(_this.calendarListArr.length);
 				//console.log(_this.calendarListArr);
 				
+
 				_this.calendarListArr.forEach(function(item, index){
 					//console.log(item.start);
 					//if(k > 2){return false;}
@@ -1127,24 +1131,24 @@ jQuery(document).ready(function($) {
 
 					var endTime1 = duration.split(":")[0];
 					var endTime2 = duration.split(":")[1];
-					if(endTime1 == "00"){
-						endTime1 = "";
-						endTime2 = endTime2+" м.";
-					}else{
-						if(endTime2 == "00"){
-							endTime2 = "";
-							
-						}else{
-							endTime2 = parseInt(endTime2, 10);
-							endTime2 = " "+endTime2+" м.";
-						}
-						endTime1 = parseInt(endTime1, 10);
-						if(endTime1 == 1){
-							endTime1 = endTime1+" час";
-						}else if(endTime1 > 1){
-							endTime1 = endTime1+" часа";
-						}
-					}
+								if(endTime1 == "00"){
+									//endTime1 = "";
+									endTime2 = ":"+endTime2;
+								}else{
+									if(endTime2 == "00"){
+										endTime2 = ":00";
+										
+									}else{
+										endTime2 = parseInt(endTime2, 10);
+										endTime2 = ":"+endTime2;
+									}
+									endTime1 = parseInt(endTime1, 10);
+									if(endTime1 == 1){
+										//endTime1 = endTime1+" час";
+									}else if(endTime1 > 1){
+										//endTime1 = endTime1+" часа";
+									}
+								}
 
 					var date = item.start.split("T")[0];
 					var time = item.start.split("T")[1].split(":")[0];
@@ -1160,6 +1164,7 @@ jQuery(document).ready(function($) {
 								.append("<table class='item-event'><tr>"
 									+"<td>"
 										+"<div>"+timeBegin.split(":")[0]+"."+timeBegin.split(":")[1]+"</div>"
+										+"<div class='item-event-duration'>"+endTime1+endTime2+"</div>"
 									+"</td>"
 									+"<td>"
 										+"<div class='item-event-title'>"
@@ -1168,7 +1173,6 @@ jQuery(document).ready(function($) {
 											+"<a target='_blank' href='"+url+"'></a>"
 										+"</div>"
 										+"<div class='item-event-seats'>"+messageSeats+"</div>"
-										+"<div class='item-event-duration'>"+endTime1+endTime2+"</div>"
 									+"</td>"
 									+"</tr></table>");
 					}else{

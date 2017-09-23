@@ -139,7 +139,11 @@
 	font-weight: bold;
 }
 .mycalendar-desktop .mymonthcalendar.mycalendar>table>tbody>tr>td{
-	width: 14.2799%; 
+	width: 14.2799%;
+	height: 140px; 
+}
+.mycalendar-desktop .myweekcalendar.mycalendar>table>tbody>tr>td{
+	height: 120px; 
 }
 .mycalendar-desktop .mycalendar>table>tbody>tr>td:nth-child(even){
 	background-color: #f1f1f1;  
@@ -186,6 +190,9 @@
 		position: absolute;
 		top: 0px;
 		left: 0px;
+	}
+	.mycalendar-desktop .mycalendar>table>tbody>tr>td .item-event .item-event-title:hover .textt{
+		color: black!important;
 	}
 	.mycalendar-desktop .mycalendar>table>tbody>tr>td .item-event .item-event-title .three-dot{
 		width: 15px;
