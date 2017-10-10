@@ -75,6 +75,8 @@ function intacalendar_admin(){
                 'desktop_week_hide_empty_rows' => $_POST['desktop_week_hide_empty_rows'],
                 'desktop_filter_bg' => $_POST['desktop_filter_bg'],
                 'desktop_filter_text_color' => $_POST['desktop_filter_text_color'],
+                'desktop_filter_train_show' => $_POST['desktop_filter_train_show'],
+                'desktop_filter_couch_show' => $_POST['desktop_filter_couch_show'],
                 //MOBILE STYLES
                 'mobile_default_color_switch_hall_btn' => $_POST['mobile_default_color_switch_hall_btn'],
                 'mobile_default_bg_switch_hall_btn' => $_POST['mobile_default_bg_switch_hall_btn'],
@@ -222,6 +224,18 @@ function intacalendar_admin(){
                 <option <?php if($result->desktop_week_hide_empty_rows == "0"){echo "selected='selected'";}?> value="0">Не показывать</option>
             </select>
             - Показывать/Не показывать строки без тренировок - Неделя <br />
+
+            <select name="desktop_filter_train_show">
+                <option <?php if($result->desktop_filter_train_show == "inline-block"){echo "selected='selected'";}?> value="inline-block">Показывать</option>
+                <option <?php if($result->desktop_filter_train_show == "none"){echo "selected='selected'";}?> value="none">Не показывать</option>
+            </select>
+            - Показывать/Не показывать фильтр по тренировкам <br />
+
+            <select name="desktop_filter_couch_show">
+                <option <?php if($result->desktop_filter_couch_show == "inline-block"){echo "selected='selected'";}?> value="inline-block">Показывать</option>
+                <option <?php if($result->desktop_filter_couch_show == "none"){echo "selected='selected'";}?> value="none">Не показывать</option>
+            </select>
+            - Показывать/Не показывать фильтр по тренерам <br />
 
 
 
@@ -583,6 +597,12 @@ function instasport_shortcodes_init()
     .filters a{
         background-color: <?=$result->desktop_filter_bg;?>!important;
         color: <?=$result->desktop_filter_text_color;?>!important;
+    }
+    .filters .filter-by-traine{
+        display: <?=$result->desktop_filter_train_show;?>!important;
+    }
+    .filters .filter-by-couch{
+        display: <?=$result->desktop_filter_couch_show;?>!important;
     }
 
 
@@ -998,6 +1018,8 @@ function intacalendar_create_db(){
       desktop_week_hide_empty_rows ENUM('1', '0') NOT NULL,
       desktop_filter_bg varchar(100) NOT NULL,
       desktop_filter_text_color varchar(100) NOT NULL,
+      desktop_filter_train_show varchar(100) NOT NULL,
+      desktop_filter_couch_show varchar(100) NOT NULL,
       mobile_default_color_switch_hall_btn varchar(50) NOT NULL,
       mobile_default_bg_switch_hall_btn varchar(50) NOT NULL,
       mobile_active_color_switch_hall_btn varchar(50) NOT NULL,
@@ -1101,6 +1123,8 @@ function intacalendar_create_db(){
                 'desktop_week_hide_empty_rows' => '1',
                 'desktop_filter_bg' => '#f1f1f1',
                 'desktop_filter_text_color' => 'black',
+                'desktop_filter_train_show' => 'inline-block',
+                'desktop_filter_couch_show' => 'inline-block',
                 //MOBILE STYLES
                 'mobile_default_color_switch_hall_btn' => '#000',
                 'mobile_default_bg_switch_hall_btn' => '#f1f1f1',
