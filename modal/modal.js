@@ -49,7 +49,7 @@ jQuery(window).resize(function(){
     var widthForMycalendarMobile = parseInt(jQuery(".for-mycalendar-mobile").css("width"), 10);
     var widthForMycalendarDesktop = parseInt(jQuery(".for-mycalendar-desktop").css("width"), 10);
     //console.log(widthForMycalendarMobile+" - "+widthForMycalendarDesktop);
-    if(widthForMycalendarMobile < 900 || widthForMycalendarDesktop < 900){
+    if(widthForMycalendarMobile < 800 || widthForMycalendarDesktop < 800){
       jQuery(".mycalendar-desktop").hide();
       jQuery(".mycalendar-mobile").show();
     }else{

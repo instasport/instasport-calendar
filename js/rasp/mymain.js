@@ -31,7 +31,12 @@ jQuery(document).ready(function($) {
 		this.hallClose = null;
 		this.choosenTD = null;
 		this.choosenTimeTD = null;
-		//this.my = 'my'; 
+		//this.my = 'my';
+		//FILTERS
+		this.trains = [];
+		this.choosenTrain = null;
+		this.couches = [];
+		this.choosenCouch = null;
 
 
 		this.loadData = function(callback){
@@ -67,6 +72,10 @@ jQuery(document).ready(function($) {
 							if(!$(this).hasClass('active')){
 								
 								$("#events-on-day").text("");
+								_this.choosenCouch = null;
+								_this.choosenTrain = null;
+								$("#filterByCouch").text("Выбрать тренера");
+								$("#filterByTraine").text("Выбрать тренировку");
 								$(_this.divClassMyCal+" .mycalendar.myweekcalendar table tbody tr td").removeClass("choosen");
 								_this.choosenTD = null;
 								_this.choosenTimeTD = null;
@@ -84,6 +93,180 @@ jQuery(document).ready(function($) {
 								//$('.cld-hall-img-name').text(hallArr[hallIndex].title+' ( '+hallArr[hallIndex].description+' ) ');
 							}
 						});
+
+						$(_this.divClassMyCal).on('click', '#filterByTraine', function(e){
+							//alert(_this.beginDate);
+							/*if($(this).val() == "null"){
+								_this.choosenTrain = null;
+							}else{
+								_this.choosenTrain = $(this).val();
+							}*/
+							//alert("train was changed! The choosen train is "+_this.choosenTrain);
+							//_this.init(_this.divIdCal);
+							/*_this.constructMyCalendar();*/
+							var _thiss = $(this);
+
+
+							e.preventDefault();
+							$("#calendarModal .modal-body").text("");
+							$("#calendarModal .modal-header .title").text("Тренировки");
+							//alert(date);
+							$("#calendarModal .modal-body").append("<table>"
+								+"<tr>"
+								+"<td style='width: 10px!important;'>"
+								+"</td>"
+								+"<td class='color-line'><div></div><div></div></td>"
+								+"<td>"
+								+"<a class='choose-train' href='null'>Все</a><br/>"
+								+"</td>"
+								+"</tr>"
+								+"</table>");
+
+							$.grep(_this.trains, function(e){
+								
+								var title = e.title;
+								//var time = e.start.split("T")[1].split(":")[0];
+								//var fullTime = e.start.split("T")[1].split("+")[0];
+
+
+
+								var endTime1 = e.duration.split(":")[0];
+								var endTime2 = e.duration.split(":")[1];
+								if(endTime1 == "00"){
+									endTime1 = "";
+									endTime2 = endTime2+" мин.";
+								}else{
+									if(endTime2 == "00"){
+										endTime2 = "";
+										
+									}else{
+										endTime2 = parseInt(endTime2, 10);
+										endTime2 = " "+endTime2+" мин.";
+									}
+									endTime1 = parseInt(endTime1, 10);
+									if(endTime1 == 1){
+										endTime1 = endTime1+" час";
+									}else if(endTime1 > 1){
+										endTime1 = endTime1+" часа";
+									}
+								}
+
+
+
+								$("#calendarModal .modal-body").append("<table>"
+									+"<tr>"
+									+"<td style='width: 10px!important;'>"
+									//+endTime1+endTime2 
+									+"</td>"
+									+"<td class='color-line'><div></div><div></div></td>"
+									+"<td>"
+									+"<a class='choose-train' href='"+title+"'>"+title+"</a> <span style='font-size: 0.8em;'> ("+endTime1+endTime2+")</span><br/>"
+									+"</td>"
+									+"</tr>"
+									+"</table>");
+
+
+							});	
+
+							$("#calendarModal").css({"display":"block"});
+
+							$("#calendarModal .modal-body .choose-train").click(function(e){
+								e.preventDefault();
+								var trainTitle = $(this).attr("href");
+								//alert(trainTitle);
+								if(trainTitle == "null"){
+									_this.choosenTrain = null;
+									$(_thiss).text("Выбрать тренировку");
+								}else{
+									_this.choosenTrain = trainTitle;
+									$(_thiss).text(trainTitle);
+								}
+								$("#calendarModal").css({"display":"none"});
+								//_this.constructMyCalendar();
+
+								if(_this.defaultView == "month"){
+									_this.constructMyCalendarMonth();
+								}else{
+									_this.constructMyCalendarWeek();
+								}
+
+							});
+
+						});
+
+
+
+						$(_this.divClassMyCal).on('click', '#filterByCouch', function(e){
+							
+							var _thiss = $(this);
+
+
+							e.preventDefault();
+							$("#calendarModal .modal-body").text("");
+							$("#calendarModal .modal-header .title").text("Тренера");
+							//alert(date);
+							$("#calendarModal .modal-body").append("<table>"
+								+"<tr>"
+								+"<td>"
+								+"</td>"
+								+"<td class='color-line'><div></div><div></div></td>"
+								+"<td>"
+								+"<a class='choose-train' href='null'>Все</a><br/>"
+								+"</td>"
+								+"</tr>"
+								+"</table>");
+
+							$.grep(_this.couches, function(e){
+								
+								var id = e.id;
+								var name = e.name;
+								var avatar = e.avatar;
+								//var time = e.start.split("T")[1].split(":")[0];
+								//var fullTime = e.start.split("T")[1].split("+")[0];
+
+
+								$("#calendarModal .modal-body").append("<table>"
+									+"<tr>"
+									+"<td>"
+									+"<img src='"+avatar+"' width='100'>"
+									+"</td>"
+									+"<td class='color-line'><div></div><div></div></td>"
+									+"<td>"
+									+"<a class='choose-train' href='"+id+"'>"+name+"</a><br/>"
+									+"</td>"
+									+"</tr>"
+									+"</table>");
+
+
+							});	
+
+							$("#calendarModal").css({"display":"block"});
+
+							$("#calendarModal .modal-body .choose-train").click(function(e){
+								e.preventDefault();
+								var couchId = $(this).attr("href");
+								var couchName = $(this).text();
+								//alert(trainTitle);
+								if(couchId == "null"){
+									_this.choosenCouch = null;
+									$(_thiss).text("Выбрать тренера");
+								}else{
+									_this.choosenCouch = couchId;
+									$(_thiss).text(couchName);
+								}
+								$("#calendarModal").css({"display":"none"});
+								//_this.constructMyCalendar();
+								
+								if(_this.defaultView == "month"){
+									_this.constructMyCalendarMonth();
+								}else{
+									_this.constructMyCalendarWeek();
+								}
+								
+							});
+
+						});
+						
 
 
 						$(_this.divClassMyCal+' table thead .calendar-title').on('click', 'a.prev', function(e){
@@ -178,6 +361,11 @@ jQuery(document).ready(function($) {
 								var choosenTime = $(this).attr("data-time");
 								//alert(date);
 								$.grep(_this.calendarListArr, function(e){
+									
+									if(_this.choosenTrain != null && e.title != _this.choosenTrain){
+										return false;
+									}
+
 									var flag = false;
 									var date = e.start.split("T")[0];
 									var time = e.start.split("T")[1].split(":")[0];
@@ -437,6 +625,9 @@ jQuery(document).ready(function($) {
 
 		this.constructMyCalendar = function(){
 			var _this = this;
+			//if(_this.beginDate != null){
+			//	$('#calendar').fullCalendar('gotoDate', _this.beginDate);
+			//}
 			//_this.getCalendarAllDaysNumber();
 			_this.beginDate = $(_this.divIdCal).fullCalendar('getView').start.format("YYYY-MM-DD");
 			_this.endDate = $(_this.divIdCal).fullCalendar('getView').end.format("YYYY-MM-DD");
@@ -450,12 +641,12 @@ jQuery(document).ready(function($) {
 			_this.currentDate = currDateObj.getFullYear()+"-"+currDateMonth+"-"+currDateDay;
 			//console.log(_this.defaultView);
 			
-			$(".switch-type-mycalendars .switch-btn").removeClass("active");
+			/*$(".switch-type-mycalendars .switch-btn").removeClass("active");
 			if(_this.defaultView == "agendaWeek"){
 				$(".switch-type-mycalendars .switch-btn.week").addClass("active");
 			}else if(_this.defaultView == "month"){
 				$(".switch-type-mycalendars .switch-btn.month").addClass("active");
-			}
+			}*/
 			//var d = new Date();
 			//alert(_this.beginDate+"|"+_this.endDate+"|"+hallArr.length);
 			//alert(hallArr[0].id);
@@ -465,6 +656,8 @@ jQuery(document).ready(function($) {
 			_this.calendarUrl = "https://instasport.co/club/"+clubName+"/api/schedule/dates/"+_this.beginDate+"/"+_this.endDate+"/hall/"+_this.hall+"/?format=json";
 			//alert(_this.calendarUrl);
 			_this.getCalendarList();
+			//_this.getTrainsList();
+			//_this.getCouchList();
 			_this.getCalendarAllDaysNumber();
 			//console.log(_this.calendarDaysNumber);
 			
@@ -484,6 +677,9 @@ jQuery(document).ready(function($) {
 
 		this.constructMyCalendarMonth = function(){
 			var _this = this;
+
+			_this.getTrainsList();
+			_this.getCouchList();
 
 			$(_this.divClassMyCal+" .mycalendar.mymonthcalendar table tbody tr td .events").text("");
 
@@ -517,6 +713,10 @@ jQuery(document).ready(function($) {
 				arrDate = _this.calendarDaysNumber;
 				//console.log(arrDate);
 
+				$(_this.divClassMyCal+" .switch-type-mycalendars span").removeClass("active");
+				$(_this.divClassMyCal+" .switch-type-mycalendars span.month").addClass("active");
+
+
 				var i = 0;
 				$(_this.divClassMyCal+" .mycalendar.mymonthcalendar table tbody tr").each(function(){
 					//console.log(data[i]['date']);
@@ -543,6 +743,7 @@ jQuery(document).ready(function($) {
 						});
 						//console.log(result.length);
 						var k = 1;
+						var desktopMonthQuantityTrainings = $("#desktop-month-quantity-trainings").text();
 						result.forEach(function(currentValue, index, arr){
 							
 							/*
@@ -551,7 +752,16 @@ jQuery(document).ready(function($) {
 											.find(".item-event")
 											.length;*/
 							
-							if(k < 3){
+							//if(_this.choosenTrain != null && _this.choosenTrain != currentValue.title){
+							//	return false;
+							//}
+							//console.log(currentValue.instructor[0]);
+							if((_this.choosenTrain != null && _this.choosenTrain != currentValue.title)
+								|| (_this.choosenCouch != null && _this.choosenCouch != currentValue.instructor[0])){
+								return false;
+							}
+							
+							if(k <= desktopMonthQuantityTrainings){
 								//console.log(lengthEvents);
 								var duration = currentValue.duration;
 								var seats = currentValue.seats;
@@ -586,12 +796,21 @@ jQuery(document).ready(function($) {
 									}
 								}
 
-								$(_this.divClassMyCal+" .mycalendar.mymonthcalendar table tbody tr td[data-date='"+arrDate[i][0].date+"']")
+								var addDuration = "";
+								var addSeats = "";
+								var flagAddInfo = $("#desktop-month-duration-seats").text();
+								if(flagAddInfo == 1){
+									addDuration = "<div class='item-event-duration'>"+endTime1+endTime2+"</div>";
+									addSeats = "<div class='item-event-seats'>"+messageSeats+"</div>";
+								} 
+
+								//if(_this.choosenTrain == null || _this.choosenTrain == title){
+									$(_this.divClassMyCal+" .mycalendar.mymonthcalendar table tbody tr td[data-date='"+arrDate[i][0].date+"']")
 										.find(".events") 
 										.append("<table class='item-event'><tr>"
 											+"<td>"
 												+"<div>"+timeBegin.split(":")[0]+"."+timeBegin.split(":")[1]+"</div>"
-												+"<div class='item-event-duration'>"+endTime1+endTime2+"</div>"
+												+addDuration
 											+"</td>"
 											+"<td>"
 												+"<div class='item-event-title'>"
@@ -599,18 +818,20 @@ jQuery(document).ready(function($) {
 													+"<div class='three-dot'>...</div>"
 													+"<a target='_blank' href='"+url+"'></a>"
 												+"</div>"
-												+"<div class='item-event-seats'>"+messageSeats+"</div>"
+												+addSeats
 											+"</td>"
 											+"</tr></table>");
+								//}
 							}else{
 								//console.log(1212);
 								var lengthMoreEvents = $(_this.divClassMyCal+" .mycalendar.mymonthcalendar table tbody tr td[data-date='"+arrDate[i][0].date+"']")
 										.find(".events")
 										.find(".more-items").length;
 								if(lengthMoreEvents == 0){
+									var desktopMonthMoreText = $("#desktop-month-more-text").text();
 									$(_this.divClassMyCal+" .mycalendar.mymonthcalendar table tbody tr td[data-date='"+arrDate[i][0].date+"']")
 										.find(".events")
-										.append("<a data-date='"+arrDate[i][0].date+"' data-type-calendar='month' class='more-items' href='#'>...</a>");
+										.append("<a data-date='"+arrDate[i][0].date+"' data-type-calendar='month' class='more-items' href='#'>"+desktopMonthMoreText+"</a>");
 								}
 							}
 
@@ -660,6 +881,9 @@ jQuery(document).ready(function($) {
 							$(_this.divClassMyCal+" table.item-event .item-event-title").hover(function(){ 
 								
 								if($(this).find(".three-dot").is(':visible')){
+									$(this).addClass("with-dots");
+								}
+								//if($(this).find(".three-dot").is(':visible')){
 									$(this).addClass("hover");
 									var widthText = parseInt($(this).find(".textt").css("width"), 10);
 									$(this).closest("td").css({"padding-top":"21px"});
@@ -678,10 +902,12 @@ jQuery(document).ready(function($) {
 									$(this).find(".three-dot").css({"display":"none"});
 									$(this).find(".textt").css({"position":"absolute",
 																"left":"5px",});
-								} 
+								//} 
 							}, function(){
 								if($(this).hasClass("hover")){
-									$(this).find(".three-dot").css({"display":"block"});
+									if($(this).hasClass("with-dots")){
+										$(this).find(".three-dot").css({"display":"block"});
+									}
 									$(this).closest("td").attr("style","");
 									$(this).attr("style","");
 									$(this).find(".textt").attr("style","");
@@ -926,6 +1152,9 @@ jQuery(document).ready(function($) {
 		this.constructMyCalendarWeek = function(){
 			var _this = this;
 
+
+			_this.getTrainsList();
+			_this.getCouchList();
 			//_this.beginDate
 			//_this.endDate
 
@@ -980,7 +1209,7 @@ jQuery(document).ready(function($) {
 				}
 			}
 
-			console.log(titleCalendar);
+			//console.log(titleCalendar);
 			//var titleCalendar = nameCurrentMonth+" "+currentYear;
   			$(_this.divClassMyCal+" .mycalendar.myweekcalendar table thead .calendar-title .today").text(titleCalendar);
 
@@ -989,6 +1218,10 @@ jQuery(document).ready(function($) {
 
 			if(_this.divIdCal == "#calendar-desktop"){
 
+				$(_this.divClassMyCal+" .switch-type-mycalendars span").removeClass("active");
+				$(_this.divClassMyCal+" .switch-type-mycalendars span.week").addClass("active");
+
+				
 				var hallOpen = _this.hallOpen;
 				var hallClose = _this.hallClose;
 
@@ -1117,6 +1350,16 @@ jQuery(document).ready(function($) {
 					//console.log(item.start);
 					//if(k > 2){return false;}
 					//var time = $(this).attr("data-time");
+
+					/*if(_this.choosenTrain != null && _this.choosenTrain != item.title){
+						return false;
+					}*/
+
+					if((_this.choosenTrain != null && _this.choosenTrain != item.title)
+						|| (_this.choosenCouch != null && _this.choosenCouch != item.instructor[0])){
+						return false;
+					}
+
 					var duration = item.duration;
 					var seats = item.seats;
 					//var seats = 2;
@@ -1157,14 +1400,27 @@ jQuery(document).ready(function($) {
 								.find(".events")
 								.find(".item-event").length;
 
-					if(lengthEvents < 2){			
+					var desktopWeekQuantityTrainings = $("#desktop-week-quantity-trainings").text();
+					if(lengthEvents < desktopWeekQuantityTrainings){
+
+						//code for checking if we need to show additional information
+						//as DURATION and SEATS
+						var addDuration = ""; 
+						var addSeats = "";
+						var flagAddInfo = $("#desktop-week-duration-seats").text();
+						if(flagAddInfo == 1){
+							addDuration = "<div class='item-event-duration'>"+endTime1+endTime2+"</div>";
+							addSeats = "<div class='item-event-seats'>"+messageSeats+"</div>";
+						}
+
+
 						$(_this.divClassMyCal+" .mycalendar.myweekcalendar table tbody tr[data-time='"+time+"']")
 								.find("td[data-date-event='"+date+"']")
 								.find(".events")
 								.append("<table class='item-event'><tr>"
 									+"<td>"
 										+"<div>"+timeBegin.split(":")[0]+"."+timeBegin.split(":")[1]+"</div>"
-										+"<div class='item-event-duration'>"+endTime1+endTime2+"</div>"
+										+addDuration
 									+"</td>"
 									+"<td>"
 										+"<div class='item-event-title'>"
@@ -1172,7 +1428,7 @@ jQuery(document).ready(function($) {
 											+"<div class='three-dot'>...</div>"
 											+"<a target='_blank' href='"+url+"'></a>"
 										+"</div>"
-										+"<div class='item-event-seats'>"+messageSeats+"</div>"
+										+addSeats
 									+"</td>"
 									+"</tr></table>");
 					}else{
@@ -1181,16 +1437,37 @@ jQuery(document).ready(function($) {
 								.find(".events")
 								.find(".more-items").length;
 						if(lengthMoreEvents == 0){
+							var desktopWeekMoreText = $("#desktop-week-more-text").text();
 							$(_this.divClassMyCal+" .mycalendar.myweekcalendar table tbody tr[data-time='"+time+"']")
 								.find("td[data-date-event='"+date+"']")
 								.find(".events")
-								.append("<a data-date='"+date+"' data-time='"+time+"' data-type-calendar='week' class='more-items' href='#'>...</a>");
+								.append("<a data-date='"+date+"' data-time='"+time+"' data-type-calendar='week' class='more-items' href='#'>"+desktopWeekMoreText+"</a>");
 						}
 					}
 
 					
 					
 				});
+
+
+				if($("#desktop-week-hide-empty-rows").text() == 0){
+					$(_this.divClassMyCal+" .mycalendar.myweekcalendar>table>tbody>tr").each(function(){
+						var _thisss = $(this);
+						//_thisss.css({"background-color":"red"});
+						var flagWithEvents = "empty";
+						$(this).find("td").each(function(){
+							var events = $(this).find(".events").find("div");
+							//console.log(events.length);
+							if(events.length != 0){
+								flagWithEvents = "notempty";
+								return false;
+							}
+						});
+						if(flagWithEvents == "empty"){
+							_thisss.hide();
+						}
+					});
+				}
 
 				
 
@@ -1199,7 +1476,12 @@ jQuery(document).ready(function($) {
 				
 							$(_this.divClassMyCal+" table.item-event .item-event-title").hover(function(){ 
 								
+
 								if($(this).find(".three-dot").is(':visible')){
+									$(this).addClass("with-dots");
+								}
+
+								//if($(this).find(".three-dot").is(':visible')){
 									$(this).addClass("hover");
 									var widthText = parseInt($(this).find(".textt").css("width"), 10);
 									$(this).closest("td").css({"padding-top":"21px"});
@@ -1218,10 +1500,12 @@ jQuery(document).ready(function($) {
 									$(this).find(".three-dot").css({"display":"none"});
 									$(this).find(".textt").css({"position":"absolute",
 																"left":"5px",});
-								} 
+								//} 
 							}, function(){
 								if($(this).hasClass("hover")){
-									$(this).find(".three-dot").css({"display":"block"});
+									if($(this).hasClass("with-dots")){
+										$(this).find(".three-dot").css({"display":"block"});
+									}
 									$(this).closest("td").attr("style","");
 									$(this).attr("style","");
 									$(this).find(".textt").attr("style","");
@@ -1248,6 +1532,7 @@ jQuery(document).ready(function($) {
 								}
 							});
 
+				
 
 			}else if(_this.divIdCal == "#calendar-mobile"){
 
@@ -1754,6 +2039,118 @@ jQuery(document).ready(function($) {
 				return true;
 			}
 		}
+
+
+
+		this.getTrainsList = function(list){
+			var _this = this;
+			var len = 0;
+			_this.trains = [];
+			_this.calendarListArr.forEach(function(currentValue, index, arr){
+				//console.log(currentValue.title);
+				var arr = [];
+				arr['title'] = currentValue.title;
+				arr['duration'] = currentValue.duration;
+				var title = currentValue.title;
+				if(_this.trains.length > 0){
+					//console.log(arr['title']+" - "+currentValue.title);
+					var flag = false;
+					_this.trains.forEach(function(currentVal, index, arr){
+						//console.log(currentVal.title+" - "+title);
+						if(currentVal.title == title){
+							//console.log(currentVal.title);
+							flag = true;
+							return false;
+						}
+					});
+					if(flag == false){
+						_this.trains.push(arr);
+					}
+				}else{
+					_this.trains.push(arr);
+				}
+			});
+			//console.log(_this.trains);
+
+			return false;
+			$(".filter-by-traine select").text("");
+			$(".filter-by-traine select").html("<option value='null'><a href='#'>Все</a></option>");
+			_this.trains.forEach(function(currentValue, index, arr){
+				console.log(currentValue);
+				var selected = "";
+				//if(currentValue != ""){
+				if(currentValue == _this.choosenTrain){selected = "selected";}
+					$(".filter-by-traine select").append(
+						"<option value='"+currentValue+"' "+selected+"><a href='#'>"+currentValue+"</a></option>"
+						//"<li><a href='#'>"+currentValue+"</a></li>"
+					);
+				//}
+				
+			});
+		}
+
+
+
+
+
+		this.getCouchList = function(list){
+			
+			//alert(this.hall);
+			//return false;
+
+			var _this = this;
+			var len = 0;
+			_this.couches = [];
+			
+			//var len = 0;
+			var hall = null;
+			var hallur = "https://instasport.co/club/"+clubName+"/api/hall/"+_this.hall+"/?format=json";
+			
+			apiQuery(hallur, function(data){
+				if(typeof data == "object"){
+					//len = data.length;
+					//if(len > 0){
+						hall = data.instructor;
+					//}
+					//hall = 1;
+					//console.log(data);
+				}
+
+			});
+			//console.log(hall.instructor);
+			//console.log(hallur);
+			
+			hall.forEach(function(currentValue, index, arr){
+				var arr = [];
+				arr['id'] = currentValue.id;
+				arr['name'] = currentValue.name;
+				arr['avatar'] = currentValue.avatar;
+				//_this.couches[currentValue.id] = currentValue.name;
+				_this.couches.push(arr);
+			});
+
+			//console.log(_this.couches);
+
+			return false;
+			$(".filter-by-couch select").text("");
+			$(".filter-by-couch select").html("<option value='null'><a href='#'>Все</a></option>");
+			_this.couches.forEach(function(currentValue, index, arr){
+				//console.log(currentValue);
+				var selected = "";
+				//if(currentValue != ""){
+				if(index == _this.choosenCouch){selected = "selected";}
+					$(".filter-by-couch select").append(
+						"<option value='"+index+"' "+selected+"><a href='#'>"+currentValue+"</a></option>"
+						//"<li><a href='#'>"+currentValue+"</a></li>"
+					);
+				//}
+				
+			});
+		}
+
+
+
+
 
 
 		function todayDate(){

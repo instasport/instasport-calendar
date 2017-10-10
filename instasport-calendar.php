@@ -60,6 +60,21 @@ function intacalendar_admin(){
                 'modal_header_close_color' => $_POST['modal_header_close_color'],
                 'modal_header_bg' => $_POST['modal_header_bg'],
                 'default_wiev_to_show' => $_POST['default_wiev_to_show'],
+                'additional_info_month_duration_seats' => $_POST['additional_info_month_duration_seats'],
+                'additional_info_week_duration_seats' => $_POST['additional_info_week_duration_seats'],
+                'desktop_month_height_cell' => $_POST['desktop_month_height_cell'],
+                'desktop_week_height_cell' => $_POST['desktop_week_height_cell'],
+                'desktop_month_quantity_trainings' => $_POST['desktop_month_quantity_trainings'],
+                'desktop_week_quantity_trainings' => $_POST['desktop_week_quantity_trainings'],
+                'desktop_month_more_text' => $_POST['desktop_month_more_text'],
+                'desktop_week_more_text' => $_POST['desktop_week_more_text'],
+                'desktop_month_more_text_font_size' => $_POST['desktop_month_more_text_font_size'],
+                'desktop_month_more_text_color' => $_POST['desktop_month_more_text_color'],
+                'desktop_week_more_text_font_size' => $_POST['desktop_week_more_text_font_size'],
+                'desktop_week_more_text_color' => $_POST['desktop_week_more_text_color'],
+                'desktop_week_hide_empty_rows' => $_POST['desktop_week_hide_empty_rows'],
+                'desktop_filter_bg' => $_POST['desktop_filter_bg'],
+                'desktop_filter_text_color' => $_POST['desktop_filter_text_color'],
                 //MOBILE STYLES
                 'mobile_default_color_switch_hall_btn' => $_POST['mobile_default_color_switch_hall_btn'],
                 'mobile_default_bg_switch_hall_btn' => $_POST['mobile_default_bg_switch_hall_btn'],
@@ -169,6 +184,78 @@ function intacalendar_admin(){
                 <option <?php if($result->default_wiev_to_show == "agendaWeek"){echo "selected='selected'";}?> value="agendaWeek">Неделя</option>
             </select>
             - Вид календаря (изначально) <br />
+
+            <select name="additional_info_month_duration_seats">
+                <option <?php if($result->additional_info_month_duration_seats == "1"){echo "selected='selected'";}?> value="1">Показывать</option>
+                <option <?php if($result->additional_info_month_duration_seats == "0"){echo "selected='selected'";}?> value="0">Не показывать</option>
+            </select>
+            - дополнительная информация Месяц (продолжительность тренировки, свободные места) <br />
+
+            <select name="additional_info_week_duration_seats">
+                <option <?php if($result->additional_info_week_duration_seats == "1"){echo "selected='selected'";}?> value="1">Показывать</option>
+                <option <?php if($result->additional_info_week_duration_seats == "0"){echo "selected='selected'";}?> value="0">Не показывать</option>
+            </select>
+            - дополнительная информация Неделя (продолжительность тренировки, свободные места) <br />
+
+            <input type="text" name="desktop_month_height_cell" value="<?=$result->desktop_month_height_cell;?>">
+            - Высота клеток календаря Месяц-десктоп (Пример - 100px, если указывается auto
+            высота клетки будет зависеть от количества тренировок в ней)<br />
+
+            <input type="text" name="desktop_week_height_cell" value="<?=$result->desktop_week_height_cell;?>">
+            - Высота клеток календаря Неделя-десктоп (Пример - 100px, если указывается auto
+            высота клетки будет зависеть от количества тренировок в ней)<br />
+
+            <input type="text" name="desktop_month_quantity_trainings" value="<?=$result->desktop_month_quantity_trainings;?>">
+            - Количество тренировок которое показывается в одной клетке - Месяц<br />
+
+            <input type="text" name="desktop_week_quantity_trainings" value="<?=$result->desktop_week_quantity_trainings;?>">
+            - Количество тренировок которое показывается в одной клетке - Неделя<br />
+
+            <input type="text" name="desktop_month_more_text" value="<?=$result->desktop_month_more_text;?>">
+            - Текст для кнопки смотреть больше (...) - Месяц<br />
+
+            <input type="text" name="desktop_week_more_text" value="<?=$result->desktop_week_more_text;?>">
+            - Текст для кнопки смотреть больше (...) - Неделя<br />
+
+            <select name="desktop_week_hide_empty_rows">
+                <option <?php if($result->desktop_week_hide_empty_rows == "1"){echo "selected='selected'";}?> value="1">Показывать</option>
+                <option <?php if($result->desktop_week_hide_empty_rows == "0"){echo "selected='selected'";}?> value="0">Не показывать</option>
+            </select>
+            - Показывать/Не показывать строки без тренировок - Неделя <br />
+
+
+
+
+
+
+            <h3>Настройки цвета кнопок фильтров</h3>
+            <input type="text" name="desktop_filter_bg" value="<?=$result->desktop_filter_bg;?>">
+            - Цвет фона кнопки фильтра<br />
+
+            <input type="text" name="desktop_filter_text_color" value="<?=$result->desktop_filter_text_color;?>">
+            - Цвет текста кнопки фильтра<br />
+
+
+
+
+
+
+
+
+            <h3>Настройки цвета и размера шрифта кнопки (СМОТРЕТЬ ДАЛЕЕ)</h3>
+            <input type="text" name="desktop_month_more_text_font_size" value="<?=$result->desktop_month_more_text_font_size;?>">
+            - Размер шрифта кнопки - Месяц (СМОТРЕТЬ ДАЛЕЕ) <br />
+
+            <input type="text" name="desktop_month_more_text_color" value="<?=$result->desktop_month_more_text_color;?>">
+            - Цвет текста кнопки - Месяц (СМОТРЕТЬ ДАЛЕЕ) <br />
+
+            <input type="text" name="desktop_week_more_text_font_size" value="<?=$result->desktop_week_more_text_font_size;?>">
+            - Размер шрифта кнопки - Неделя (СМОТРЕТЬ ДАЛЕЕ) <br />
+
+            <input type="text" name="desktop_week_more_text_color" value="<?=$result->desktop_week_more_text_color;?>">
+            - Цвет текста кнопки - Неделя (СМОТРЕТЬ ДАЛЕЕ) <br />
+
+
 
 
             <h3>Настройки цвета кнопок переключения залов</h3>
@@ -477,6 +564,30 @@ function instasport_shortcodes_init()
 ********************************************************************/
     /*
     ********************************************************************/
+    
+
+    /*Styles for button MORE in table cell*/
+    .mycalendar-desktop .mymonthcalendar.mycalendar>table>tbody>tr>td .more-items{
+        font-size: <?=$result->desktop_month_more_text_font_size;?>!important;
+        color: <?=$result->desktop_month_more_text_color;?>!important;
+    }
+    .mycalendar-desktop .myweekcalendar.mycalendar>table>tbody>tr>td .more-items{
+        font-size: <?=$result->desktop_week_more_text_font_size;?>!important;
+        color: <?=$result->desktop_week_more_text_color;?>!important;
+    }
+
+
+
+
+    /*Styles for filter buttons*/
+    .filters a{
+        background-color: <?=$result->desktop_filter_bg;?>!important;
+        color: <?=$result->desktop_filter_text_color;?>!important;
+    }
+
+
+
+
     .mycalendar-desktop .switch-halls-mycalendar .switch-btn{
         background-color: <?=$result->default_bg_switch_hall_btn;?>!important;
         color: <?=$result->default_color_switch_hall_btn;?>!important;
@@ -489,6 +600,10 @@ function instasport_shortcodes_init()
         background-color: <?=$result->active_bg_switch_hall_btn;?>!important;
         color: <?=$result->active_color_switch_hall_btn;?>!important;
         cursor: default;
+    }
+
+    .mycalendar-desktop .mymonthcalendar.mycalendar>table>tbody>tr>td{
+        height: <?=$result->desktop_month_height_cell;?>!important; 
     }
 
     .mycalendar-desktop .switch-type-mycalendars .switch-btn{
@@ -564,6 +679,10 @@ function instasport_shortcodes_init()
     .mycalendar-desktop .myweekcalendar.mycalendar>table>tbody>tr>td:first-child{
         color: <?=$result->hour_value_left_color;?>!important;
         background-color: <?=$result->hour_value_left_bg;?>!important;
+    }
+
+    .mycalendar-desktop .myweekcalendar.mycalendar>table>tbody>tr>td{
+        height: <?=$result->desktop_week_height_cell;?>!important; 
     }
     
 
@@ -701,6 +820,17 @@ function instasport_shortcodes_init()
         <div style="display: none;" id="mobile-month-inplace"><?=$result->mobile_modal_month_show;?></div>
         <div style="display: none;" id="mobile-week-inplace"><?=$result->mobile_modal_week_show;?></div>
         <div style="display: none;" id="desktop-typecalendar"><?=$result->default_wiev_to_show;?></div>
+        <div style="display: none;" id="desktop-month-duration-seats"><?=$result->additional_info_month_duration_seats;?></div>
+        <div style="display: none;" id="desktop-week-duration-seats"><?=$result->additional_info_week_duration_seats;?></div>
+
+        <div style="display: none;" id="desktop-month-quantity-trainings"><?=$result->desktop_month_quantity_trainings;?></div>
+        <div style="display: none;" id="desktop-week-quantity-trainings"><?=$result->desktop_week_quantity_trainings;?></div>
+
+        <div style="display: none;" id="desktop-month-more-text"><?=$result->desktop_month_more_text;?></div>
+        <div style="display: none;" id="desktop-week-more-text"><?=$result->desktop_week_more_text;?></div>
+
+        <div style="display: none;" id="desktop-week-hide-empty-rows"><?=$result->desktop_week_hide_empty_rows;?></div>
+
         <div style="display: none;" id="mobile-typecalendar"><?=$result->mobile_default_wiev_to_show;?></div>
         <div class="calen-tab">
             <div class="cld-tabs"></div>
@@ -853,6 +983,21 @@ function intacalendar_create_db(){
       modal_header_close_color varchar(50) NOT NULL,
       modal_header_bg varchar(50) NOT NULL,
       default_wiev_to_show ENUM('month', 'agendaWeek') NOT NULL,
+      additional_info_month_duration_seats ENUM('1', '0') NOT NULL,
+      additional_info_week_duration_seats ENUM('1', '0') NOT NULL,
+      desktop_month_height_cell varchar(50) NOT NULL,
+      desktop_week_height_cell varchar(50) NOT NULL,
+      desktop_month_quantity_trainings varchar(50) NOT NULL,
+      desktop_week_quantity_trainings varchar(50) NOT NULL,
+      desktop_month_more_text varchar(100) NOT NULL,
+      desktop_week_more_text varchar(100) NOT NULL,
+      desktop_month_more_text_font_size varchar(100) NOT NULL,
+      desktop_month_more_text_color varchar(100) NOT NULL,
+      desktop_week_more_text_font_size varchar(100) NOT NULL,
+      desktop_week_more_text_color varchar(100) NOT NULL,
+      desktop_week_hide_empty_rows ENUM('1', '0') NOT NULL,
+      desktop_filter_bg varchar(100) NOT NULL,
+      desktop_filter_text_color varchar(100) NOT NULL,
       mobile_default_color_switch_hall_btn varchar(50) NOT NULL,
       mobile_default_bg_switch_hall_btn varchar(50) NOT NULL,
       mobile_active_color_switch_hall_btn varchar(50) NOT NULL,
@@ -941,6 +1086,21 @@ function intacalendar_create_db(){
                 'modal_header_close_color' => '#fff',
                 'modal_header_bg' => '#0ea2e6',
                 'default_wiev_to_show' => 'month',
+                'additional_info_month_duration_seats' => '1',
+                'additional_info_week_duration_seats' => '1',
+                'desktop_month_height_cell' => 'auto',
+                'desktop_week_height_cell' => 'auto',
+                'desktop_month_quantity_trainings' => '2',
+                'desktop_week_quantity_trainings' => '2',
+                'desktop_month_more_text' => ' ...',
+                'desktop_week_more_text' => ' ...',
+                'desktop_month_more_text_font_size' => '16px',
+                'desktop_month_more_text_color' => 'black',
+                'desktop_week_more_text_font_size' => '16px',
+                'desktop_week_more_text_color' => 'black',
+                'desktop_week_hide_empty_rows' => '1',
+                'desktop_filter_bg' => '#f1f1f1',
+                'desktop_filter_text_color' => 'black',
                 //MOBILE STYLES
                 'mobile_default_color_switch_hall_btn' => '#000',
                 'mobile_default_bg_switch_hall_btn' => '#f1f1f1',

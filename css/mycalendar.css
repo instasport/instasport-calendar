@@ -70,6 +70,21 @@
 }
 
 
+.filter-by-traine,
+.filter-by-couch{
+	display: inline-block;
+}
+.filters a{
+	display: block;
+	width: 200px;
+	padding: 5px 0px;
+	text-align: center;
+	text-decoration: none;
+	background-color: #f1f1f1;
+	color: black;
+}
+
+
 
 
 /* DESKTOP CALENDAR
@@ -128,10 +143,10 @@
 	padding: 10px;
 }
 
-.mycalendar-desktop .mycalendar>table>tbody>tr>td .more-items{
+/*.mycalendar-desktop .mycalendar>table>tbody>tr>td .more-items{
 	font-size: 16px;
 	color: black;
-}
+}*/
 .mycalendar-desktop .myweekcalendar.mycalendar>table>tbody>tr>td:first-child{
 	width: 10%; 
 	text-align: center;
@@ -140,10 +155,10 @@
 }
 .mycalendar-desktop .mymonthcalendar.mycalendar>table>tbody>tr>td{
 	width: 14.2799%;
-	height: 140px; 
+	/*height: 140px;*/ 
 }
 .mycalendar-desktop .myweekcalendar.mycalendar>table>tbody>tr>td{
-	height: 120px; 
+	/*height: 120px; */
 }
 .mycalendar-desktop .mycalendar>table>tbody>tr>td:nth-child(even){
 	background-color: #f1f1f1;  

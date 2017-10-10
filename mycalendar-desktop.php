@@ -7,11 +7,24 @@
 	
 	<!--	SWITCH TYPE OF MYCALENDAR	-->
 	<div class="switch-type-mycalendars">
-		<span class="active month switch-btn" data-type-cal="month">Месяц</span>
+		<span class="month switch-btn" data-type-cal="month">Месяц</span>
 		<span class="week switch-btn" data-type-cal="agendaWeek">Неделя</span>
 		<!--<button class="day" data-type-cal="day">День</button>-->
 	</div><!--	/SWITCH TYPE OF MYCALENDAR	-->
 
+	<div class="filters" style="clear: both;">
+		<!--	FILTER BY NAME TRAIN	-->
+		<div class="filter-by-traine" style="padding-bottom: 15px;">
+			<a id="filterByTraine" href="#">Выбрать тренировку</a>
+			<!--<select id="filterByTraine"></select>-->
+		</div><!--	/FILTER BY NAME TRAIN	-->
+
+		<!--	FILTER BY NAME COUCH	-->
+		<div class="filter-by-couch" style="padding-bottom: 15px;">
+			<a id="filterByCouch" href="#">Выбрать тренера</a>
+			<!--<select id="filterByCouch"></select>--> 
+		</div><!--	/FILTER BY NAME TRAIN	-->
+	</div>
 
 
 	<!--	ALL MYCALENDARS	-->
