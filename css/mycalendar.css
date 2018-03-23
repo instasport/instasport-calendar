@@ -10,7 +10,7 @@
 .mycalendar table tfoot tr td{
 	background: none;
 	border: none;
-	padding: 0px;
+	padding: 2px;
 	margin: 0px;
 }
 
@@ -140,7 +140,8 @@
 	border-bottom: 1px solid #ccc;
 	width: 12.84999%; 
 	font-size: 12px; 
-	padding: 10px;
+	padding: 4px;
+	padding-bottom: 10px;
 }
 
 /*.mycalendar-desktop .mycalendar>table>tbody>tr>td .more-items{
@@ -168,6 +169,10 @@
 	*****************************************************************************************/
 	.mycalendar-desktop .mycalendar>table>tbody>tr>td .item-event{
 		width: 100%;
+		margin-top: 4px;
+	}
+	.mycalendar-desktop .mycalendar>table>tbody>tr>td .item-event:first-child{
+		margin-top: 0px;
 	}
 	.mycalendar-desktop .mycalendar>table>tbody>tr>td .item-event td{
 		vertical-align: top;
@@ -195,7 +200,8 @@
 		top: 0px;
 		left: 0px;
 		z-index: 3;
-
+		text-decoration: none!important;
+		box-shadow: none;
 	}
 	.mycalendar-desktop .mycalendar>table>tbody>tr>td .item-event a:hover{
 		/*border-bottom: 1px solid #999;*/
@@ -331,8 +337,6 @@
 .mycalendar-mobile .mycalendar.dot>table>tbody>tr>td.active .day-number{
 	cursor: pointer;
 	pointer-events: auto;
-	color: white;
-	background-color: blue;
 }
 
 .mycalendar-mobile .mycalendar>table>tbody>tr>td.today.active .day-number,

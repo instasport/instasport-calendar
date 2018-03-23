@@ -10,6 +10,7 @@ jQuery(document).ready(function($) {
 	//var endDate = '';
 	//var divIdCalendar = '';
 
+	//alert(10);
 
 	
 
@@ -23,6 +24,7 @@ jQuery(document).ready(function($) {
 		this.divIdCal = divIdCalendar;
 		this.divClassMyCal = myCalendar;
 		this.defaultView = defaultView;
+		this.useApiColors = 0;
 		this.calendarListArr = [];
 		this.calendarDaysNumber = [];
 		this.calendarUrl = null;
@@ -41,7 +43,13 @@ jQuery(document).ready(function($) {
 
 		this.loadData = function(callback){
 			var _this = this;
-			//alert(_this.divIdCal);
+			//console.log(_this.useApiColors);
+
+			//Getting parameter that determine must or not programm use Api Colors
+			_this.useApiColors = $("#use-api-colors").text();
+
+			//console.log(_this.useApiColors);
+
 			if(_this.divIdCal == "#calendar-desktop"){
 				_this.defaultView = $("#desktop-typecalendar").text();
 			}else if(_this.divIdCal == "#calendar-mobile"){
@@ -412,6 +420,9 @@ jQuery(document).ready(function($) {
 										var url = e.url;
 										var title = e.title;
 
+										var colorEvent = e.color;
+										var backgroundColorEvent = e.background_color;
+
 										var messageSeats = "";
 										if(parseInt(seats, 10) == 0){messageSeats = "нет мест";}
 										if(parseInt(seats, 10) == 1){messageSeats = "осталось 1 место";}
@@ -446,7 +457,7 @@ jQuery(document).ready(function($) {
 											+fullTime.split(":")[0]+"."+fullTime.split(":")[1]+"<br/>"
 											+"<span>"+endTime1+endTime2+"</span>" 
 											+"</td>"
-											+"<td class='color-line'><div></div><div></div></td>"
+											+"<td class='color-line' style='background-color: "+backgroundColorEvent+";'><div></div><div></div></td>"
 											+"<td>"
 											+"<a target='_blank' href='"+url+"'>"+title+"</a><br/>"
 											+"<span>"+messageSeats+"</span>"
@@ -722,6 +733,8 @@ jQuery(document).ready(function($) {
 					//console.log(data[i]['date']);
 					$(this).find("td").each(function(){
 
+						//var __thisTD = this;
+
 						if(i >= arrDate.length){return false;}
 
 						var _this2 = this;
@@ -746,6 +759,22 @@ jQuery(document).ready(function($) {
 						var desktopMonthQuantityTrainings = $("#desktop-month-quantity-trainings").text();
 						result.forEach(function(currentValue, index, arr){
 							
+							//$(_this2).css({"background-color":currentValue.background_color});
+							/*if(_this.useApiColors == 1){
+								var colorApi = "yellow"; //currentValue.color
+								var backgroundColorApi = "pink"; //currentValue.background_color
+								$(_this2).css({"background-color":backgroundColorApi});
+								$(_this2).find(".day-number").css({"color":colorApi});
+								$(_this2).find(".events").css({"color":colorApi});
+
+								console.log($(_this2).find(".day-number").text()+" - "+$(_this2).find("div.three-dot").length+"\n");
+								$(_this2).find("div.three-dot").each(function(){
+									$(this).css({"background-color":backgroundColorApi})
+											.css({"color":colorApi});
+								});
+							}*/
+							
+							//console.log(currentValue.color);
 							/*
 							var lengthEvents = $(_this.divClassMyCal+" .mycalendar.mymonthcalendar table tbody tr td[data-date='"+arrDate[i][0].date+"']")
 											.find(".events")
@@ -807,7 +836,7 @@ jQuery(document).ready(function($) {
 								//if(_this.choosenTrain == null || _this.choosenTrain == title){
 									$(_this.divClassMyCal+" .mycalendar.mymonthcalendar table tbody tr td[data-date='"+arrDate[i][0].date+"']")
 										.find(".events") 
-										.append("<table class='item-event'><tr>"
+										.append("<table class='item-event' data-time-begin='"+timeBegin+"'><tr>"
 											+"<td>"
 												+"<div>"+timeBegin.split(":")[0]+"."+timeBegin.split(":")[1]+"</div>"
 												+addDuration
@@ -821,6 +850,32 @@ jQuery(document).ready(function($) {
 												+addSeats
 											+"</td>"
 											+"</tr></table>");
+
+
+									if(_this.useApiColors == 1){
+										//var colorApi = "yellow"; //currentValue.color
+										var colorApi = currentValue.color;
+										//var backgroundColorApi = "pink"; //currentValue.background_color
+										var backgroundColorApi = currentValue.background_color;
+										
+										$(_this.divClassMyCal+" .mycalendar.mymonthcalendar table tbody tr td[data-date='"+arrDate[i][0].date+"']")
+											.find("table[data-time-begin='"+timeBegin+"']")
+											.css({"background-color":backgroundColorApi})
+											.css({"color":colorApi});
+
+										$(_this.divClassMyCal+" .mycalendar.mymonthcalendar table tbody tr td[data-date='"+arrDate[i][0].date+"']")
+											.find("table[data-time-begin='"+timeBegin+"']")
+											.find(".three-dot")
+											.css({"background-color":backgroundColorApi})
+											.css({"color":colorApi});
+										//$(_this2).find(".day-number").css({"background-color":backgroundColorApi});
+										//$(_this2).find(".day-number").css({"color":colorApi});
+										//$(_this2).find(".events").css({"color":colorApi});
+
+										//console.log($(_this2).find(".day-number").text()+" - "+$(_this2).find("div.three-dot").length+"\n");
+										
+									}
+
 								//}
 							}else{
 								//console.log(1212);
@@ -855,6 +910,10 @@ jQuery(document).ready(function($) {
 											+currentValue.title
 											+"</div>");*/
 							//console.log(currentValue.title);
+
+
+							
+
 						});
 						
 						
@@ -898,10 +957,11 @@ jQuery(document).ready(function($) {
 													"text-align":"center",
 													"border":"1px solid #999",
 													"border-radius":"6px",
-													"width":(widthText+10)+"px"});
+													"width":(widthText+10)+"px",
+													"min-width": "90px"});
 									$(this).find(".three-dot").css({"display":"none"});
 									$(this).find(".textt").css({"position":"absolute",
-																"left":"5px",});
+																"left":"5px"});
 								//} 
 							}, function(){
 								if($(this).hasClass("hover")){
@@ -949,7 +1009,7 @@ jQuery(document).ready(function($) {
 						$(this).find(".day-number").text(parseInt(arrDate[i][0].number, 10)); 
 						$(this).attr("data-date", arrDate[i][0].date);
 						$(this).attr("data-day-number", arrDate[i][0].number);
-						
+
 						i++;
 					});
 				});
@@ -960,12 +1020,23 @@ jQuery(document).ready(function($) {
 					//var time = item.start.split("T")[1].split(":")[0];
 					if(!$(_this.divClassMyCal+" .mycalendar.mymonthcalendar table tbody tr td[data-date='"+date+"']").hasClass("active")){
 						$(_this.divClassMyCal+" .mycalendar.mymonthcalendar table tbody tr td[data-date='"+date+"']").addClass("active");
+						/*if(_this.useApiColors == 1){
+							var colorApi = "yellow"; //currentValue.color
+							var backgroundColorApi = "pink"; //currentValue.background_color
+							$(_this.divClassMyCal+" .mycalendar.mymonthcalendar table tbody tr td[data-date='"+date+"']")
+								.find(".day-number")
+								.css({"background-color":backgroundColorApi});
+							$(_this.divClassMyCal+" .mycalendar.mymonthcalendar table tbody tr td[data-date='"+date+"']")
+								.find(".day-number")
+								.css({"color":colorApi});
+						}*/
 					}
 				});
 
 
 				$(_this.divClassMyCal+" .mycalendar.mymonthcalendar table tbody tr td").on("click",".day-number", function(e){
 					e.preventDefault();
+					//alert(777);
 					var _thisClick = $(this);
 					$("#events-on-day").text("");
 					$("#calendarModal .modal-body").text("");
@@ -991,6 +1062,8 @@ jQuery(document).ready(function($) {
 							//var seats = 2;
 							var url = item.url;
 							var title = item.title;
+
+							var backgroundColorEvent = item.background_color;
 
 							var messageSeats = "";
 							if(parseInt(seats, 10) == 0){messageSeats = "нет мест";}
@@ -1052,7 +1125,8 @@ jQuery(document).ready(function($) {
 									+time.split(":")[0]+"."+time.split(":")[1]+"<br/>"
 									+"<span>"+endTime1+endTime2+"</span>" 
 									+"</td>"
-									+"<td class='color-line'><div></div><div></div></td>"
+									//+"<td class='color-line'><div></div><div></div></td>"
+									+"<td class='color-line' style='background-color: "+backgroundColorEvent+";'><div></div><div></div></td>"
 									+"<td>"
 									+"<a target='_blank' href='"+url+"'>"+title+"</a><br/>"
 									+"<span>"+messageSeats+"</span>"
@@ -1364,8 +1438,12 @@ jQuery(document).ready(function($) {
 					var seats = item.seats;
 					//var seats = 2;
 					var url = item.url;
+					var id = item.id;
 					var title = item.title;
 					var timeBegin = item.start.split("T")[1].split("+")[0];
+
+					var colorApi = item.color; //currentValue.color
+					var backgroundColorApi = item.background_color; //currentValue.background_color
 
 					var messageSeats = "";
 					if(parseInt(seats, 10) == 0){messageSeats = "нет мест";}
@@ -1417,7 +1495,7 @@ jQuery(document).ready(function($) {
 						$(_this.divClassMyCal+" .mycalendar.myweekcalendar table tbody tr[data-time='"+time+"']")
 								.find("td[data-date-event='"+date+"']")
 								.find(".events")
-								.append("<table class='item-event'><tr>"
+								.append("<table class='item-event' data-id='"+id+"'><tr>"
 									+"<td>"
 										+"<div>"+timeBegin.split(":")[0]+"."+timeBegin.split(":")[1]+"</div>"
 										+addDuration
@@ -1431,6 +1509,27 @@ jQuery(document).ready(function($) {
 										+addSeats
 									+"</td>"
 									+"</tr></table>");
+
+						//Set colors from Api if useApiColors is enabled
+						if(_this.useApiColors == 1){
+							//var colorApi = "yellow"; //currentValue.color
+							//var backgroundColorApi = "pink"; //currentValue.background_color
+
+							$(_this.divClassMyCal+" .mycalendar.myweekcalendar table tbody tr[data-time='"+time+"']")
+								.find("td[data-date-event='"+date+"']")
+								.find("table[data-id='"+id+"']")
+								.css({"background-color":backgroundColorApi})
+								.css({"color":colorApi});
+
+							$(_this.divClassMyCal+" .mycalendar.myweekcalendar table tbody tr[data-time='"+time+"']")
+								.find("td[data-date-event='"+date+"']")
+								.find("table[data-id='"+id+"']")
+								.find("div.three-dot")
+								.css({"background-color":backgroundColorApi})
+								.css({"color":colorApi});
+
+						}
+
 					}else{
 						var lengthMoreEvents = $(_this.divClassMyCal+" .mycalendar.myweekcalendar table tbody tr[data-time='"+time+"']")
 								.find("td[data-date-event='"+date+"']")
@@ -1442,10 +1541,12 @@ jQuery(document).ready(function($) {
 								.find("td[data-date-event='"+date+"']")
 								.find(".events")
 								.append("<a data-date='"+date+"' data-time='"+time+"' data-type-calendar='week' class='more-items' href='#'>"+desktopWeekMoreText+"</a>");
+
+
 						}
 					}
 
-					
+
 					
 				});
 
@@ -1496,7 +1597,8 @@ jQuery(document).ready(function($) {
 													"text-align":"center",
 													"border":"1px solid #999",
 													"border-radius":"6px",
-													"width":(widthText+10)+"px"});
+													"width":(widthText+10)+"px",
+													"min-width": "80px"});
 									$(this).find(".three-dot").css({"display":"none"});
 									$(this).find(".textt").css({"position":"absolute",
 																"left":"5px",});

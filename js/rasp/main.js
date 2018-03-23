@@ -7,6 +7,7 @@ jQuery(document).ready(function($) {
 	}else if(typeCalendarView == "week"){
 		defaultView = "agendaWeek";
 	}
+	//alert(10);
 	//var hallUrl = "https://instasport.co/club/"+clubName+"/api/hall/?format=json",
 	//	calendarUrl = "https://instasport.co/club/"+clubName+"/api/calendar/?format=json",
 	//var hallUrl = "https://instasport.co/club/"+club+"/api/hall/?format=json",

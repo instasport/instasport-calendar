@@ -60,6 +60,7 @@ function intacalendar_admin(){
                 'modal_header_close_color' => $_POST['modal_header_close_color'],
                 'modal_header_bg' => $_POST['modal_header_bg'],
                 'default_wiev_to_show' => $_POST['default_wiev_to_show'],
+                'use_api_colors' => $_POST['use_api_colors'],
                 'additional_info_month_duration_seats' => $_POST['additional_info_month_duration_seats'],
                 'additional_info_week_duration_seats' => $_POST['additional_info_week_duration_seats'],
                 'desktop_month_height_cell' => $_POST['desktop_month_height_cell'],
@@ -186,6 +187,12 @@ function intacalendar_admin(){
                 <option <?php if($result->default_wiev_to_show == "agendaWeek"){echo "selected='selected'";}?> value="agendaWeek">Неделя</option>
             </select>
             - Вид календаря (изначально) <br />
+
+            <select name="use_api_colors">
+                <option <?php if($result->use_api_colors == 0){echo "selected='selected'";}?> value="0">Выкл</option>
+                <option <?php if($result->use_api_colors == 1){echo "selected='selected'";}?> value="1">Вкл</option>
+            </select>
+            - Использование API Цветов <br />
 
             <select name="additional_info_month_duration_seats">
                 <option <?php if($result->additional_info_month_duration_seats == "1"){echo "selected='selected'";}?> value="1">Показывать</option>
@@ -583,11 +590,11 @@ function instasport_shortcodes_init()
     /*Styles for button MORE in table cell*/
     .mycalendar-desktop .mymonthcalendar.mycalendar>table>tbody>tr>td .more-items{
         font-size: <?=$result->desktop_month_more_text_font_size;?>!important;
-        color: <?=$result->desktop_month_more_text_color;?>!important;
+        color: <?=$result->desktop_month_more_text_color;?>;
     }
     .mycalendar-desktop .myweekcalendar.mycalendar>table>tbody>tr>td .more-items{
         font-size: <?=$result->desktop_week_more_text_font_size;?>!important;
-        color: <?=$result->desktop_week_more_text_color;?>!important;
+        color: <?=$result->desktop_week_more_text_color;?>;
     }
 
 
@@ -655,31 +662,39 @@ function instasport_shortcodes_init()
     }
 
     .mycalendar-desktop .mycalendar>table>tbody>tr>td .day-number{
-        color: <?=$result->number_date_color;?>!important;
+        color: <?=$result->number_date_color;?>;
     }
 
+<?php if($result->use_api_colors == 0):?>
     .mycalendar-desktop .mycalendar>table>tbody>tr>td:nth-child(odd){
         background-color: <?=$result->item_event_odd_bg;?>!important; 
         color: <?=$result->item_event_odd_color;?>!important; 
     }
-    .mycalendar-desktop .mycalendar>table>tbody>tr>td:nth-child(odd) .item-event{
-        color: <?=$result->item_event_odd_color;?>!important;
+<?php endif;?>
+
+    .mycalendar-desktop .mycalendar>table>tbody>tr>td:nth-child(odd) .events{
+        color: <?=$result->item_event_odd_color;?>;
     }
     .mycalendar-desktop .mycalendar>table>tbody>tr>td:nth-child(odd) .item-event .item-event-title .three-dot{
-        background-color: <?=$result->item_event_odd_bg;?>!important;
+        background-color: <?=$result->item_event_odd_bg;?>;
     }
+
+<?php if($result->use_api_colors == 0):?>
     .mycalendar-desktop .mycalendar>table>tbody>tr>td:nth-child(even){
         background-color: <?=$result->item_event_even_bg;?>!important;
         color: <?=$result->item_event_even_color;?>!important;  
     }
-    .mycalendar-desktop .mycalendar>table>tbody>tr>td:nth-child(even) .item-event{
-        color: <?=$result->item_event_even_color;?>!important;
+<?php endif;?>
+
+    .mycalendar-desktop .mycalendar>table>tbody>tr>td:nth-child(even) .events{
+        color: <?=$result->item_event_even_color;?>;
     }
     .mycalendar-desktop .mycalendar>table>tbody>tr>td:nth-child(even) .item-event .item-event-title .three-dot{
-        background-color: <?=$result->item_event_even_bg;?>!important;
+        background-color: <?=$result->item_event_even_bg;?>;
     }
 
 
+<?php if($result->use_api_colors == 0):?>
     .mycalendar-desktop .mycalendar>table>tbody>tr>td.today .item-event{
         background-color: <?=$result->item_event_today_bg;?>!important;
         color: <?=$result->item_event_today_color;?>!important;
@@ -687,6 +702,9 @@ function instasport_shortcodes_init()
     .mycalendar-desktop .mycalendar>table>tbody>tr>td.today .item-event .item-event-title .three-dot{
         background-color: <?=$result->item_event_today_bg;?>!important;
     }
+<?php endif;?>
+
+
     .mycalendar-desktop .mycalendar>table>tbody>tr>td.today{
         background-color: <?=$result->item_event_today_bg;?>!important;
     }
@@ -768,12 +786,12 @@ function instasport_shortcodes_init()
 
 
     .mycalendar-mobile .mycalendar.dot>table>tbody>tr>td .day-number{
-        background-color: <?=$result->mobile_dot_big_default_bg;?>!important;
-        color: <?=$result->mobile_dot_big_default_color;?>!important;
+        background-color: <?=$result->mobile_dot_big_default_bg;?>;
+        color: <?=$result->mobile_dot_big_default_color;?>;
     }
     .mycalendar-mobile .mycalendar.dot>table>tbody>tr>td.active .day-number{
-        background-color: <?=$result->mobile_dot_big_active_bg;?>!important;
-        color: <?=$result->mobile_dot_big_active_color;?>!important;
+        background-color: <?=$result->mobile_dot_big_active_bg;?>;
+        color: <?=$result->mobile_dot_big_active_color;?>;
     }
     .mycalendar-mobile .mycalendar.dot>table>tbody>tr>td.today.active .day-number,
     .mycalendar-mobile .mycalendar.dot>table>tbody>tr>td.today .day-number{
@@ -790,10 +808,10 @@ function instasport_shortcodes_init()
 
 
     .mycalendar-mobile .mycalendar>table>tbody>tr>td .day-number{
-        color: <?=$result->mobile_day_number_default_color;?>!important;
+        color: <?=$result->mobile_day_number_default_color;?>;
     }
     .mycalendar-mobile .mycalendar>table>tbody>tr>td.active .day-number{
-        color: <?=$result->mobile_day_number_active_color;?>!important;
+        color: <?=$result->mobile_day_number_active_color;?>;
     }
     .mycalendar-mobile .mycalendar>table>tbody>tr>td.today.active .day-number,
     .mycalendar-mobile .mycalendar>table>tbody>tr>td.today .day-number{
@@ -840,6 +858,8 @@ function instasport_shortcodes_init()
         <div style="display: none;" id="mobile-month-inplace"><?=$result->mobile_modal_month_show;?></div>
         <div style="display: none;" id="mobile-week-inplace"><?=$result->mobile_modal_week_show;?></div>
         <div style="display: none;" id="desktop-typecalendar"><?=$result->default_wiev_to_show;?></div>
+        <div style="display: none;" id="use-api-colors"><?=$result->use_api_colors;?></div>
+        
         <div style="display: none;" id="desktop-month-duration-seats"><?=$result->additional_info_month_duration_seats;?></div>
         <div style="display: none;" id="desktop-week-duration-seats"><?=$result->additional_info_week_duration_seats;?></div>
 
@@ -1003,6 +1023,7 @@ function intacalendar_create_db(){
       modal_header_close_color varchar(50) NOT NULL,
       modal_header_bg varchar(50) NOT NULL,
       default_wiev_to_show ENUM('month', 'agendaWeek') NOT NULL,
+      use_api_colors ENUM('0', '1') NOT NULL,
       additional_info_month_duration_seats ENUM('1', '0') NOT NULL,
       additional_info_week_duration_seats ENUM('1', '0') NOT NULL,
       desktop_month_height_cell varchar(50) NOT NULL,
@@ -1108,6 +1129,7 @@ function intacalendar_create_db(){
                 'modal_header_close_color' => '#fff',
                 'modal_header_bg' => '#0ea2e6',
                 'default_wiev_to_show' => 'month',
+                'use_api_colors' => 0,
                 'additional_info_month_duration_seats' => '1',
                 'additional_info_week_duration_seats' => '1',
                 'desktop_month_height_cell' => 'auto',
