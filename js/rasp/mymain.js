@@ -25,6 +25,7 @@ jQuery(document).ready(function($) {
 		this.divClassMyCal = myCalendar;
 		this.defaultView = defaultView;
 		this.useApiColors = 0;
+		this.useMobileApiColors = 0;
 		this.calendarListArr = [];
 		this.calendarDaysNumber = [];
 		this.calendarUrl = null;
@@ -47,6 +48,7 @@ jQuery(document).ready(function($) {
 
 			//Getting parameter that determine must or not programm use Api Colors
 			_this.useApiColors = $("#use-api-colors").text();
+			_this.useMobileApiColors = $("#mobile-use-api-colors").text();
 
 			//console.log(_this.useApiColors);
 
@@ -450,17 +452,36 @@ jQuery(document).ready(function($) {
 											}
 										}
 
+										var AIDuration = "";
+										var AISeats = "";
+										if(typeCalendar == 'week'){
+											var addInfoDuration = $("#desktop-week-duration").text();
+											var addInfoSeats = $("#desktop-week-seats").text();
+										} else if (typeCalendar == 'month'){
+											var addInfoDuration = $("#desktop-month-duration").text();
+											var addInfoSeats = $("#desktop-month-seats").text();
+										}
+
+										if(addInfoDuration == 1){
+											AIDuration = "<span>"+endTime1+endTime2+"</span>";
+										}
+										if(addInfoSeats == 1){
+											AISeats = "<span>"+messageSeats+"</span>";
+										}
+
 
 										$("#calendarModal .modal-body").append("<table>"
 											+"<tr>"
 											+"<td>"
 											+fullTime.split(":")[0]+"."+fullTime.split(":")[1]+"<br/>"
-											+"<span>"+endTime1+endTime2+"</span>" 
+											//+"<span>"+endTime1+endTime2+"</span>" 
+											+AIDuration
 											+"</td>"
 											+"<td class='color-line' style='background-color: "+backgroundColorEvent+";'><div></div><div></div></td>"
 											+"<td>"
 											+"<a target='_blank' href='"+url+"'>"+title+"</a><br/>"
-											+"<span>"+messageSeats+"</span>"
+											//+"<span>"+messageSeats+"</span>" 
+											+AISeats
 											+"</td>"
 											+"</tr>"
 											+"</table>");
@@ -827,9 +848,14 @@ jQuery(document).ready(function($) {
 
 								var addDuration = "";
 								var addSeats = "";
-								var flagAddInfo = $("#desktop-month-duration-seats").text();
-								if(flagAddInfo == 1){
+								var flagAddInfoDuration = $("#desktop-month-duration").text();
+								var flagAddInfoSeats = $("#desktop-month-seats").text();
+								if(flagAddInfoDuration == 1){
 									addDuration = "<div class='item-event-duration'>"+endTime1+endTime2+"</div>";
+									//addSeats = "<div class='item-event-seats'>"+messageSeats+"</div>";
+								}
+								if(flagAddInfoSeats == 1){
+									//addDuration = "<div class='item-event-duration'>"+endTime1+endTime2+"</div>";
 									addSeats = "<div class='item-event-seats'>"+messageSeats+"</div>";
 								} 
 
@@ -1101,6 +1127,22 @@ jQuery(document).ready(function($) {
 								}
 							}
 
+
+
+							var AIDuration = "";
+							var AISeats = "";
+							var addInfoDuration = $("#mobile-month-duration").text();
+							var addInfoSeats = $("#mobile-month-seats").text();
+
+							if(addInfoDuration == 1){
+								AIDuration = "<span>"+endTime1+endTime2+"</span>";
+							}
+							if(addInfoSeats == 1){
+								AISeats = "<span>"+messageSeats+"</span>";
+							}
+
+
+
 							if(inplace == "true"){
 								//alert(1);
 								var month_int = parseInt(dateChoosen.split("-")[1], 10);
@@ -1123,13 +1165,15 @@ jQuery(document).ready(function($) {
 									+"<tr>"
 									+"<td>"
 									+time.split(":")[0]+"."+time.split(":")[1]+"<br/>"
-									+"<span>"+endTime1+endTime2+"</span>" 
+									//+"<span>"+endTime1+endTime2+"</span>" 
+									+AIDuration
 									+"</td>"
 									//+"<td class='color-line'><div></div><div></div></td>"
 									+"<td class='color-line' style='background-color: "+backgroundColorEvent+";'><div></div><div></div></td>"
 									+"<td>"
 									+"<a target='_blank' href='"+url+"'>"+title+"</a><br/>"
-									+"<span>"+messageSeats+"</span>"
+									//+"<span>"+messageSeats+"</span>"
+									+AISeats
 									+"</td>"
 									+"</tr>"
 									+"</table>");
@@ -1141,12 +1185,14 @@ jQuery(document).ready(function($) {
 									+"<tr>"
 									+"<td>"
 									+time.split(":")[0]+"."+time.split(":")[1]+"<br/>"
-									+"<span>"+endTime1+endTime2+"</span>" 
+									//+"<span>"+endTime1+endTime2+"</span>" 
+									+AIDuration 
 									+"</td>"
-									+"<td class='color-line'><div></div><div></div></td>"
+									+"<td class='color-line' style='background-color: "+backgroundColorEvent+";'><div></div><div></div></td>"
 									+"<td>"
 									+"<a target='_blank' href='"+url+"'>"+title+"</a><br/>"
-									+"<span>"+messageSeats+"</span>"
+									//+"<span>"+messageSeats+"</span>"
+									+AISeats
 									+"</td>"
 									+"</tr>"
 									+"</table>");
@@ -1485,9 +1531,14 @@ jQuery(document).ready(function($) {
 						//as DURATION and SEATS
 						var addDuration = ""; 
 						var addSeats = "";
-						var flagAddInfo = $("#desktop-week-duration-seats").text();
-						if(flagAddInfo == 1){
+						var flagAddInfoDuration = $("#desktop-week-duration").text();
+						var flagAddInfoSeats = $("#desktop-week-seats").text();
+						if(flagAddInfoDuration == 1){
 							addDuration = "<div class='item-event-duration'>"+endTime1+endTime2+"</div>";
+							//addSeats = "<div class='item-event-seats'>"+messageSeats+"</div>";
+						}
+						if(flagAddInfoSeats == 1){
+							//addDuration = "<div class='item-event-duration'>"+endTime1+endTime2+"</div>";
 							addSeats = "<div class='item-event-seats'>"+messageSeats+"</div>";
 						}
 
@@ -1758,12 +1809,27 @@ jQuery(document).ready(function($) {
 					//console.log(item.start);
 					var date = item.start.split("T")[0];
 					var time = item.start.split("T")[1].split(":")[0];
+					var backgroundColorApi = item.background_color;
+					var colorApi = item.color;
+
 					if(!$(_this.divClassMyCal+" .mycalendar.myweekcalendar table tbody tr[data-time='"+time+"']")
 									.find("td[data-date-event='"+date+"']")
 									.hasClass("active")){
 						$(_this.divClassMyCal+" .mycalendar.myweekcalendar table tbody tr[data-time='"+time+"']")
 										.find("td[data-date-event='"+date+"']")
 										.addClass("active");
+
+						if(_this.useMobileApiColors == 1){
+							//var colorApi = "yellow"; //currentValue.color
+							//var backgroundColorApi = "pink"; //currentValue.background_color
+
+							$(_this.divClassMyCal+" .mycalendar.myweekcalendar table tbody tr[data-time='"+time+"']")
+								.find("td[data-date-event='"+date+"']")
+								.find(".circle")
+								.css({"background-color":backgroundColorApi})
+								.css({"color":colorApi});
+
+						}
 					}
 				});
 
@@ -1799,6 +1865,7 @@ jQuery(document).ready(function($) {
 						//console.log(item.start);
 						var date = item.start.split("T")[0];
 						var time = item.start.split("T")[1].split(":")[0];
+						var backgroundColorApi = item.background_color;
 						
 						if(date == dateChoosen && time == timeChoosen){
 
@@ -1845,6 +1912,20 @@ jQuery(document).ready(function($) {
 								}
 							}
 
+
+							var AIDuration = "";
+							var AISeats = "";
+							var addInfoDuration = $("#mobile-week-duration").text();
+							var addInfoSeats = $("#mobile-week-seats").text();
+
+							if(addInfoDuration == 1){
+								AIDuration = "<span>"+endTime1+endTime2+"</span>";
+							}
+							if(addInfoSeats == 1){
+								AISeats = "<span>"+messageSeats+"</span>";
+							}
+
+
 							if(inplace == "true"){
 								//alert(1);
 								var month_int = parseInt(dateChoosen.split("-")[1], 10);
@@ -1867,15 +1948,18 @@ jQuery(document).ready(function($) {
 									+"<tr>"
 									+"<td>"
 									+time.split(":")[0]+"."+time.split(":")[1]+"<br/>"
-									+"<span>"+endTime1+endTime2+"</span>" 
+									//+"<span>"+endTime1+endTime2+"</span>"
+									+AIDuration 
 									+"</td>"
-									+"<td class='color-line'><div></div><div></div></td>"
+									+"<td class='color-line' style='background-color: "+backgroundColorApi+";'><div></div><div></div></td>"
 									+"<td>"
 									+"<a target='_blank' href='"+url+"'>"+title+"</a><br/>"
-									+"<span>"+messageSeats+"</span>"
+									//+"<span>"+messageSeats+"</span>"
+									+AISeats
 									+"</td>"
 									+"</tr>"
 									+"</table>");
+
 
 								$("#calendarModal").css({"display":"block"});
 
@@ -1884,12 +1968,14 @@ jQuery(document).ready(function($) {
 									+"<tr>"
 									+"<td>"
 									+time.split(":")[0]+"."+time.split(":")[1]+"<br/>"
-									+"<span>"+endTime1+endTime2+"</span>" 
+									//+"<span>"+endTime1+endTime2+"</span>" 
+									+AIDuration 
 									+"</td>"
-									+"<td class='color-line'><div></div><div></div></td>"
+									+"<td class='color-line' style='background-color: "+backgroundColorApi+";'><div></div><div></div></td>"
 									+"<td>"
 									+"<a target='_blank' href='"+url+"'>"+title+"</a><br/>"
-									+"<span>"+messageSeats+"</span>"
+									//+"<span>"+messageSeats+"</span>"
+									+AISeats
 									+"</td>"
 									+"</tr>"
 									+"</table>");

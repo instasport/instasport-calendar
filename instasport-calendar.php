@@ -61,8 +61,10 @@ function intacalendar_admin(){
                 'modal_header_bg' => $_POST['modal_header_bg'],
                 'default_wiev_to_show' => $_POST['default_wiev_to_show'],
                 'use_api_colors' => $_POST['use_api_colors'],
-                'additional_info_month_duration_seats' => $_POST['additional_info_month_duration_seats'],
-                'additional_info_week_duration_seats' => $_POST['additional_info_week_duration_seats'],
+                'additional_info_month_duration' => $_POST['additional_info_month_duration'],
+                'additional_info_month_seats' => $_POST['additional_info_month_seats'],
+                'additional_info_week_duration' => $_POST['additional_info_week_duration'],
+                'additional_info_week_seats' => $_POST['additional_info_week_seats'],
                 'desktop_month_height_cell' => $_POST['desktop_month_height_cell'],
                 'desktop_week_height_cell' => $_POST['desktop_week_height_cell'],
                 'desktop_month_quantity_trainings' => $_POST['desktop_month_quantity_trainings'],
@@ -96,6 +98,7 @@ function intacalendar_admin(){
                 'mobile_title_color' => $_POST['mobile_title_color'],
                 'mobile_week_day_name_color' => $_POST['mobile_week_day_name_color'],
                 'mobile_week_day_name_border_bottom_color' => $_POST['mobile_week_day_name_border_bottom_color'],
+                'mobile_today_week_day_bg' => $_POST['mobile_today_week_day_bg'],
                 'mobile_dot_big_default_color' => $_POST['mobile_dot_big_default_color'],
                 'mobile_dot_big_default_bg' => $_POST['mobile_dot_big_default_bg'],
                 'mobile_dot_big_active_color' => $_POST['mobile_dot_big_active_color'],
@@ -115,6 +118,11 @@ function intacalendar_admin(){
                 //'mobile_modal_header_close_color' => $_POST['mobile_modal_header_close_color'],
                 //'mobile_modal_header_bg' => $_POST['mobile_modal_header_bg'],
                 'mobile_default_wiev_to_show' => $_POST['mobile_default_wiev_to_show'],
+                'mobile_use_api_colors' => $_POST['mobile_use_api_colors'],
+                'mobile_additional_info_month_duration' => $_POST['mobile_additional_info_month_duration'],
+                'mobile_additional_info_month_seats' => $_POST['mobile_additional_info_month_seats'],
+                'mobile_additional_info_week_duration' => $_POST['mobile_additional_info_week_duration'],
+                'mobile_additional_info_week_seats' => $_POST['mobile_additional_info_week_seats'],
                 'mobile_modal_month_show' => $_POST['mobile_modal_month_show'],
                 'mobile_modal_week_show' => $_POST['mobile_modal_week_show'],
                 'mobile_show_dot' => $_POST['mobile_show_dot'],
@@ -194,17 +202,29 @@ function intacalendar_admin(){
             </select>
             - Использование API Цветов <br />
 
-            <select name="additional_info_month_duration_seats">
-                <option <?php if($result->additional_info_month_duration_seats == "1"){echo "selected='selected'";}?> value="1">Показывать</option>
-                <option <?php if($result->additional_info_month_duration_seats == "0"){echo "selected='selected'";}?> value="0">Не показывать</option>
+            <select name="additional_info_month_duration">
+                <option <?php if($result->additional_info_month_duration == "1"){echo "selected='selected'";}?> value="1">Показывать</option>
+                <option <?php if($result->additional_info_month_duration == "0"){echo "selected='selected'";}?> value="0">Не показывать</option>
             </select>
-            - дополнительная информация Месяц (продолжительность тренировки, свободные места) <br />
+            - дополнительная информация Месяц (продолжительность тренировки) <br />
 
-            <select name="additional_info_week_duration_seats">
-                <option <?php if($result->additional_info_week_duration_seats == "1"){echo "selected='selected'";}?> value="1">Показывать</option>
-                <option <?php if($result->additional_info_week_duration_seats == "0"){echo "selected='selected'";}?> value="0">Не показывать</option>
+            <select name="additional_info_month_seats">
+                <option <?php if($result->additional_info_month_seats == "1"){echo "selected='selected'";}?> value="1">Показывать</option>
+                <option <?php if($result->additional_info_month_seats == "0"){echo "selected='selected'";}?> value="0">Не показывать</option>
             </select>
-            - дополнительная информация Неделя (продолжительность тренировки, свободные места) <br />
+            - дополнительная информация Месяц (свободные места) <br />
+
+            <select name="additional_info_week_duration">
+                <option <?php if($result->additional_info_week_duration == "1"){echo "selected='selected'";}?> value="1">Показывать</option>
+                <option <?php if($result->additional_info_week_duration == "0"){echo "selected='selected'";}?> value="0">Не показывать</option>
+            </select>
+            - дополнительная информация Неделя (продолжительность тренировки) <br />
+
+            <select name="additional_info_week_seats">
+                <option <?php if($result->additional_info_week_seats == "1"){echo "selected='selected'";}?> value="1">Показывать</option>
+                <option <?php if($result->additional_info_week_seats == "0"){echo "selected='selected'";}?> value="0">Не показывать</option>
+            </select>
+            - дополнительная информация Неделя (свободные места) <br />
 
             <input type="text" name="desktop_month_height_cell" value="<?=$result->desktop_month_height_cell;?>">
             - Высота клеток календаря Месяц-десктоп (Пример - 100px, если указывается auto
@@ -389,6 +409,40 @@ function intacalendar_admin(){
             </select>
             - Вид календаря (изначально) <br />
 
+            <select name="mobile_use_api_colors">
+                <option <?php if($result->mobile_use_api_colors == 0){echo "selected='selected'";}?> value="0">Выкл</option>
+                <option <?php if($result->mobile_use_api_colors == 1){echo "selected='selected'";}?> value="1">Вкл</option>
+            </select>
+            - Использование API Цветов <br />
+
+
+
+            <select name="mobile_additional_info_month_duration">
+                <option <?php if($result->mobile_additional_info_month_duration == "1"){echo "selected='selected'";}?> value="1">Показывать</option>
+                <option <?php if($result->mobile_additional_info_month_duration == "0"){echo "selected='selected'";}?> value="0">Не показывать</option>
+            </select>
+            - дополнительная информация Месяц (продолжительность тренировки) <br />
+
+            <select name="mobile_additional_info_month_seats">
+                <option <?php if($result->mobile_additional_info_month_seats == "1"){echo "selected='selected'";}?> value="1">Показывать</option>
+                <option <?php if($result->mobile_additional_info_month_seats == "0"){echo "selected='selected'";}?> value="0">Не показывать</option>
+            </select>
+            - дополнительная информация Месяц (свободные места) <br />
+
+            <select name="mobile_additional_info_week_duration">
+                <option <?php if($result->mobile_additional_info_week_duration == "1"){echo "selected='selected'";}?> value="1">Показывать</option>
+                <option <?php if($result->mobile_additional_info_week_duration == "0"){echo "selected='selected'";}?> value="0">Не показывать</option>
+            </select>
+            - дополнительная информация Неделя (продолжительность тренировки) <br />
+
+            <select name="mobile_additional_info_week_seats">
+                <option <?php if($result->mobile_additional_info_week_seats == "1"){echo "selected='selected'";}?> value="1">Показывать</option>
+                <option <?php if($result->mobile_additional_info_week_seats == "0"){echo "selected='selected'";}?> value="0">Не показывать</option>
+            </select>
+            - дополнительная информация Неделя (свободные места) <br />
+
+
+
             <select name="mobile_modal_month_show">
                 <option <?php if($result->mobile_modal_month_show == "true"){echo "selected='selected'";}?> value="true">Показывать</option>
                 <option <?php if($result->mobile_modal_month_show == "false"){echo "selected='selected'";}?> value="false">Не показывать</option>
@@ -466,6 +520,9 @@ function intacalendar_admin(){
 
 
             <h3>Настройки цвета элементов ячеек календаря</h3>
+            <input type="text" name="mobile_today_week_day_bg" value="<?=$result->mobile_today_week_day_bg;?>">
+            - Цвет дня текущей даты (неделя) <br />
+
             <input type="text" name="mobile_dot_big_default_color" value="<?=$result->mobile_dot_big_default_color;?>">
             - Цвет текста в кружке без тренировок(при вкл. кружке)<br />
 
@@ -793,6 +850,14 @@ function instasport_shortcodes_init()
         background-color: <?=$result->mobile_dot_big_active_bg;?>;
         color: <?=$result->mobile_dot_big_active_color;?>;
     }
+
+    .mycalendar-mobile .mycalendar.myweekcalendar>table>tbody>tr>td.today{
+        background-color: <?=$result->mobile_today_week_day_bg;?>!important;
+    }
+    /*.mycalendar-mobile .mycalendar.dot>table>tbody>tr>td.today{
+        background-color: red!important;
+    }*/
+
     .mycalendar-mobile .mycalendar.dot>table>tbody>tr>td.today.active .day-number,
     .mycalendar-mobile .mycalendar.dot>table>tbody>tr>td.today .day-number{
         background-color: <?=$result->mobile_dot_big_today_bg;?>!important;
@@ -834,10 +899,10 @@ function instasport_shortcodes_init()
 
 
     .mycalendar-mobile .mycalendar.myweekcalendar>table>tbody>tr>td .circle{
-        background-color: <?=$result->mobile_default_week_circle_bg;?>!important;
+        background-color: <?=$result->mobile_default_week_circle_bg;?>;
     }
     .mycalendar-mobile .mycalendar.myweekcalendar>table>tbody>tr>td.today.active .circle{
-        background-color: <?=$result->mobile_today_week_circle_bg;?>!important;
+        background-color: <?=$result->mobile_today_week_circle_bg;?>;
     }
     .mycalendar-mobile .mycalendar.myweekcalendar>table>tbody>tr>td.choosen.active .circle{
         background-color: <?=$result->mobile_choosen_week_circle_bg;?>!important;
@@ -860,8 +925,10 @@ function instasport_shortcodes_init()
         <div style="display: none;" id="desktop-typecalendar"><?=$result->default_wiev_to_show;?></div>
         <div style="display: none;" id="use-api-colors"><?=$result->use_api_colors;?></div>
         
-        <div style="display: none;" id="desktop-month-duration-seats"><?=$result->additional_info_month_duration_seats;?></div>
-        <div style="display: none;" id="desktop-week-duration-seats"><?=$result->additional_info_week_duration_seats;?></div>
+        <div style="display: none;" id="desktop-month-duration"><?=$result->additional_info_month_duration;?></div>
+        <div style="display: none;" id="desktop-month-seats"><?=$result->additional_info_month_seats;?></div>
+        <div style="display: none;" id="desktop-week-duration"><?=$result->additional_info_week_duration;?></div>
+        <div style="display: none;" id="desktop-week-seats"><?=$result->additional_info_week_seats;?></div>
 
         <div style="display: none;" id="desktop-month-quantity-trainings"><?=$result->desktop_month_quantity_trainings;?></div>
         <div style="display: none;" id="desktop-week-quantity-trainings"><?=$result->desktop_week_quantity_trainings;?></div>
@@ -872,6 +939,13 @@ function instasport_shortcodes_init()
         <div style="display: none;" id="desktop-week-hide-empty-rows"><?=$result->desktop_week_hide_empty_rows;?></div>
 
         <div style="display: none;" id="mobile-typecalendar"><?=$result->mobile_default_wiev_to_show;?></div>
+        <div style="display: none;" id="mobile-use-api-colors"><?=$result->mobile_use_api_colors;?></div>
+
+        <div style="display: none;" id="mobile-month-duration"><?=$result->mobile_additional_info_month_duration;?></div>
+        <div style="display: none;" id="mobile-month-seats"><?=$result->mobile_additional_info_month_seats;?></div>
+        <div style="display: none;" id="mobile-week-duration"><?=$result->mobile_additional_info_week_duration;?></div>
+        <div style="display: none;" id="mobile-week-seats"><?=$result->mobile_additional_info_week_seats;?></div>
+        
         <div class="calen-tab">
             <div class="cld-tabs"></div>
         </div>
@@ -1024,8 +1098,10 @@ function intacalendar_create_db(){
       modal_header_bg varchar(50) NOT NULL,
       default_wiev_to_show ENUM('month', 'agendaWeek') NOT NULL,
       use_api_colors ENUM('0', '1') NOT NULL,
-      additional_info_month_duration_seats ENUM('1', '0') NOT NULL,
-      additional_info_week_duration_seats ENUM('1', '0') NOT NULL,
+      additional_info_month_duration ENUM('1', '0') NOT NULL,
+      additional_info_month_seats ENUM('1', '0') NOT NULL,
+      additional_info_week_duration ENUM('1', '0') NOT NULL,
+      additional_info_week_seats ENUM('1', '0') NOT NULL,
       desktop_month_height_cell varchar(50) NOT NULL,
       desktop_week_height_cell varchar(50) NOT NULL,
       desktop_month_quantity_trainings varchar(50) NOT NULL,
@@ -1058,6 +1134,7 @@ function intacalendar_create_db(){
       mobile_title_color varchar(50) NOT NULL,
       mobile_week_day_name_color varchar(50) NOT NULL,
       mobile_week_day_name_border_bottom_color varchar(50) NOT NULL,
+      mobile_today_week_day_bg varchar(50) NOT NULL,
       mobile_dot_big_default_color varchar(50) NOT NULL,
       mobile_dot_big_default_bg varchar(50) NOT NULL,
       mobile_dot_big_active_color varchar(50) NOT NULL,
@@ -1077,6 +1154,11 @@ function intacalendar_create_db(){
       mobile_today_week_circle_bg varchar(50) NOT NULL,
       mobile_choosen_week_circle_bg varchar(50) NOT NULL,
       mobile_default_wiev_to_show ENUM('month', 'agendaWeek') NOT NULL,
+      mobile_use_api_colors ENUM('0', '1') NOT NULL,
+      mobile_additional_info_month_duration ENUM('1', '0') NOT NULL,
+      mobile_additional_info_month_seats ENUM('1', '0') NOT NULL,
+      mobile_additional_info_week_duration ENUM('1', '0') NOT NULL,
+      mobile_additional_info_week_seats ENUM('1', '0') NOT NULL,
       mobile_modal_month_show ENUM('true', 'false') NOT NULL,
       mobile_modal_week_show ENUM('true', 'false') NOT NULL,
       mobile_show_dot ENUM('true', 'false') NOT NULL,
@@ -1130,8 +1212,10 @@ function intacalendar_create_db(){
                 'modal_header_bg' => '#0ea2e6',
                 'default_wiev_to_show' => 'month',
                 'use_api_colors' => 0,
-                'additional_info_month_duration_seats' => '1',
-                'additional_info_week_duration_seats' => '1',
+                'additional_info_month_duration' => '1',
+                'additional_info_month_seats' => '1',
+                'additional_info_week_duration' => '1',
+                'additional_info_week_seats' => '1',
                 'desktop_month_height_cell' => 'auto',
                 'desktop_week_height_cell' => 'auto',
                 'desktop_month_quantity_trainings' => '2',
@@ -1165,6 +1249,7 @@ function intacalendar_create_db(){
                 'mobile_title_color' => '#000',
                 'mobile_week_day_name_color' => '#000',
                 'mobile_week_day_name_border_bottom_color' => '#000',
+                'mobile_today_week_day_bg' => '#f1f1f1',
                 'mobile_dot_big_default_color' => '#000',
                 'mobile_dot_big_default_bg' => '#f1f1f1',
                 'mobile_dot_big_active_color' => '#fff',
@@ -1187,6 +1272,11 @@ function intacalendar_create_db(){
                 'mobile_today_week_circle_bg' => 'green',
                 'mobile_choosen_week_circle_bg' => 'pink',
                 'mobile_default_wiev_to_show' => 'month',
+                'mobile_use_api_colors' => 0,
+                'mobile_additional_info_month_duration' => '1',
+                'mobile_additional_info_month_seats' => '1',
+                'mobile_additional_info_week_duration' => '1',
+                'mobile_additional_info_week_seats' => '1',
                 'mobile_modal_month_show' => 'true',
                 'mobile_modal_week_show' => 'true',
                 'mobile_show_dot' => 'true',
