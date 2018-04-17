@@ -116,6 +116,8 @@ jQuery(document).ready(function($) {
 							/*_this.constructMyCalendar();*/
 							var _thiss = $(this);
 
+							console.log(_this.trains);
+
 
 							e.preventDefault();
 							$("#calendarModal .modal-body").text("");
@@ -414,13 +416,19 @@ jQuery(document).ready(function($) {
 									}
 
 									if(flag){
-										console.log(e.title);
+										//console.log(e);
 
 										//var fullTime = e.start.split("T")[1].split("+")[0];
 										var duration = e.duration;
 										var seats = e.seats;
 										var url = e.url;
 										var title = e.title;
+
+										var id = e.id;
+										var hall = e.hall;
+										var template = e.template;
+										var timeBegin = e.start.split("T")[1].split("+")[0];
+										var date = e.start.split("T")[0]; 
 
 										var colorEvent = e.color;
 										var backgroundColorEvent = e.background_color;
@@ -479,7 +487,15 @@ jQuery(document).ready(function($) {
 											+"</td>"
 											+"<td class='color-line' style='background-color: "+backgroundColorEvent+";'><div></div><div></div></td>"
 											+"<td>"
-											+"<a target='_blank' href='"+url+"'>"+title+"</a><br/>"
+											+"<a class='eventItem' "
+											+"data-time='"+timeBegin+"' "
+											+"data-id='"+id+"' "
+											+"data-title='"+title+"' "
+											+"data-hall='"+hall+"' "
+											+"data-date='"+date+"' "
+											+"data-template='"+template+"' "
+											+"href='"+url+"'>"+title+"</a>"
+											//+"<a target='_blank' href='"+url+"'>"+title+"</a><br/>"
 											//+"<span>"+messageSeats+"</span>" 
 											+AISeats
 											+"</td>"
@@ -812,13 +828,17 @@ jQuery(document).ready(function($) {
 							}
 							
 							if(k <= desktopMonthQuantityTrainings){
-								//console.log(lengthEvents);
+								//console.log(currentValue);
 								var duration = currentValue.duration;
 								var seats = currentValue.seats;
 								//var seats = 2;
+								var id = currentValue.id;
+								var hall = currentValue.hall;
+								var template = currentValue.template;
 								var url = currentValue.url;
 								var title = currentValue.title;
 								var timeBegin = currentValue.start.split("T")[1].split("+")[0];
+								var date = currentValue.start.split("T")[0];
 
 								var messageSeats = "";
 								if(parseInt(seats, 10) == 0){messageSeats = "нет мест";}
@@ -871,7 +891,14 @@ jQuery(document).ready(function($) {
 												+"<div class='item-event-title'>"
 													+"<div class='textt'>"+title+"</div>"
 													+"<div class='three-dot'>...</div>"
-													+"<a target='_blank' href='"+url+"'></a>"
+													+"<a class='eventItem' target='_blank' "
+													+"data-time='"+timeBegin+"' "
+													+"data-id='"+id+"' "
+													+"data-title='"+title+"' "
+													+"data-hall='"+hall+"' "
+													+"data-date='"+date+"' "
+													+"data-template='"+template+"' "
+													+"href='"+url+"'></a>"
 												+"</div>"
 												+addSeats
 											+"</td>"
@@ -1089,6 +1116,12 @@ jQuery(document).ready(function($) {
 							var url = item.url;
 							var title = item.title;
 
+							var id = item.id;
+							var hall = item.hall;
+							var template = item.template;
+							var timeBegin = item.start.split("T")[1].split("+")[0];
+							var date = item.start.split("T")[0];
+
 							var backgroundColorEvent = item.background_color;
 
 							var messageSeats = "";
@@ -1171,7 +1204,15 @@ jQuery(document).ready(function($) {
 									//+"<td class='color-line'><div></div><div></div></td>"
 									+"<td class='color-line' style='background-color: "+backgroundColorEvent+";'><div></div><div></div></td>"
 									+"<td>"
-									+"<a target='_blank' href='"+url+"'>"+title+"</a><br/>"
+										+"<a class='eventItem' target='_blank' "
+										+"data-time='"+timeBegin+"' "
+										+"data-id='"+id+"' "
+										+"data-title='"+title+"' "
+										+"data-hall='"+hall+"' "
+										+"data-date='"+date+"' "
+										+"data-template='"+template+"' "
+										+"href='"+url+"'>"+title+"</a><br/>"
+									//+"<a target='_blank' href='"+url+"'>"+title+"</a><br/>"
 									//+"<span>"+messageSeats+"</span>"
 									+AISeats
 									+"</td>"
@@ -1190,7 +1231,15 @@ jQuery(document).ready(function($) {
 									+"</td>"
 									+"<td class='color-line' style='background-color: "+backgroundColorEvent+";'><div></div><div></div></td>"
 									+"<td>"
-									+"<a target='_blank' href='"+url+"'>"+title+"</a><br/>"
+										+"<a class='eventItem' target='_blank' "
+										+"data-time='"+timeBegin+"' "
+										+"data-id='"+id+"' "
+										+"data-title='"+title+"' "
+										+"data-hall='"+hall+"' "
+										+"data-date='"+date+"' "
+										+"data-template='"+template+"' "
+										+"href='"+url+"'>"+title+"</a><br/>"
+									//+"<a target='_blank' href='"+url+"'>"+title+"</a><br/>"
 									//+"<span>"+messageSeats+"</span>"
 									+AISeats
 									+"</td>"
@@ -1485,7 +1534,9 @@ jQuery(document).ready(function($) {
 					//var seats = 2;
 					var url = item.url;
 					var id = item.id;
+					var hall = item.hall;
 					var title = item.title;
+					var template = item.template;
 					var timeBegin = item.start.split("T")[1].split("+")[0];
 
 					var colorApi = item.color; //currentValue.color
@@ -1555,7 +1606,15 @@ jQuery(document).ready(function($) {
 										+"<div class='item-event-title'>"
 											+"<div class='textt'>"+item.title+"</div>"
 											+"<div class='three-dot'>...</div>"
-											+"<a target='_blank' href='"+url+"'></a>"
+											+"<a class='eventItem' target='_blank' "
+											+"data-time='"+timeBegin+"' "
+											+"data-id='"+id+"' "
+											+"data-title='"+title+"' "
+											+"data-hall='"+hall+"' "
+											+"data-date='"+date+"' "
+											+"data-template='"+template+"' "
+											+"href='"+url+"'></a>"
+											//+"<a target='_blank' href='"+url+"'></a>"
 										+"</div>"
 										+addSeats
 									+"</td>"
@@ -1876,6 +1935,16 @@ jQuery(document).ready(function($) {
 							var url = item.url;
 							var title = item.title;
 
+
+							var id = item.id;
+							var hall = item.hall;
+							var template = item.template;
+							//var url = currentValue.url;
+							//var title = currentValue.title;
+							var timeBegin = item.start.split("T")[1].split("+")[0];
+							var date = item.start.split("T")[0];
+
+
 							var messageSeats = "";
 							if(parseInt(seats, 10) == 0){messageSeats = "нет мест";}
 							if(parseInt(seats, 10) == 1){messageSeats = "осталось 1 место";}
@@ -1953,7 +2022,15 @@ jQuery(document).ready(function($) {
 									+"</td>"
 									+"<td class='color-line' style='background-color: "+backgroundColorApi+";'><div></div><div></div></td>"
 									+"<td>"
-									+"<a target='_blank' href='"+url+"'>"+title+"</a><br/>"
+									+"<a class='eventItem' target='_blank' "
+									+"data-time='"+timeBegin+"' "
+									+"data-id='"+id+"' "
+									+"data-title='"+title+"' "
+									+"data-hall='"+hall+"' "
+									+"data-date='"+date+"' "
+									+"data-template='"+template+"' "
+									+"href='"+url+"'>"+title+"</a><br/>"
+									//+"<a target='_blank' href='"+url+"'>"+title+"</a><br/>"
 									//+"<span>"+messageSeats+"</span>"
 									+AISeats
 									+"</td>"
@@ -1973,7 +2050,15 @@ jQuery(document).ready(function($) {
 									+"</td>"
 									+"<td class='color-line' style='background-color: "+backgroundColorApi+";'><div></div><div></div></td>"
 									+"<td>"
-									+"<a target='_blank' href='"+url+"'>"+title+"</a><br/>"
+									+"<a class='eventItem' target='_blank' "
+									+"data-time='"+timeBegin+"' "
+									+"data-id='"+id+"' "
+									+"data-title='"+title+"' "
+									+"data-hall='"+hall+"' "
+									+"data-date='"+date+"' "
+									+"data-template='"+template+"' "
+									+"href='"+url+"'>"+title+"</a><br/>"
+									//+"<a target='_blank' href='"+url+"'>"+title+"</a><br/>"
 									//+"<span>"+messageSeats+"</span>"
 									+AISeats
 									+"</td>"
@@ -2239,6 +2324,7 @@ jQuery(document).ready(function($) {
 				var arr = [];
 				arr['title'] = currentValue.title;
 				arr['duration'] = currentValue.duration;
+				arr['order'] = currentValue.order;
 				var title = currentValue.title;
 				if(_this.trains.length > 0){
 					//console.log(arr['title']+" - "+currentValue.title);

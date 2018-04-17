@@ -334,6 +334,7 @@
 		<script type="text/javascript" src="js/rasp/libs/fullcalendar/fullcalendar.min.js"></script>
 		<script type="text/javascript" src="js/rasp/libs/fullcalendar/lang/ru.js"></script>
 		<script type="text/javascript" src="js/rasp/main.js"></script>
+		<script type="text/javascript" src="js/profile.js"></script>
 
 			
 	</body>

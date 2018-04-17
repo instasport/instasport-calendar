@@ -29,6 +29,12 @@ function intacalendar_admin(){
             $table_name, 
             array(
                 //DESCTOP STYLES
+                'api_code' => $_POST['api_code'],
+                'api_key' => $_POST['api_key'],
+                'api_button_color_default' => $_POST['api_button_color_default'],
+                'api_button_bg_default' => $_POST['api_button_bg_default'],
+                'api_button_color_hover' => $_POST['api_button_color_hover'],
+                'api_button_bg_hover' => $_POST['api_button_bg_hover'],
                 'default_color_switch_hall_btn' => $_POST['default_color_switch_hall_btn'],
                 'default_bg_switch_hall_btn' => $_POST['default_bg_switch_hall_btn'],
                 'active_color_switch_hall_btn' => $_POST['active_color_switch_hall_btn'],
@@ -171,9 +177,30 @@ function intacalendar_admin(){
     $result = $wpdb->get_row( "SELECT * FROM $table_name WHERE id = 1" );
     //echo $result->switch_halls_button_bg;
 ?>
+
         <form method="post" action=""> 
             <?php wp_nonce_field('change_options'); ?>
             
+            <h1>Параметры доступа по API</h1>
+            <input type="text" name="api_key" value="<?=$result->api_key;?>">
+            - KEY<br />
+            <input type="text" name="api_code" value="<?=$result->api_code;?>">
+            - CODE<br />
+
+            <h4>Настройки цвета кнопки Входа</h4>
+            <input type="text" name="api_button_color_default" value="<?=$result->api_button_color_default;?>">
+            - Цвет текста кнопки<br />
+
+            <input type="text" name="api_button_bg_default" value="<?=$result->api_button_bg_default;?>">
+            - Цвет фона кнопки<br />
+
+            <input type="text" name="api_button_color_hover" value="<?=$result->api_button_color_hover;?>">
+            - Цвет текста кнопки при наведении<br />
+
+            <input type="text" name="api_button_bg_hover" value="<?=$result->api_button_bg_hover;?>">
+            - Цвет фона кнопки при наведении<br />
+
+
             <h1>Основные настройки</h1>
             <h2>Настройки модального окна</h2>
             <input type="text" name="modal_header_text_color" value="<?=$result->modal_header_text_color;?>">
@@ -607,6 +634,8 @@ function instasport_shortcodes_init()
         wp_enqueue_style('fullcalendar.min.css');
         wp_enqueue_style('modal-style.css');
         wp_enqueue_style('mycalendar.css');
+        wp_enqueue_style('bootstrap.min.css');
+        wp_enqueue_style('inta-modal.css');
         wp_enqueue_script('fontawesome'); 
         //wp_enqueue_script('jquery.min.js');
         //wp_enqueue_script('modal.js');
@@ -621,7 +650,12 @@ function instasport_shortcodes_init()
         //wp_enqueue_script('fullcalendar.min.js');
         //wp_enqueue_script('ru.js');
         //wp_enqueue_script('main.js');
+        wp_enqueue_script('jquery.validate.js');
+        wp_enqueue_script('validate.js');
         wp_enqueue_script('mymain.js');
+        wp_enqueue_script('bootstrap.min.js');
+        wp_enqueue_script('profile.js');
+        wp_enqueue_script('jquery.cookie.js');
         wp_enqueue_script('modal.js');
 
         $table_name = $wpdb->prefix."intacalendar_options";
@@ -632,6 +666,7 @@ function instasport_shortcodes_init()
         $parsed = shortcode_atts(array('club' => ''), $atts, $tag);
 
         ob_start();
+        //include("mycalendar-btn-enter.php");
         include("mycalendar-mobile.php");
         include("mycalendar-desktop.php");
 ?>
@@ -643,6 +678,21 @@ function instasport_shortcodes_init()
     /*
     ********************************************************************/
     
+
+    /*Styles for button ENTER-API*/
+    #intaAuthTop{
+        padding: 5px 10px;
+        background-color: <?=$result->api_button_bg_default;?>;
+        color: <?=$result->api_button_color_default;?>;
+        display: inline-block;
+        margin-bottom: 8px;
+    }
+    #intaAuthTop:hover{
+        background-color: <?=$result->api_button_bg_hover;?>;
+        color: <?=$result->api_button_color_hover;?>;
+    }
+
+
 
     /*Styles for button MORE in table cell*/
     .mycalendar-desktop .mymonthcalendar.mycalendar>table>tbody>tr>td .more-items{
@@ -912,6 +962,427 @@ function instasport_shortcodes_init()
 
       
 </style>
+
+
+<script type="text/javascript">
+
+    var apiCode = '<?=$result->api_code;?>';  
+    var apiKey = '<?=$result->api_key;?>';
+    var apiClub = '<?=$parsed['club'];?>';
+    //var apiCode = <?=$result->api_code;?>;
+    //alert("<?=$result->api_code;?>");   
+</script>
+
+
+    <!--   CALENDAR MODAL   -->
+    <div class="inta-auth-top-modal">
+        
+        <!-- Trigger the modal with a button 
+        <button type="button" class="btn btn-info btn-lg" data-toggle="modal" data-target="#myModal">Open Modal</button>-->
+        
+        <!-- Modal -->
+        <div id="intaAuthTopModal" class="modal fade" role="dialog">
+          <div class="modal-dialog modal-lg">
+        
+            <!-- Modal content-->
+            <div class="modal-content">
+              
+              
+              <div class="modal-preload">
+                    <table>
+                        <tr>
+                            <td>
+                                <div class="loader"></div>
+                            </td>
+                        </tr>
+                    </table>
+              </div>
+              
+              
+              <div class="modal-nav">
+                    <!--<a class="modal-nav-close" href="#">
+                        <span class="icon-bar"></span>
+                        <span class="icon-bar"></span>
+                    </a>-->
+                    <table>
+                        <tr>
+                            <td>
+                                <ul>
+                                    <li><a class="modal-nav-profile" href="#">Профайл</a></li>
+                                    <li><a class="modal-nav-visit" href="#">Записи</a></li>
+                                    <li><a class="modal-nav-order-visit" href="#">Записаться на тренировку</a></li>
+                                    <li><a class="modal-nav-logout" href="#">Выход</a></li> 
+                                </ul>
+                            </td>
+                        </tr>
+                    </table>
+              </div>
+            
+              <div class="modal-header">
+                <a class="modal-close" href="#">
+                    <span class="icon-bar"></span>
+                    <span class="icon-bar"></span>
+                </a>
+                <h4 class="modal-title">
+                    <a class="cm-navbar-toggle" href="#">
+                        <span class="icon-bar"></span>
+                        <span class="icon-bar"></span>
+                        <span class="icon-bar"></span>
+                    </a>
+                    <span class="modal-title-name">
+                        <?php if(isset($_COOKIE['intaName'])){echo $_COOKIE['intaName'];}else{echo "Аккаунт";}?>
+                    </span>
+                </h4>
+              </div>
+              
+              <div class="modal-breadcrumbs">
+              
+              </div>
+              
+              
+              <div class="modal-choose-event">
+                    <div class="modal-choose-event-menu">
+                        <a href="#" class="cm-navbar-toggle-2">Меню</a>
+                        <a href="#" class="modal-nav-logout">Выйти</a>
+                    </div>
+                    <h4>Запись на тренировку<br><span></span></h4>
+                    <div class="temp">
+                        <div class="cm-title">Название: <span>Индивид-я тренировка</span></div>
+                        <div class="cm-hall">Зал: <span>СК Олимпийский (Физкультуры 1, К3)</span></div>
+                        <div class="cm-price">Цена: <span>450</span></div>
+                        <div class="cm-date">Дата: <span>2018-03-28</span></div>
+                        <div class="cm-time">Время: <span>20:00:00</span></div>
+                        <div class="cm-duration">Продолжительность: <span>01:00:00</span></div>
+                    </div>
+                    <div class='for-btn'>
+                        <a href='#' class='btn' id='btnTopCheckIn'>Записаться</a>
+                    </div>
+              </div>
+              
+              
+              <div class="modal-auth">
+                  
+                  <ul class="nav nav-tabs nav-1">
+                    <li class="active"><a data-toggle="tab" href="#home">Вход</a></li>
+                    <li><a data-toggle="tab" href="#menu1">Регистрация</a></li>
+                  </ul>
+                
+                  <div class="tab-content tab-content-1">
+                    <div id="home" class="tab-pane fade in active">
+                        
+                        <ul class="nav nav-tabs nav-1-1">
+                            <li class="active"><a data-toggle="tab" href="#homeEmail">Email</a></li>
+                            <li><a data-toggle="tab" href="#homePhone">Телефон</a></li>
+                        </ul>
+                        
+                        <div class="tab-content tab-content-1-1">
+                            <div id="homeEmail" class="tab-pane fade in active">
+                                
+                                <div class="cm-log">
+                    
+                                    <form id="api-top-login-email" action="/" method="post" role="form">
+                                                                            
+                                        <div class="form-group field-apiTopLoginEmail-email required has-error">
+
+                                            <input type="text" id="apiTopLoginEmail-email" class="form-control" name="email" placeholder="E-mail">
+
+                                            <label id="apiTopLoginEmail-email-error" class="error" for="apiTopLoginEmail-email"></label>
+
+                                        </div>                                                                        
+                                        <div class="form-group field-apiTopLoginEmail-password required has-error">
+
+                                            <input type="password" id="apiTopLoginEmail-password" class="form-control" name="password" placeholder="Пароль">
+
+                                        </div>                                                                        
+                                        <button type="button" class="btn">Войти</button>    
+
+                                    </form>
+                                    
+                                </div>
+                                
+                            </div>
+                            <div id="homePhone" class="tab-pane fade">
+                            
+                                <div class="cm-log">
+                    
+                                    <form id="api-top-login" action="/" method="post" role="form">
+                                    
+                                        <div class="form-group field-apiTopLogin required has-error">
+
+                                            <input type="text" id="apiTopLogin" class="form-control" name="phone" placeholder="+380xxxxxxxxx">
+
+                                            <label id="apiTopLogin-error" class="error" for="apiTopLogin"></label>
+
+                                        </div>
+                                        <button type="button" class="btn">Войти</button>                                       
+                                    </form>
+                                    
+                                </div>
+                            
+                            </div>
+                        </div>
+                      
+                    </div>
+                    <div id="menu1" class="tab-pane fade">
+                        
+                        <ul class="nav nav-tabs nav-1-1">
+                            <li class="active"><a data-toggle="tab" href="#menu1Email">Email</a></li>
+                            <li><a data-toggle="tab" href="#menu1Phone">Телефон</a></li>
+                        </ul>
+                        
+                        <div class="tab-content tab-content-1-1">
+                            <div id="menu1Email" class="tab-pane fade in active">
+                                
+                                <div class="cm-reg">
+                            
+                                    
+                                    <form id="api-top-register-email" action="" method="post">                                    
+                                        
+                                        <div class="form-group field-apiTopRegisterEmail-email">
+                                            <input type="text" class="form-control" id="apiTopRegisterEmail-email" name="email" placeholder="E-mail">
+                                            <label id="apiTopRegisterEmail-email-error" class="error" for="apiTopRegisterEmail-email"></label>
+                                        </div>
+
+                                        <div class="form-group field-apiTopRegisterEmail-first_name">
+                                            <input type="text" class="form-control" id="apiTopRegisterEmail-first_name" name="first_name" placeholder="Имя">
+                                            <label id="apiTopRegisterEmail-first_name-error" class="error" for="apiTopRegisterEmail-first_name"></label>
+                                        </div>
+
+                                        <div class="form-group field-apiTopRegisterEmail-last_name">
+                                            <input type="text" id="apiTopRegisterEmail-last_name" class="form-control" name="last_name" placeholder="Фамилия">
+                                            <label id="apiTopRegisterEmail-last_name-error" class="error" for="apiTopRegisterEmail-last_name"></label>
+                                        </div>
+
+                                        <div class="form-group field-apiTopRegisterEmail-password">
+                                            <input type="password" id="apiTopRegisterEmail-password" class="form-control" name="password" placeholder="Пароль">
+                                            <label id="apiTopRegisterEmail-password-error" class="error" for="apiTopRegisterEmail-password"></label>
+                                        </div>
+
+                                        <div class="form-group field-apiTopRegisterEmail-password_confirm">
+                                            <input type="password" id="apiTopRegisterEmail-password_confirm" class="form-control" name="password_confirm" placeholder="Подтверждение пароля">
+                                            <label id="apiTopRegisterEmail-password_confirm-error" class="error" for="apiTopRegisterEmail-password_confirm"></label>
+                                        </div>
+
+                                        <button type="button" class="btn" name="apiRegisterEmail">Зарегистрироваться</button>                                       
+                                    </form>
+
+                                </div>
+                                
+                            </div>
+                            <div id="menu1Phone" class="tab-pane fade">
+                            
+                                <div class="cm-reg">
+                            
+                                    
+                                    <form id="api-top-register" action="" method="post">                                    
+                                        
+                                        <div class="form-group field-apiTopRegister">
+                                            <input type="text" id="apiTopRegister" class="form-control" name="phone" placeholder="+380xxxxxxxxx">
+                                            <label id="apiTopRegister-error" class="error" for="apiTopRegister"></label>
+                                        </div>
+
+                                        <div class="form-group field-apiTopFirstName">
+                                            <input type="text" id="apiTopFirstName" class="form-control" name="first_name" placeholder="Имя">
+                                            <label id="apiTopFirstName-error" class="error" for="apiTopFirstName"></label>
+                                        </div>
+
+                                        <div class="form-group field-apiTopLastName">
+                                            <input type="text" id="apiTopLastName" class="form-control" name="last_name" placeholder="Фамилия">
+                                            <label id="apiTopLastName-error" class="error" for="apiTopLastName"></label>
+                                        </div>
+
+                                        <button type="button" class="btn" name="apiRegister">Зарегистрироваться</button>                                       
+                                    </form>
+
+                                    
+                                </div>
+                            
+                            </div>
+                        </div> 
+                           
+                                
+                      
+                    </div>
+                  </div>
+                  
+              </div>
+              
+              
+              <div class="modal-code-confirm">
+                    
+                    <form id="api-top-code" action="/" method="post" data-action="">                
+                        <div class="form-group field-apiTopCode">
+                            <label class="control-label" for="apiTopCode">Код подтверждения</label>
+                            <input type="text" id="apiTopCode" class="form-control" name="code" placeholder="xxxx">
+                            <label id="apiTopCode-error" class="error" for="apiTopCode"></label>
+                        </div>                        
+                        <button type="button" class="btn" ip="sendApiTopCode">Отправить</button>                       
+                    </form>
+
+              </div>
+              
+              
+              <div class="modal-body">
+                  
+                  <div class="cm-visit cm-item" style="display: none;"></div>
+                  
+                  <div class="cm-profile cm-item" style="<?php if(!isset($_COOKIE['intaToken'])){echo "display: none;";}?>">
+                        
+                        <div class="row big">
+                            <div class="col-xs-6 col">
+                                <table>
+                                    <tr>
+                                        <td>
+                                            Имя:
+                                        </td>
+                                        <td>
+                                            <div class="cm-profile-first-name"></div>
+                                        </td>
+                                    </tr>
+                                    <tr>
+                                        <td>
+                                            Телефон:
+                                        </td>
+                                        <td>
+                                            <div class="cm-profile-phone"></div>
+                                        </td>
+                                    </tr>
+                                    <tr>
+                                        <td>
+                                            E-mail:
+                                        </td>
+                                        <td>
+                                            <div class="cm-profile-email"></div>
+                                        </td>
+                                    </tr>
+                                </table>
+                            </div>
+                            <div class="col-xs-6 col">
+                                <table>
+                                    <tr>
+                                        <td>
+                                            Фамилия:
+                                        </td>
+                                        <td>
+                                            <div class="cm-profile-last-name"></div>
+                                        </td>
+                                    </tr>
+                                    <tr>
+                                        <td>
+                                            id:
+                                        </td>
+                                        <td>
+                                            <div class="cm-profile-id"></div>
+                                        </td>
+                                    </tr>
+                                    <tr>
+                                        <td>
+                                            Зарегистрирован:
+                                        </td>
+                                        <td>
+                                            <div class="cm-profile-registered"></div>
+                                        </td>
+                                    </tr>
+                                </table>
+                            </div>
+                        </div>
+                        
+                        
+                        <div class="row small">
+                            <div class="col-xs-12 col">
+                                <table>
+                                    <tr>
+                                        <td>
+                                            Имя:
+                                        </td>
+                                        <td>
+                                            <div class="cm-profile-first-name-small"></div>
+                                        </td>
+                                    </tr>
+                                    <tr>
+                                        <td>
+                                            Фамилия:
+                                        </td>
+                                        <td>
+                                            <div class="cm-profile-last-name-small"></div>
+                                        </td>
+                                    </tr>
+                                    <!--<tr>
+                                        <td>
+                                            id:
+                                        </td>
+                                        <td>
+                                            <div class="cm-profile-id-small"></div>
+                                        </td>
+                                    </tr>-->
+                                    <tr>
+                                        <td>
+                                            Телефон:
+                                        </td>
+                                        <td>
+                                            <div class="cm-profile-phone-small"></div>
+                                        </td>
+                                    </tr>
+                                    <tr>
+                                        <td>
+                                            E-mail:
+                                        </td>
+                                        <td>
+                                            <div class="cm-profile-email-small"></div>
+                                        </td>
+                                    </tr>
+                                    <!--<tr>
+                                        <td>
+                                            Зарегистрирован:
+                                        </td>
+                                        <td>
+                                            <div class="cm-profile-registered-small"></div>
+                                        </td>
+                                    </tr>-->
+                                </table>
+                            </div>
+                        </div>
+                        
+                        
+                  </div>
+                  
+                  
+                  <div class="cm-check-in-success cm-item" style="display: none;">
+                    <h4>Вы успешно записались на тренировку!</h4>
+                    
+                    <div class="temp">
+                        <div class="cm-title">Название: <span>Индивид-я тренировка</span></div>
+                        <div class="cm-hall">Зал: <span>СК Олимпийский (Физкультуры 1, К3)</span></div>
+                        <div class="cm-price">Цена: <span>450</span></div>
+                        <div class="cm-date">Дата: <span>2018-03-28</span></div>
+                        <div class="cm-time">Время: <span>20:00:00</span></div>
+                        <div class="cm-duration">Продолжительность: <span>01:00:00</span></div>
+                    </div>
+                    
+                    <div class='for-btn'>
+                        <a href='#' class='btn btn-close'>Ok</a>
+                        <a href='#' class='btn' id='btnTopCheckOut' data-id=''>Отменить</a>
+                    </div>
+                  </div>
+                  
+                  
+                  <div class="cm-check-in-error cm-item" style="display: none;">
+                    Запись на эту тренировку не доступна!
+                  </div>
+                
+              </div>
+            </div>
+        
+          </div>
+        </div>
+        
+    </div><!--   /CALENDAR MODAL   -->
+
+
+
+
+
+
         <div id="events-on-day"></div>
         <div id="full-text"></div>
         <div style="display: none;" class="date-interval">
@@ -953,6 +1424,7 @@ function instasport_shortcodes_init()
         <div id="calendar-mobile"></div>
         <div id="calendar-data-mobile" data-full="notfull"></div>
         <div id="calendar-data-desktop" data-full="notfull"></div>
+
 
 
 <?php
@@ -1035,6 +1507,9 @@ function instasport_shortcodes_init()
     wp_register_style( 'modal-style.css', plugins_url( 'modal/style.css', __FILE__ ) );
     //wp_register_style( 'mycalendars.css', plugins_url( 'css/mycalendars.css', __FILE__ ) );
     wp_register_style( 'mycalendar.css', plugins_url( 'css/mycalendar.css', __FILE__ ) );
+    wp_register_style( 'bootstrap.min.css', plugins_url( 'css/bootstrap.min.css', __FILE__ ) );
+    wp_register_style( 'inta-modal.css', plugins_url( 'css/inta-modal.css', __FILE__ ) ); 
+    
     wp_register_script( "fontawesome", "https://use.fontawesome.com/8f02526f3f.js", __FILE__ );
     wp_register_script( "jquery.min.js", "//ajax.googleapis.com/ajax/libs/jquery/1.11.1/jquery.min.js", __FILE__ );
 
@@ -1044,7 +1519,14 @@ function instasport_shortcodes_init()
     wp_register_script( "fullcalendar.min.js", plugins_url( "js/fullcalendar/fullcalendar.min.js", __FILE__ ) );
     wp_register_script( "locale-all.js", plugins_url( "js/fullcalendar/locale-all.js", __FILE__ ) );
     //wp_register_script( "ru.js", plugins_url( "js/rasp/libs/fullcalendar/lang/ru.js", __FILE__ ) );
+    //jquery.validate.js
+    wp_register_script( "jquery.validate.js", plugins_url( "js/jquery.validate.js", __FILE__ ) );
+    wp_register_script( "validate.js", plugins_url( "js/validate.js", __FILE__ ) );
     wp_register_script( "mymain.js", plugins_url( "js/rasp/mymain.js", __FILE__ ) );
+    wp_register_script( "jquery.cookie.js", plugins_url( "js/jquery.cookie.js", __FILE__ ) );
+    
+    wp_register_script( "bootstrap.min.js", plugins_url( "js/bootstrap.min.js", __FILE__ ) );
+    wp_register_script( "profile.js", plugins_url( "js/profile.js", __FILE__ ) );
     //wp_register_script( "initfullcallendar.js", plugins_url( "js/rasp/initfullcallendar.js", __FILE__ ) );
     //wp_register_script( "moment-with-locales.min.js", plugins_url( "js/rasp/libs/moment-with-locales.min.js", __FILE__ ) );
     //wp_register_script( "fullcalendar.min.js", plugins_url( "js/rasp/libs/fullcalendar/fullcalendar.min.js", __FILE__ ) );
@@ -1066,6 +1548,12 @@ function intacalendar_create_db(){
 
     $sql = "CREATE TABLE IF NOT EXISTS $table_name (
       id mediumint(9) NOT NULL AUTO_INCREMENT,
+      api_key varchar(500),
+      api_code varchar(500),
+      api_button_color_default varchar(50) NOT NULL,
+      api_button_bg_default varchar(50) NOT NULL,
+      api_button_color_hover varchar(50) NOT NULL,
+      api_button_bg_hover varchar(50) NOT NULL,
       default_color_switch_hall_btn varchar(50) NOT NULL,
       default_bg_switch_hall_btn varchar(50) NOT NULL,
       active_color_switch_hall_btn varchar(50) NOT NULL,
@@ -1180,6 +1668,10 @@ function intacalendar_create_db(){
             $table_name, 
             array( 
                 //DESKTOP STYLES
+                'api_button_color_default' => '#000',
+                'api_button_bg_default' => '#f1f1f1',
+                'api_button_color_hover' => '#fff',
+                'api_button_bg_hover' => '#ccc',
                 'default_color_switch_hall_btn' => '#000',
                 'default_bg_switch_hall_btn' => '#f1f1f1',
                 'active_color_switch_hall_btn' => '#fff',
