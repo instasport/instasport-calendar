@@ -182,10 +182,10 @@ function intacalendar_admin(){
             <?php wp_nonce_field('change_options'); ?>
             
             <h1>Параметры доступа по API</h1>
-            <input type="text" name="api_key" value="<?=$result->api_key;?>">
+            <!--<input type="text" name="api_key" value="<?=$result->api_key;?>">
             - KEY<br />
             <input type="text" name="api_code" value="<?=$result->api_code;?>">
-            - CODE<br />
+            - CODE<br />-->
 
             <h4>Настройки цвета кнопки Входа</h4>
             <input type="text" name="api_button_color_default" value="<?=$result->api_button_color_default;?>">
@@ -663,7 +663,7 @@ function instasport_shortcodes_init()
         //echo $result->switch_halls_button_bg;
 
 
-        $parsed = shortcode_atts(array('club' => ''), $atts, $tag);
+        $parsed = shortcode_atts(array('club' => '', 'key' => '', 'code' => '', 'next' => ''), $atts, $tag); 
 
         ob_start();
         //include("mycalendar-btn-enter.php");
@@ -966,9 +966,13 @@ function instasport_shortcodes_init()
 
 <script type="text/javascript">
 
-    var apiCode = '<?=$result->api_code;?>';  
-    var apiKey = '<?=$result->api_key;?>';
+    //var apiCode = '<?=$result->api_code;?>';  
+    //var apiKey = '<?=$result->api_key;?>';
+    var apiCode = '<?=$parsed['code'];?>';  
+    var apiKey = '<?=$parsed['key'];?>';
     var apiClub = '<?=$parsed['club'];?>';
+    var apiNext = '<?=$parsed['next'];?>';
+    //var apiClub = '<?=$parsed['club'];?>';
     //var apiCode = <?=$result->api_code;?>;
     //alert("<?=$result->api_code;?>");   
 </script>

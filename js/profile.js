@@ -793,13 +793,22 @@ jQuery(document).ready(function($) {
 		    	  },
 		    	  error: function(XMLHttpRequest, textStatus, errorThrown) {
   				  //alert("some error");
-  				  
+  				  		
+  				  		var obj22 = JSON.parse(XMLHttpRequest.responseText);
+			    		//console.log(obj22.non_field_errors[0]);
+			    		var textError = obj22.detail;
+			    		if(textError == "Недопустимый токен."){
+			    			_this.logout();
+			    		}
+			    		//$("#apiTopLogin-error").text(textError); 
+			    		//$("#intaAuthTopModal .modal-preload").fadeOut(200);
+
 		    		  /*$(".form-group.field-apilogin-phone").addClass("has-error")
   				  	.find(".help-block").text("Номер не зарегистрирован"); */
   				  
-  				  //$(".form-group .field-apiregister-phone").addClass("has-error");
-		    		  $("#calendarModal22 .cm-item").hide();
-		    		  $("#calendarModal22 .cm-check-in-error").show();
+  				  		//$(".form-group .field-apiregister-phone").addClass("has-error");
+		    		  //$("#calendarModal22 .cm-item").hide();
+		    		  //$("#calendarModal22 .cm-check-in-error").show();
 		    	  }
 		    	  //dataType: dataType
 		      });
@@ -943,8 +952,8 @@ jQuery(document).ready(function($) {
 			    	  type: "POST",
 			    	  url: urlApiReg,
 			    	  contentType: 'application/json',
-			    	  data: '{ "key" : "'+apiKey+'", "code" : "'+apiCode+'", "email" : "'+email+'", "first_name" : "'+firstName+'", "last_name" : "'+lastName+'", "password" : "'+password+'" }',
-			    	  //data: {key: apiKey, code: apiCode, email: email, first_name: firstName, last_name: lastName, password: password},
+			    	  data: '{ "key" : "'+apiKey+'", "code" : "'+apiCode+'", "email" : "'+email+'", "first_name" : "'+firstName+'", "last_name" : "'+lastName+'", "password" : "'+password+'", "next" : "'+apiNext+'" }',
+			    	  //data: {key: apiKey, code: apiCode, email: email, first_name: firstName, last_name: lastName, password: password}, 
 			    	  success: function(dataLog,status,xhr){
 			    		  
 			    		  //$("#intaAuthTopModal").modal("hide");
@@ -964,8 +973,8 @@ jQuery(document).ready(function($) {
 	    				 
 			    		  var obj22 = JSON.parse(XMLHttpRequest.responseText);
 			    		  //console.log(obj22.non_field_errors[0]);
-			    		  var textError = obj22.non_field_errors[0];
-			    		  $("#apiTopRegisterEmail-password-error").text(textError); 
+			    		  var textError = obj22.status[0];
+			    		  $("#apiTopRegisterEmail-email-error").text(textError); 
 			    		  $("#intaAuthTopModal .modal-preload").fadeOut(200);
 	    				  
     				  }
