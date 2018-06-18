@@ -71,6 +71,7 @@ jQuery(document).ready(function($) {
 		this.addVisit = function(){
 			$('#btnTopCheckIn').click(function(e){
 				e.preventDefault();
+
 				$("#intaAuthTopModal .modal-preload").show();
 				
 				var event = $(this).attr("data-id");
@@ -142,7 +143,10 @@ jQuery(document).ready(function($) {
 				
 				if(!$.cookie('intaToken')){
 					$("#intaAuthTopModal .modal-choose-event").hide();
+					
+					$('#intaAuthTopModal').appendTo("body");
 					$("#intaAuthTopModal").modal("show");
+					
 					return false;
 				}
 				
@@ -306,6 +310,8 @@ jQuery(document).ready(function($) {
 				    });
 					//$("#calendarModal22 .cm-check-in")
 				//}
+
+				$('#intaAuthTopModal').appendTo("body");
 				$("#intaAuthTopModal").modal("show");
 			});
 			
@@ -829,7 +835,10 @@ jQuery(document).ready(function($) {
 				}else{
 					
 				}
+
+				$('#intaAuthTopModal').appendTo("body");
 				$("#intaAuthTopModal").modal("show");
+				
 			});
 			
 			$("#intaAuthTopModal .modal-header").on("click", ".modal-close", function(e){

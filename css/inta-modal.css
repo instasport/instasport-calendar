@@ -43,8 +43,8 @@ box-shadow: 0px 0px 5px 0px rgba(255,255,255, 1);
 	padding: 0px;
 	margin: 0px;
 	display: block;
-	position: relative;
-	top: -20px;
+	position: absolute;
+	top: 10px;
 	font-size: 18px;
 }
 
@@ -59,7 +59,7 @@ box-shadow: 0px 0px 5px 0px rgba(255,255,255, 1);
 	display: none;
 	padding: 20px;
 	padding-bottom: 60px;
-	margin-top: -40px;
+	margin-top: -47px;
 	position: relative;
 	z-index: 9999;
 	display: none;
@@ -135,7 +135,7 @@ box-shadow: 0px 0px 5px 0px rgba(255,255,255, 1);
 	display: none;
 	padding: 20px;
 	padding-bottom: 40px;
-	margin-top: -40px;
+	margin-top: -47px;
 	position: relative;
 	z-index: 9999;
 }
@@ -154,6 +154,13 @@ box-shadow: 0px 0px 5px 0px rgba(255,255,255, 1);
 	background: none;
 	border: 1px solid rgba(255,255,255, 0.5);
 	color: #fff;
+    background-image: -webkit-linear-gradient(rgba(255, 255, 255, 0), rgba(255, 255, 255, 0));
+    border: 1px solid #bbb;
+    -webkit-border-radius: 3px;
+    border-radius: 3px;
+    display: block;
+    padding: 0.7em;
+    width: 100%;
 }
 
 #intaAuthTopModal input::-webkit-input-placeholder { /* Chrome/Opera/Safari */
@@ -177,10 +184,14 @@ box-shadow: 0px 0px 5px 0px rgba(255,255,255, 1);
 	font-size: 0.8em;
 }
 #intaAuthTopModal .btn{
+	background: none;
+	border: none;
 	background-color: #fff;
 	color: black;
 	float: right;
 	padding: 7px 20px;
+    -webkit-border-radius: 2px;
+    border-radius: 2px;
 }
 
 #intaAuthTopModal .modal-auth .tab-content{
