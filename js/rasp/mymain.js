@@ -3,14 +3,15 @@ jQuery(document).ready(function($) {
 	var clubName = $("#club-name").text();
 	//var clubName = "bright";
 	var hallArr = [];
-	var hallUrl = "https://instasport.co/club/"+clubName+"/api/hall/?format=json";
+	//var hallUrl = "https://instasport.co/club/"+clubName+"/api/hall/?format=json";
+	var hallUrl = "https://instasport.co/club/"+clubName+"/api/v1/hall/?format=json";
 	var locale = 'ru';
 
 	//var beginDate = '';
 	//var endDate = '';
 	//var divIdCalendar = '';
 
-	//alert(10);
+	//alert(100);
 
 	
 
@@ -45,6 +46,8 @@ jQuery(document).ready(function($) {
 		this.loadData = function(callback){
 			var _this = this;
 			//console.log(_this.useApiColors);
+
+			//alert(100);
 
 			//Getting parameter that determine must or not programm use Api Colors
 			_this.useApiColors = $("#use-api-colors").text();
@@ -379,9 +382,9 @@ jQuery(document).ready(function($) {
 									}
 
 									var flag = false;
-									var date = e.start.split("T")[0];
-									var time = e.start.split("T")[1].split(":")[0];
-									var fullTime = e.start.split("T")[1].split("+")[0];
+									var date = e.date.split("T")[0];
+									var time = e.date.split("T")[1].split(":")[0];
+									var fullTime = e.date.split("T")[1].split("+")[0];
 
 									var nameMonth = null;
 									if(choosenDate.split("-")[1] == 1){nameMonth = "Января";}
@@ -427,11 +430,11 @@ jQuery(document).ready(function($) {
 										var id = e.id;
 										var hall = e.hall;
 										var template = e.template;
-										var timeBegin = e.start.split("T")[1].split("+")[0];
-										var date = e.start.split("T")[0]; 
+										var timeBegin = e.date.split("T")[1].split("+")[0];
+										var date = e.date.split("T")[0]; 
 
 										var colorEvent = e.color;
-										var backgroundColorEvent = e.background_color;
+										var backgroundColorEvent = e.background;
 
 										var messageSeats = "";
 										if(parseInt(seats, 10) == 0){messageSeats = "нет мест";}
@@ -587,6 +590,8 @@ jQuery(document).ready(function($) {
 		this.init = function(calendar){
 			var _this = this;
 
+			//alert(100);
+
 			$(calendar).fullCalendar( 'destroy' );
 
 			//console.log(_this.currentDate);
@@ -653,13 +658,16 @@ jQuery(document).ready(function($) {
 				    
 				    //calendarDATA();
 				    //alert("second calendar is rendered!!!");
+				    
 				    _this.constructMyCalendar();
+				    
+				    //alert(100);
 				    //console.log("change");
 				    init = true;
 				},
 			});
 
-
+			
 			if(init){
  				// console.log(len);
 				return true;
@@ -701,7 +709,11 @@ jQuery(document).ready(function($) {
 			//var activeHallButton = _this.divClassMyCal+" .switch-halls-mycalendar .switch-btn.active";
 			if(_this.hall == null){ _this.hall = hallArr[0].id; }
 			//console.log(_this.hall);
-			_this.calendarUrl = "https://instasport.co/club/"+clubName+"/api/schedule/dates/"+_this.beginDate+"/"+_this.endDate+"/hall/"+_this.hall+"/?format=json";
+			
+			//_this.calendarUrl = "https://instasport.co/club/"+clubName+"/api/schedule/dates/"+_this.beginDate+"/"+_this.endDate+"/hall/"+_this.hall+"/?format=json";
+			_this.calendarUrl = "https://instasport.co/club/"+clubName+"/api/v1/event/?startdate="+_this.beginDate+"&enddate="+_this.endDate+"&hall="+_this.hall+"&format=json";
+			//alert(_this.calendarUrl);
+
 			//alert(_this.calendarUrl);
 			_this.getCalendarList();
 			//_this.getTrainsList();
@@ -782,7 +794,8 @@ jQuery(document).ready(function($) {
 						
 						var result = $.grep(_this.calendarListArr, function(e){
 							
-							var date = e.start.split("T")[0];
+							//var date = e.start.split("T")[0];
+							var date = e.date.split("T")[0];
 							if(date == arrDate[i][0].date){
 								//console.log(e.start);
 								return true;
@@ -791,7 +804,7 @@ jQuery(document).ready(function($) {
 							}
 
 						});
-						//console.log(result.length);
+						//console.log(result);
 						var k = 1;
 						var desktopMonthQuantityTrainings = $("#desktop-month-quantity-trainings").text();
 						result.forEach(function(currentValue, index, arr){
@@ -837,8 +850,9 @@ jQuery(document).ready(function($) {
 								var template = currentValue.template;
 								var url = currentValue.url;
 								var title = currentValue.title;
-								var timeBegin = currentValue.start.split("T")[1].split("+")[0];
-								var date = currentValue.start.split("T")[0];
+								//var timeBegin = currentValue.start.split("T")[1].split("+")[0];
+								var timeBegin = currentValue.date.split("T")[1].split("+")[0];
+								var date = currentValue.date.split("T")[0];
 
 								var messageSeats = "";
 								if(parseInt(seats, 10) == 0){messageSeats = "нет мест";}
@@ -909,7 +923,7 @@ jQuery(document).ready(function($) {
 										//var colorApi = "yellow"; //currentValue.color
 										var colorApi = currentValue.color;
 										//var backgroundColorApi = "pink"; //currentValue.background_color
-										var backgroundColorApi = currentValue.background_color;
+										var backgroundColorApi = currentValue.background;
 										
 										$(_this.divClassMyCal+" .mycalendar.mymonthcalendar table tbody tr td[data-date='"+arrDate[i][0].date+"']")
 											.find("table[data-time-begin='"+timeBegin+"']")
@@ -1069,7 +1083,7 @@ jQuery(document).ready(function($) {
 
 				this.calendarListArr.forEach(function(item, index){
 					//console.log(item.start);
-					var date = item.start.split("T")[0];
+					var date = item.date.split("T")[0];
 					//var time = item.start.split("T")[1].split(":")[0];
 					if(!$(_this.divClassMyCal+" .mycalendar.mymonthcalendar table tbody tr td[data-date='"+date+"']").hasClass("active")){
 						$(_this.divClassMyCal+" .mycalendar.mymonthcalendar table tbody tr td[data-date='"+date+"']").addClass("active");
@@ -1105,11 +1119,11 @@ jQuery(document).ready(function($) {
 					//return false;
 					_this.calendarListArr.forEach(function(item, index){
 						//console.log(item.start);
-						var date = item.start.split("T")[0];
+						var date = item.date.split("T")[0];
 						//var time = item.start.split("T")[1].split(":")[0];
 						if(date == dateChoosen){
 
-							var time = item.start.split("T")[1].split("+")[0];
+							var time = item.date.split("T")[1].split("+")[0];
 							var duration = item.duration;
 							var seats = item.seats;
 							//var seats = 2;
@@ -1119,10 +1133,10 @@ jQuery(document).ready(function($) {
 							var id = item.id;
 							var hall = item.hall;
 							var template = item.template;
-							var timeBegin = item.start.split("T")[1].split("+")[0];
-							var date = item.start.split("T")[0];
+							var timeBegin = item.date.split("T")[1].split("+")[0];
+							var date = item.date.split("T")[0];
 
-							var backgroundColorEvent = item.background_color;
+							var backgroundColorEvent = item.background;
 
 							var messageSeats = "";
 							if(parseInt(seats, 10) == 0){messageSeats = "нет мест";}
@@ -1537,10 +1551,10 @@ jQuery(document).ready(function($) {
 					var hall = item.hall;
 					var title = item.title;
 					var template = item.template;
-					var timeBegin = item.start.split("T")[1].split("+")[0];
+					var timeBegin = item.date.split("T")[1].split("+")[0];
 
 					var colorApi = item.color; //currentValue.color
-					var backgroundColorApi = item.background_color; //currentValue.background_color
+					var backgroundColorApi = item.background; //currentValue.background_color
 
 					var messageSeats = "";
 					if(parseInt(seats, 10) == 0){messageSeats = "нет мест";}
@@ -1568,8 +1582,8 @@ jQuery(document).ready(function($) {
 									}
 								}
 
-					var date = item.start.split("T")[0];
-					var time = item.start.split("T")[1].split(":")[0];
+					var date = item.date.split("T")[0];
+					var time = item.date.split("T")[1].split(":")[0];
 					var lengthEvents = $(_this.divClassMyCal+" .mycalendar.myweekcalendar table tbody tr[data-time='"+time+"']")
 								.find("td[data-date-event='"+date+"']")
 								.find(".events")
@@ -1868,7 +1882,7 @@ jQuery(document).ready(function($) {
 					//console.log(item.start);
 					var date = item.start.split("T")[0];
 					var time = item.start.split("T")[1].split(":")[0];
-					var backgroundColorApi = item.background_color;
+					var backgroundColorApi = item.background;
 					var colorApi = item.color;
 
 					if(!$(_this.divClassMyCal+" .mycalendar.myweekcalendar table tbody tr[data-time='"+time+"']")
@@ -1924,7 +1938,7 @@ jQuery(document).ready(function($) {
 						//console.log(item.start);
 						var date = item.start.split("T")[0];
 						var time = item.start.split("T")[1].split(":")[0];
-						var backgroundColorApi = item.background_color;
+						var backgroundColorApi = item.background;
 						
 						if(date == dateChoosen && time == timeChoosen){
 
@@ -2296,14 +2310,50 @@ jQuery(document).ready(function($) {
 			_this.calendarListArr = [];
 			//alert(hallUrl);
 			//alert(_this.calendarUrl);
-			apiQuery(_this.calendarUrl, function(data){
+
+			//do{}
+			/*apiQuery(_this.calendarUrl, function(data){
+				//console.log(data);
 				if(typeof data == "object"){
 					len = data.length;
+					//alert(len);
 					if(len > 0){
 						_this.calendarListArr = data;
+						console.log(data);
 					}
 				}
-			});
+			});*/
+			//_this.calendarListArr = [];
+			var toQuery = true;
+			var toQuery_page = 1;
+			do{
+				var url = _this.calendarUrl+"&page="+toQuery_page;
+				//console.log(url);
+				apiQuery(url, function(data){
+					//console.log(data);
+					if(typeof data == "object"){
+						len = data.results.length;
+						//if(len )
+						//alert(len+" - "+$url); 
+						if(len > 0){
+							//_this.calendarListArr = data.results;
+							//console.log(data.next);
+							for(i=0; i<len; i++){
+								_this.calendarListArr.push(data.results[i]);
+							}
+							/*for(i=0; i<len; i++){
+								_this.calendarListArr.push(data.results[i]);
+							}*/
+							//console.log(_this.calendarListArr);
+							//console.log(data);
+						}
+					}else{
+						toQuery = false;
+					}
+				});
+				++toQuery_page;
+			}while(toQuery == true);
+
 			if(len == 0 || len == "undefined" ){
  				// console.log(len);
 				return false;
@@ -2378,7 +2428,8 @@ jQuery(document).ready(function($) {
 			
 			//var len = 0;
 			var hall = null;
-			var hallur = "https://instasport.co/club/"+clubName+"/api/hall/"+_this.hall+"/?format=json";
+			var hallur = "https://instasport.co/club/"+clubName+"/api/v1/hall/"+_this.hall+"/?format=json";
+			//alert(hallur);
 			
 			apiQuery(hallur, function(data){
 				if(typeof data == "object"){
@@ -2450,6 +2501,19 @@ jQuery(document).ready(function($) {
 					// url: proxy+url,
 					url: url,
 					success: function(data) {
+						//console.log(response);
+						try{
+							// callback(JSON.parse(data));
+							callback(data);
+						}catch(e){
+							callback('');
+							//console.log('Invalid json string!');
+							//console.log(data);
+						}
+					},
+					error: function(){
+						//console.log("error");
+						var data = "error";
 						try{
 							// callback(JSON.parse(data));
 							callback(data);
@@ -2493,6 +2557,7 @@ jQuery(document).ready(function($) {
 			//alert(resp);
 		});
 
+		
 		calendarMob.loadData(function(resp){
 			//alert(resp);
 		});

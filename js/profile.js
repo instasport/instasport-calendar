@@ -48,7 +48,9 @@ jQuery(document).ready(function($) {
 				//alert(777);
 				$("#intaAuthTop").text($.cookie('intaName'));
 				_this.getProfile();
-				_this.getVisits();
+				setTimeout(function(){
+					_this.getVisits();
+				}, 400);
 			}
 			
 			/*if(!$.cookie("intaToken")){
@@ -69,12 +71,29 @@ jQuery(document).ready(function($) {
 		
 		
 		this.addVisit = function(){
-			$('#btnTopCheckIn').click(function(e){
+			$('#btnTopCheckIn, #btnTopCheckIn2').click(function(e){
 				e.preventDefault();
+
+				//console.log(_this.visits);
 
 				$("#intaAuthTopModal .modal-preload").show();
 				
 				var event = $(this).attr("data-id");
+
+				var shouldAdd = true;
+				_this.visits.forEach(function(item, index){
+					console.log(item); 
+					if(item.event == event){
+						shouldAdd = false;
+					}
+				})
+
+				if(!shouldAdd){
+					alert("Вы уже записаны на данную тренировку!");
+					$("#intaAuthTopModal .modal-preload").hide();
+					return false;
+				}
+
 				//alert(123);
 				if($.cookie('intaToken')){
 					
@@ -94,6 +113,7 @@ jQuery(document).ready(function($) {
 			  	  				  $.cookie('intaToken', dataLog.token);
 			  	  			  }*/
 				    		  
+				    		  //_this.getProfile();
 				    		  _this.getVisits();
 				    		  
 				    		  $("#btnTopCheckOut").attr("data-id", dataVisit.id);
@@ -130,7 +150,8 @@ jQuery(document).ready(function($) {
 				e.preventDefault();
 				var id = $(this).attr("data-id");
 				//alert(id);
-				_this.removeVisit(id, 'close');
+				//_this.removeVisit(id, 'close');
+				_this.removeVisit(id, 'show-info');
 			});
 		}
 		
@@ -226,20 +247,33 @@ jQuery(document).ready(function($) {
   				$("#intaAuthTopModal .modal-body .cm-check-in-success .temp").find(".cm-time span").text("");
   				$("#intaAuthTopModal .modal-body .cm-check-in-success .temp").find(".cm-duration span").text("");
   				
+  				$("#intaAuthTopModal .modal-body .cm-uncheck-in-success .temp").find(".cm-title span").text("");
+  				$("#intaAuthTopModal .modal-body .cm-uncheck-in-success .temp").find(".cm-hall span").text("");
+  				$("#intaAuthTopModal .modal-body .cm-uncheck-in-success .temp").find(".cm-price span").text("");
+  				$("#intaAuthTopModal .modal-body .cm-uncheck-in-success .temp").find(".cm-date span").text("");
+  				$("#intaAuthTopModal .modal-body .cm-uncheck-in-success .temp").find(".cm-time span").text("");
+  				$("#intaAuthTopModal .modal-body .cm-uncheck-in-success .temp").find(".cm-duration span").text("");
+
 				$("#intaAuthTopModal .modal-choose-event").show();
 				
 				var _this = this;
 				var id = $(_this).attr("data-id");
 				$('#btnTopCheckIn').attr("data-id", id);
+				$('#btnTopCheckIn2').attr("data-id", id);
 				
-				var template = $(_this).attr("data-template");
+				//var template = $(_this).attr("data-template");
+				var id_event = $(_this).attr("data-id");
+				
 				//console.log(hallTitle);
 				//return false;
 				
 				//alert($.cookie('intaToken'));
 				//if($.cookie('intaToken')){
 					//alert(777);
-					var urlApiTemp = "https://instasport.co/club/"+apiClub+"/api/v1/eventtemplates/?id="+template;
+
+					//var urlApiTemp = "https://instasport.co/club/"+apiClub+"/api/v1/eventtemplates/?id="+template;
+					var urlApiTemp = "https://instasport.co/club/"+apiClub+"/api/v1/events/?id="+id_event;
+
 					$.ajax({
 				    	  type: "GET",
 				    	  url: urlApiTemp,
@@ -250,13 +284,60 @@ jQuery(document).ready(function($) {
 				    		  
 				    		  
 				    		    var title = $(_this).attr("data-title");
-				    			var hallNum = $(_this).attr("data-hall");
+				    			var hallTitle = $(_this).attr("data-hall");
 				    			var date = $(_this).attr("data-date");
 				    			var time = $(_this).attr("data-time");
+				    			
 				    			var price = dataTemp[0].price;
 				    			var duration = dataTemp[0].duration;
-				    			var hallTitle = "";
+				    			//var hallTitle = "";
 				    			
+
+				    			$("#intaAuthTopModal .modal-body .cm-check-in-success .temp").find(".cm-title span").text(title);
+	    		  			  	$("#intaAuthTopModal .modal-body .cm-check-in-success .temp").find(".cm-hall span").text(hallTitle);
+	    		  			  	//$("#intaAuthTopModal .modal-body .cm-check-in-success .temp").find(".cm-price span").text(price+" грн.");
+	    		  			  	if(price == null){
+	    		  			  		$("#intaAuthTopModal .modal-body .cm-check-in-success .temp").find(".cm-price").hide();
+	    		  			  	}else{
+	    		  			  		$("#intaAuthTopModal .modal-body .cm-check-in-success .temp").find(".cm-price").show();
+	    		  			  		$("#intaAuthTopModal .modal-body .cm-check-in-success .temp").find(".cm-price span").text(price+" грн.");
+	    		  			  	}
+	    		  			  	$("#intaAuthTopModal .modal-body .cm-check-in-success .temp").find(".cm-date span").text(date);
+	    		  			  	$("#intaAuthTopModal .modal-body .cm-check-in-success .temp").find(".cm-time span").text(time);
+	    		  			  	$("#intaAuthTopModal .modal-body .cm-check-in-success .temp").find(".cm-duration span").text(duration);
+
+
+	    		  			  	$("#intaAuthTopModal .modal-body .cm-uncheck-in-success .temp").find(".cm-title span").text(title);
+	    		  			  	$("#intaAuthTopModal .modal-body .cm-uncheck-in-success .temp").find(".cm-hall span").text(hallTitle);
+	    		  			  	//$("#intaAuthTopModal .modal-body .cm-check-in-success .temp").find(".cm-price span").text(price+" грн.");
+	    		  			  	if(price == null){
+	    		  			  		$("#intaAuthTopModal .modal-body .cm-uncheck-in-success .temp").find(".cm-price").hide();
+	    		  			  	}else{
+	    		  			  		$("#intaAuthTopModal .modal-body .cm-uncheck-in-success .temp").find(".cm-price").show();
+	    		  			  		$("#intaAuthTopModal .modal-body .cm-uncheck-in-success .temp").find(".cm-price span").text(price+" грн.");
+	    		  			  	}
+	    		  			  	$("#intaAuthTopModal .modal-body .cm-uncheck-in-success .temp").find(".cm-date span").text(date);
+	    		  			  	$("#intaAuthTopModal .modal-body .cm-uncheck-in-success .temp").find(".cm-time span").text(time);
+	    		  			  	$("#intaAuthTopModal .modal-body .cm-uncheck-in-success .temp").find(".cm-duration span").text(duration);
+	    		  				
+	    		  				
+	    		    		  	$("#intaAuthTopModal .modal-choose-event .temp").find(".cm-title span").text(title);
+		  	  				  	$("#intaAuthTopModal .modal-choose-event .temp").find(".cm-hall span").text(hallTitle);
+		  	  				  	if(price == null){
+	    		  			  		$("#intaAuthTopModal .modal-choose-event .temp").find(".cm-price").hide();
+	    		  			  	}else{
+	    		  			  		$("#intaAuthTopModal .modal-choose-event .temp").find(".cm-price").show();
+	    		  			  		$("#intaAuthTopModal .modal-choose-event .temp").find(".cm-price span").text(price+" грн.");
+	    		  			  	}
+		  	  				  	//$("#intaAuthTopModal .modal-choose-event .temp").find(".cm-price span").text(price+" грн.");
+		  	  				  	$("#intaAuthTopModal .modal-choose-event .temp").find(".cm-date span").text(date);
+		  	  				  	$("#intaAuthTopModal .modal-choose-event .temp").find(".cm-time span").text(time);
+		  	  				  	$("#intaAuthTopModal .modal-choose-event .temp").find(".cm-duration span").text(duration);
+		  	  				  
+		  	  				  	$("#intaAuthTopModal .modal-preload").fadeOut(200);
+
+
+				    			/*
 				    			$.ajax({
 				    		    	  type: "GET",
 				    		    	  //async: false,
@@ -287,7 +368,7 @@ jQuery(document).ready(function($) {
 					  	  				  
 				    		    		  
 				    		    	  }
-				    		    });
+				    		    });*/
 				    		  //var obj = dataTemp;
 				    		  //if(dataLog.token){
 			  	  				  //var urlApiLog = "https://instasport.co/club/test/api/v1/account/login/";
@@ -479,6 +560,11 @@ jQuery(document).ready(function($) {
 				for(var i = 0; i < _this.visits.length; i++){
 					var k = i;
 					k++;
+					if(_this.visits[i].price == null){
+						$price = "";
+					}else{
+						$price = "<div>Цена: <span>"+_this.visits[i].price+" грн.</span></div>"
+					}
 					$("#intaAuthTopModal .cm-visit").append("<div class='cm-visit-item'><table><tr>"
 							+"<td>"+k+".</td>"
 							+"<td>"+_this.visits[i].title+"</td>"
@@ -489,7 +575,7 @@ jQuery(document).ready(function($) {
 							+"</tr>"
 							+"<tr>"
 							+"<td colspan='4'>"
-							+"<div>Цена: <span>"+_this.visits[i].price+" грн.</span></div>"
+							+$price
 							+"<div>Дата: <span>"+_this.visits[i].date.split("T")[0]+"</span></div>"
 							+"<div>Начало: <span>"+_this.visits[i].date.split("T")[1].split("+")[0]+"</span></div>"
 							+"<div>Продолжительность: <span>"+_this.visits[i].duration+"</span></div>"
@@ -616,6 +702,12 @@ jQuery(document).ready(function($) {
 		    		  if(action == 'close'){
 		    			  $("#intaAuthTopModal").modal("hide");
 		    			  $("#intaAuthTopModal .modal-preload").hide();
+		    		  }else if(action == 'show-info'){
+		    			  //$("#intaAuthTopModal").modal("hide");
+		    			  //$("#intaAuthTopModal .modal-preload").hide();
+		    			  $("#intaAuthTopModal .cm-check-in-success").hide();
+		    			  $("#intaAuthTopModal .cm-uncheck-in-success").show();
+		    			  $("#intaAuthTopModal .modal-preload").hide();
 		    		  }
 		    			
 		    	  },
@@ -634,10 +726,12 @@ jQuery(document).ready(function($) {
 		
 		this.getVisits = function(){
 			
+			//alert(_this.profileId);
 			//var getVisitsThis = this;
 			_this.visits = new Array();
 			
 			var urlApiVisit = "https://instasport.co/club/"+apiClub+"/api/v1/client/visit/?user="+_this.profileId;
+			//alert(urlApiVisit);
 			$.ajax({
 		    	  type: "GET",
 		    	  beforeSend: function(xhr){xhr.setRequestHeader('Authorization', 'Token '+$.cookie('intaToken'));},
@@ -653,11 +747,13 @@ jQuery(document).ready(function($) {
 		    			  //$("#intaAuthTopModal .cm-visit").append("<>");
 		    			  _this.visits[i] = {};
 		    			  _this.visits[i].id = visits[i].id;
+		    			  _this.visits[i].event = visits[i].event;
 		    			  //var dataVisitId = dataVisit.id;
 		    			  //callbackTemp(i);
 		    			  //var curI = i;
 		    			  
-		    			  var urlApiEvent = "https://instasport.co/club/"+apiClub+"/api/v1/admin/events/?id="+visits[i].event;
+		    			  var urlApiEvent = "https://instasport.co/club/"+apiClub+"/api/v1/events/?id="+visits[i].event; 
+		    			  //alert(urlApiEvent);
 		    			  $.ajax({
 	    			    	  type: "GET",
 	    			    	  indexValue: i,
@@ -668,6 +764,10 @@ jQuery(document).ready(function($) {
 	    			    		  
 	    			    		  //var ind = this.indexValue;
 	    			    		  _this.visits[this.indexValue].date = dataEvent[0].date;
+	    			    		  _this.visits[this.indexValue].title = dataEvent[0].title;
+	    	    			      _this.visits[this.indexValue].duration = dataEvent[0].duration;
+	    	    			      _this.visits[this.indexValue].price = dataEvent[0].price;
+	    	    			      _this.visits[this.indexValue].hall = dataEvent[0].hall;
 	    			    		  //_this.visits[this.indexValue].hall = dataEvent[0].hall;//
 	    			    		  
 	    			    		  /*$(".shedule .cld-tabs .cld-tab").each(function(ind){
@@ -678,7 +778,7 @@ jQuery(document).ready(function($) {
 	    			    		  });*/
 	    			    		  
 	    			    		  //callbackTemp(i);
-	    			    		  var urlApiTemp = "https://instasport.co/club/"+apiClub+"/api/v1/eventtemplates/?id="+dataEvent[0].template;
+	    			    		  /*var urlApiTemp = "https://instasport.co/club/"+apiClub+"/api/v1/eventtemplates/?id="+dataEvent[0].template;
 	    		    			  $.ajax({
 	    	    			    	  type: "GET",
 	    	    			    	  indexValue2: this.indexValue,
@@ -691,11 +791,11 @@ jQuery(document).ready(function($) {
 	    	    			    		  //console.log(dataTemp[0].title+" | "+dataTemp[0].duration+" | "+dataTemp[0].price);
 	    	    			    		  //_this.visits[i] = new Array();
 	    	    			    		  //console.log(this.indexValue);
-	    	    			    		  /*_this.visits[this.indexValue2] = {
-	    	    			    			  'title': dataTemp[0].title,
-	    	    			    			  'duration': dataTemp[0].duration,
-	    	    			    			  'price': dataTemp[0].price
-	    	    			    		  };*/
+	    	    			    		  //_this.visits[this.indexValue2] = {
+	    	    			    			//  'title': dataTemp[0].title,
+	    	    			    			 // 'duration': dataTemp[0].duration,
+	    	    			    			  //'price': dataTemp[0].price
+	    	    			    		  //};
 	    	    			    		  _this.visits[this.indexValue2].title = dataTemp[0].title;
 	    	    			    		  _this.visits[this.indexValue2].duration = dataTemp[0].duration;
 	    	    			    		  _this.visits[this.indexValue2].price = dataTemp[0].price;
@@ -713,7 +813,7 @@ jQuery(document).ready(function($) {
 	    	    		  				  //	.find(".help-block").text("Номер не зарегистрирован"); 
 	    	    	  				  
 	    	    					  }
-	    		    			  });
+	    		    			  });*/
 	    			    		  
 	    			    			
 	    			    	  },
@@ -768,7 +868,7 @@ jQuery(document).ready(function($) {
 		    		  _this.profileId = dataProfile[0].id;
 		    		  _this.profileRegistered = (dataProfile[0].date_joined).split("T")[0];
 		    		  
-		    		  //console.log(dataProfile[0].id);
+		    		  //console.log(_this.profileId);
 		    		  $("#intaAuthTopModal .cm-profile .cm-profile-first-name").text(dataProfile[0].first_name);
 		    		  $("#intaAuthTopModal .cm-profile .cm-profile-phone").text(dataProfile[0].phone);
 		    		  $("#intaAuthTopModal .cm-profile .cm-profile-email").text(dataProfile[0].email);
@@ -870,7 +970,7 @@ jQuery(document).ready(function($) {
 		    });
 			
 			
-			$("#intaAuthTopModal .cm-check-in-success").on("click", ".btn-close", function(e){
+			$("#intaAuthTopModal .cm-check-in-success, #intaAuthTopModal .cm-uncheck-in-success").on("click", ".btn-close", function(e){
 				e.preventDefault();
 				$("#intaAuthTopModal").modal("hide");
 			});

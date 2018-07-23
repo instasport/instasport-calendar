@@ -1368,10 +1368,29 @@ function instasport_shortcodes_init()
                         <a href='#' class='btn' id='btnTopCheckOut' data-id=''>Отменить</a>
                     </div>
                   </div>
+
+
+                  <div class="cm-uncheck-in-success cm-item" style="display: none;">
+                    <h4>Запись на тренировку отменена!</h4>
+                    
+                    <div class="temp">
+                        <div class="cm-title">Название: <span>Индивид-я тренировка</span></div>
+                        <div class="cm-hall">Зал: <span>СК Олимпийский (Физкультуры 1, К3)</span></div>
+                        <div class="cm-price">Цена: <span>450</span></div>
+                        <div class="cm-date">Дата: <span>2018-03-28</span></div>
+                        <div class="cm-time">Время: <span>20:00:00</span></div>
+                        <div class="cm-duration">Продолжительность: <span>01:00:00</span></div>
+                    </div>
+                    
+                    <div class='for-btn'>
+                        <a href='#' class='btn btn-close'>Ok</a>
+                        <a href="#" class="btn" id="btnTopCheckIn2" data-id="">Записаться</a>
+                    </div>
+                  </div>
                   
                   
                   <div class="cm-check-in-error cm-item" style="display: none;">
-                    Запись на эту тренировку не доступна!
+                    Запись на эту тренировку недоступна!
                   </div>
                 
               </div>

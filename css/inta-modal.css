@@ -460,20 +460,25 @@ box-shadow: 0px 0px 5px 0px rgba(255,255,255, 1);
 #intaAuthTopModal .cm-check-in-error{
 	color: red;
 }
-#intaAuthTopModal .cm-check-in-success{
+#intaAuthTopModal .cm-check-in-success,
+#intaAuthTopModal .cm-uncheck-in-success{
 	padding-bottom: 40px;
 }
-#intaAuthTopModal .cm-check-in-success .for-btn{
+#intaAuthTopModal .cm-check-in-success .for-btn,
+#intaAuthTopModal .cm-uncheck-in-success .for-btn{
 	padding-top: 15px;
 }
-#intaAuthTopModal .cm-check-in-success h4{
+#intaAuthTopModal .cm-check-in-success h4,
+#intaAuthTopModal .cm-uncheck-in-success h4{
 	font-size: 18px;
 	color: white;
 }
-#intaAuthTopModal .cm-check-in-success span{
+#intaAuthTopModal .cm-check-in-success span,
+#intaAuthTopModal .cm-uncheck-in-success span{
 	color: #1cc31c;
 }
-#intaAuthTopModal .cm-check-in-success .btn-close{
+#intaAuthTopModal .cm-check-in-success .btn-close,
+#intaAuthTopModal .cm-uncheck-in-success .btn-close{
 	margin-left: 20px;
 }
 

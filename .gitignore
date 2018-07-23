@@ -1,0 +1,6 @@
+# git ignore
+
+*.log
+.vagrant/
+.idea/
+.DS_Store

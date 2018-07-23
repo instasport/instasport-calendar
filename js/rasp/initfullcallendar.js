@@ -1,6 +1,6 @@
 jQuery(document).ready(function($) {
 		
-
+		//alert(100);
 		////PADDING to preload while calendar is loading
 		//var preloaderPaddingTop = ((parseInt($(".mycalendar").closest(".block").css("height"), 10))/2)-20;
 		//$(".price-time .block .preloader").css("padding-top",preloaderPaddingTop+"px");
