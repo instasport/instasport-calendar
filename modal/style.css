@@ -97,7 +97,11 @@
 
 
 
-
+#calendarModal .modal-body{
+	max-height: 300px;
+	overflow-y: auto;
+	width: 100%;
+}
 #calendarModal .modal-body table{
     margin: 0px;
     width: 100%;
