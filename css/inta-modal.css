@@ -1,536 +1,563 @@
-/*	intaAuthTopModal
-*************************************************************************/
-#intaAuthTopModal{
-	z-index: 999999;
-}
-
-#intaAuthTopModal .modal-header{
-	background: none;
-}
-
-#intaAuthTopModal .modal-content{
-	border-radius: 0px;
-	position: relative;
-	overflow-y: hidden;
-	background-color: #131516;
-	color: white; 
-	-webkit-box-shadow: 0px 0px 5px 0px rgba(255,255,255, 1);
--moz-box-shadow: 0px 0px 5px 0px rgba(255,255,255, 1);
-box-shadow: 0px 0px 5px 0px rgba(255,255,255, 1);
-}
-
-#intaAuthTopModal .modal-header .close{
-	opacity: 1;
-	font-size: 40px;
-	text-shadow: none;
-	color: white;
-}
-
-
-#intaAuthTopModal .modal-header{
-	position: relative;
-	padding-left: 60px;
-}
-
-#intaAuthTopModal .modal-body a.order-visit{
-	color: white;
-}
-
-#intaAuthTopModal .modal-title .modal-title-name{
-	color: white;
-	height: 30px;
-	line-height: 30px;
-	padding: 0px;
-	margin: 0px;
-	display: block;
-	position: absolute;
-	top: 10px;
-	font-size: 18px;
-}
-
-
-#intaAuthTopModal .modal-code-confirm{
-	top: 0px;
-	left: 0px;
-	background-color: #131516;
-	height: 100%;
-	width: 100%;
-	z-index: 9999;
-	display: none;
-	padding: 20px;
-	padding-bottom: 60px;
-	margin-top: -47px;
-	position: relative;
-	z-index: 9999;
-	display: none;
-}
-#intaAuthTopModal .modal-code-confirm label.control-label{
-	color: #fff;
-}
-#intaAuthTopModal .modal-code-confirm label.error{
-	color: red;
-	font-weight: 400;
-	font-size: 0.8em;
-} 
-
-#intaAuthTopModal .modal-choose-event{
-	top: 0px;
-	left: 0px;
-	background-color: #131516;
-	height: 100%;
-	width: 100%;
-	z-index: 9999;
-	display: none;
-	padding: 20px;
-	padding-bottom: 60px;
-	margin-top: -40px;
-	position: relative;
-	z-index: 9999;
-	display: none;
-}
-#intaAuthTopModal .modal-choose-event .temp{
-	position: relative;
-	top: -10px;
-}
-#intaAuthTopModal .modal-choose-event .temp>div{
-	color: #fff;
-}
-#intaAuthTopModal .modal-choose-event .temp>div>span{
-	color: #1cc31c;
-	padding-left: 10px;
-}
-#intaAuthTopModal .modal-choose-event h4{
-	font-size: 18px;
-	position: relative;
-	top: -10px;
-	color: white;
-	padding-top: 10px;
-}
-#intaAuthTopModal .modal-choose-event h4 span{
-	color: #1cc31c;
-}
-
-#intaAuthTopModal .modal-choose-event .modal-choose-event-menu{
-	height: 40px;
-}
-#intaAuthTopModal .modal-choose-event .modal-choose-event-menu a{
-	display: block;
-	float: left;
-	background-color: white;
-	color: black;
-	text-decoration: none;
-	padding: 4px 10px;
-}
-#intaAuthTopModal .modal-choose-event .modal-choose-event-menu a:last-child{
-	margin-left: 10px;
-}
-
-#intaAuthTopModal .modal-auth{
-	top: 0px;
-	left: 0px;
-	background-color: #131516;
-	height: 100%;
-	width: 100%;
-	z-index: 9999;
-	display: none;
-	padding: 20px;
-	padding-bottom: 40px;
-	margin-top: -47px;
-	position: relative;
-	z-index: 9999;
-}
-#intaAuthTopModal .modal-auth .form-group,
-#intaAuthTopModal .modal-code-confirm .form-group{
-	padding-bottom: 10px;
-}
-#intaAuthTopModal .modal-auth .form-group .help-block,
-#intaAuthTopModal .modal-code-confirm .form-group .help-block{
-	position: absolute;
-	margin-top: -3px;
-	font-size: 0.8em;
-}
-#intaAuthTopModal .modal-auth input,
-#intaAuthTopModal .modal-code-confirm input{
-	background: none;
-	border: 1px solid rgba(255,255,255, 0.5);
-	color: #fff;
-    background-image: -webkit-linear-gradient(rgba(255, 255, 255, 0), rgba(255, 255, 255, 0));
-    border: 1px solid #bbb;
-    -webkit-border-radius: 3px;
-    border-radius: 3px;
-    display: block;
-    padding: 0.7em;
-    width: 100%;
-}
-
-#intaAuthTopModal input::-webkit-input-placeholder { /* Chrome/Opera/Safari */
-  color: #f4f4f4;
-}
-#intaAuthTopModal input::-moz-placeholder { /* Firefox 19+ */
-  color: #f4f4f4;
-}
-#intaAuthTopModal input:-ms-input-placeholder { /* IE 10+ */
-  color: #f4f4f4;
-}
-#intaAuthTopModal input:-moz-placeholder { /* Firefox 18- */
-  color: #f4f4f4;
-}
-
-#intaAuthTopModal .modal-auth label.error{
-	color: red;
-	height: 20px;
-	display: block!important;
-	font-weight: 400;
-	font-size: 0.8em;
-}
-#intaAuthTopModal .btn{
-	background: none;
-	border: none;
-	background-color: #fff;
-	color: black;
-	float: right;
-	padding: 7px 20px;
-    -webkit-border-radius: 2px;
-    border-radius: 2px;
-}
-
-#intaAuthTopModal .modal-auth .tab-content{
-	padding-top: 20px;
-}
-#intaAuthTopModal .modal-auth .nav-1,
-#intaAuthTopModal .modal-auth .nav-1-1{
-	border: none;
-}
-#intaAuthTopModal .modal-auth .nav-1 li a{
-	border-radius: 4px;
-	padding: 5px 15px;
-	color: #fff;
-}
-#intaAuthTopModal .modal-auth .nav-1-1 li a{
-	border-radius: 4px;
-	padding: 5px 15px;
-	color: #fff;
-}
-#intaAuthTopModal .modal-auth .nav-1 li a:hover{
-	background: none;
-	border-color: #131516;
-	text-decoration: underline;
-}
-#intaAuthTopModal .modal-auth .nav-1-1 li a:hover{
-	background: none;
-	text-decoration: underline;
-	border-color: #131516;
-}
-#intaAuthTopModal .modal-auth .nav-1 li.active a{
-	background-color: #fff;
-	border-color: #edc323;
-	color: black;
-	text-decoration: none;
-}
-#intaAuthTopModal .modal-auth .nav-1-1 li.active a{
-	background: none;
-	border-color: #131516;
-	color: #1cc31c;
-	text-decoration: none;
-}
-#intaAuthTopModal .modal-auth .nav-1 li:last-child{
-	padding-left: 10px;
-}
-
-#intaAuthTopModal .cm-profile table tr{
-	border: none;
-}
-#intaAuthTopModal .cm-profile .small{
-	display: block;
-}
-#intaAuthTopModal .cm-profile .big{
-	display: none;
-}
-@media(max-width: 600px){
-	#intaAuthTopModal .cm-profile .small{
-		display: block;
-	}
-	#intaAuthTopModal .cm-profile .big{
-		display: none;
-	}
-}
-#intaAuthTopModal .cm-profile table{
-	width: 100%;
-}
-#intaAuthTopModal .cm-profile table td:first-child{
-	width: 150px;
-	text-align: right;
-}
-#intaAuthTopModal .cm-profile table td:last-child div{
-	padding-left: 15px;
-}
-
-
-#intaAuthTopModal .cm-navbar-toggle{
-	display: inline-block;
-	width: 30px;
-	height: 26px;
-	background: none; 
-	padding: 4px;
-	padding-bottom: 0px;
-	position: absolute;
-	top: 15px;
-	left: 15px;
-}
-#intaAuthTopModal .cm-navbar-toggle span{
-	display: block;
-	height: 2px;
-	background-color: #fff;
-	/*border-bottom: 2px solid #edc323;*/
-	margin-bottom: 5px;
-}
-
-
-#intaAuthTopModal .modal-nav{
-	position: absolute;
-	top: 0px;
-	left: 0px;
-	background-color: #131516;
-	height: 100%;
-	width: 100%;
-	z-index: 999;
-}
-
-#intaAuthTopModal .modal-nav-close{
-	display: inline-block;
-	width: 30px;
-	height: 26px;
-	background: none; 
-	padding: 4px;
-	padding-bottom: 0px;
-	position: absolute;
-	top: 15px;
-	left: 15px;
-	z-index: 99999;
-}
-#intaAuthTopModal .modal-nav-close span{
-	display: block;
-	height: 2px;
-	background-color: #edc323;
-	margin-bottom: 5px;
-}
-#intaAuthTopModal .modal-nav-close span:first-child{
-	transform: rotate(45deg);
-	position: relative;
-	top: 7px;
-}
-#intaAuthTopModal .modal-nav-close span:last-child{
-	transform: rotate(-45deg);
-}
-
-
-
-#intaAuthTopModal .modal-close{
-	display: inline-block;
-	width: 30px;
-	height: 26px;
-	background: none; 
-	padding: 4px;
-	padding-bottom: 0px;
-	position: absolute;
-	top: 15px;
-	right: 15px;
-	z-index: 99999;
-}
-#intaAuthTopModal .modal-close span{
-	display: block;
-	height: 2px;
-	background-color: #fff;
-	margin-bottom: 5px;
-}
-#intaAuthTopModal .modal-close span:first-child{
-	transform: rotate(45deg);
-	position: relative;
-	top: 7px;
-}
-#intaAuthTopModal .modal-close span:last-child{
-	transform: rotate(-45deg);
-}
-
-
-
-#intaAuthTopModal .modal-nav table{
-	position: absolute;
-	top: 0px;
-	left: 0px;
-	width: 100%;
-	height: 100%;
-}
-#intaAuthTopModal .modal-nav table td{
-	vertical-align: middle;
-}
-
-#intaAuthTopModal .modal-nav ul{
-	list-style: none;
-	padding: 30px 0px;
-}
-#intaAuthTopModal .modal-nav ul li{
-	text-align: center;
-	height: 35px;
-	line-height: 35px;
-	text-transform: uppercase;
-	font-size: 1.2em;
-}
-
-#intaAuthTopModal .modal-nav ul li a{
-	color: #fff;
-}
-
-#intaAuthTopModal .cm-visit a.visit-disable{
-	background-color: #fff;
-	color: black;
-	border-radius: 3px;
-	padding: 0px 15px;
-	display: inline-block;
-}
-#intaAuthTopModal .cm-visit a.visit-more{
-	color: #fff;
-}
-
-#intaAuthTopModal .cm-visit .cm-visit-item{
-	padding: 10px 5px;
-}
-#intaAuthTopModal .cm-visit table{
-	width: 100%;
-	transition: color .3s ease;
-}
-#intaAuthTopModal .cm-visit table td{
-	padding-right: 15px;
-	text-align: left;
-}
-#intaAuthTopModal .cm-visit table tr:first-child td{
-	padding-bottom: 5px;
-}
-#intaAuthTopModal .cm-visit table td a{
-	/*color: #fff;*/
-	color: rgba(108,216,223, 1);
-}
-#intaAuthTopModal .cm-visit table td:nth-child(1){
-	width: 30px;
-}
-#intaAuthTopModal .cm-visit table td:nth-child(2){
-	width: 250px;
-}
-#intaAuthTopModal .cm-visit table td:nth-child(3){
-	width: 80px;
-}
-#intaAuthTopModal .cm-visit table td:nth-child(4){
-	width: 80px;
-}
-
-#intaAuthTopModal .cm-visit table tr:first-child td:first-child{
-	padding-left: 5px;
-}
-
-#intaAuthTopModal .cm-visit table tr:last-child{
-	position: absolute;
-	opacity: 0;
-	top: -50000px;
-	transition: opacity .3s ease;
-}
-#intaAuthTopModal .cm-visit table tr:last-child td{
-	padding-left: 30px;
-}
-#intaAuthTopModal .cm-visit table tr:last-child td span{
-	color: #1cc31c;
-}
-
-
-#intaAuthTopModal .cm-visit .cm-visit-item.show-more{
-	background-color: #393d3f;
-}
-#intaAuthTopModal .cm-visit .cm-visit-item.show-more table tr:last-child{
-	position: relative;
-	opacity: 1;
-	top: 0px;
-}
-#intaAuthTopModal .cm-visit .cm-visit-item.show-more table a.visit-more{
-	display: none;
-}
-#intaAuthTopModal .cm-visit .cm-visit-item.show-more table tr:first-child td:nth-child(3){
-	opacity: 1;
-}
-
-
-#intaAuthTopModal .cm-check-in-error{
-	color: red;
-}
-#intaAuthTopModal .cm-check-in-success,
-#intaAuthTopModal .cm-uncheck-in-success{
-	padding-bottom: 40px;
-}
-#intaAuthTopModal .cm-check-in-success .for-btn,
-#intaAuthTopModal .cm-uncheck-in-success .for-btn{
-	padding-top: 15px;
-}
-#intaAuthTopModal .cm-check-in-success h4,
-#intaAuthTopModal .cm-uncheck-in-success h4{
-	font-size: 18px;
-	color: white;
-}
-#intaAuthTopModal .cm-check-in-success span,
-#intaAuthTopModal .cm-uncheck-in-success span{
-	color: #1cc31c;
-}
-#intaAuthTopModal .cm-check-in-success .btn-close,
-#intaAuthTopModal .cm-uncheck-in-success .btn-close{
-	margin-left: 20px;
-}
-
-@media(max-width: 600px){
-	#intaAuthTopModal .cm-visit table tr:first-child td:first-child{
-		display: none;
-	}
-	/*#intaAuthTopModal .cm-visit table:first-child{
-		display: none;
-	}
-	#intaAuthTopModal .cm-visit table td:first-child{
-		display: none;
-	}
-	#intaAuthTopModal .cm-visit table td{
-		display: block;
-		width: 100%;
-	}
-	#intaAuthTopModal .cm-visit table td:last-child{
-		padding-bottom: 20px;
-	}*/
-}
-
-
-
-#intaAuthTopModal .modal-preload{
-	position: absolute;
-	top: 0px;
-	left: 0px;
-	width: 100%;
-	height: 100%;
-	z-index: 999999;
-	background-color: rgba(0,0,0, 0.5);
-	display: none;
-}
-#intaAuthTopModal .modal-preload table{
-	width: 100%;
-	height: 100%;
-}
-#intaAuthTopModal .modal-preload table td{
-	vertical-align: middle;
-}
-#intaAuthTopModal .modal-preload .loader {
-    border: 6px solid rgba(255, 255, 255, 0.1); /* Light grey */
-    border-top: 6px solid rgba(28, 195, 28, 1); /* Blue */
-    border-radius: 50%;
-    width: 80px;
-    height: 80px;
-    animation: spin 2s linear infinite;
-    margin: auto;
-}
-
-@keyframes spin {
-    0% { transform: rotate(0deg); }
-    100% { transform: rotate(360deg); }
+/*	fixes for bugs
+*************************************************************************/
+#intaAuthTopModal{
+	
+}
+#intaAuthTopModal .modal-dialog{
+	top: 0px;
+	left: 0px;
+}
+
+
+
+@media(max-width: 600px){
+	#intaAuthTopModal .modal-dialog{
+		margin-right: 0px;
+		margin-left: 0px;
+		padding-right: 0px;
+		padding-left: 0px;
+	}
+	#intaAuthTopModal .tab-content{
+		padding: 0px;
+	}
+}
+
+
+
+
+/*	intaAuthTopModal
+*************************************************************************/
+#intaAuthTopModal{
+	z-index: 999999;
+}
+
+#intaAuthTopModal .modal-header{
+	background: none;
+}
+
+#intaAuthTopModal .modal-content{
+	border-radius: 0px;
+	position: relative;
+	overflow-y: hidden;
+	background-color: #131516;
+	color: white; 
+	-webkit-box-shadow: 0px 0px 5px 0px rgba(255,255,255, 1);
+-moz-box-shadow: 0px 0px 5px 0px rgba(255,255,255, 1);
+box-shadow: 0px 0px 5px 0px rgba(255,255,255, 1);
+}
+
+#intaAuthTopModal .modal-header .close{
+	opacity: 1;
+	font-size: 40px;
+	text-shadow: none;
+	color: white;
+}
+
+
+#intaAuthTopModal .modal-header{
+	position: relative;
+	padding-left: 60px;
+}
+
+#intaAuthTopModal .modal-body a.order-visit{
+	color: white;
+}
+
+#intaAuthTopModal .modal-title .modal-title-name{
+	color: white;
+	height: 30px;
+	line-height: 30px;
+	padding: 0px;
+	margin: 0px;
+	display: block;
+	position: absolute;
+	top: 10px;
+	font-size: 18px;
+}
+
+
+#intaAuthTopModal .modal-code-confirm{
+	top: 0px;
+	left: 0px;
+	background-color: #131516;
+	height: 100%;
+	width: 100%;
+	z-index: 9999;
+	display: none;
+	padding: 20px;
+	padding-bottom: 60px;
+	margin-top: -47px;
+	position: relative;
+	z-index: 9999;
+	display: none;
+}
+#intaAuthTopModal .modal-code-confirm label.control-label{
+	color: #fff;
+}
+#intaAuthTopModal .modal-code-confirm label.error{
+	color: red;
+	font-weight: 400;
+	font-size: 0.8em;
+} 
+
+#intaAuthTopModal .modal-choose-event{
+	top: 0px;
+	left: 0px;
+	background-color: #131516;
+	height: 100%;
+	width: 100%;
+	z-index: 9999;
+	display: none;
+	padding: 20px;
+	padding-bottom: 60px;
+	margin-top: -40px;
+	position: relative;
+	z-index: 9999;
+	display: none;
+}
+#intaAuthTopModal .modal-choose-event .temp{
+	position: relative;
+	top: -10px;
+}
+#intaAuthTopModal .modal-choose-event .temp>div{
+	color: #fff;
+}
+#intaAuthTopModal .modal-choose-event .temp>div>span{
+	color: #1cc31c;
+	padding-left: 10px;
+}
+#intaAuthTopModal .modal-choose-event h4{
+	font-size: 18px;
+	position: relative;
+	top: -10px;
+	color: white;
+	padding-top: 10px;
+}
+#intaAuthTopModal .modal-choose-event h4 span{
+	color: #1cc31c;
+}
+
+#intaAuthTopModal .modal-choose-event .modal-choose-event-menu{
+	height: 40px;
+}
+#intaAuthTopModal .modal-choose-event .modal-choose-event-menu a{
+	display: block;
+	float: left;
+	background-color: white;
+	color: black;
+	text-decoration: none;
+	padding: 4px 10px;
+}
+#intaAuthTopModal .modal-choose-event .modal-choose-event-menu a:last-child{
+	margin-left: 10px;
+}
+
+#intaAuthTopModal .modal-auth{
+	top: 0px;
+	left: 0px;
+	background-color: #131516;
+	height: 100%;
+	width: 100%;
+	z-index: 9999;
+	display: none;
+	padding: 20px;
+	padding-bottom: 40px;
+	margin-top: -47px;
+	position: relative;
+	z-index: 9999;
+}
+#intaAuthTopModal .modal-auth .form-group,
+#intaAuthTopModal .modal-code-confirm .form-group{
+	padding-bottom: 10px;
+}
+#intaAuthTopModal .modal-auth .form-group .help-block,
+#intaAuthTopModal .modal-code-confirm .form-group .help-block{
+	position: absolute;
+	margin-top: -3px;
+	font-size: 0.8em;
+}
+#intaAuthTopModal .modal-auth input,
+#intaAuthTopModal .modal-code-confirm input{
+	background: none;
+	border: 1px solid rgba(255,255,255, 0.5);
+	color: #fff;
+    background-image: -webkit-linear-gradient(rgba(255, 255, 255, 0), rgba(255, 255, 255, 0));
+    border: 1px solid #bbb;
+    -webkit-border-radius: 3px;
+    border-radius: 3px;
+    display: block;
+    padding: 0.7em;
+    width: 100%;
+}
+
+#intaAuthTopModal input::-webkit-input-placeholder { /* Chrome/Opera/Safari */
+  color: #f4f4f4;
+}
+#intaAuthTopModal input::-moz-placeholder { /* Firefox 19+ */
+  color: #f4f4f4;
+}
+#intaAuthTopModal input:-ms-input-placeholder { /* IE 10+ */
+  color: #f4f4f4;
+}
+#intaAuthTopModal input:-moz-placeholder { /* Firefox 18- */
+  color: #f4f4f4;
+}
+
+#intaAuthTopModal .modal-auth label.error{
+	color: red;
+	height: 20px;
+	display: block!important;
+	font-weight: 400;
+	font-size: 0.8em;
+}
+#intaAuthTopModal .btn{
+	background: none;
+	border: none;
+	background-color: #fff;
+	color: black;
+	float: right;
+	padding: 7px 20px;
+    -webkit-border-radius: 2px;
+    border-radius: 2px;
+}
+
+#intaAuthTopModal .modal-auth .tab-content{
+	padding-top: 20px;
+}
+#intaAuthTopModal .modal-auth .nav-1,
+#intaAuthTopModal .modal-auth .nav-1-1{
+	border: none;
+}
+#intaAuthTopModal .modal-auth .nav-1 li a{
+	border-radius: 4px;
+	padding: 5px 15px;
+	color: #fff;
+}
+#intaAuthTopModal .modal-auth .nav-1-1 li a{
+	border-radius: 4px;
+	padding: 5px 15px;
+	color: #fff;
+}
+#intaAuthTopModal .modal-auth .nav-1 li a:hover{
+	background: none;
+	border-color: #131516;
+	text-decoration: underline;
+}
+#intaAuthTopModal .modal-auth .nav-1-1 li a:hover{
+	background: none;
+	text-decoration: underline;
+	border-color: #131516;
+}
+#intaAuthTopModal .modal-auth .nav-1 li.active a{
+	background-color: #fff;
+	border-color: #edc323;
+	color: black;
+	text-decoration: none;
+}
+#intaAuthTopModal .modal-auth .nav-1-1 li.active a{
+	background: none;
+	border-color: #131516;
+	color: #1cc31c;
+	text-decoration: none;
+}
+#intaAuthTopModal .modal-auth .nav-1 li:last-child{
+	padding-left: 10px;
+}
+
+#intaAuthTopModal .cm-profile table tr{
+	border: none;
+}
+#intaAuthTopModal .cm-profile .small{
+	display: block;
+}
+#intaAuthTopModal .cm-profile .big{
+	display: none;
+}
+@media(max-width: 600px){
+	#intaAuthTopModal .cm-profile .small{
+		display: block;
+	}
+	#intaAuthTopModal .cm-profile .big{
+		display: none;
+	}
+}
+#intaAuthTopModal .cm-profile table{
+	width: 100%;
+}
+#intaAuthTopModal .cm-profile table td:first-child{
+	width: 150px;
+	text-align: right;
+}
+#intaAuthTopModal .cm-profile table td:last-child div{
+	padding-left: 15px;
+}
+
+
+#intaAuthTopModal .cm-navbar-toggle{
+	display: inline-block;
+	width: 30px;
+	height: 26px;
+	background: none; 
+	padding: 4px;
+	padding-bottom: 0px;
+	position: absolute;
+	top: 15px;
+	left: 15px;
+}
+#intaAuthTopModal .cm-navbar-toggle span{
+	display: block;
+	height: 2px;
+	background-color: #fff;
+	/*border-bottom: 2px solid #edc323;*/
+	margin-bottom: 5px;
+}
+
+
+#intaAuthTopModal .modal-nav{
+	position: absolute;
+	top: 0px;
+	left: 0px;
+	background-color: #131516;
+	height: 100%;
+	width: 100%;
+	z-index: 999;
+}
+
+#intaAuthTopModal .modal-nav-close{
+	display: inline-block;
+	width: 30px;
+	height: 26px;
+	background: none; 
+	padding: 4px;
+	padding-bottom: 0px;
+	position: absolute;
+	top: 15px;
+	left: 15px;
+	z-index: 99999;
+}
+#intaAuthTopModal .modal-nav-close span{
+	display: block;
+	height: 2px;
+	background-color: #edc323;
+	margin-bottom: 5px;
+}
+#intaAuthTopModal .modal-nav-close span:first-child{
+	transform: rotate(45deg);
+	position: relative;
+	top: 7px;
+}
+#intaAuthTopModal .modal-nav-close span:last-child{
+	transform: rotate(-45deg);
+}
+
+
+
+#intaAuthTopModal .modal-close{
+	display: inline-block;
+	width: 30px;
+	height: 26px;
+	background: none; 
+	padding: 4px;
+	padding-bottom: 0px;
+	position: absolute;
+	top: 15px;
+	right: 15px;
+	z-index: 99999;
+}
+#intaAuthTopModal .modal-close span{
+	display: block;
+	height: 2px;
+	background-color: #fff;
+	margin-bottom: 5px;
+}
+#intaAuthTopModal .modal-close span:first-child{
+	transform: rotate(45deg);
+	position: relative;
+	top: 7px;
+}
+#intaAuthTopModal .modal-close span:last-child{
+	transform: rotate(-45deg);
+}
+
+
+
+#intaAuthTopModal .modal-nav table{
+	position: absolute;
+	top: 0px;
+	left: 0px;
+	width: 100%;
+	height: 100%;
+}
+#intaAuthTopModal .modal-nav table td{
+	vertical-align: middle;
+}
+
+#intaAuthTopModal .modal-nav ul{
+	list-style: none;
+	padding: 30px 0px;
+}
+#intaAuthTopModal .modal-nav ul li{
+	text-align: center;
+	height: 35px;
+	line-height: 35px;
+	text-transform: uppercase;
+	font-size: 1.2em;
+}
+
+#intaAuthTopModal .modal-nav ul li a{
+	color: #fff;
+}
+
+#intaAuthTopModal .cm-visit a.visit-disable{
+	background-color: #fff;
+	color: black;
+	border-radius: 3px;
+	padding: 0px 15px;
+	display: inline-block;
+}
+#intaAuthTopModal .cm-visit a.visit-more{
+	color: #fff;
+}
+
+#intaAuthTopModal .cm-visit .cm-visit-item{
+	padding: 10px 5px;
+}
+#intaAuthTopModal .cm-visit table{
+	width: 100%;
+	transition: color .3s ease;
+}
+#intaAuthTopModal .cm-visit table td{
+	padding-right: 15px;
+	text-align: left;
+}
+#intaAuthTopModal .cm-visit table tr:first-child td{
+	padding-bottom: 5px;
+}
+#intaAuthTopModal .cm-visit table td a{
+	/*color: #fff;*/
+	color: rgba(108,216,223, 1);
+}
+#intaAuthTopModal .cm-visit table td:nth-child(1){
+	width: 30px;
+}
+#intaAuthTopModal .cm-visit table td:nth-child(2){
+	width: 250px;
+}
+#intaAuthTopModal .cm-visit table td:nth-child(3){
+	width: 80px;
+}
+#intaAuthTopModal .cm-visit table td:nth-child(4){
+	width: 80px;
+}
+
+#intaAuthTopModal .cm-visit table tr:first-child td:first-child{
+	padding-left: 5px;
+}
+
+#intaAuthTopModal .cm-visit table tr:last-child{
+	position: absolute;
+	opacity: 0;
+	top: -50000px;
+	transition: opacity .3s ease;
+}
+#intaAuthTopModal .cm-visit table tr:last-child td{
+	padding-left: 30px;
+}
+#intaAuthTopModal .cm-visit table tr:last-child td span{
+	color: #1cc31c;
+}
+
+
+#intaAuthTopModal .cm-visit .cm-visit-item.show-more{
+	background-color: #393d3f;
+}
+#intaAuthTopModal .cm-visit .cm-visit-item.show-more table tr:last-child{
+	position: relative;
+	opacity: 1;
+	top: 0px;
+}
+#intaAuthTopModal .cm-visit .cm-visit-item.show-more table a.visit-more{
+	display: none;
+}
+#intaAuthTopModal .cm-visit .cm-visit-item.show-more table tr:first-child td:nth-child(3){
+	opacity: 1;
+}
+
+
+#intaAuthTopModal .cm-check-in-error{
+	color: red;
+}
+#intaAuthTopModal .cm-check-in-success,
+#intaAuthTopModal .cm-uncheck-in-success{
+	padding-bottom: 40px;
+}
+#intaAuthTopModal .cm-check-in-success .for-btn,
+#intaAuthTopModal .cm-uncheck-in-success .for-btn{
+	padding-top: 15px;
+}
+#intaAuthTopModal .cm-check-in-success h4,
+#intaAuthTopModal .cm-uncheck-in-success h4{
+	font-size: 18px;
+	color: white;
+}
+#intaAuthTopModal .cm-check-in-success span,
+#intaAuthTopModal .cm-uncheck-in-success span{
+	color: #1cc31c;
+}
+#intaAuthTopModal .cm-check-in-success .btn-close,
+#intaAuthTopModal .cm-uncheck-in-success .btn-close{
+	margin-left: 20px;
+}
+
+@media(max-width: 600px){
+	#intaAuthTopModal .cm-visit table tr:first-child td:first-child{
+		display: none;
+	}
+	/*#intaAuthTopModal .cm-visit table:first-child{
+		display: none;
+	}
+	#intaAuthTopModal .cm-visit table td:first-child{
+		display: none;
+	}
+	#intaAuthTopModal .cm-visit table td{
+		display: block;
+		width: 100%;
+	}
+	#intaAuthTopModal .cm-visit table td:last-child{
+		padding-bottom: 20px;
+	}*/
+}
+
+
+
+#intaAuthTopModal .modal-preload{
+	position: absolute;
+	top: 0px;
+	left: 0px;
+	width: 100%;
+	height: 100%;
+	z-index: 999999;
+	background-color: rgba(0,0,0, 0.5);
+	display: none;
+}
+#intaAuthTopModal .modal-preload table{
+	width: 100%;
+	height: 100%;
+}
+#intaAuthTopModal .modal-preload table td{
+	vertical-align: middle;
+}
+#intaAuthTopModal .modal-preload .loader {
+    border: 6px solid rgba(255, 255, 255, 0.1); /* Light grey */
+    border-top: 6px solid rgba(28, 195, 28, 1); /* Blue */
+    border-radius: 50%;
+    width: 80px;
+    height: 80px;
+    animation: spin 2s linear infinite;
+    margin: auto;
+}
+
+@keyframes spin {
+    0% { transform: rotate(0deg); }
+    100% { transform: rotate(360deg); }
 }

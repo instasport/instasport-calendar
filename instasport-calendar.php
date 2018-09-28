@@ -1067,12 +1067,12 @@ function instasport_shortcodes_init()
               <div class="modal-auth">
                   
                   <ul class="nav nav-tabs nav-1">
-                    <li class="active"><a data-toggle="tab" href="#home">Вход</a></li>
-                    <li><a data-toggle="tab" href="#menu1">Регистрация</a></li>
+                    <li class="active"><a data-toggle="tab" href="#menu1">Вход</a></li>
+                    <li><a data-toggle="tab" href="#menu2">Регистрация</a></li>
                   </ul>
                 
                   <div class="tab-content tab-content-1">
-                    <div id="home" class="tab-pane fade in active">
+                    <div id="menu1" class="tab-pane fade in active">
                         
                         <ul class="nav nav-tabs nav-1-1">
                             <li class="active"><a data-toggle="tab" href="#homeEmail">Email</a></li>
@@ -1127,7 +1127,7 @@ function instasport_shortcodes_init()
                         </div>
                       
                     </div>
-                    <div id="menu1" class="tab-pane fade">
+                    <div id="menu2" class="tab-pane fade">
                         
                         <ul class="nav nav-tabs nav-1-1">
                             <li class="active"><a data-toggle="tab" href="#menu1Email">Email</a></li>
@@ -1531,6 +1531,7 @@ function instasport_shortcodes_init()
     //wp_register_style( 'mycalendars.css', plugins_url( 'css/mycalendars.css', __FILE__ ) );
     wp_register_style( 'mycalendar.css', plugins_url( 'css/mycalendar.css', __FILE__ ) );
     wp_register_style( 'bootstrap.min.css', plugins_url( 'css/bootstrap.min.css', __FILE__ ) );
+    //wp_register_style( 'bootstrap.min.css', 'https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css', __FILE__ );
     wp_register_style( 'inta-modal.css', plugins_url( 'css/inta-modal.css', __FILE__ ) ); 
     
     wp_register_script( "fontawesome", "https://use.fontawesome.com/8f02526f3f.js", __FILE__ );
@@ -1548,7 +1549,8 @@ function instasport_shortcodes_init()
     wp_register_script( "mymain.js", plugins_url( "js/rasp/mymain.js", __FILE__ ) );
     wp_register_script( "jquery.cookie.js", plugins_url( "js/jquery.cookie.js", __FILE__ ) );
     
-    wp_register_script( "bootstrap.min.js", plugins_url( "js/bootstrap.min.js", __FILE__ ) );
+    //wp_register_script( "bootstrap.min.js", plugins_url( "js/bootstrap.min.js", __FILE__ ) );
+    wp_register_script( "bootstrap.min.js", "https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js", __FILE__  );
     wp_register_script( "profile.js", plugins_url( "js/profile.js", __FILE__ ) );
     //wp_register_script( "initfullcallendar.js", plugins_url( "js/rasp/initfullcallendar.js", __FILE__ ) );
     //wp_register_script( "moment-with-locales.min.js", plugins_url( "js/rasp/libs/moment-with-locales.min.js", __FILE__ ) );

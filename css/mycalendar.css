@@ -1,636 +1,636 @@
-.mycalendar table,
-.mycalendar table thead,
-.mycalendar table tbody,
-.mycalendar table tfoot,
-.mycalendar table thead tr,
-.mycalendar table thead tr td,
-.mycalendar table tbody tr,
-.mycalendar table tbody tr td,
-.mycalendar table tfoot tr,
-.mycalendar table tfoot tr td{
-	background: none;
-	border: none;
-	padding: 2px;
-	margin: 0px;
-}
-
-.mycalendar{
-	display: none;
-}
-
-.mycalendar a{
-	text-decoration: none!important;
-	-webkit-transition: all 0s; 
-    transition: all 0s;
-}
-
-.mycalendar table{
-	width: 100%;
-}
-
-#full-text{
-	background-color: #f1f1f1;
-	display: inline-block;
-	white-space: nowrap;
-	display: none; 
-	position: absolute;
-	height: 25px;
-	line-height: 25px;
-}
-
-
-
-
-.switch-halls-mycalendar .switch-btn{
-	background: #ccc;
-	color: black;
-	padding: 5px 10px;
-	margin-right: 5px;
-	margin-bottom: 5px;
-	cursor: pointer;
-	display: inline-block;
-}
-.switch-halls-mycalendar .switch-btn.active{
-	background: #000;
-	color: white;
-}
-
-
-
-.switch-type-mycalendars .switch-btn{
-	background: #ccc;
-	color: black;
-	padding: 5px 10px;
-	margin-right: 5px;
-	cursor: pointer;
-}
-.switch-type-mycalendars .switch-btn.active{
-	background: #000;
-	color: white;
-}
-
-
-.filter-by-traine,
-.filter-by-couch{
-	display: inline-block;
-}
-.filters a{
-	display: block;
-	width: 200px;
-	padding: 5px 0px;
-	text-align: center;
-	text-decoration: none;
-	background-color: #f1f1f1;
-	color: black;
-}
-
-
-
-
-/* DESKTOP CALENDAR
-********************************************************************/
-.mycalendar-desktop .mycalendar>table>thead div.calendar-title{
-	height: 30px;
-	line-height: 30px;
-	position: relative;
-}
-.mycalendar-desktop .mycalendar>table>thead div.calendar-title a{
-	display: block;
-	height: 100%;
-	width: 20px;
-	position: absolute;
-	font-size: 22px;
-	color: black;
-	opacity: 0.6;
-	-webkit-transition: all .1s; 
-    transition: all .1s;
-    box-shadow: none;
-    border: none;
-    text-decoration: none;
-}
-.mycalendar-desktop .mycalendar>table>thead div.calendar-title a:hover{
-	opacity: 1;
-}
-.mycalendar-desktop .mycalendar>table>thead div.calendar-title a.prev{
-	top: 0px;
-	left: 0px;
-}
-.mycalendar-desktop .mycalendar>table>thead div.calendar-title a.next{
-	top: 0px;
-	right: 0px;
-	text-align: right;
-}
-.mycalendar-desktop .mycalendar>table>thead div.calendar-title .today{
-	text-align: center;
-	text-transform: capitalize; 
-	font-size: 22px;
-}
-
-.mycalendar-desktop .mycalendar>table>thead>tr:last-child>td{
-	border-bottom: 1px solid #666;
-	text-align: center;
-}
-.mycalendar-desktop .mycalendar>table>thead>tr:last-child>td .tinyName{
-	display: none;
-}
-
-
-.mycalendar-desktop .mycalendar>table>tbody>tr>td{
-	vertical-align: top;
-	border-bottom: 1px solid #ccc;
-	width: 12.84999%; 
-	font-size: 12px; 
-	padding: 4px;
-	padding-bottom: 10px;
-}
-
-/*.mycalendar-desktop .mycalendar>table>tbody>tr>td .more-items{
-	font-size: 16px;
-	color: black;
-}*/
-.mycalendar-desktop .myweekcalendar.mycalendar>table>tbody>tr>td:first-child{
-	width: 10%; 
-	text-align: center;
-	font-size: 14px;
-	font-weight: bold;
-}
-.mycalendar-desktop .mymonthcalendar.mycalendar>table>tbody>tr>td{
-	width: 14.2799%;
-	/*height: 140px;*/ 
-}
-.mycalendar-desktop .myweekcalendar.mycalendar>table>tbody>tr>td{
-	/*height: 120px; */
-}
-.mycalendar-desktop .mycalendar>table>tbody>tr>td:nth-child(even){
-	background-color: #f1f1f1;  
-}
-
-	/* ITEM EVENT
-	*****************************************************************************************/
-	.mycalendar-desktop .mycalendar>table>tbody>tr>td .item-event{
-		width: 100%;
-		margin-top: 4px;
-	}
-	.mycalendar-desktop .mycalendar>table>tbody>tr>td .item-event:first-child{
-		margin-top: 0px;
-	}
-	.mycalendar-desktop .mycalendar>table>tbody>tr>td .item-event td{
-		vertical-align: top;
-	}
-	.mycalendar-desktop .mycalendar>table>tbody>tr>td .item-event td:first-child{
-		width: 40px;
-		max-width: 40px;
-	}
-	.mycalendar-desktop .mycalendar>table>tbody>tr>td .item-event .item-event-title{
-		overflow: hidden;
-		position: relative;
-		display: inline-block;
-		height: 15px;
-		width: 100%;
-	}
-	.mycalendar-desktop .mycalendar>table>tbody>tr>td .item-event .item-event-seats,
-	.mycalendar-desktop .mycalendar>table>tbody>tr>td .item-event .item-event-duration{
-		font-size: 9px;
-	}
-	.mycalendar-desktop .mycalendar>table>tbody>tr>td .item-event a{
-		display: block;
-		position: absolute;
-		width: 100%;
-		height: 100%;
-		top: 0px;
-		left: 0px;
-		z-index: 3;
-		text-decoration: none!important;
-		box-shadow: none;
-	}
-	.mycalendar-desktop .mycalendar>table>tbody>tr>td .item-event a:hover{
-		/*border-bottom: 1px solid #999;*/
-	}
-	.mycalendar-desktop .mycalendar>table>tbody>tr>td .item-event .item-event-title .textt{
-		white-space: nowrap; 
-		position: absolute;
-		top: 0px;
-		left: 0px;
-	}
-	.mycalendar-desktop .mycalendar>table>tbody>tr>td .item-event .item-event-title:hover .textt{
-		color: black!important;
-	}
-	.mycalendar-desktop .mycalendar>table>tbody>tr>td .item-event .item-event-title .three-dot{
-		width: 15px;
-		height: 100%;
-		position: absolute;
-		top: 0px;
-		right: 0px; 
-		z-index: 2; 
-		background-color: white;
-		display: none;
-	}
-	.mycalendar-desktop .mycalendar>table>tbody>tr>td:nth-child(even) .item-event .item-event-title .three-dot{
-		background-color: #f1f1f1;
-	}
-	.mycalendar-desktop .mycalendar>table>tbody>tr>td.today{
-		background-color: yellow;
-	}
-	.mycalendar-desktop .mycalendar>table>tbody>tr>td.today .item-event .item-event-title .three-dot{
-		background-color: yellow;
-	}
-
-
-
-
-
-
-
-.mycalendar-desktop .switch-halls-mycalendar{
-	display: inline-block;
-	float: left;
-	padding: 10px 0px;
-}
-.mycalendar-desktop .switch-type-mycalendars{
-	display: inline-block;
-	float: right;
-	padding: 10px 0px;
-}
-
-
-
-
-
-
-
-
-
-
-/* MOBILE CALENDAR
-********************************************************************/
-.mycalendar-mobile .mycalendar>table>thead div.calendar-title{
-	height: 30px;
-	line-height: 30px;
-	position: relative;
-}
-.mycalendar-mobile .mycalendar>table>thead div.calendar-title a{
-	display: block;
-	height: 100%;
-	width: 20px;
-	position: absolute;
-	font-size: 22px;
-	color: black;
-	opacity: 0.6;
-	-webkit-transition: all .1s; 
-    transition: all .1s;
-}
-.mycalendar-mobile .mycalendar>table>thead div.calendar-title a:hover{
-	opacity: 1;
-}
-.mycalendar-mobile .mycalendar>table>thead div.calendar-title a.prev{
-	top: 0px;
-	left: 0px;
-}
-.mycalendar-mobile .mycalendar>table>thead div.calendar-title a.next{
-	top: 0px;
-	right: 0px;
-	text-align: right;
-}
-.mycalendar-mobile .mycalendar>table>thead div.calendar-title .today{
-	text-align: center;
-	text-transform: capitalize; 
-	font-size: 22px;
-}
-
-.mycalendar-mobile .mycalendar>table>thead>tr:last-child>td{
-	border-bottom: 1px solid #666;
-	text-align: center;
-}
-
-.mycalendar-mobile .mycalendar>table>tbody>tr>td{
-	border-bottom: 1px solid #666;
-	text-align: center;
-	padding: 8px 0px;
-}
-
-.mycalendar-mobile .mycalendar>table>tbody>tr>td .day-number{
-	color: black;
-	cursor: default;
-	pointer-events: none;
-	box-shadow: none;
-}
-.mycalendar-mobile .mycalendar.dot>table>tbody>tr>td .day-number{
-	width: 36px;
-	height: 36px;
-	border-radius: 18px;
-	background-color: #ccc;
-	color: black;
-	text-align: center;
-	line-height: 36px;
-	display: block;
-	text-decoration: none;
-	margin: auto;
-	cursor: default;
-	pointer-events: none;
-	box-shadow: none;
-}
-.mycalendar-mobile .mycalendar>table>tbody>tr>td.active .day-number{
-	cursor: pointer;
-	pointer-events: auto;
-	color: blue;
-}
-.mycalendar-mobile .mycalendar.dot>table>tbody>tr>td.active .day-number{
-	cursor: pointer;
-	pointer-events: auto;
-}
-
-.mycalendar-mobile .mycalendar>table>tbody>tr>td.today.active .day-number,
-.mycalendar-mobile .mycalendar>table>tbody>tr>td.today .day-number{
-	color: green;
-}
-.mycalendar-mobile .mycalendar.dot>table>tbody>tr>td.today.active .day-number,
-.mycalendar-mobile .mycalendar.dot>table>tbody>tr>td.today .day-number{
-	color: white;
-	background-color: green;
-}
-
-.mycalendar-mobile .mycalendar>table>tbody>tr>td.choosen.active .day-number{
-	color: pink;
-}
-.mycalendar-mobile .mycalendar.dot>table>tbody>tr>td.choosen.active .day-number{
-	color: white;
-	background-color: pink;
-}
-
-.mycalendar-mobile .mycalendar>table>tbody>tr>td .for-circle{
-	padding-top: 5px;
-	height: 17px;
-	display: none;
-}
-.mycalendar-mobile .mycalendar.dot>table>tbody>tr>td .for-circle{
-	display: block;
-}
-.mycalendar-mobile .mycalendar>table>tbody>tr>td .for-circle .circle{
-	width: 12px;
-	height: 12px;
-	border-radius: 6px;
-	background-color: #ccc; 
-	margin: auto;
-	display: none;
-}
-.mycalendar-mobile .mycalendar>table>tbody>tr>td.active .for-circle .circle{
-	display: block;
-}
-
-
-
-
-
-.mycalendar-mobile .mycalendar.myweekcalendar>table>tbody>tr>td{
-	border-bottom: 1px solid #666;
-	text-align: center;
-	padding-top: 0px;
-	padding-bottom: 0px;
-	height: 52px;
-	vertical-align: middle;
-}
-
-.mycalendar-mobile .mycalendar.myweekcalendar>table>tbody>tr>td .circle{
-	width: 36px;
-	height: 36px;
-	border-radius: 18px;
-	/*background-color: #ccc;*/
-	color: black;
-	text-align: center;
-	line-height: 36px;
-	display: block;
-	text-decoration: none;
-	margin: auto;
-	cursor: default;
-	pointer-events: none;
-	display: none;
-}
-.mycalendar-mobile .mycalendar.myweekcalendar>table>tbody>tr>td.active .circle{
-	cursor: pointer;
-	pointer-events: auto;
-	display: block;
-}
-
-.mycalendar-mobile .mycalendar.myweekcalendar>table>tbody>tr>td.today.active .circle{
-	color: white;
-	background-color: green;
-}
-
-.mycalendar-mobile .mycalendar.myweekcalendar>table>tbody>tr>td.choosen.active .circle{
-	background-color: pink;
-}
-
-
-
-
-
-
-
-.mycalendar-mobile .switch-halls-mycalendar{
-	padding-bottom: 15px;
-}
-.mycalendar-mobile .switch-type-mycalendars{
-	padding-bottom: 15px;
-}
-
-
-
-
-
-/*
-@media(max-width: 900px){
-	.mycalendar-mobile{
-		display: block;
-	}
-	.mycalendar-desktop{
-		display: none;
-	}
-}
-@media(min-width: 900px){
-	.mycalendar-mobile{
-		display: none;
-	}
-	.mycalendar-desktop{
-		display: block;
-	}
-}*/
-
-
-
-/*
-.mycalendar-desktop .mycalendar table thead tr td div.prev a,
-.mycalendar-desktop .mycalendar table thead tr td.next a{
-	text-decoration: none;
-	color: black;
-	opacity: 0.6;
-	font-size: 22px;
-	line-height: 22px;
-	-webkit-transition: all .2s; 
-    transition: all .1s;
-}
-.mycalendar-desktop .mycalendar table thead tr td.next{
-	text-align: right;
-}
-.mycalendar-desktop .mycalendar table thead tr td.prev a:hover,
-.mycalendar-desktop .mycalendar table thead tr td.next a:hover{
-	opacity: 1;
-}
-.mycalendar-desktop .mycalendar table thead tr td.today{
-	text-align: center;
-}
-.mycalendar-desktop .mycalendar.myweekcalendar table tbody tr td{
-	font-size: 10px!important;
-	line-height: 10px!important;
-}
-*/
-
-
-
-
-
-/*
-.mycalendar-mobile .mycalendar.mymonthcalendar table tbody tr td{
-	font-size: 10px!important;
-	line-height: 10px!important;
-}*/
-
-
-
-
-/*		EVENTS ON DAY
-***************************************************************/
-#events-on-day{
-	padding-bottom: 20px;
-}
-#events-on-day table{
-	margin: 0px;
-	width: 100%;
-}
-#events-on-day table tr td:nth-child(1){
-	width: 100px;
-	text-align: right;
-	padding-right: 10px;
-}
-#events-on-day table tr td:nth-child(3){
-	padding-left: 10px;
-}
-#events-on-day table tr td{
-	vertical-align: top;
-	padding: 5px 0px;
-}
-#events-on-day table tr td,
-#events-on-day table tr,
-#events-on-day table{
-	border: none!important;
-}
-#events-on-day table tr{
-	border-bottom: 1px solid #ccc!important;
-}
-#events-on-day table tr td span{
-	color: #999;
-}
-#events-on-day table tr td:nth-child(1) span{
-	font-size: 0.8em;
-}
-#events-on-day table tr td.color-line{
-	width: 5px;
-	padding: 5px 0px;
-	position: relative;
-}
-#events-on-day table tr td.color-line div:nth-child(1){
-	width: 100%;
-	background: white;
-	height: 3px!important;
-	position: absolute;
-	top: 0px;
-	left: 0px;
-}
-#events-on-day table tr td.color-line div:nth-child(2){
-	width: 100%;
-	background: white;
-	height: 3px!important;
-	position: absolute;
-	bottom: 0px;
-	left: 0px;
-}
-
-#events-on-day table:nth-child(1) tr td.color-line{
-	background: #11abf5;
-}
-#events-on-day table:nth-child(2) tr td.color-line{
-	background: #11f557;
-}
-#events-on-day table:nth-child(3) tr td.color-line{
-	background: #f57711;
-}
-#events-on-day table:nth-child(4) tr td.color-line{
-	background: #f5e811;
-}
-#events-on-day table:nth-child(5) tr td.color-line{
-	background: #e811f5;
-}
-#events-on-day table:nth-child(6) tr td.color-line{
-	background: #1116f5;
-}
-#events-on-day table:nth-child(7) tr td.color-line{
-	background: #11f5cd;
-}
-#events-on-day table:nth-child(8) tr td.color-line{
-	background: #f5b211;
-}
-#events-on-day table:nth-child(9) tr td.color-line{
-	background: #a7f511;
-}
-#events-on-day table:nth-child(10) tr td.color-line{
-	background: #bd11f5;
-}
-#events-on-day table:nth-child(11) tr td.color-line{
-	background: #c2f511;
-}
-#events-on-day table:nth-child(12) tr td.color-line{
-	background: #11f587;
-}
-#events-on-day table:nth-child(13) tr td.color-line{
-	background: #cdf511;
-}
-#events-on-day table:nth-child(14) tr td.color-line{
-	background: #11a2f5;
-}
-#events-on-day table:nth-child(15) tr td.color-line{
-	background: #f5a211;
-}
-#events-on-day table:nth-child(16) tr td.color-line{
-	background: #f5115c;
-}
-#events-on-day table:nth-child(17) tr td.color-line{
-	background: #11a2f5;
-}
-#events-on-day table:nth-child(18) tr td.color-line{
-	background: #cdf511;
-}
-#events-on-day table:nth-child(19) tr td.color-line{
-	background: #11f587;
-}
-#events-on-day table:nth-child(20) tr td.color-line{
-	background: #a7f511;
-}
-
-
-
-@media(min-width: 900px){
-	#events-on-day{
-		display: none;
-	}
-}
-
-
-
-
-
-
-#calendar-desktop,
-#calendar-mobile{
-	position: absolute;
-	top: -30000px;
-	z-index: -100;
+.mycalendar table,
+.mycalendar table thead,
+.mycalendar table tbody,
+.mycalendar table tfoot,
+.mycalendar table thead tr,
+.mycalendar table thead tr td,
+.mycalendar table tbody tr,
+.mycalendar table tbody tr td,
+.mycalendar table tfoot tr,
+.mycalendar table tfoot tr td{
+	background: none;
+	border: none;
+	padding: 2px;
+	margin: 0px;
+}
+
+.mycalendar{
+	display: none;
+}
+
+.mycalendar a{
+	text-decoration: none!important;
+	-webkit-transition: all 0s; 
+    transition: all 0s;
+}
+
+.mycalendar table{
+	width: 100%;
+}
+
+#full-text{
+	background-color: #f1f1f1;
+	display: inline-block;
+	white-space: nowrap;
+	display: none; 
+	position: absolute;
+	height: 25px;
+	line-height: 25px;
+}
+
+
+
+
+.switch-halls-mycalendar .switch-btn{
+	background: #ccc;
+	color: black;
+	padding: 5px 10px;
+	margin-right: 5px;
+	margin-bottom: 5px;
+	cursor: pointer;
+	display: inline-block;
+}
+.switch-halls-mycalendar .switch-btn.active{
+	background: #000;
+	color: white;
+}
+
+
+
+.switch-type-mycalendars .switch-btn{
+	background: #ccc;
+	color: black;
+	padding: 5px 10px;
+	margin-right: 5px;
+	cursor: pointer;
+}
+.switch-type-mycalendars .switch-btn.active{
+	background: #000;
+	color: white;
+}
+
+
+.filter-by-traine,
+.filter-by-couch{
+	display: inline-block;
+}
+.filters a{
+	display: block;
+	width: 200px;
+	padding: 5px 0px;
+	text-align: center;
+	text-decoration: none;
+	background-color: #f1f1f1;
+	color: black;
+}
+
+
+
+
+/* DESKTOP CALENDAR
+********************************************************************/
+.mycalendar-desktop .mycalendar>table>thead div.calendar-title{
+	height: 30px;
+	line-height: 30px;
+	position: relative;
+}
+.mycalendar-desktop .mycalendar>table>thead div.calendar-title a{
+	display: block;
+	height: 100%;
+	width: 20px;
+	position: absolute;
+	font-size: 22px;
+	color: black;
+	opacity: 0.6;
+	-webkit-transition: all .1s; 
+    transition: all .1s;
+    box-shadow: none;
+    border: none;
+    text-decoration: none;
+}
+.mycalendar-desktop .mycalendar>table>thead div.calendar-title a:hover{
+	opacity: 1;
+}
+.mycalendar-desktop .mycalendar>table>thead div.calendar-title a.prev{
+	top: 0px;
+	left: 0px;
+}
+.mycalendar-desktop .mycalendar>table>thead div.calendar-title a.next{
+	top: 0px;
+	right: 0px;
+	text-align: right;
+}
+.mycalendar-desktop .mycalendar>table>thead div.calendar-title .today{
+	text-align: center;
+	text-transform: capitalize; 
+	font-size: 22px;
+}
+
+.mycalendar-desktop .mycalendar>table>thead>tr:last-child>td{
+	border-bottom: 1px solid #666;
+	text-align: center;
+}
+.mycalendar-desktop .mycalendar>table>thead>tr:last-child>td .tinyName{
+	display: none;
+}
+
+
+.mycalendar-desktop .mycalendar>table>tbody>tr>td{
+	vertical-align: top;
+	border-bottom: 1px solid #ccc;
+	width: 12.84999%; 
+	font-size: 12px; 
+	padding: 4px;
+	padding-bottom: 10px;
+}
+
+/*.mycalendar-desktop .mycalendar>table>tbody>tr>td .more-items{
+	font-size: 16px;
+	color: black;
+}*/
+.mycalendar-desktop .myweekcalendar.mycalendar>table>tbody>tr>td:first-child{
+	width: 10%; 
+	text-align: center;
+	font-size: 14px;
+	font-weight: bold;
+}
+.mycalendar-desktop .mymonthcalendar.mycalendar>table>tbody>tr>td{
+	width: 14.2799%;
+	/*height: 140px;*/ 
+}
+.mycalendar-desktop .myweekcalendar.mycalendar>table>tbody>tr>td{
+	/*height: 120px; */
+}
+.mycalendar-desktop .mycalendar>table>tbody>tr>td:nth-child(even){
+	background-color: #f1f1f1;  
+}
+
+	/* ITEM EVENT
+	*****************************************************************************************/
+	.mycalendar-desktop .mycalendar>table>tbody>tr>td .item-event{
+		width: 100%;
+		margin-top: 4px;
+	}
+	.mycalendar-desktop .mycalendar>table>tbody>tr>td .item-event:first-child{
+		margin-top: 0px;
+	}
+	.mycalendar-desktop .mycalendar>table>tbody>tr>td .item-event td{
+		vertical-align: top;
+	}
+	.mycalendar-desktop .mycalendar>table>tbody>tr>td .item-event td:first-child{
+		width: 40px;
+		max-width: 40px;
+	}
+	.mycalendar-desktop .mycalendar>table>tbody>tr>td .item-event .item-event-title{
+		overflow: hidden;
+		position: relative;
+		display: inline-block;
+		height: 15px;
+		width: 100%;
+	}
+	.mycalendar-desktop .mycalendar>table>tbody>tr>td .item-event .item-event-seats,
+	.mycalendar-desktop .mycalendar>table>tbody>tr>td .item-event .item-event-duration{
+		font-size: 9px;
+	}
+	.mycalendar-desktop .mycalendar>table>tbody>tr>td .item-event a{
+		display: block;
+		position: absolute;
+		width: 100%;
+		height: 100%;
+		top: 0px;
+		left: 0px;
+		z-index: 3;
+		text-decoration: none!important;
+		box-shadow: none;
+	}
+	.mycalendar-desktop .mycalendar>table>tbody>tr>td .item-event a:hover{
+		/*border-bottom: 1px solid #999;*/
+	}
+	.mycalendar-desktop .mycalendar>table>tbody>tr>td .item-event .item-event-title .textt{
+		white-space: nowrap; 
+		position: absolute;
+		top: 0px;
+		left: 0px;
+	}
+	.mycalendar-desktop .mycalendar>table>tbody>tr>td .item-event .item-event-title:hover .textt{
+		color: black!important;
+	}
+	.mycalendar-desktop .mycalendar>table>tbody>tr>td .item-event .item-event-title .three-dot{
+		width: 15px;
+		height: 100%;
+		position: absolute;
+		top: 0px;
+		right: 0px; 
+		z-index: 2; 
+		background-color: white;
+		display: none;
+	}
+	.mycalendar-desktop .mycalendar>table>tbody>tr>td:nth-child(even) .item-event .item-event-title .three-dot{
+		background-color: #f1f1f1;
+	}
+	.mycalendar-desktop .mycalendar>table>tbody>tr>td.today{
+		background-color: yellow;
+	}
+	.mycalendar-desktop .mycalendar>table>tbody>tr>td.today .item-event .item-event-title .three-dot{
+		background-color: yellow;
+	}
+
+
+
+
+
+
+
+.mycalendar-desktop .switch-halls-mycalendar{
+	display: inline-block;
+	float: left;
+	padding: 10px 0px;
+}
+.mycalendar-desktop .switch-type-mycalendars{
+	display: inline-block;
+	float: right;
+	padding: 10px 0px;
+}
+
+
+
+
+
+
+
+
+
+
+/* MOBILE CALENDAR
+********************************************************************/
+.mycalendar-mobile .mycalendar>table>thead div.calendar-title{
+	height: 30px;
+	line-height: 30px;
+	position: relative;
+}
+.mycalendar-mobile .mycalendar>table>thead div.calendar-title a{
+	display: block;
+	height: 100%;
+	width: 20px;
+	position: absolute;
+	font-size: 22px;
+	color: black;
+	opacity: 0.6;
+	-webkit-transition: all .1s; 
+    transition: all .1s;
+}
+.mycalendar-mobile .mycalendar>table>thead div.calendar-title a:hover{
+	opacity: 1;
+}
+.mycalendar-mobile .mycalendar>table>thead div.calendar-title a.prev{
+	top: 0px;
+	left: 0px;
+}
+.mycalendar-mobile .mycalendar>table>thead div.calendar-title a.next{
+	top: 0px;
+	right: 0px;
+	text-align: right;
+}
+.mycalendar-mobile .mycalendar>table>thead div.calendar-title .today{
+	text-align: center;
+	text-transform: capitalize; 
+	font-size: 22px;
+}
+
+.mycalendar-mobile .mycalendar>table>thead>tr:last-child>td{
+	border-bottom: 1px solid #666;
+	text-align: center;
+}
+
+.mycalendar-mobile .mycalendar>table>tbody>tr>td{
+	border-bottom: 1px solid #666;
+	text-align: center;
+	padding: 8px 0px;
+}
+
+.mycalendar-mobile .mycalendar>table>tbody>tr>td .day-number{
+	color: black;
+	cursor: default;
+	pointer-events: none;
+	box-shadow: none;
+}
+.mycalendar-mobile .mycalendar.dot>table>tbody>tr>td .day-number{
+	width: 36px;
+	height: 36px;
+	border-radius: 18px;
+	background-color: #ccc;
+	color: black;
+	text-align: center;
+	line-height: 36px;
+	display: block;
+	text-decoration: none;
+	margin: auto;
+	cursor: default;
+	pointer-events: none;
+	box-shadow: none;
+}
+.mycalendar-mobile .mycalendar>table>tbody>tr>td.active .day-number{
+	cursor: pointer;
+	pointer-events: auto;
+	color: blue;
+}
+.mycalendar-mobile .mycalendar.dot>table>tbody>tr>td.active .day-number{
+	cursor: pointer;
+	pointer-events: auto;
+}
+
+.mycalendar-mobile .mycalendar>table>tbody>tr>td.today.active .day-number,
+.mycalendar-mobile .mycalendar>table>tbody>tr>td.today .day-number{
+	color: green;
+}
+.mycalendar-mobile .mycalendar.dot>table>tbody>tr>td.today.active .day-number,
+.mycalendar-mobile .mycalendar.dot>table>tbody>tr>td.today .day-number{
+	color: white;
+	background-color: green;
+}
+
+.mycalendar-mobile .mycalendar>table>tbody>tr>td.choosen.active .day-number{
+	color: pink;
+}
+.mycalendar-mobile .mycalendar.dot>table>tbody>tr>td.choosen.active .day-number{
+	color: white;
+	background-color: pink;
+}
+
+.mycalendar-mobile .mycalendar>table>tbody>tr>td .for-circle{
+	padding-top: 5px;
+	height: 17px;
+	display: none;
+}
+.mycalendar-mobile .mycalendar.dot>table>tbody>tr>td .for-circle{
+	display: block;
+}
+.mycalendar-mobile .mycalendar>table>tbody>tr>td .for-circle .circle{
+	width: 12px;
+	height: 12px;
+	border-radius: 6px;
+	background-color: #ccc; 
+	margin: auto;
+	display: none;
+}
+.mycalendar-mobile .mycalendar>table>tbody>tr>td.active .for-circle .circle{
+	display: block;
+}
+
+
+
+
+
+.mycalendar-mobile .mycalendar.myweekcalendar>table>tbody>tr>td{
+	border-bottom: 1px solid #666;
+	text-align: center;
+	padding-top: 0px;
+	padding-bottom: 0px;
+	height: 52px;
+	vertical-align: middle;
+}
+
+.mycalendar-mobile .mycalendar.myweekcalendar>table>tbody>tr>td .circle{
+	width: 36px;
+	height: 36px;
+	border-radius: 18px;
+	/*background-color: #ccc;*/
+	color: black;
+	text-align: center;
+	line-height: 36px;
+	display: block;
+	text-decoration: none;
+	margin: auto;
+	cursor: default;
+	pointer-events: none;
+	display: none;
+}
+.mycalendar-mobile .mycalendar.myweekcalendar>table>tbody>tr>td.active .circle{
+	cursor: pointer;
+	pointer-events: auto;
+	display: block;
+}
+
+.mycalendar-mobile .mycalendar.myweekcalendar>table>tbody>tr>td.today.active .circle{
+	color: white;
+	background-color: green;
+}
+
+.mycalendar-mobile .mycalendar.myweekcalendar>table>tbody>tr>td.choosen.active .circle{
+	background-color: pink;
+}
+
+
+
+
+
+
+
+.mycalendar-mobile .switch-halls-mycalendar{
+	padding-bottom: 15px;
+}
+.mycalendar-mobile .switch-type-mycalendars{
+	padding-bottom: 15px;
+}
+
+
+
+
+
+/*
+@media(max-width: 900px){
+	.mycalendar-mobile{
+		display: block;
+	}
+	.mycalendar-desktop{
+		display: none;
+	}
+}
+@media(min-width: 900px){
+	.mycalendar-mobile{
+		display: none;
+	}
+	.mycalendar-desktop{
+		display: block;
+	}
+}*/
+
+
+
+/*
+.mycalendar-desktop .mycalendar table thead tr td div.prev a,
+.mycalendar-desktop .mycalendar table thead tr td.next a{
+	text-decoration: none;
+	color: black;
+	opacity: 0.6;
+	font-size: 22px;
+	line-height: 22px;
+	-webkit-transition: all .2s; 
+    transition: all .1s;
+}
+.mycalendar-desktop .mycalendar table thead tr td.next{
+	text-align: right;
+}
+.mycalendar-desktop .mycalendar table thead tr td.prev a:hover,
+.mycalendar-desktop .mycalendar table thead tr td.next a:hover{
+	opacity: 1;
+}
+.mycalendar-desktop .mycalendar table thead tr td.today{
+	text-align: center;
+}
+.mycalendar-desktop .mycalendar.myweekcalendar table tbody tr td{
+	font-size: 10px!important;
+	line-height: 10px!important;
+}
+*/
+
+
+
+
+
+/*
+.mycalendar-mobile .mycalendar.mymonthcalendar table tbody tr td{
+	font-size: 10px!important;
+	line-height: 10px!important;
+}*/
+
+
+
+
+/*		EVENTS ON DAY
+***************************************************************/
+#events-on-day{
+	padding-bottom: 20px;
+}
+#events-on-day table{
+	margin: 0px;
+	width: 100%;
+}
+#events-on-day table tr td:nth-child(1){
+	width: 100px;
+	text-align: right;
+	padding-right: 10px;
+}
+#events-on-day table tr td:nth-child(3){
+	padding-left: 10px;
+}
+#events-on-day table tr td{
+	vertical-align: top;
+	padding: 5px 0px;
+}
+#events-on-day table tr td,
+#events-on-day table tr,
+#events-on-day table{
+	border: none!important;
+}
+#events-on-day table tr{
+	border-bottom: 1px solid #ccc!important;
+}
+#events-on-day table tr td span{
+	color: #999;
+}
+#events-on-day table tr td:nth-child(1) span{
+	font-size: 0.8em;
+}
+#events-on-day table tr td.color-line{
+	width: 5px;
+	padding: 5px 0px;
+	position: relative;
+}
+#events-on-day table tr td.color-line div:nth-child(1){
+	width: 100%;
+	background: white;
+	height: 3px!important;
+	position: absolute;
+	top: 0px;
+	left: 0px;
+}
+#events-on-day table tr td.color-line div:nth-child(2){
+	width: 100%;
+	background: white;
+	height: 3px!important;
+	position: absolute;
+	bottom: 0px;
+	left: 0px;
+}
+
+#events-on-day table:nth-child(1) tr td.color-line{
+	background: #11abf5;
+}
+#events-on-day table:nth-child(2) tr td.color-line{
+	background: #11f557;
+}
+#events-on-day table:nth-child(3) tr td.color-line{
+	background: #f57711;
+}
+#events-on-day table:nth-child(4) tr td.color-line{
+	background: #f5e811;
+}
+#events-on-day table:nth-child(5) tr td.color-line{
+	background: #e811f5;
+}
+#events-on-day table:nth-child(6) tr td.color-line{
+	background: #1116f5;
+}
+#events-on-day table:nth-child(7) tr td.color-line{
+	background: #11f5cd;
+}
+#events-on-day table:nth-child(8) tr td.color-line{
+	background: #f5b211;
+}
+#events-on-day table:nth-child(9) tr td.color-line{
+	background: #a7f511;
+}
+#events-on-day table:nth-child(10) tr td.color-line{
+	background: #bd11f5;
+}
+#events-on-day table:nth-child(11) tr td.color-line{
+	background: #c2f511;
+}
+#events-on-day table:nth-child(12) tr td.color-line{
+	background: #11f587;
+}
+#events-on-day table:nth-child(13) tr td.color-line{
+	background: #cdf511;
+}
+#events-on-day table:nth-child(14) tr td.color-line{
+	background: #11a2f5;
+}
+#events-on-day table:nth-child(15) tr td.color-line{
+	background: #f5a211;
+}
+#events-on-day table:nth-child(16) tr td.color-line{
+	background: #f5115c;
+}
+#events-on-day table:nth-child(17) tr td.color-line{
+	background: #11a2f5;
+}
+#events-on-day table:nth-child(18) tr td.color-line{
+	background: #cdf511;
+}
+#events-on-day table:nth-child(19) tr td.color-line{
+	background: #11f587;
+}
+#events-on-day table:nth-child(20) tr td.color-line{
+	background: #a7f511;
+}
+
+
+
+@media(min-width: 900px){
+	#events-on-day{
+		display: none;
+	}
+}
+
+
+
+
+
+
+#calendar-desktop,
+#calendar-mobile{
+	position: absolute;
+	top: -30000px;
+	z-index: -100;
 }
