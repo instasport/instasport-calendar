@@ -8,6 +8,12 @@
 
 На странице в том месте, где вы хотите установить календарь добавьте строчку
 
-[instasport-calendar club='club']
+[instasport-calendar club='club' key='Client' code='XXXX' next='https://']
 
-Где club - это название клуба в системе Instasport.
+Где 
+
+* club - это название клуба в системе Instasport.
+
+* key/code - ключи доступа
+
+* next - адрес, куда перенаправлять клиента, после регистрации по email 
