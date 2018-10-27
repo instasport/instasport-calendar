@@ -2245,63 +2245,8 @@ jQuery(document).ready(function($) {
 			//_this.endDate = $(_this.divIdCal).fullCalendar('getView').end.format("YYYY-MM-DD");
 
 			var bDate = _this.beginDate.split("-")[1]+"/"+_this.beginDate.split("-")[2]+"/"+_this.beginDate.split("-")[0];
-			var eDate = _this.endDate.split("-")[1]+"/"+_this.endDate.split("-")[2]+"/"+_this.endDate.split("-")[0];
+			var eDate = _this.endDate.split("-")[1]+"/"+_this.endDate.split("-")[2]+"/"+_this.endDate.split("-")[0];									Date.prototype.addDays = function(days) {		       var dat = new Date(this.valueOf())		       dat.setDate(dat.getDate() + days);		       return dat;		   }					var startDate = new Date(bDate);			var stopDate = new Date(eDate);			var dateArray = new Array();			var currentDate = startDate;			while (currentDate <= stopDate) {				dateArray.push(currentDate)				currentDate = currentDate.addDays(1);			}			//var dates = { start: start, end: end };			for (i = 0; i < dateArray.length; i ++ ) {				var theDate1 = dateArray[i].getDate();				if(theDate1 < 10){					var theDate2 = '0' + String(theDate1);				}else{					var theDate2 = theDate1;				}								var theMonth = parseInt(dateArray[i].getMonth()) + 1;				if(theMonth < 10){					theMonth = '0' + String(theMonth);				}								var theYear = dateArray[i].getFullYear();				var theD = theYear+"-"+theMonth+"-"+theDate2;//					console.log(theDate+" - "+theMonth+" - "+theYear);				_this.calendarDaysNumber[i] = [					{'number': theDate1,					'date': theD}				];			}//				console.log(dateArray);			//return false;
 
-			var dateObjectEnd = new Date(eDate);
-			var endDayTimestamp =  dateObjectEnd.getTime();
-			//alert(dateObjectEnd.getDate());
-
-			var dateObject = new Date(bDate);
-			//alert(new Date(dateObject.getTime() + (10 * 24 * 60 * 60 * 1000))); 
-			
-			//_this.calendarDaysNumber.push(dateObject.getDate());
-			
-			var numberForArr = dateObject.getDate();
-			if(numberForArr.length < 2){numberForArr = "0"+numberForArr;}
-			
-			var FullYearForArr = dateObject.getFullYear();
-			var getMonthForArr = (dateObject.getMonth() + 1);
-			if(getMonthForArr.toString().length < 2){getMonthForArr = "0"+getMonthForArr;}
-			var getDateForArr = dateObject.getDate();
-			if(getDateForArr.toString().length < 2){getDateForArr = "0"+getDateForArr;}
-
-			var dateForArr = FullYearForArr+"-"+getMonthForArr+"-"+getDateForArr;
-			_this.calendarDaysNumber[0] = [{'number': numberForArr,
-											'date': dateForArr}];
-			
-			var currentDayTimestamp = dateObject.getTime();
-			
-			for(i=1; i<100; i++){
-			    currentDayTimestamp = currentDayTimestamp + (1 * 24 * 60 * 60 * 1000);
-			    if(currentDayTimestamp < endDayTimestamp){
-			    	var dataNumber = new Date(currentDayTimestamp);
-			    	//console.log(dataNumber.getDate());
-
-			    	var numberForArr = dataNumber.getDate();
-					if(numberForArr.toString().length < 2){numberForArr = "0"+numberForArr;}
-
-					var FullYearForArr = dataNumber.getFullYear();
-					var getMonthForArr = (dataNumber.getMonth() + 1);
-					if(getMonthForArr.toString().length < 2){getMonthForArr = "0"+getMonthForArr;}
-					///console.log("18".length);
-					var getDateForArr = dataNumber.getDate();
-					if(getDateForArr.toString().length < 2){getDateForArr = "0"+getDateForArr;}
-
-					var dateForArr = FullYearForArr+"-"+getMonthForArr+"-"+getDateForArr;
-			    	_this.calendarDaysNumber[i] = [{'number': numberForArr,
-													'date': dateForArr}];
-			    	//_this.calendarDaysNumber.push(dataNumber.getDate());
-			    }else{
-			    	break;
-			    }
-			    
-			}
-			//console.log(_this.calendarDaysNumber);
-			//var bDa
-			//var today = new Date();
-			//alert(today.getTime());
-			//_this.beginDate
-			//var tomorrow = new Date(today.getTime() + (24 * 60 * 60 * 1000));
 		}
 
 
