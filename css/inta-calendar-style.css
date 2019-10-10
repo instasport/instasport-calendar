@@ -1,0 +1,1693 @@
+#intaCallendar{
+
+}
+
+#intaCallendar div,
+#intaCallendar span,
+#intaCallendar applet,
+#intaCallendar object,
+#intaCallendar iframe,
+#intaCallendar h1,
+#intaCallendar h2,
+#intaCallendar h3,
+#intaCallendar h4,
+#intaCallendar h5,
+#intaCallendar h6,
+#intaCallendar p,
+#intaCallendar blockquote,
+#intaCallendar pre,
+#intaCallendar a,
+#intaCallendar abbr,
+#intaCallendar acronym,
+#intaCallendar address,
+#intaCallendar big,
+#intaCallendar cite,
+#intaCallendar code,
+#intaCallendar del,
+#intaCallendar dfn,
+#intaCallendar em,
+#intaCallendar img,
+#intaCallendar ins,
+#intaCallendar kbd,
+#intaCallendar q,
+#intaCallendar s,
+#intaCallendar samp,
+#intaCallendar small,
+#intaCallendar strike,
+#intaCallendar strong,
+#intaCallendar sub,
+#intaCallendar sup,
+#intaCallendar tt,
+#intaCallendar var,
+#intaCallendar b,
+#intaCallendar u,
+#intaCallendar i,
+#intaCallendar center,
+#intaCallendar dl,
+#intaCallendar dt,
+#intaCallendar dd,
+#intaCallendar ol,
+#intaCallendar ul,
+#intaCallendar li,
+#intaCallendar fieldset,
+#intaCallendar form,
+#intaCallendar label,
+#intaCallendar legend,
+#intaCallendar table,
+#intaCallendar caption,
+#intaCallendar tbody,
+#intaCallendar tfoot,
+#intaCallendar thead,
+#intaCallendar tr,
+#intaCallendar th,
+#intaCallendar td,
+#intaCallendar article,
+#intaCallendar aside,
+#intaCallendar canvas,
+#intaCallendar details,
+#intaCallendar embed, 
+#intaCallendar figure,
+#intaCallendar figcaption,
+#intaCallendar footer,
+#intaCallendar header,
+#intaCallendar hgroup, 
+#intaCallendar menu,
+#intaCallendar nav,
+#intaCallendar output,
+#intaCallendar ruby,
+#intaCallendar section,
+#intaCallendar summary,
+#intaCallendar time,
+#intaCallendar mark,
+#intaCallendar audio,
+#intaCallendar video {
+	margin: 0;
+	padding: 0;
+	border: 0;
+	font-size: 100%;
+	font: inherit;
+	vertical-align: baseline;
+	transition: none;
+}
+/* HTML5 display-role reset for older browsers */
+#intaCallendar article,
+#intaCallendar aside,
+#intaCallendar details,
+#intaCallendar figcaption,
+#intaCallendar figure, 
+#intaCallendar footer,
+#intaCallendar header,
+#intaCallendar hgroup,
+#intaCallendar menu,
+#intaCallendar nav,
+#intaCallendar section {
+	display: block;
+}
+#intaCallendar ol,
+#intaCallendar ul {
+	list-style: none;
+}
+#intaCallendar blockquote,
+#intaCallendar q {
+	quotes: none;
+}
+#intaCallendar blockquote:before,
+#intaCallendar blockquote:after,
+#intaCallendar q:before,
+#intaCallendar q:after {
+	content: '';
+	content: none;
+}
+#intaCallendar table {
+	border-collapse: collapse;
+	border-spacing: 0;
+}
+
+
+@keyframes spin {
+  0% { transform: rotate(0deg); }
+  100% { transform: rotate(360deg); } 
+}
+
+
+#intaCallendar .inta_table{
+	display: table;
+}
+#intaCallendar .inta_table-tr{
+	display: table-row;
+}
+#intaCallendar .inta_table-td{
+	display: table-cell;
+}
+
+
+
+
+
+/*	MAIN CALENDAR PRELOADER
+**********************************************************************************/
+#intaCallendar .main_preloader{
+	
+}
+#intaCallendar .main_preloader .loader {
+  border: 1px solid #f3f3f3; /* Light grey */
+  border-top: 1px solid #3498db; /* Blue */
+  border-radius: 50%;
+  width: 20px;
+  height: 20px;
+  animation: spin 0.5s linear infinite;
+  margin: auto;
+}
+
+
+
+/*	DESKTOP MONTH CALENDAR
+**********************************************************************************/
+#intaCallendar .dm-calendar{
+	max-width: 900px;
+	margin: auto;
+}
+#intaCallendar .dm-calendar .dm-filters{
+	position: relative;
+}
+#intaCallendar .dm-calendar .dm-halls{
+	padding-right: 150px;
+}
+#intaCallendar .dm-calendar .dm-view{
+	position: absolute;
+	top: 0px;
+	right: 0px;
+}
+#intaCallendar .dm-calendar .dm-filters ul{
+	display: block;
+	width: 100%;
+}
+#intaCallendar .dm-calendar .dm-filters ul li{
+	list-style: none;
+	display: block;
+	float: left;
+}
+#intaCallendar .dm-calendar .dm-filters ul li a.dm-filter-item{
+	padding: 2px 12px;
+	display: block;
+	border-bottom: 2px solid transparent;
+	font-size: 14px;
+	text-transform: uppercase;
+	color: #707070;
+	text-align: center;
+}
+#intaCallendar .dm-calendar .dm-filters ul li a.dm-filter-item div{
+	text-align: center;
+	font-size: 11px;
+	line-height: 16px;
+	margin-top: -6px;
+	border-top: 2px solid transparent;
+}
+#intaCallendar .dm-calendar .dm-filters ul li.active a.dm-filter-item,
+#intaCallendar .dm-calendar .dm-filters ul li.choosed a.dm-filter-item{
+	font-weight: bold;
+	color: #262626;
+	border-color: #6c757d;
+}
+#intaCallendar .dm-calendar .dm-filters ul li a.dm-filter-item:hover{
+	border-color: #6c757d;
+}
+#intaCallendar .dm-calendar .dm-filters .dm-row_2 ul li a.dm-filter-item{
+	border: none;
+}
+#intaCallendar .dm-calendar .dm-filters .dm-row_2 ul li a.dm-filter-item:hover{
+	border: none;
+}
+#intaCallendar .dm-calendar .dm-filters ul li a.dm-filter-item:hover div{
+	border-color: #6c757d;
+}
+#intaCallendar .dm-calendar .dm-filters ul li a.dm-filter-item.active{
+	
+}
+#intaCallendar .dm-calendar .dm-filters ul li.active a.dm-filter-item div{
+	border-color: #6c757d;
+}
+#intaCallendar .dm-calendar .dm-filters ul li.choosed a.dm-filter-item div{ 
+	border-color: #6c757d;
+	color: black; 
+}
+
+#intaCallendar .dm-row_2{
+	clear: both;
+	padding-top: 10px;
+}
+
+#intaCallendar .dm-controls{
+	height: 40px;
+	position: relative;
+	clear: both;
+	width: 100%;
+}
+#intaCallendar .dm-controls .dm-control{
+	width: 26px;
+	height: 30px;
+	position: absolute;
+	top: 5px;
+	background-image: url(../img/chevron-left.png);
+	background-position: center;
+	background-size: contain;
+	opacity: 0.5;
+	z-index: 10;
+}
+#intaCallendar .dm-controls .dm-control:hover{
+	opacity: 0.8;
+}
+#intaCallendar .dm-controls .dm-control a{
+	display: block;
+	width: 100%;
+	height: 100%;
+}
+#intaCallendar .dm-controls .dm-control_left{
+	left: 0px;
+}
+#intaCallendar .dm-controls .dm-control_right{
+	right: 0px;
+	-webkit-transform: rotate(180deg);
+	transform: rotate(180deg);
+}
+
+#intaCallendar .dm-controls .dm-title_month{
+	height: 30px;
+	width: 100%;
+	position: absolute;
+	top: 5px;
+	left: 0px;
+	z-index: 9;
+	font-size: 16px;
+}
+#intaCallendar .dm-controls .dm-title_month a{
+	display: block;
+	height: 30px;
+	width: 150px;
+	margin: auto;
+	text-align: center;
+	color: black;
+}
+
+
+#intaCallendar .dm-calendar .dm-for_events{
+	width: 100%;  
+}
+#intaCallendar .dm-calendar .dm-for_events table{
+	width: 100%;
+}
+#intaCallendar .dm-calendar .dm-for_events table td{
+	width: 14.2%;
+}
+/*#intaCallendar .dm-calendar .dm-for_events table tbody td:nth-child(even){
+	background-color: #f1f1f1;
+}*/
+#intaCallendar .dm-calendar .dm-for_events table thead td{
+	text-align: center;
+	border-bottom: 1px solid #666;
+	color: black;
+}
+#intaCallendar .dm-calendar .dm-for_events table tbody td{
+	border-bottom: 1px solid #ccc;
+}
+#intaCallendar .dm-calendar .dm-day{
+	padding: 5px;
+}
+#intaCallendar .dm-calendar .dm-day{
+	color: black; 
+	font-size: 12px;
+}
+#intaCallendar .dm-calendar .dm-for_day.dm-day_today{
+	background-color: #e69c0e!important;
+}
+#intaCallendar .dm-calendar .dm-day .dm-more{
+	display: none;
+}
+#intaCallendar .dm-calendar .dm-event{
+	font-size: 12px;
+	line-height: 12px;
+	margin-bottom: 3px;
+	padding: 5px;
+	color: black;
+}
+#intaCallendar .dm-calendar .dm-event:last-child{
+	margin-bottom: 0px;
+}
+#intaCallendar .dm-calendar .dm-table{
+	width: 100%;
+	display: table;
+}
+#intaCallendar .dm-calendar .dm-table_tr{
+	display: table-row;
+}
+#intaCallendar .dm-calendar .dm-table_td{ 
+	display: table-cell;
+}
+#intaCallendar .dm-calendar .dm-table_td:first-child{
+	width: 40px; 
+}
+#intaCallendar .dm-calendar .dm-begin_time{
+	
+}
+#intaCallendar .dm-calendar .dm-duration{
+	font-size: 10px;
+	padding-top: 5px;
+}
+#intaCallendar .dm-calendar .dm-seats,
+#intaCallendar .dm-calendar .dm-activity{
+	font-size: 10px;
+	padding-top: 5px;
+}
+#intaCallendar .dm-calendar .dm-table_td:last-child{
+	width: auto;
+}
+#intaCallendar .dm-calendar .dm-title{
+	cursor: pointer;
+	padding: 1px;
+	color: black;
+}
+#intaCallendar .dm-calendar .dm-title a{
+	color: black;
+	display: block;
+	width: 100%;
+}
+#intaCallendar .dm-calendar .dm-title:hover{
+	color: white;
+	background-color: black!important;
+}
+#intaCallendar .dm-calendar .dm-title:hover a{
+	color: white!important;
+}
+
+
+
+
+
+/*	DESKTOP MONTH CALENDAR
+**********************************************************************************/
+#intaCallendar .dw-calendar{
+	max-width: 900px;
+	margin: auto;
+}
+#intaCallendar .dw-calendar .dw-filters{
+	position: relative;
+}
+#intaCallendar .dw-calendar .dw-halls{
+	padding-right: 150px;
+}
+#intaCallendar .dw-calendar .dw-view{
+	position: absolute;
+	top: 0px;
+	right: 0px;
+}
+#intaCallendar .dw-calendar .dw-filters ul{
+	display: block;
+	width: 100%;
+}
+#intaCallendar .dw-calendar .dw-filters ul li{
+	list-style: none;
+	display: block;
+	float: left;
+}
+#intaCallendar .dw-calendar .dw-filters ul li a.dw-filter-item{
+	padding: 2px 12px;
+	display: block;
+	border-bottom: 2px solid transparent;
+	font-size: 14px;
+	text-transform: uppercase;
+	color: #707070;
+	text-align: center;
+}
+#intaCallendar .dw-calendar .dw-filters ul li a.dw-filter-item div{
+	text-align: center;
+	font-size: 11px;
+	line-height: 16px;
+	margin-top: -6px;
+	border-top: 2px solid transparent;
+}
+#intaCallendar .dw-calendar .dw-filters ul li.active a.dw-filter-item,
+#intaCallendar .dw-calendar .dw-filters ul li.choosed a.dw-filter-item{
+	font-weight: bold;
+	color: #262626;
+	border-color: #6c757d;
+}
+#intaCallendar .dw-calendar .dw-filters ul li a.dw-filter-item:hover{
+	border-color: #6c757d; 
+}
+#intaCallendar .dw-calendar .dw-filters .dw-row_2 ul li a.dw-filter-item{
+	border: none;
+}
+#intaCallendar .dw-calendar .dw-filters .dw-row_2 ul li a.dw-filter-item:hover{
+	border: none;
+}
+#intaCallendar .dw-calendar .dw-filters ul li a.dw-filter-item:hover div{
+	border-color: #6c757d;
+}
+#intaCallendar .dw-calendar .dw-filters ul li a.dw-filter-item.active{
+	
+}
+#intaCallendar .dw-calendar .dw-filters ul li.active a.dw-filter-item div{
+	border-color: #6c757d;
+}
+#intaCallendar .dw-calendar .dw-filters ul li.choosed a.dw-filter-item div{
+	border-color: #6c757d;
+	color: black;
+}
+
+#intaCallendar .dw-row_2{ 
+	clear: both;
+	padding-top: 10px;
+}
+
+#intaCallendar .dw-controls{
+	height: 40px;
+	position: relative;
+	clear: both;
+	width: 100%;
+}
+#intaCallendar .dw-controls .dw-control{
+	width: 26px;
+	height: 30px;
+	position: absolute;
+	top: 5px;
+	background-image: url(../img/chevron-left.png);
+	background-position: center;
+	background-size: contain;
+	opacity: 0.5;
+	z-index: 10;
+}
+#intaCallendar .dw-controls .dw-control:hover{
+	opacity: 0.8;
+}
+#intaCallendar .dw-controls .dw-control a{
+	display: block;
+	width: 100%;
+	height: 100%;
+}
+#intaCallendar .dw-controls .dw-control_left{
+	left: 0px;
+}
+#intaCallendar .dw-controls .dw-control_right{
+	right: 0px;
+	-webkit-transform: rotate(180deg);
+	transform: rotate(180deg);
+}
+
+#intaCallendar .dw-controls .dw-title_month{
+	height: 30px;
+	width: 100%;
+	position: absolute;
+	top: 5px;
+	left: 0px;
+	z-index: 9;
+	font-size: 16px;
+}
+#intaCallendar .dw-controls .dw-title_month a{
+	display: block;
+	height: 30px;
+	width: 100%;
+	max-width: 250px;
+	margin: auto;
+	text-align: center;
+	color: black;
+}
+
+
+#intaCallendar .dw-calendar .dw-for_events{
+	width: 100%;  
+}
+#intaCallendar .dw-calendar .dw-for_events table{
+	width: 100%;
+}
+#intaCallendar .dw-calendar .dw-for_events table td{
+	width: 12.5%;
+}
+/*
+#intaCallendar .dw-calendar .dw-for_events table tbody td:nth-child(even){
+	background-color: #f1f1f1;
+}*/
+#intaCallendar .dw-calendar .dw-for_events table thead td{
+	text-align: center;
+	border-bottom: 1px solid #666;
+	line-height: 20px;
+	color: black;
+}
+#intaCallendar .dw-calendar .dw-for_events table tbody td{
+	border-bottom: 1px solid #ccc;
+	font-size: 12px;
+}
+#intaCallendar .dw-calendar .dw-day{
+	padding: 5px;
+}
+#intaCallendar .dw-calendar .dw-day{
+	color: black; 
+	font-size: 12px;
+}
+#intaCallendar .dw-calendar .dw-for_day_hour{
+	text-align: center;
+	color: black;
+	font-size: 14px!important;
+}
+#intaCallendar .dw-calendar .dw-for_day.dw-day_today{
+	background-color: #e69c0e!important;
+}
+#intaCallendar .dw-calendar .dw-day .dw-more{
+	display: none;
+}
+#intaCallendar .dw-calendar .dw-event{
+	font-size: 12px;
+	line-height: 12px;
+	margin-bottom: 3px;
+	padding: 5px;
+	color: black;
+}
+#intaCallendar .dw-calendar .dw-event:last-child{
+	margin-bottom: 0px;
+}
+#intaCallendar .dw-calendar .dw-table{
+	width: 100%;
+	display: table;
+}
+#intaCallendar .dw-calendar .dw-table_tr{
+	display: table-row;
+}
+#intaCallendar .dw-calendar .dw-table_td{ 
+	display: table-cell;
+}
+#intaCallendar .dw-calendar .dw-table_td:first-child{
+	width: 40px; 
+}
+#intaCallendar .dw-calendar .dw-begin_time{
+	
+}
+#intaCallendar .dw-calendar .dw-duration{
+	font-size: 9px;
+	padding-top: 5px;
+}
+#intaCallendar .dw-calendar .dw-seats{
+	font-size: 10px;
+	padding-top: 5px;
+}
+#intaCallendar .dw-calendar .dw-table_td:last-child{
+	width: auto;
+}
+#intaCallendar .dw-calendar .dw-title{
+	cursor: pointer;
+	padding: 1px;
+	color: black;
+}
+#intaCallendar .dw-calendar .dw-title a{
+	color: black;
+	display: block;
+	width: 100%;
+}
+#intaCallendar .dw-calendar .dw-title:hover{
+	color: white;
+	background-color: black!important;
+}
+#intaCallendar .dw-calendar .dw-title:hover a{
+	color: white!important;
+}
+
+
+
+
+
+/*	dropdown
+********************/
+#intaCallendar .inta_dropdown{
+	position: relative;
+}
+#intaCallendar .inta_dropdown-title{
+
+}
+#intaCallendar .inta_dropdown-window{
+	position: absolute;
+	background: #f1f1f1;
+	border: 1px solid #ccc;
+	margin-left: 10px;
+	margin-top: -5px;
+	z-index: 9999;
+	padding: 3px 6px;
+	width: 200px;
+	-webkit-box-shadow: 0px 0px 3px 0px rgba(0,0,0,0.3);
+	-moz-box-shadow: 0px 0px 3px 0px rgba(0,0,0,0.3);
+	box-shadow: 0px 0px 3px 0px rgba(0,0,0,0.3);
+	display: none;
+}
+#intaCallendar .inta_dropdown-window:after,
+#intaCallendar .inta_dropdown-window:before {
+	bottom: 100%;
+	left: 20px;
+	border: solid transparent;
+	content: " ";
+	height: 0;
+	width: 0;
+	position: absolute;
+	pointer-events: none;
+}
+
+#intaCallendar .inta_dropdown-window:after {
+	border-color: rgba(241, 241, 241, 0);
+	border-bottom-color: #f1f1f1;
+	border-width: 8px;
+	margin-left: -8px;
+}
+#intaCallendar .inta_dropdown-window:before {
+	border-color: rgba(204, 204, 204, 0);
+	border-bottom-color: #ccc;
+	border-width: 9px;
+	margin-left: -9px;
+}
+#intaCallendar .inta_dropdown-content{
+	max-height: 150px;
+	overflow-y: auto;
+}
+
+
+
+/*	filter_1
+********************/
+#intaCallendar .inta_filter_1{
+
+}
+#intaCallendar .inta_filter_1-item{
+	border-bottom: 1px solid #ccc;
+	padding: 3px 3px;
+}
+#intaCallendar .inta_filter_1-item:last-child{
+	border: none!important;
+}
+#intaCallendar .inta_filter_1 .inta_table{
+	width: 100%;
+}
+#intaCallendar .inta_filter_1 .inta_table-td{
+	vertical-align: bottom;
+	padding: 0px;
+	margin: 0px;
+	line-height: 18px;
+}
+#intaCallendar .inta_filter_1 .inta_table-td:first-child{
+	width: 3px;
+	background-color: red;
+}
+#intaCallendar .inta_filter_1 .inta_table-td:last-child{
+	padding-left: 10px;
+}
+#intaCallendar .inta_filter_1 a{
+	color: black;
+}
+#intaCallendar .inta_filter_1 a:hover{
+	text-decoration: underline;
+}
+#intaCallendar .inta_filter_1 span{
+	color: #999;
+	font-size: 11px;
+	margin-left: 5px;
+}
+
+#intaCallendar .inta_modal .inta_filter_1-item{
+	padding: 7px 8px;
+	font-size: 14px;
+	line-height: 20px;
+	position: relative;
+}
+#intaCallendar .inta_modal .inta_filter_1-item>a{
+	position: absolute;
+	top: 0px;
+	left: 0px;
+	width: 100%;
+	height: 100%;
+	display: block;
+}
+
+
+
+/*	event description window
+********************/
+#deskDescPopUp .description_pop_up{ 
+	position: absolute;
+	width: 180px;
+	padding: 12px 10px 10px;
+	z-index: 99999;
+	background: #f7f7f7;
+	border: 1px solid #ccc;
+	border-radius: 8px;
+	display: none;
+}
+#deskDescPopUp .description_pop_up .for_description_pop_up{
+	display: none;
+}
+#deskDescPopUp .description_pop_up.loaded .for_description_pop_up{
+	display: block;
+}
+#deskDescPopUp .description_pop_up-top{
+	position: relative;
+	padding-right: 40px;
+}
+#deskDescPopUp .description_pop_up-title .description_title{
+	font-size: 14px;
+	max-height: 40px;
+	overflow: hidden;
+	line-height: 20px;
+	color: black;
+}
+#deskDescPopUp .description_pop_up-title .description_activity{
+	font-size: 11px;
+	line-height: 14px;
+}
+#deskDescPopUp .description_pop_up-beginning{
+	position: absolute;
+	top: 0px;
+	right: 0px;
+	font-size: 12px;
+	color: #e5171c;
+	line-height: 20px;
+}
+#deskDescPopUp .description_pop_up-text{
+	font-size: 12px;
+	padding: 10px 0px;
+	max-height: 194px;
+	overflow: hidden;
+}
+#deskDescPopUp .description_pop_up-bottom{
+	font-size: 12px;
+	padding-top: 5px;
+}
+#deskDescPopUp .description_pop_up .for_loader{
+	padding: 40px 0px;
+}
+#deskDescPopUp .description_pop_up.loaded .for_loader{
+	display: none;
+}
+#deskDescPopUp .description_pop_up-loader {
+  border: 1px solid #f3f3f3; /* Light grey */
+  border-top: 1px solid #3498db; /* Blue */
+  border-radius: 50%;
+  width: 20px;
+  height: 20px;
+  animation: spin 0.5s linear infinite;
+  margin: auto;
+}
+
+
+
+#deskDescPopUp .description_pop_up.right_arrow_box:after,
+#deskDescPopUp .description_pop_up.right_arrow_box:before {
+	left: 100%;
+	top: 25px;
+	border: solid transparent;
+	content: " ";
+	height: 0;
+	width: 0;
+	position: absolute;
+	pointer-events: none;
+}
+
+#deskDescPopUp .description_pop_up.right_arrow_box:after {
+	border-color: rgba(241, 241, 241, 0);
+	border-left-color: #f1f1f1;
+	border-width: 8px;
+	margin-top: -8px;
+}
+#deskDescPopUp .description_pop_up.right_arrow_box:before {
+	border-color: rgba(204, 204, 204, 0);
+	border-left-color: #ccc;
+	border-width: 9px;
+	margin-top: -9px;
+}
+
+#deskDescPopUp .description_pop_up.left_arrow_box:after,
+#deskDescPopUp .description_pop_up.left_arrow_box:before {
+	right: 100%;
+	top: 25px;
+	border: solid transparent;
+	content: " ";
+	height: 0;
+	width: 0;
+	position: absolute;
+	pointer-events: none;
+}
+
+#deskDescPopUp .description_pop_up.left_arrow_box:after {
+	border-color: rgba(241, 241, 241, 0);
+	border-right-color: #f1f1f1;
+	border-width: 8px;
+	margin-top: -8px;
+}
+#deskDescPopUp .description_pop_up.left_arrow_box:before {
+	border-color: rgba(204, 204, 204, 0);
+	border-right-color: #ccc;
+	border-width: 9px;
+	margin-top: -9px;
+}
+
+
+
+
+
+/*	modal desktop events
+*****************************/
+#intaCallendar .inta_modal{
+	display: none;
+}
+#intaCallendar .inta_modal .mde-wrapper{
+	position: fixed;
+	z-index: 9999;
+	top: 0px;
+	left: 0px;
+	width: 100%;
+	height: 100%;
+	background-color: rgba(0,0,0, 0.7);
+	padding-top: 100px;
+}
+#intaCallendar .inta_modal .mde-dialog{
+	max-width: 400px;
+	width: 100%;
+	margin: auto;
+	background-color: white; 
+}
+#intaCallendar .inta_modal .mde-header{
+	background-color: #6c757d;
+	padding: 5px;
+	position: relative;
+	color: white;
+}
+#intaCallendar .inta_modal .mde-header .mde-day{
+	padding-left: 10px;
+}
+#intaCallendar .inta_modal .mde-header .mde-close{
+	position: absolute;
+	top: 7px;
+	right: 10px;
+	display: block;
+	color: white;
+	font-size: 0px;
+	height: 20px;
+	width: 20px;
+}
+#intaCallendar .inta_modal .mde-header .mde-close div{
+	position: absolute;
+	left: 0px;
+	width: 100%;
+	height: 3px;
+	background-color: white; 
+	top: 50%;
+}
+#intaCallendar .inta_modal .mde-header .mde-close div:first-child{
+	transform: rotate(45deg);
+}
+#intaCallendar .inta_modal .mde-header .mde-close div:last-child{
+	transform: rotate(-45deg);
+}
+#intaCallendar .inta_modal .mde-body{
+	padding: 5px;
+	max-height: 200px;
+	overflow-y: auto;
+}
+
+#intaCallendar .inta_modal .mde-event{
+	border-bottom: 1px solid #ccc;
+	padding: 6px 0px 4px; 
+}
+#intaCallendar .inta_modal .mde-event:last-child{
+	border-bottom: none;
+}
+#intaCallendar .inta_modal .mde-event_table{
+	display: table;
+}
+#intaCallendar .inta_modal .mde-event_tr{
+	display: table-row;
+}
+#intaCallendar .inta_modal .mde-event_td{
+	display: table-cell;
+}
+#intaCallendar .inta_modal .mde-event_td:nth-child(1){
+	width: 100px;
+	text-align: right;
+	padding-right: 10px;
+}
+#intaCallendar .inta_modal .mde-event_td:nth-child(2){
+	width: 4px;
+	background-color: #6c757d;
+}
+#intaCallendar .inta_modal .mde-event_td:nth-child(3){
+	width: auto;
+	padding-left: 10px;
+}
+#intaCallendar .inta_modal .mde-event_begining,
+#intaCallendar .inta_modal .mde-event_title{
+	line-height: 16px;
+}
+#intaCallendar .inta_modal .mde-event_begining{
+	color: black;
+} 
+#intaCallendar .inta_modal .mde-event_duration,
+#intaCallendar .inta_modal .mde-event_seats,
+#intaCallendar .inta_modal .mde-event_activity{
+	font-size: 11px;
+	line-height: 14px;
+}
+#intaCallendar .inta_modal .mde-event_title{
+
+}
+#intaCallendar .inta_modal .mde-event_title a{
+	color: black;
+	display: block;
+	height: 100%;
+	width: 100%;
+}
+#intaCallendar .inta_modal .mde-event_seats{ 
+	
+}
+
+
+
+/*	calendar preloader desktop month
+*************************************************/
+#intaCallendar .preloader-desktop_month{
+	position: absolute;
+	background-color: rgba(0,0,0, 0.2);
+}
+#intaCallendar .preloader-desktop_month .loader{
+  border: 1px solid #f3f3f3; /* Light grey */
+  border-top: 1px solid #3498db; /* Blue */
+  border-radius: 50%;
+  width: 20px;
+  height: 20px;
+  animation: spin 0.5s linear infinite;
+  margin: auto;
+  margin-top: 40px!important;
+}
+
+
+
+
+
+
+
+/*	MOBILE WEEK CALENDAR
+**********************************************************************************/
+#intaCallendar .mw-calendar{
+
+}
+#intaCallendar .mw-calendar ul{
+	padding: 0px;
+	margin: 0px;
+}
+#intaCallendar .mw-calendar ul li{
+	list-style: none;
+}
+#intaCallendar .mw-calendar .mw-halls ul li,
+#intaCallendar .mw-calendar .mw-filters ul li{
+	display: inline-block;
+	float: left;
+	border-bottom: 2px solid transparent;
+}
+#intaCallendar .mw-calendar .mw-halls ul li a,
+#intaCallendar .mw-calendar .mw-filters ul li a{
+	display: block;
+	padding: 3px 15px;
+	color: black;
+}
+#intaCallendar .mw-calendar .mw-halls ul li:hover{
+	border-color: #6c757d;
+}
+#intaCallendar .mw-calendar .mw-halls ul li.active,
+#intaCallendar .mw-calendar .mw-filters ul li.active{
+	border-color: #6c757d;
+}
+#intaCallendar .mw-calendar .mw-filters{
+	clear: both;
+	padding-top: 5px;
+}
+#intaCallendar .mw-calendar .mw-filters ul{
+	
+}
+#intaCallendar .mw-calendar .mw-filters ul li a{
+	text-align: center;
+
+}
+#intaCallendar .mw-calendar .mw-filters ul li a div{
+	text-align: center;
+    font-size: 11px;
+    line-height: 16px;
+    margin-top: -6px;
+    border-top: 2px solid transparent; 
+}
+#intaCallendar .mw-calendar .mw-filters ul li a:hover div{
+	border-color: #6c757d;
+}
+#intaCallendar .mw-calendar .mw-filters ul li.choosed a div{
+	border-color: #6c757d;
+}
+#intaCallendar .mw-calendar .mw-controls{
+	clear: both;
+	position: relative;
+	text-align: center;
+	padding-top: 10px;
+}
+#intaCallendar .mw-calendar .mw-control{
+	width: 32px;
+	height: 35px;
+	top: 5px;
+	background-image: url(../img/chevron-left.png);
+	background-position: center;
+	background-size: contain;
+	opacity: 0.5;
+	display: inline-block;
+}
+#intaCallendar .mw-controls .mw-control:hover{
+	opacity: 0.8;
+}
+#intaCallendar .mw-controls .mw-control a{
+	display: block;
+	width: 100%;
+	height: 100%;
+}
+#intaCallendar .mw-controls .mw-control_left{
+	margin-right: 5px;
+}
+#intaCallendar .mw-controls .mw-control_right{ 
+	margin-left: 5px;
+	-webkit-transform: rotate(180deg);
+	transform: rotate(180deg);
+}
+#intaCallendar .mw-header{
+	background-color: #16151a;
+}
+#intaCallendar .mw-header .mw-switch_days{
+	
+}
+#intaCallendar .mw-header .mw-switch_days .inta_table{
+	width: 100%;
+}
+#intaCallendar .mw-header .mw-switch_days .inta_table-td{
+	width: 14.2%;
+	text-align: center;
+	vertical-align: middle;
+	padding: 0px 2px;
+}
+#intaCallendar .mw-header .mw-switch_days .mw-for_day{
+	background-color: #1b1a1f;
+}
+#intaCallendar .mw-header .mw-switch_days .mw-for_day a{
+	display: block;
+	padding: 15px 0px;
+	line-height: 20px;
+	font-size: 12px;
+	text-transform: uppercase;
+	color: white;
+}
+#intaCallendar .mw-header .mw-switch_days .inta_table-td.active a{
+	color: #eae517; 
+}
+#intaCallendar .mw-header .mw-header_title{
+	padding: 10px 0px;
+	text-align: center;
+	color: white;
+	text-transform: uppercase;
+	line-height: 20px;
+	font-size: 12px;
+}
+#intaCallendar .mw-events{
+	position: relative;
+}
+#intaCallendar .mw-events .mw-events_no{
+	padding: 20px 5px;
+	background-color: rgba(0,0,0, 0.2);
+	color: black;
+	font-size: 12px;
+	text-align: center;
+}
+#intaCallendar .mw-events .preloader-mobile_week{
+	background-color: rgba(0,0,0, 0.2);
+	padding: 30px;
+} 
+#intaCallendar .mw-events .preloader-mobile_week .loader{
+  border: 1px solid #f3f3f3; /* Light grey */
+  border-top: 1px solid #3498db; /* Blue */
+  border-radius: 50%;
+  width: 20px;
+  height: 20px;
+  animation: spin 0.5s linear infinite;
+  margin: auto;
+  margin-top: 0px!important;
+}
+#intaCallendar .mw-event{
+	line-height: 18px;
+	font-size: 14px;
+	padding: 10px 0px;
+	border-bottom: 3px solid #1b1b1d;
+	background-color: #f1f1f1;
+	position: relative;
+}
+#intaCallendar .mw-event a.to_check_in{
+	display: block;
+	position: absolute;
+	top: 0px;
+	left: 0px;
+	width: 100%;
+	height: 100%;
+}
+#intaCallendar .mw-event .inta_table{
+	width: 100%;
+}
+#intaCallendar .mw-event .inta_table .inta_table-td:first-child{
+	width: 70px;
+	text-align: right;
+	padding-right: 10px;
+}
+#intaCallendar .mw-event .inta_table .inta_table-td:last-child{
+	width: auto;
+	text-align: left;
+}
+#intaCallendar .mw-event .mw-duration,
+#intaCallendar .mw-event .mw-seats{
+	font-size: 11px;
+}
+
+
+
+
+
+
+/*	INTA PROFILE MODAL
+**********************************************************************************/
+#intaProfileModal{
+	display: none;
+}
+
+#intaProfileModal .ipm_table{
+	display: table;
+}
+#intaProfileModal .ipm_table-tr{
+	display: table-row;
+}
+#intaProfileModal .ipm_table-td{
+	display: table-cell;
+}
+
+#intaProfileModal label.error{
+	color: red;
+}
+#intaProfileModal a{
+	transition: none;
+}
+#intaProfileModal input{
+	border: none;
+	background: none;
+	padding: 0px;
+	margin: 0px;
+	border-radius: 0px;
+	outline: none;
+	box-sizing: border-box;
+}
+#intaProfileModal input[type='text'],
+#intaProfileModal input[type='password'],
+#intaProfileModal input[type='button']{
+	border: 1px solid #ccc;
+	border-radius: 3px;
+	padding: 7px 12px;
+	width: 100%;
+	box-shadow: none;
+	text-shadow: none;
+}
+#intaProfileModal input[type='text']:focus,
+#intaProfileModal input[type='password']:focus,
+#intaProfileModal input[type='button']:focus{
+	-webkit-box-shadow: 0px 0px 5px 0px rgba(0,0,0,0.3);
+	-moz-box-shadow: 0px 0px 5px 0px rgba(0,0,0,0.3);
+	box-shadow: 0px 0px 5px 0px rgba(0,0,0,0.3);
+}
+#intaProfileModal input[type='button']{
+	background-color: #666;
+	color: white;
+}
+#intaProfileModal .ipm-form_group{
+	padding-bottom: 20px;
+	position: relative;
+}
+#intaProfileModal .ipm-form_group:first-child{
+	padding-top: 10px;
+}
+#intaProfileModal .ipm-form_group label{
+	position: absolute;
+	width: 100%;
+	left: 0px;
+	bottom: 0px;
+	font-size: 12px;
+}
+#intaProfileModal input[type='text']:focus,
+#intaProfileModal input[type='password']:focus{
+	background-color: white;
+}
+#intaProfileModal .ipm-clear{
+	clear: both; 
+}
+#intaProfileModal .ipm-wrapper{
+	position: fixed;
+	z-index: 9999;
+	top: 0px;
+	left: 0px;
+	width: 100%;
+	height: 100%;
+	background-color: rgba(0,0,0, 0.6);
+}
+#intaProfileModal .ipm-dialog{
+	height: 100%;
+	padding: 50px 20px;
+}
+#intaProfileModal .ipm-body{
+	margin: auto;
+	background-color: #f1f1f1;
+	max-width: 400px;
+	position: relative;
+	padding: 10px;
+}
+
+#intaProfileModal .ipm-body .ipm-close{
+	color: #416585;
+	position: absolute;
+	z-index: 99999;
+	top: 2px;
+	right: 14px;
+	font-size: 24px;
+}
+#intaProfileModal .ipm-body .ipm-close:hover{
+	color: #2f4961;
+}
+
+#intaProfileModal .button_suc{
+	padding: 7px 12px;
+	border-radius: 3px;
+	line-height: 16px;
+	display: block;
+	color: #fff;
+    background-color: #28a745;
+    border-color: #28a745;
+    font-weight: 400;
+    text-align: center;
+    white-space: nowrap;
+    vertical-align: middle;
+    -webkit-user-select: none;
+    -moz-user-select: none;
+    -ms-user-select: none;
+    user-select: none;
+    border: 1px solid transparent;
+    transition: color .15s ease-in-out,background-color .15s ease-in-out,border-color .15s ease-in-out,box-shadow .15s ease-in-out;
+}
+#intaProfileModal .button_suc:hover{
+	background-color: #226906;
+}
+
+#intaProfileModal .button_link{
+	color: black;
+	display: inline;
+}
+#intaProfileModal .button_link:hover{
+	text-decoration: underline;
+	color: #416585;
+}
+
+#intaProfileModal .button_nav{
+	padding: 7px 12px;
+	line-height: 16px;
+	border-radius: 3px;
+	color: white;
+	background-color: #416585;
+	transition: .3s background-color ease;
+}
+#intaProfileModal .button_nav:hover{
+	background-color: #2f4961;
+}
+
+#intaProfileModal .button1{
+	color: black;
+	padding: 7px 12px;
+	border-radius: 3px;
+}
+
+#intaProfileModal .button1:hover{
+	text-decoration: underline;
+}
+#intaProfileModal .button1.active{
+	background-color: #666;
+	color: white;
+}
+#intaProfileModal .button1.active:hover{
+	text-decoration: none;
+}
+
+#intaProfileModal .button2{
+	color: black;
+	padding: 7px 12px;
+}
+#intaProfileModal .button2:hover{
+	text-decoration: underline;
+}
+#intaProfileModal .button2.active{
+	text-decoration: underline;
+}
+
+#intaProfileModal ul{
+	padding: 0px;
+	margin: 0px;
+}
+#intaProfileModal ul li{
+	list-style: none;
+}
+
+#intaProfileModal .ipm-enter_confirm{
+	padding-top: 15px;
+}
+#intaProfileModal .ipm-enter_confirm .phone_to_confirm{
+	font-weight: bold;
+}
+#intaProfileModal .ipm-enter_confirm .ipm-confirm_header{
+	line-height: 20px;
+	padding-bottom: 5px;
+}
+#intaProfileModal .ipm-enter_confirm form{
+	border-top: 1px solid #ccc;
+	padding-top: 10px;
+}
+
+#intaProfileModal .ipm-enters{
+	display: none;
+}
+#intaProfileModal .ipm-enters.ipm-show{
+	display: block;
+}
+#intaProfileModal .ipm-enters .ipm-switch_enter{
+
+}
+
+#intaProfileModal .ipm-enters .ipm-switch_enter ul li{
+	float: left; 
+}
+
+#intaProfileModal .ipm-enters .ipm-enter_auth{
+	
+}
+#intaProfileModal .ipm-enters .ipm-enter_auth .ipm-switch_auth{
+	padding: 15px 0px;
+}
+#intaProfileModal .ipm-enters .ipm-enter_auth .ipm-switch_auth ul{
+	padding-top: 10px;
+	border-top: 1px solid #ccc
+}
+#intaProfileModal .ipm-enters .ipm-enter_auth .ipm-switch_auth ul li{
+	float: left; 
+}
+#intaProfileModal .ipm-enters .ipm-enter_auth .ipm-auth_content{
+
+}
+
+#intaProfileModal .ipm-enters .ipm-enter_auth,
+#intaProfileModal .ipm-enters .ipm-enter_reg,
+#intaProfileModal .ipm-enters .ipm-enter_confirm{
+	display: none;
+}
+
+#intaProfileModal .ipm-enters .ipm-enter_auth.ipm-show,
+#intaProfileModal .ipm-enters .ipm-enter_reg.ipm-show,
+#intaProfileModal .ipm-enters .ipm-enter_confirm.ipm-show{
+	display: block;
+}
+
+#intaProfileModal .ipm-enters .ipm-enter_auth .ipm-auth_email,
+#intaProfileModal .ipm-enters .ipm-enter_auth .ipm-auth_phone,
+#intaProfileModal .ipm-enters .ipm-enter_reg .ipm-reg_email,
+#intaProfileModal .ipm-enters .ipm-enter_reg .ipm-reg_phone{
+	display: none;
+}
+
+#intaProfileModal .ipm-enters .ipm-enter_auth .ipm-auth_email.ipm-show,
+#intaProfileModal .ipm-enters .ipm-enter_auth .ipm-auth_phone.ipm-show,
+#intaProfileModal .ipm-enters .ipm-enter_reg .ipm-reg_email.ipm-show,
+#intaProfileModal .ipm-enters .ipm-enter_reg .ipm-reg_phone.ipm-show{
+	display: block;
+}
+
+
+#intaProfileModal .ipm-enters .ipm-enter_reg{
+	
+}
+#intaProfileModal .ipm-enters .ipm-enter_reg ul li{
+	float: left; 
+}
+#intaProfileModal .ipm-enters .ipm-enter_reg .ipm-switch_reg ul{
+	padding-top: 10px;
+	border-top: 1px solid #ccc
+}
+
+#intaProfileModal .ipm-enters .ipm-enter_reg .ipm-switch_reg{ 
+	padding: 15px 0px;
+}
+
+#intaProfileModal .ipm-account{
+	display: none;
+	color: black;
+}
+
+
+#intaProfileModal .ipm-alert{
+	padding: 3px 10px;
+	border: 1px solid #c6c8ca;
+	border-radius: 3px;
+	display: none;
+	background-color: #d6d8d9;
+	color: #3d4043;
+}
+#intaProfileModal .ipm-alert .for_loader{
+	padding-top: 10px;
+	height: 28px;
+}
+#intaProfileModal .ipm-alert .loader { 
+  border: 1px solid #f3f3f3; /* Light grey */ 
+  border-top: 1px solid #3498db; /* Blue */
+  border-radius: 50%;
+  width: 14px;
+  height: 14px;
+  animation: spin 0.5s linear infinite;
+  margin: auto;
+}
+#intaProfileModal .ipm-alert_preload{
+	color: #383d41;
+    background-color: #e2e3e5;
+    border-color: #d6d8db; 
+}
+#intaProfileModal .ipm-alert_info{
+	color: #0c5460;
+    background-color: #d1ecf1;
+    border-color: #bee5eb; 
+}
+#intaProfileModal .ipm-alert_error{
+	color: #721c24;
+    background-color: #f8d7da;
+    border-color: #f5c6cb;
+}
+#intaProfileModal .ipm-alert_success{
+	color: #155724;
+    background-color: #d4edda;
+    border-color: #c3e6cb;
+}
+
+
+#intaProfileModal .ipm-account.ipm-show{
+	display: block;
+}
+#intaProfileModal .ipm-account .ipm-acc_nav{
+	padding: 20px 0px;
+	display: none;
+}
+#intaProfileModal .ipm-account .ipm-acc_nav_less{
+	text-transform: lowercase;
+}
+#intaProfileModal .ipm-account .ipm-acc_nav.ipm-show{
+	display: block;
+}
+#intaProfileModal .ipm-account .ipm-acc_nav ul li{
+	text-align: center;
+	text-transform: uppercase;
+	line-height: 30px;
+	font-size: 16px;
+}
+/*#intaProfileModal .ipm-account .ipm-acc_nav ul li a{
+	color: black;
+}
+#intaProfileModal .ipm-account .ipm-acc_nav ul li a:hover{
+	text-decoration: underline;
+}*/
+
+#intaProfileModal .ipm-account .ipm-acc_items,
+#intaProfileModal .ipm-account .ipm-acc_items .ipm-acc_item{
+	display: none;
+}
+
+#intaProfileModal .ipm-account .ipm-acc_items.ipm-show,
+#intaProfileModal .ipm-account .ipm-acc_items .ipm-acc_item.ipm-show{
+	display: block;
+}
+
+#intaProfileModal .ipm-account .ipm-acc_items .ipm-acc_items_header{
+	border-bottom: 1px solid #ccc;
+	height: 35px;
+}
+#intaProfileModal .ipm-account .ipm-acc_items .ipm-acc_items_header ul li{
+	float: left;
+	margin-right: 10px; 
+}
+/*#intaProfileModal .ipm-account .ipm-acc_items .ipm-acc_items_header ul li a{
+	display: block;
+	padding: 5px 12px;
+	color: black;
+}
+#intaProfileModal .ipm-account .ipm-acc_items .ipm-acc_items_header ul li a:hover{
+	text-decoration: underline;
+}*/
+
+
+#intaProfileModal .ipm-account .ipm-prof{
+	padding: 10px 0px;
+}
+#intaProfileModal .ipm-account .ipm-prof .ipm_table{
+	width: 100%;
+}
+#intaProfileModal .ipm-account .ipm-prof .ipm_table .ipm_table-tr:nth-child(odd) .ipm_table-td{ 
+	background-color: #e1e1e1;
+}
+#intaProfileModal .ipm-account .ipm-prof .ipm_table .ipm_table-td:first-child{
+	width: 100px;
+	text-align: right;
+}
+#intaProfileModal .ipm-account .ipm-prof .ipm_table .ipm_table-td:last-child{
+	padding-left: 10px;
+}
+
+
+
+#intaProfileModal .ipm-account .ipm-visits{
+	max-height: 300px;
+	overflow-y: auto;
+}
+#intaProfileModal .ipm-account .ipm-visits .ipm-visits_zero{
+	line-height: 20px;
+	padding: 10px;
+}
+
+#intaProfileModal .ipm-account .ipm-visits .ipm-visits_title{
+	padding-left: 11px;
+	padding-top: 5px;
+}
+#intaProfileModal .ipm-account .ipm-visits .ipm_table{
+	margin-bottom: 10px;
+	width: 100%;
+}
+#intaProfileModal .ipm-account .ipm-visits .ipm_table-td{
+
+}
+#intaProfileModal .ipm-account .ipm-visits .ipm_table-td:nth-child(1){
+	width: 21px;
+	text-align: right;
+}
+#intaProfileModal .ipm-account .ipm-visits .ipm_table-td:nth-child(2){
+	width: auto;
+	padding-left: 5px;
+	line-height: 14px;
+}
+#intaProfileModal .ipm-account .ipm-visits .ipm_table-td:nth-child(2) .ipm-visit_title{
+	line-height: 30px;
+	font-weight: bold;
+}
+
+#intaProfileModal .ipm-account .ipm-visits .ipm_table-td:nth-child(2) span{
+	font-weight: bold;
+	font-size: 12px;
+}
+#intaProfileModal .ipm-account .ipm-visits .ipm_table-td:nth-child(3){
+	width: 80px;
+}
+#intaProfileModal .ipm-account .ipm-visits .ipm_table-td .for_loader{
+	height: 14px;
+	display: none;
+}
+#intaProfileModal .ipm-account .ipm-visits .ipm_table-td .loader {
+  border: 1px solid #f3f3f3; /* Light grey */
+  border-top: 1px solid #3498db; /* Blue */
+  border-radius: 50%;
+  width: 14px;
+  height: 14px;
+  animation: spin 0.5s linear infinite;
+}
+
+
+#intaProfileModal .ipm-account .ipm-visit{
+
+}
+#intaProfileModal .ipm-account .ipm-visit .ipm-visit_title{
+	padding: 5px 11px;
+}
+
+#intaProfileModal .ipm-account .ipm-visit .ipm-visit_cont{
+	padding: 5px 11px;
+}
+#intaProfileModal .ipm-account .ipm-visit .ipm-visit_cont .for_loader{
+	padding-top: 20px;
+	height: 70px;
+}
+#intaProfileModal .ipm-account .ipm-visit .ipm-visit_cont .loader { 
+  border: 1px solid #f3f3f3; /* Light grey */ 
+  border-top: 1px solid #3498db; /* Blue */
+  border-radius: 50%;
+  width: 30px;
+  height: 30px;
+  animation: spin 0.5s linear infinite;
+  margin: auto;
+}
+#intaProfileModal .ipm-account .ipm-visit .ipm-visit_cont .ipm-event_in_visits{
+	line-height: 20px;
+	padding-bottom: 5px;
+}
+#intaProfileModal .ipm-account .ipm-visit .ipm-visit_cont .ipm-event_in_visits div{
+	background-color: #fff3cd;
+	color: white;
+	padding: 3px 10px;
+	margin-bottom: 5px;
+	color: #93751b;
+	border: 1px solid #93751b;
+	border-radius: 3px;
+}
+#intaProfileModal .ipm-account .ipm-visit .ipm-visit_cont .ipm-event_in_visits span{
+	font-weight: bold;
+}
+#intaProfileModal .ipm-account .ipm-visit .ipm_table{
+	width: 100%; 
+}
+#intaProfileModal .ipm-account .ipm-visit .ipm_table .ipm_table-tr:nth-child(odd) .ipm_table-td{  
+
+}
+#intaProfileModal .ipm-account .ipm-visit .ipm_table-td{
+	line-height: 18px;
+}
+#intaProfileModal .ipm-account .ipm-visit .ipm_table-td:first-child{
+	width: 130px;
+	text-align: right;
+}
+#intaProfileModal .ipm-account .ipm-visit .ipm_table-td:last-child{
+	width: auto;
+	padding-left: 10px;
+}
+#intaProfileModal .ipm-account .ipm-visit .ipm-visit_order{
+	padding-top: 10px;
+}
+#intaProfileModal .ipm-account .ipm-visit .ipm-visit_order a{
+	float: right;
+}
+
+
+
+
+
+
