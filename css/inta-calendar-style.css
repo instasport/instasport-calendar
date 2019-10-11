@@ -1247,7 +1247,7 @@
 }
 #intaProfileModal .ipm-wrapper{
 	position: fixed;
-	z-index: 9999;
+	z-index: 99999;
 	top: 0px;
 	left: 0px;
 	width: 100%;
