@@ -46,6 +46,15 @@ function intacalendar_admin(){
                 'desktop_filter_couch_show' => $_POST['desktop_filter_couch_show'],
                 'desktop_filter_activity_show' => $_POST['desktop_filter_activity_show'],
                 'desktop_filter_complexity_show' => $_POST['desktop_filter_complexity_show'],
+                'desktop_nav_filter_font' => $_POST['desktop_nav_filter_font'],
+                'desktop_event_title_time_font' => $_POST['desktop_event_title_time_font'],
+                'desktop_event_dur_seats_font' => $_POST['desktop_event_dur_seats_font'],
+                'desktop_title_font' => $_POST['desktop_title_font'],
+                'desktop_days_of_week_font' => $_POST['desktop_days_of_week_font'],
+                'desktop_month_days_numbers_font' => $_POST['desktop_month_days_numbers_font'],
+                'desktop_week_hours_font' => $_POST['desktop_week_hours_font'],
+                'desktop_filter_list_font' => $_POST['desktop_filter_list_font'],
+
                 //MOBILE STYLES
                 'mobile_use_api_colors' => $_POST['mobile_use_api_colors'],
                 'mobile_additional_info_week_duration' => $_POST['mobile_additional_info_week_duration'],
@@ -54,6 +63,11 @@ function intacalendar_admin(){
                 'mobile_filter_couch_show' => $_POST['mobile_filter_couch_show'],
                 'mobile_filter_activity_show' => $_POST['mobile_filter_activity_show'],
                 'mobile_filter_complexity_show' => $_POST['mobile_filter_complexity_show'],
+                'mobile_nav_filter_font' => $_POST['mobile_nav_filter_font'],
+                'mobile_event_title_time_font' => $_POST['mobile_event_title_time_font'],
+                'mobile_event_dur_seats_font' => $_POST['mobile_event_dur_seats_font'],
+                'mobile_title_font' => $_POST['mobile_title_font'],
+                'mobile_days_of_week_font' => $_POST['mobile_days_of_week_font'],
             ), 
             array('id' => 1) 
             /*array( 
@@ -186,6 +200,32 @@ function intacalendar_admin(){
             - фильтр по сложности <br />
 
 
+            <h3>Шрифты</h3>
+            <input type="text" name="desktop_nav_filter_font" value="<?=$result->desktop_nav_filter_font;?>">
+            - Шрифт залов, фильтров и типа календаря<br />
+
+            <input type="text" name="desktop_event_title_time_font" value="<?=$result->desktop_event_title_time_font;?>">
+            - Шрифт названия и времени события<br />
+
+            <input type="text" name="desktop_event_dur_seats_font" value="<?=$result->desktop_event_dur_seats_font;?>">
+            - Шрифт продолжительности и мест события<br />
+
+            <input type="text" name="desktop_title_font" value="<?=$result->desktop_title_font;?>">
+            - Шрифт тайтла<br />
+
+            <input type="text" name="desktop_days_of_week_font" value="<?=$result->desktop_days_of_week_font;?>">
+            - Шрифт названия дней недели<br />
+
+            <input type="text" name="desktop_month_days_numbers_font" value="<?=$result->desktop_month_days_numbers_font;?>">
+            - Шрифт числа дня (месяц)<br />
+
+            <input type="text" name="desktop_week_hours_font" value="<?=$result->desktop_week_hours_font;?>">
+            - Шрифт времени (неделя)<br /> 
+
+            <input type="text" name="desktop_filter_list_font" value="<?=$result->desktop_filter_list_font;?>"> 
+            - Шрифт списка в фильтре<br /> 
+
+
 
             <!--    MOBILE STYLE INPUTS     -->
             <h1>Настройки Мобильной версии календаря</h1>
@@ -234,6 +274,22 @@ function intacalendar_admin(){
                 <option <?php if($result->mobile_filter_complexity_show == "0"){echo "selected='selected'";}?> value="0">Не показывать</option>
             </select>
             - фильтр по сложности <br />
+
+            <h3>Шрифты</h3>
+            <input type="text" name="mobile_nav_filter_font" value="<?=$result->mobile_nav_filter_font;?>">
+            - Шрифт залов, фильтров<br />
+
+            <input type="text" name="mobile_event_title_time_font" value="<?=$result->mobile_event_title_time_font;?>">
+            - Шрифт названия и времени события<br />
+
+            <input type="text" name="mobile_event_dur_seats_font" value="<?=$result->mobile_event_dur_seats_font;?>">
+            - Шрифт продолжительности и мест события<br />
+
+            <input type="text" name="mobile_title_font" value="<?=$result->mobile_title_font;?>">
+            - Шрифт тайтла<br />
+
+            <input type="text" name="mobile_days_of_week_font" value="<?=$result->mobile_days_of_week_font;?>">
+            - Шрифт названия дней недели<br /> 
 
 
 
@@ -392,6 +448,8 @@ function instasport_shortcodes_init()
 #intaCallendar .dm-calendar .dm-events .dm-for_day.dm-day_today .dm-more a{
     color: <?=$clubInfo[0]["primary_text_color"]?>!important;
 }
+
+
 
 /**************************    Desktop Week    ******************************/
 
@@ -641,6 +699,85 @@ function instasport_shortcodes_init()
 
 
 
+<style type="text/css">
+
+#intaCallendar .dm-calendar .dm-filters ul li a.dm-filter-item,
+#intaCallendar .dw-calendar .dw-filters ul li a.dw-filter-item{
+    font-size: <?=$result->desktop_nav_filter_font;?>!important; 
+}
+
+#intaCallendar .dm-controls .dm-title_month a,
+#intaCallendar .dw-controls .dw-title_month a,
+#intaCallendar.desktop .inta_modal .mde-header div{
+    font-size: <?=$result->desktop_title_font;?>!important; 
+}
+
+#intaCallendar .dm-calendar .dm-for_events table thead td,
+#intaCallendar .dw-calendar .dw-for_events table thead td{
+    font-size: <?=$result->desktop_days_of_week_font;?>!important; 
+}
+
+#intaCallendar .dm-calendar .dm-title a,
+#intaCallendar .dm-calendar .dm-begin_time,
+#intaCallendar .dw-calendar .dw-title a,
+#intaCallendar .dw-calendar .dw-begin_time,
+#intaCallendar .inta_modal .mde-event_begining,
+#intaCallendar .inta_modal .mde-event_title a{
+    font-size: <?=$result->desktop_event_title_time_font;?>!important;  
+}
+
+#intaCallendar .dm-calendar .dm-duration,
+#intaCallendar .dm-calendar .dm-seats,
+#intaCallendar .dw-calendar .dw-seats,
+#intaCallendar .dw-calendar .dw-duration,
+#intaCallendar .inta_modal .mde-event_duration,
+#intaCallendar .inta_modal .mde-event_seats{
+    font-size: <?=$result->desktop_event_dur_seats_font;?>!important; 
+}
+
+#intaCallendar .dm-calendar .dm-day .dm-day_number{
+    font-size: <?=$result->desktop_month_days_numbers_font;?>!important; 
+}
+
+#intaCallendar .dw-calendar .dw-for_events table tbody td .dw-day-hour{
+    font-size: <?=$result->desktop_week_hours_font;?>!important; 
+}
+
+#intaCallendar .inta_filter_1 a{
+    font-size: <?=$result->desktop_filter_list_font;?>!important; 
+}
+
+
+
+#intaCallendar .mw-calendar .mw-halls ul li a,
+#intaCallendar .mw-calendar .mw-filters ul li a{
+    font-size: <?=$result->mobile_nav_filter_font;?>!important; 
+}
+
+#intaCallendar .mw-header .mw-switch_days .inta_table-td a{
+    font-size: <?=$result->mobile_days_of_week_font;?>!important;
+}
+
+#intaCallendar .mw-header .mw-header_title{
+    font-size: <?=$result->mobile_title_font;?>!important;
+}
+
+#intaCallendar .mw-event .inta_table .inta_table-td .mw-begining,
+#intaCallendar .mw-event .inta_table .inta_table-td .mw-title{
+    font-size: <?=$result->mobile_event_title_time_font;?>!important;
+}
+
+#intaCallendar .mw-event .inta_table .inta_table-td .mw-duration,
+#intaCallendar .mw-event .inta_table .inta_table-td .mw-seats{
+    font-size: <?=$result->mobile_event_dur_seats_font;?>!important;
+}
+
+
+
+</style>
+
+
+
 <script type="text/javascript">
 
     var configData = {
@@ -749,6 +886,14 @@ function intacalendar_create_db(){
       desktop_filter_couch_show ENUM('1', '0') NOT NULL,
       desktop_filter_complexity_show ENUM('1', '0') NOT NULL,
       desktop_filter_activity_show ENUM('1', '0') NOT NULL,  
+      desktop_nav_filter_font varchar(10) NOT NULL,
+      desktop_event_title_time_font varchar(10) NOT NULL,
+      desktop_event_dur_seats_font varchar(10) NOT NULL,
+      desktop_title_font varchar(10) NOT NULL,
+      desktop_days_of_week_font varchar(10) NOT NULL,
+      desktop_month_days_numbers_font varchar(10) NOT NULL,
+      desktop_week_hours_font varchar(10) NOT NULL,
+      desktop_filter_list_font varchar(10) NOT NULL,
       mobile_use_api_colors ENUM('0', '1') NOT NULL,
       mobile_additional_info_week_duration ENUM('1', '0') NOT NULL,
       mobile_additional_info_week_seats ENUM('1', '0') NOT NULL,
@@ -756,6 +901,11 @@ function intacalendar_create_db(){
       mobile_filter_couch_show ENUM('1', '0') NOT NULL,
       mobile_filter_complexity_show ENUM('1', '0') NOT NULL,
       mobile_filter_activity_show ENUM('1', '0') NOT NULL,
+      mobile_nav_filter_font varchar(10) NOT NULL,
+      mobile_event_title_time_font varchar(10) NOT NULL,
+      mobile_event_dur_seats_font varchar(10) NOT NULL,
+      mobile_title_font varchar(10) NOT NULL,
+      mobile_days_of_week_font varchar(10) NOT NULL,
       PRIMARY KEY  (id)
     ) $charset_collate;";
     
@@ -789,6 +939,14 @@ function intacalendar_create_db(){
                 'desktop_filter_couch_show' => '1',
                 'desktop_filter_complexity_show' => '1',
                 'desktop_filter_activity_show' => '1',
+                'desktop_nav_filter_font' => '14px',
+                'desktop_event_title_time_font' => '12px',
+                'desktop_event_dur_seats_font' => '10px',
+                'desktop_title_font' => '16px',
+                'desktop_days_of_week_font' => '14px',
+                'desktop_month_days_numbers_font' => '12px',
+                'desktop_week_hours_font' => '14px',
+                'desktop_filter_list_font' => '14px', 
                 //MOBILE STYLES
                 'mobile_use_api_colors' => 0,
                 'mobile_additional_info_week_duration' => '1',
@@ -797,6 +955,11 @@ function intacalendar_create_db(){
                 'mobile_filter_couch_show' => '1',
                 'mobile_filter_complexity_show' => '1',
                 'mobile_filter_activity_show' => '1', 
+                'mobile_nav_filter_font' => '14px',
+                'mobile_event_title_time_font' => '14px',
+                'mobile_event_dur_seats_font' => '14px',
+                'mobile_title_font' => '14px',
+                'mobile_days_of_week_font' => '14px',
             ) 
         );
     }

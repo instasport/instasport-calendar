@@ -1009,6 +1009,7 @@
 	display: block;
 	padding: 3px 15px;
 	color: black;
+	text-transform: uppercase;
 }
 #intaCallendar .mw-calendar .mw-halls ul li:hover{
 	border-color: #6c757d;
