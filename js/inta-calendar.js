@@ -72,6 +72,9 @@ jQuery(document).ready(function($){
 			_this.setCalendarType();
 			_this.setCalendarView();
 			_this.getClubInfo();
+
+			_this.applyCustomCss();
+
 			_this.getHalls();
 			_this.getEvents();
 
@@ -85,6 +88,307 @@ jQuery(document).ready(function($){
 			// _this.lang = lang;
 			// _this.locale = locale;
 			// _this.initialized = true;
+		}
+
+		this.applyCustomCss = function(){
+			var _this = this;
+
+			var interval = setInterval(function(){
+				if (_this.clubInfo !== null) {
+					applyCustomCss();
+
+					clearInterval(interval);
+				}
+			}, 10); 
+
+			function applyCustomCss(){
+				// console.log(_this.clubInfo);
+				// return false;
+
+				if(configData.desktopSettings.useApiColors){
+					var sheet = document.createElement('style')
+					sheet.innerHTML = `
+						/******************    Desktop Month   **********************/
+						#intaCallendar .dm-calendar .dm-filters ul li.active a.dm-filter-item,
+						#intaCallendar .dm-calendar .dm-filters ul li.choosed a.dm-filter-item{
+						    border-color: ${_this.clubInfo[0].primary_color}!important;
+						}
+						#intaCallendar .dm-calendar .dm-filters ul li a.dm-filter-item:hover{
+						    border-color: ${_this.clubInfo[0].primary_color}!important;
+						}
+
+
+
+						#intaCallendar .dm-calendar .dm-filters ul li a.dm-filter-item:hover{
+						    border-color: ${_this.clubInfo[0].primary_color}!important;
+						}
+
+						#intaCallendar .dm-calendar .dm-filters ul li a.dm-filter-item:hover div{
+						    border-color: ${_this.clubInfo[0].primary_color}!important;
+						}
+
+						#intaCallendar .dm-calendar .dm-filters ul li.active a.dm-filter-item div{
+						    border-color: ${_this.clubInfo[0].primary_color}!important;
+						}
+
+						#intaCallendar .dm-calendar .dm-filters ul li.choosed a.dm-filter-item div{
+						    border-color: ${_this.clubInfo[0].primary_color}!important;
+						}
+
+						#intaCallendar .dm-calendar .dm-events .dm-for_day.dm-day_today{
+						    background-color: ${_this.clubInfo[0].primary_color}!important;
+						}
+						#intaCallendar .dm-calendar .dm-events .dm-for_day.dm-day_today .dm-day_number{
+						    color: ${_this.clubInfo[0].primary_text_color}!important;
+						}
+						#intaCallendar .dm-calendar .dm-events .dm-for_day.dm-day_today .dm-more a{
+						    color: ${_this.clubInfo[0].primary_text_color}!important;
+						}
+
+
+
+						/**************************    Desktop Week    ******************************/
+
+						#intaCallendar .dw-calendar .dw-filters ul li.active a.dw-filter-item,
+						#intaCallendar .dw-calendar .dw-filters ul li.choosed a.dw-filter-item{
+						    border-color: ${_this.clubInfo[0].primary_color}!important;
+						}
+
+						#intaCallendar .dw-calendar .dw-filters ul li a.dw-filter-item:hover{
+						    border-color: ${_this.clubInfo[0].primary_color}!important;
+						}
+
+						#intaCallendar .dw-calendar .dw-filters ul li a.dw-filter-item:hover div{
+						    border-color: ${_this.clubInfo[0].primary_color}!important;
+						}
+
+						#intaCallendar .dw-calendar .dw-filters ul li.active a.dw-filter-item div{
+						    border-color: ${_this.clubInfo[0].primary_color}!important;
+						}
+
+						#intaCallendar .dw-calendar .dw-filters ul li.choosed a.dw-filter-item div{
+						    border-color: ${_this.clubInfo[0].primary_color}!important;
+						}
+						#intaCallendar .dw-calendar .dw-events .dw-for_day.dw-day_today{
+						    background-color: ${_this.clubInfo[0].primary_color}!important;
+						}
+						#intaCallendar .dw-calendar .dw-day_today .dw-day .dw-more a{
+						    color: ${_this.clubInfo[0].primary_text_color}!important;
+						}
+
+
+						/**************************    Desktop Modal    ******************************/
+						#intaCallendar.desktop .inta_modal .mde-header{
+						    background-color: ${_this.clubInfo[0].primary_color}!important;
+						}
+						#intaCallendar.desktop .inta_modal .mde-header a.mde-close div{
+						    background-color: ${_this.clubInfo[0].primary_text_color}!important;
+						}
+						#intaCallendar.desktop .inta_modal .mde-header div,
+						#intaCallendar.desktop .inta_modal .mde-header a{
+						    color: ${_this.clubInfo[0].primary_text_color}!important; 
+						}
+
+
+						/**************************    Desktop Profile Modal    ******************************/
+						#intaProfileModal.desktop input[type='text']:focus,
+						#intaProfileModal.desktop input[type='password']:focus,
+						#intaProfileModal.desktop input[type='button']:focus{
+						    -webkit-box-shadow: 0px 0px 5px 0px <?=hex2rgba($clubInfo[0]["primary_color"], 0.3)?>!important;
+						    -moz-box-shadow: 0px 0px 5px 0px <?=hex2rgba($clubInfo[0]["primary_color"], 0.3)?>!important;
+						    box-shadow: 0px 0px 5px 0px <?=hex2rgba($clubInfo[0]["primary_color"], 0.3)?>!important;
+						    border-color: <?=hex2rgba($clubInfo[0]["primary_color"], 0.3)?>!important;
+						}
+
+						#intaProfileModal.desktop .button2:hover{
+						    color: ${_this.clubInfo[0].primary_color}!important;
+						}
+						#intaProfileModal.desktop .button2.active{
+						    color: ${_this.clubInfo[0].primary_color}!important;
+						}
+
+						#intaProfileModal.desktop .button_nav{
+						    color: ${_this.clubInfo[0].primary_text_color}!important;
+						    background-color: ${_this.clubInfo[0].primary_color}!important;
+						}
+						#intaProfileModal.desktop .button_nav:hover{
+						    background-color: ${_this.clubInfo[0].primary_color}!important;
+						}
+
+
+						#intaProfileModal.desktop .button1{
+						    color: black;
+						}
+
+						#intaProfileModal.desktop .button1:hover{
+						    color: ${_this.clubInfo[0].primary_color}!important;
+						}
+						#intaProfileModal.desktop .button1.active{
+						    background-color: ${_this.clubInfo[0].primary_color}!important;
+						    color: ${_this.clubInfo[0].primary_text_color}!important;
+						}
+
+						#intaProfileModal.desktop input[type='button'] {
+						    background-color: ${_this.clubInfo[0].primary_color}!important;
+						    color: ${_this.clubInfo[0].primary_text_color}!important;
+						    border-color: ${_this.clubInfo[0].primary_color}!important;
+						}
+
+
+						#intaProfileModal.desktop .ipm-body .ipm-close {
+						    color: ${_this.clubInfo[0].primary_color}!important;
+						}
+
+
+						#intaProfileModal.desktop .button_suc{
+						    background-color: ${_this.clubInfo[0].primary_color}!important;
+						}
+						#intaProfileModal.desktop .button_suc:hover{
+						    background-color: ${_this.clubInfo[0].primary_color}!important; 
+						}
+
+						#intaProfileModal.desktop .ipm-visit_disable{
+						    color: black!important;
+						}
+						#intaProfileModal.desktop .ipm-visit_disable:hover{
+						    color: ${_this.clubInfo[0].primary_color}!important;
+						    text-decoration: underline;
+						}
+
+
+						#intaProfileModal.desktop .button_link:hover{
+						    color: ${_this.clubInfo[0].primary_color}!important; 
+						}
+					`;
+					document.body.appendChild(sheet);
+				}
+
+				if(configData.mobileSettings.useApiColors){
+					var sheet2 = document.createElement('style')
+					sheet2.innerHTML = `
+						
+						/**************************    Halls    ******************************/
+						#intaCallendar .mw-calendar .mw-halls ul li:hover{
+						    border-color: ${_this.clubInfo[0].primary_color}!important;
+						}
+						#intaCallendar .mw-calendar .mw-halls ul li.active,
+						#intaCallendar .mw-calendar .mw-filters ul li.active{
+						    border-color: ${_this.clubInfo[0].primary_color}!important;
+						}
+						#intaCallendar .mw-calendar .mw-filters ul li a:hover div{
+						    border-color: ${_this.clubInfo[0].primary_color}!important;
+						}
+						#intaCallendar .mw-calendar .mw-filters ul li.choosed a div{
+						    border-color: ${_this.clubInfo[0].primary_color}!important;
+						}
+
+
+						/**************************    Mobile Modal    ******************************/
+						#intaCallendar.mobile .inta_modal .mde-header{
+						    background-color: ${_this.clubInfo[0].primary_color}!important;
+						}
+						#intaCallendar.mobile .inta_modal .mde-header a.mde-close div{
+						    background-color: ${_this.clubInfo[0].primary_text_color}!important; 
+						}
+						#intaCallendar.mobile .inta_modal .mde-header div,
+						#intaCallendar.mobile .inta_modal .mde-header a{
+						    color: ${_this.clubInfo[0].primary_text_color}!important;
+						}
+
+
+						/**************************    Mobile profile Modal    ******************************/
+						#intaProfileModal.mobile input[type='text']:focus,
+						#intaProfileModal.mobile input[type='password']:focus,
+						#intaProfileModal.mobile input[type='button']:focus{
+						    -webkit-box-shadow: 0px 0px 5px 0px <?=hex2rgba($clubInfo[0]["primary_color"], 0.3)?>!important;
+						    -moz-box-shadow: 0px 0px 5px 0px <?=hex2rgba($clubInfo[0]["primary_color"], 0.3)?>!important;
+						    box-shadow: 0px 0px 5px 0px <?=hex2rgba($clubInfo[0]["primary_color"], 0.3)?>!important;
+						    border-color: <?=hex2rgba($clubInfo[0]["primary_color"], 0.3)?>!important;
+						}
+
+						#intaProfileModal.mobile .button2:hover{
+						    color: ${_this.clubInfo[0].primary_color}!important;
+						}
+						#intaProfileModal.mobile .button2.active{
+						    color: ${_this.clubInfo[0].primary_color}!important;
+						}
+
+						#intaProfileModal.mobile .button_nav{
+						    color: <?=$clubInfo[0]["primary_text_color"]?>!important;
+						    background-color: ${_this.clubInfo[0].primary_color}!important;
+						}
+						#intaProfileModal.mobile .button_nav:hover{
+						    background-color: ${_this.clubInfo[0].primary_color}!important;
+						}
+
+
+						#intaProfileModal.mobile .button1{ 
+						    color: black;
+						}
+
+						#intaProfileModal.mobile .button1:hover{
+						    color: ${_this.clubInfo[0].primary_color}!important;
+						}
+						#intaProfileModal.mobile .button1.active{
+						    background-color: ${_this.clubInfo[0].primary_color}!important;
+						    color: ${_this.clubInfo[0].primary_text_color}!important;
+						}
+
+						#intaProfileModal.mobile input[type='button'] {
+						    background-color: ${_this.clubInfo[0].primary_color}!important;
+						    color: ${_this.clubInfo[0].primary_text_color}!important;
+						    border-color: ${_this.clubInfo[0].primary_color}!important;
+						}
+
+
+						#intaProfileModal.mobile .ipm-body .ipm-close {
+						    color: ${_this.clubInfo[0].primary_color}!important;
+						}
+
+
+						#intaProfileModal.mobile .button_suc{
+						    background-color: ${_this.clubInfo[0].primary_color}!important;
+						}
+						#intaProfileModal.mobile .button_suc:hover{
+						    background-color: ${_this.clubInfo[0].primary_color}!important; 
+						}
+
+						#intaProfileModal.mobile .ipm-visit_disable{
+						    color: black!important;
+						}
+						#intaProfileModal.mobile .ipm-visit_disable:hover{
+						    color: ${_this.clubInfo[0].primary_color}!important;
+						    text-decoration: underline;
+						}
+
+
+						#intaProfileModal.mobile .button_link:hover{
+						    color: ${_this.clubInfo[0].primary_color}!important;
+						}
+
+
+
+						/**************************    Mobile Calendar    ******************************/
+						#intaCallendar .mw-header{
+						    background-color: ${_this.clubInfo[0].secondary_color}!important;
+						}
+						#intaCallendar .mw-header .mw-switch_days .mw-for_day{
+						    background-color: ${_this.clubInfo[0].secondary_color}!important;
+						}
+						#intaCallendar .mw-header .mw-switch_days .mw-for_day a{
+						    color: ${_this.clubInfo[0].secondary_text_color}!important;
+						}
+						#intaCallendar .mw-header .mw-header_title{
+						    color: ${_this.clubInfo[0].secondary_text_color}!important;
+						}
+						#intaCallendar .mw-header .mw-switch_days .inta_table-td.active a{
+						    color: ${_this.clubInfo[0].primary_color}!important;  
+						}
+
+					`;
+					document.body.appendChild(sheet2);
+				}
+			}
 		}
 
 		this.desktopDescriptionPopUp = function(){

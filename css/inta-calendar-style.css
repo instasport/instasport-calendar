@@ -329,6 +329,7 @@
 	margin-bottom: 3px;
 	padding: 5px;
 	color: black;
+	word-break: break-all;
 }
 #intaCallendar .dm-calendar .dm-event:last-child{
 	margin-bottom: 0px;
@@ -560,6 +561,7 @@
 	margin-bottom: 3px;
 	padding: 5px;
 	color: black;
+	word-break: break-all;
 }
 #intaCallendar .dw-calendar .dw-event:last-child{
 	margin-bottom: 0px;

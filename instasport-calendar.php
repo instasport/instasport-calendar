@@ -338,364 +338,76 @@ function instasport_shortcodes_init()
 
         $parsed = shortcode_atts(array('club' => '', 'key' => '', 'code' => '', 'next' => ''), $atts, $tag); 
 
-        if($result->use_api_colors == "1" || $result->mobile_use_api_colors == "1"){
-            $clubInfo = json_decode(file_get_contents("https://instasport.co/club/".$parsed['club']."/api/v1/info/?format=json"), true);
-            // var_dump($clubInfo[0]["primary_color"]); 
-            // var_dump($result->use_api_colors);
-            function hex2rgba($color, $opacity = false) {
+        // if($result->use_api_colors == "1" || $result->mobile_use_api_colors == "1"){
+        //     $clubInfo = json_decode(file_get_contents("https://instasport.co/club/".$parsed['club']."/api/v1/info/?format=json"), true);
+        //     // var_dump($clubInfo[0]["primary_color"]); 
+        //     // var_dump($result->use_api_colors);
+        //     // function hex2rgba($color, $opacity = false) {
 
-                $default = 'rgb(0,0,0)';
+        //     //     $default = 'rgb(0,0,0)';
 
-                //Return default if no color provided
-                if(empty($color))
-                      return $default; 
+        //     //     //Return default if no color provided
+        //     //     if(empty($color))
+        //     //           return $default; 
 
-                //Sanitize $color if "#" is provided 
-                    if ($color[0] == '#' ) {
-                        $color = substr( $color, 1 );
-                    }
+        //     //     //Sanitize $color if "#" is provided 
+        //     //         if ($color[0] == '#' ) {
+        //     //             $color = substr( $color, 1 );
+        //     //         }
 
-                    //Check if color has 6 or 3 characters and get values
-                    if (strlen($color) == 6) {
-                            $hex = array( $color[0] . $color[1], $color[2] . $color[3], $color[4] . $color[5] );
-                    } elseif ( strlen( $color ) == 3 ) {
-                            $hex = array( $color[0] . $color[0], $color[1] . $color[1], $color[2] . $color[2] );
-                    } else {
-                            return $default;
-                    }
+        //     //         //Check if color has 6 or 3 characters and get values
+        //     //         if (strlen($color) == 6) {
+        //     //                 $hex = array( $color[0] . $color[1], $color[2] . $color[3], $color[4] . $color[5] );
+        //     //         } elseif ( strlen( $color ) == 3 ) {
+        //     //                 $hex = array( $color[0] . $color[0], $color[1] . $color[1], $color[2] . $color[2] );
+        //     //         } else {
+        //     //                 return $default;
+        //     //         }
 
-                    //Convert hexadec to rgb
-                    $rgb =  array_map('hexdec', $hex);
+        //     //         //Convert hexadec to rgb
+        //     //         $rgb =  array_map('hexdec', $hex);
 
-                    //Check if opacity is set(rgba or rgb)
-                    if($opacity){
-                        if(abs($opacity) > 1)
-                            $opacity = 1.0;
-                        $output = 'rgba('.implode(",",$rgb).','.$opacity.')';
-                    } else {
-                        $output = 'rgb('.implode(",",$rgb).')';
-                    }
+        //     //         //Check if opacity is set(rgba or rgb)
+        //     //         if($opacity){
+        //     //             if(abs($opacity) > 1)
+        //     //                 $opacity = 1.0;
+        //     //             $output = 'rgba('.implode(",",$rgb).','.$opacity.')';
+        //     //         } else {
+        //     //             $output = 'rgb('.implode(",",$rgb).')';
+        //     //         }
 
-                    //Return rgb(a) color string
-                    return $output;
-            }
+        //     //         //Return rgb(a) color string
+        //     //         return $output;
+        //     // }
 
-            function adjustBrightness($hex, $steps) {
-                // Steps should be between -255 and 255. Negative = darker, positive = lighter
-                $steps = max(-255, min(255, $steps));
+        //     // function adjustBrightness($hex, $steps) {
+        //     //     // Steps should be between -255 and 255. Negative = darker, positive = lighter
+        //     //     $steps = max(-255, min(255, $steps));
 
-                // Normalize into a six character long hex string
-                $hex = str_replace('#', '', $hex);
-                if (strlen($hex) == 3) {
-                    $hex = str_repeat(substr($hex,0,1), 2).str_repeat(substr($hex,1,1), 2).str_repeat(substr($hex,2,1), 2);
-                }
+        //     //     // Normalize into a six character long hex string
+        //     //     $hex = str_replace('#', '', $hex);
+        //     //     if (strlen($hex) == 3) {
+        //     //         $hex = str_repeat(substr($hex,0,1), 2).str_repeat(substr($hex,1,1), 2).str_repeat(substr($hex,2,1), 2);
+        //     //     }
 
-                // Split into three parts: R, G and B
-                $color_parts = str_split($hex, 2);
-                $return = '#';
+        //     //     // Split into three parts: R, G and B
+        //     //     $color_parts = str_split($hex, 2);
+        //     //     $return = '#';
 
-                foreach ($color_parts as $color) {
-                    $color   = hexdec($color); // Convert to decimal
-                    $color   = max(0,min(255,$color + $steps)); // Adjust color
-                    $return .= str_pad(dechex($color), 2, '0', STR_PAD_LEFT); // Make two char hex code
-                }
+        //     //     foreach ($color_parts as $color) {
+        //     //         $color   = hexdec($color); // Convert to decimal
+        //     //         $color   = max(0,min(255,$color + $steps)); // Adjust color
+        //     //         $return .= str_pad(dechex($color), 2, '0', STR_PAD_LEFT); // Make two char hex code
+        //     //     }
 
-                return $return; 
-            }
+        //     //     return $return; 
+        //     // }
 
-        }
+        // }
 
         ob_start();
 ?>
 
-
-<?php if($result->use_api_colors == "1"):?>
-
-<style type="text/css">
-/******************    Desktop Month   **********************/
-#intaCallendar .dm-calendar .dm-filters ul li.active a.dm-filter-item,
-#intaCallendar .dm-calendar .dm-filters ul li.choosed a.dm-filter-item{
-    border-color: <?=$clubInfo[0]["primary_color"]?>!important;
-}
-#intaCallendar .dm-calendar .dm-filters ul li a.dm-filter-item:hover{
-    border-color: <?=$clubInfo[0]["primary_color"]?>!important;
-}
-
-
-
-#intaCallendar .dm-calendar .dm-filters ul li a.dm-filter-item:hover{
-    border-color: <?=$clubInfo[0]["primary_color"]?>!important;
-}
-
-#intaCallendar .dm-calendar .dm-filters ul li a.dm-filter-item:hover div{
-    border-color: <?=$clubInfo[0]["primary_color"]?>!important;
-}
-
-#intaCallendar .dm-calendar .dm-filters ul li.active a.dm-filter-item div{
-    border-color: <?=$clubInfo[0]["primary_color"]?>!important;
-}
-
-#intaCallendar .dm-calendar .dm-filters ul li.choosed a.dm-filter-item div{
-    border-color: <?=$clubInfo[0]["primary_color"]?>!important;
-}
-
-#intaCallendar .dm-calendar .dm-events .dm-for_day.dm-day_today{
-    background-color: <?=$clubInfo[0]["primary_color"]?>!important;
-}
-#intaCallendar .dm-calendar .dm-events .dm-for_day.dm-day_today .dm-day_number{
-    color: <?=$clubInfo[0]["primary_text_color"]?>!important;
-}
-#intaCallendar .dm-calendar .dm-events .dm-for_day.dm-day_today .dm-more a{
-    color: <?=$clubInfo[0]["primary_text_color"]?>!important;
-}
-
-
-
-/**************************    Desktop Week    ******************************/
-
-#intaCallendar .dw-calendar .dw-filters ul li.active a.dw-filter-item,
-#intaCallendar .dw-calendar .dw-filters ul li.choosed a.dw-filter-item{
-    border-color: <?=$clubInfo[0]["primary_color"]?>!important;
-}
-
-#intaCallendar .dw-calendar .dw-filters ul li a.dw-filter-item:hover{
-    border-color: <?=$clubInfo[0]["primary_color"]?>!important;
-}
-
-#intaCallendar .dw-calendar .dw-filters ul li a.dw-filter-item:hover div{
-    border-color: <?=$clubInfo[0]["primary_color"]?>!important;
-}
-
-#intaCallendar .dw-calendar .dw-filters ul li.active a.dw-filter-item div{
-    border-color: <?=$clubInfo[0]["primary_color"]?>!important;
-}
-
-#intaCallendar .dw-calendar .dw-filters ul li.choosed a.dw-filter-item div{
-    border-color: <?=$clubInfo[0]["primary_color"]?>!important;
-}
-#intaCallendar .dw-calendar .dw-events .dw-for_day.dw-day_today{
-    background-color: <?=$clubInfo[0]["primary_color"]?>!important;
-}
-#intaCallendar .dw-calendar .dw-day_today .dw-day .dw-more a{
-    color: <?=$clubInfo[0]["primary_text_color"]?>!important;
-}
-
-
-/**************************    Desktop Modal    ******************************/
-#intaCallendar.desktop .inta_modal .mde-header{
-    background-color: <?=$clubInfo[0]["primary_color"]?>!important;
-}
-#intaCallendar.desktop .inta_modal .mde-header a.mde-close div{
-    background-color: <?=$clubInfo[0]["primary_text_color"]?>!important;
-}
-#intaCallendar.desktop .inta_modal .mde-header div,
-#intaCallendar.desktop .inta_modal .mde-header a{
-    color: <?=$clubInfo[0]["primary_text_color"]?>!important;
-}
-
-
-/**************************    Desktop Profile Modal    ******************************/
-#intaProfileModal.desktop input[type='text']:focus,
-#intaProfileModal.desktop input[type='password']:focus,
-#intaProfileModal.desktop input[type='button']:focus{
-    -webkit-box-shadow: 0px 0px 5px 0px <?=hex2rgba($clubInfo[0]["primary_color"], 0.3)?>!important;
-    -moz-box-shadow: 0px 0px 5px 0px <?=hex2rgba($clubInfo[0]["primary_color"], 0.3)?>!important;
-    box-shadow: 0px 0px 5px 0px <?=hex2rgba($clubInfo[0]["primary_color"], 0.3)?>!important;
-    border-color: <?=hex2rgba($clubInfo[0]["primary_color"], 0.3)?>!important;
-}
-
-#intaProfileModal.desktop .button2:hover{
-    color: <?=$clubInfo[0]["primary_color"]?>!important;
-}
-#intaProfileModal.desktop .button2.active{
-    color: <?=$clubInfo[0]["primary_color"]?>!important;
-}
-
-#intaProfileModal.desktop .button_nav{
-    color: <?=$clubInfo[0]["primary_text_color"]?>!important;
-    background-color: <?=$clubInfo[0]["primary_color"]?>!important;
-}
-#intaProfileModal.desktop .button_nav:hover{
-    background-color: <?=$clubInfo[0]["primary_color"]?>!important;
-}
-
-
-#intaProfileModal.desktop .button1{
-    color: black;
-}
-
-#intaProfileModal.desktop .button1:hover{
-    color: <?=$clubInfo[0]["primary_color"]?>!important;
-}
-#intaProfileModal.desktop .button1.active{
-    background-color: <?=$clubInfo[0]["primary_color"]?>!important;
-    color: <?=$clubInfo[0]["primary_text_color"]?>!important;
-}
-
-#intaProfileModal.desktop input[type='button'] {
-    background-color: <?=$clubInfo[0]["primary_color"]?>!important;
-    color: <?=$clubInfo[0]["primary_text_color"]?>!important;
-    border-color: <?=$clubInfo[0]["primary_color"]?>!important;
-}
-
-
-#intaProfileModal.desktop .ipm-body .ipm-close {
-    color: <?=$clubInfo[0]["primary_color"]?>!important;
-}
-
-
-#intaProfileModal.desktop .button_suc{
-    background-color: <?=$clubInfo[0]["primary_color"]?>!important;
-}
-#intaProfileModal.desktop .button_suc:hover{
-    background-color: <?=$clubInfo[0]["primary_color"]?>!important; 
-}
-
-#intaProfileModal.desktop .ipm-visit_disable{
-    color: black!important;
-}
-#intaProfileModal.desktop .ipm-visit_disable:hover{
-    color: <?=$clubInfo[0]["primary_color"]?>!important;
-    text-decoration: underline;
-}
-
-
-#intaProfileModal.desktop .button_link:hover{
-    color: <?=$clubInfo[0]["primary_color"]?>!important;
-}
-
-
-</style>
-
-<?php endif;?>
-
-
-<?php if($result->mobile_use_api_colors == "1"):?>
-
-<style type="text/css">
-
-/**************************    Halls    ******************************/
-#intaCallendar .mw-calendar .mw-halls ul li:hover{
-    border-color: <?=$clubInfo[0]["primary_color"]?>!important;
-}
-#intaCallendar .mw-calendar .mw-halls ul li.active,
-#intaCallendar .mw-calendar .mw-filters ul li.active{
-    border-color: <?=$clubInfo[0]["primary_color"]?>!important;
-}
-#intaCallendar .mw-calendar .mw-filters ul li a:hover div{
-    border-color: <?=$clubInfo[0]["primary_color"]?>!important;
-}
-#intaCallendar .mw-calendar .mw-filters ul li.choosed a div{
-    border-color: <?=$clubInfo[0]["primary_color"]?>!important;
-}
-
-
-/**************************    Mobile Modal    ******************************/
-#intaCallendar.mobile .inta_modal .mde-header{
-    background-color: <?=$clubInfo[0]["primary_color"]?>!important;
-}
-#intaCallendar.mobile .inta_modal .mde-header a.mde-close div{
-    background-color: <?=$clubInfo[0]["primary_text_color"]?>!important; 
-}
-#intaCallendar.mobile .inta_modal .mde-header div,
-#intaCallendar.mobile .inta_modal .mde-header a{
-    color: <?=$clubInfo[0]["primary_text_color"]?>!important;
-}
-
-
-/**************************    Mobile profile Modal    ******************************/
-#intaProfileModal.mobile input[type='text']:focus,
-#intaProfileModal.mobile input[type='password']:focus,
-#intaProfileModal.mobile input[type='button']:focus{
-    -webkit-box-shadow: 0px 0px 5px 0px <?=hex2rgba($clubInfo[0]["primary_color"], 0.3)?>!important;
-    -moz-box-shadow: 0px 0px 5px 0px <?=hex2rgba($clubInfo[0]["primary_color"], 0.3)?>!important;
-    box-shadow: 0px 0px 5px 0px <?=hex2rgba($clubInfo[0]["primary_color"], 0.3)?>!important;
-    border-color: <?=hex2rgba($clubInfo[0]["primary_color"], 0.3)?>!important;
-}
-
-#intaProfileModal.mobile .button2:hover{
-    color: <?=$clubInfo[0]["primary_color"]?>!important;
-}
-#intaProfileModal.mobile .button2.active{
-    color: <?=$clubInfo[0]["primary_color"]?>!important;
-}
-
-#intaProfileModal.mobile .button_nav{
-    color: <?=$clubInfo[0]["primary_text_color"]?>!important;
-    background-color: <?=$clubInfo[0]["primary_color"]?>!important;
-}
-#intaProfileModal.mobile .button_nav:hover{
-    background-color: <?=$clubInfo[0]["primary_color"]?>!important;
-}
-
-
-#intaProfileModal.mobile .button1{
-    color: black;
-}
-
-#intaProfileModal.mobile .button1:hover{
-    color: <?=$clubInfo[0]["primary_color"]?>!important;
-}
-#intaProfileModal.mobile .button1.active{
-    background-color: <?=$clubInfo[0]["primary_color"]?>!important;
-    color: <?=$clubInfo[0]["primary_text_color"]?>!important;
-}
-
-#intaProfileModal.mobile input[type='button'] {
-    background-color: <?=$clubInfo[0]["primary_color"]?>!important;
-    color: <?=$clubInfo[0]["primary_text_color"]?>!important;
-    border-color: <?=$clubInfo[0]["primary_color"]?>!important;
-}
-
-
-#intaProfileModal.mobile .ipm-body .ipm-close {
-    color: <?=$clubInfo[0]["primary_color"]?>!important;
-}
-
-
-#intaProfileModal.mobile .button_suc{
-    background-color: <?=$clubInfo[0]["primary_color"]?>!important;
-}
-#intaProfileModal.mobile .button_suc:hover{
-    background-color: <?=$clubInfo[0]["primary_color"]?>!important; 
-}
-
-#intaProfileModal.mobile .ipm-visit_disable{
-    color: black!important;
-}
-#intaProfileModal.mobile .ipm-visit_disable:hover{
-    color: <?=$clubInfo[0]["primary_color"]?>!important;
-    text-decoration: underline;
-}
-
-
-#intaProfileModal.mobile .button_link:hover{
-    color: <?=$clubInfo[0]["primary_color"]?>!important;
-}
-
-
-
-/**************************    Mobile Calendar    ******************************/
-#intaCallendar .mw-header{
-    background-color: <?=$clubInfo[0]["secondary_color"]?>!important;
-}
-#intaCallendar .mw-header .mw-switch_days .mw-for_day{
-    background-color: <?=adjustBrightness($clubInfo[0]["secondary_color"], 10)?>!important;
-}
-#intaCallendar .mw-header .mw-switch_days .mw-for_day a{
-    color: <?=$clubInfo[0]["secondary_text_color"]?>!important;
-}
-#intaCallendar .mw-header .mw-header_title{
-    color: <?=$clubInfo[0]["secondary_text_color"]?>!important;
-}
-#intaCallendar .mw-header .mw-switch_days .inta_table-td.active a{
-    color: <?=$clubInfo[0]["primary_color"]?>!important; 
-}
-
-
-</style>
-
-<?php endif;?>
 
 
 
