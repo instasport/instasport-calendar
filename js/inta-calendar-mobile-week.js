@@ -749,7 +749,7 @@ var intaCalendarMobileWeekClass = function(){
 							+'<div class="inta_table-tr">'
 								+'<div class="inta_table-td">'
 									+'<div class="mw-begining">'+begining+'</div>'
-									+'<div class="mw-duration">'+duration+'</div>'
+									+'<div class="mw-duration">'+durationModal+'</div>'
 								+'</div>'
 								+'<div class="inta_table-td">'
 									+'<div class="mw-title"><a class="inta-profile-invoke" href="#" data-id="'+intaCalendar.events[i].id+'"'

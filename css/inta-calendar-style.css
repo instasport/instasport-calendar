@@ -311,7 +311,7 @@
 	border-bottom: 1px solid #ccc;
 }
 #intaCallendar .dm-calendar .dm-day{
-	padding: 5px;
+	padding: 2px;
 }
 #intaCallendar .dm-calendar .dm-day{
 	color: black; 
@@ -327,9 +327,8 @@
 	font-size: 12px;
 	line-height: 12px;
 	margin-bottom: 3px;
-	padding: 5px;
+	padding: 2px;
 	color: black;
-	word-break: break-all;
 }
 #intaCallendar .dm-calendar .dm-event:last-child{
 	margin-bottom: 0px;
@@ -366,13 +365,28 @@
 	cursor: pointer;
 	padding: 1px;
 	color: black;
+	max-width: 70px;
+	position: relative;
+	overflow: hidden;
 }
 #intaCallendar .dm-calendar .dm-title a{
 	color: black;
-	display: block;
 	width: 100%;
+	white-space: nowrap;
 }
-#intaCallendar .dm-calendar .dm-title:hover{
+#intaCallendar .dm-calendar .dm-title .three-dots{
+	position: absolute;
+	top: 0px;
+	right: 0px;
+	width: 15px;
+	height: 100%;
+	display: none;
+	padding-left: 2px;
+	background-color: white!important;
+	z-index: 11;
+}
+#intaCallendar .dm-calendar .dm-title:hover,
+#intaCallendar .dm-calendar .dm-title:hover .three-dots{
 	color: white;
 	background-color: black!important;
 }
@@ -521,7 +535,11 @@
 	width: 100%;
 }
 #intaCallendar .dw-calendar .dw-for_events table td{
-	width: 12.5%;
+	width: 13.5%;
+}
+#intaCallendar .dw-calendar .dw-for_events table td:first-child{
+	width: 30px;
+	min-width: 30px;
 }
 /*
 #intaCallendar .dw-calendar .dw-for_events table tbody td:nth-child(even){
@@ -538,7 +556,7 @@
 	font-size: 12px;
 }
 #intaCallendar .dw-calendar .dw-day{
-	padding: 5px;
+	padding: 2px;
 }
 #intaCallendar .dw-calendar .dw-day{
 	color: black; 
@@ -559,9 +577,8 @@
 	font-size: 12px;
 	line-height: 12px;
 	margin-bottom: 3px;
-	padding: 5px;
+	padding: 2px;
 	color: black;
-	word-break: break-all;
 }
 #intaCallendar .dw-calendar .dw-event:last-child{
 	margin-bottom: 0px;
@@ -597,13 +614,32 @@
 	cursor: pointer;
 	padding: 1px;
 	color: black;
+	max-width: 70px;
+	position: relative;
+    overflow: hidden;
+}
+#intaCallendar .dw-calendar .dw-title .three-dots{
+	position: absolute;
+	top: 0px;
+	right: 0px;
+	width: 15px;
+	height: 100%;
+	display: none;
+	padding-left: 2px;
+	background-color: white!important;
+	z-index: 11;
+}
+#intaCallendar .dw-calendar .dw-day_today .dw-title .three-dots{
+	background-color: #e69c0e!important;
+	color: black;
 }
 #intaCallendar .dw-calendar .dw-title a{
 	color: black;
-	display: block;
-	width: 100%;
+	width: 100%; 
+	white-space: nowrap;
 }
-#intaCallendar .dw-calendar .dw-title:hover{
+#intaCallendar .dw-calendar .dw-title:hover,
+#intaCallendar .dw-calendar .dw-title:hover .three-dots{
 	color: white;
 	background-color: black!important;
 }

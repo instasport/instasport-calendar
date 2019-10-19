@@ -953,6 +953,9 @@ jQuery(document).ready(function($){
 			$(window).resize(function(){
 				_this.setBrowserWindowWidthHeight();
 
+				_this.desktopMonthCalendarStyles();
+				_this.desktopWeekCalendarStyles();  
+
 				// return false;
 				// console.log("Switch to mobile. Current view "+initCalendar);
 
@@ -1099,6 +1102,76 @@ jQuery(document).ready(function($){
 					}
 				}
 			});
+		}
+
+		this.desktopWeekCalendarStyles = function(){
+			// console.log(111);
+			var _this = this;
+
+			var interval = setInterval(function(){
+			var calendarEl = jQuery(_this.divId+" .dw-controls .dw-title_month a");
+				if (calendarEl.length > 0) {
+					desktopWeekCalendarStyles();
+					clearInterval(interval); 
+				}
+			}, 10);
+
+			function desktopWeekCalendarStyles(){
+
+				var allDmTitles = jQuery("#intaCallendar .dw-calendar .dw-title");
+
+				// console.log(111); 
+
+				for(var i = 0; i < allDmTitles.length; i++){
+					var widthDmTitle = jQuery(allDmTitles[i]).width();
+					var widthA = jQuery(allDmTitles[i]).find('a').width();
+					if(widthDmTitle < widthA){
+						// jQuery(allDmTitles[i]).css({"background-color":"red"});
+						jQuery(allDmTitles[i]).find(".three-dots").show();
+						console.log(i); 
+					}else{
+						console.log("no"); 
+						jQuery(allDmTitles[i]).find(".three-dots").hide();
+					}
+				}
+
+			}
+
+		}
+
+		this.desktopMonthCalendarStyles = function(){
+			// console.log(111);
+			var _this = this;
+
+			var interval = setInterval(function(){
+			var calendarEl = jQuery(_this.divId+" .dm-controls .dm-title_month a");
+				if (calendarEl.length > 0) {
+					desktopMonthCalendarStyles();
+					clearInterval(interval); 
+				}
+			}, 10);
+
+			function desktopMonthCalendarStyles(){
+
+				var allDmTitles = jQuery("#intaCallendar .dm-calendar .dm-title");
+
+				// console.log(111);
+
+				for(var i = 0; i < allDmTitles.length; i++){
+					var widthDmTitle = jQuery(allDmTitles[i]).width();
+					var widthA = jQuery(allDmTitles[i]).find('a').width();
+					if(widthDmTitle < widthA){
+						// jQuery(allDmTitles[i]).css({"background-color":"red"});
+						jQuery(allDmTitles[i]).find(".three-dots").show();
+						console.log(i); 
+					}else{
+						console.log("no"); 
+						jQuery(allDmTitles[i]).find(".three-dots").hide();
+					}
+				}
+
+			}
+
 		}
 
 		this.setBrowserWindowWidthHeight = function(){

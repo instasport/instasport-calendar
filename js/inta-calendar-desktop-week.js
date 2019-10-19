@@ -20,6 +20,8 @@ var intaCalendarDesktopWeekClass = function(){
 		// 	console.log("Old");
 		// }
 
+		intaCalendar.desktopWeekCalendarStyles();
+
 		if(!_this.initialized){
 			_this.moreButtonClick();
 			_this.filterClick();
@@ -725,9 +727,15 @@ var intaCalendarDesktopWeekClass = function(){
 					color = intaCalendar.events[i].color;
 				}
 
-				var activity = intaCalendar.events[i].activity;
-				if(activity == null){
-					activity = "";
+				// var activity = intaCalendar.events[i].activity;
+				// if(activity == null){
+				// 	activity = "";
+				// }
+
+				if(intaCalendar.events[i].activity == null){
+					var activityHtml = "";
+				}else{ 
+					var activityHtml = '<div style="color: '+color+';" class="dm-activity">'+intaCalendar.events[i].activity+'</div>';
 				}
 
 				var eventsPerHourCount = jQuery(intaCalendar.divId+" .dw-calendar .dw-day[data-date='"+dateApi.year+"-"+dateApi.month+"-"+dateApi.day+"'][data-hour='"+hour+"'] .dw-per_day .dw-event").length;
@@ -738,7 +746,7 @@ var intaCalendarDesktopWeekClass = function(){
 							+'<div class="dw-table_tr">'
 								+'<div class="dw-table_td">'
 									+'<div class="dw-begin_time" style="color: '+color+';">'+begining+'</div>'
-									+'<div class="dw-duration" style="color: '+color+';">'+duration+'</div>'
+									+'<div class="dw-duration" style="color: '+color+';">'+durationModal+'</div>' 
 								+'</div>'
 								+'<div class="dw-table_td">'
 									+'<div class="dw-title"><a style="color: '+color+';" class="inta-event_description to_check_in" href="#" data-id="'+intaCalendar.events[i].id+'"'
@@ -755,10 +763,11 @@ var intaCalendarDesktopWeekClass = function(){
 										+' data-seats="'+intaCalendar.events[i].seats+'"'
 										+' data-activity="'+intaCalendar.events[i].activity+'"' 
 										+' data-color="'+intaCalendar.events[i].color+'"'
-										+' data-background="'+intaCalendar.events[i].background+'"'
+										+' data-background="'+intaCalendar.events[i].background+'"' 
 										+' data-description="null"'
-										+'>'+intaCalendar.events[i].title+'</a></div>'
-									+'<div style="color: '+color+';" class="dm-activity">'+activity+'</div>'
+										+'>'+intaCalendar.events[i].title+'</a><div style="display: '+display+'; background-color: '+(backgroundColor=="inherit"?"white":backgroundColor)+'!important;" class="three-dots">...</div></div>'
+									// +'<div style="color: '+color+';" class="dm-activity">'+activity+'</div>'
+									+activityHtml
 									+'<div style="color: '+color+';" class="dw-seats">'+seats+'</div>' 
 								+'</div>'
 							+'</div>'
