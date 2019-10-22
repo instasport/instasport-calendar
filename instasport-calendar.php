@@ -37,6 +37,7 @@ function intacalendar_admin(){
                 'additional_info_month_seats' => $_POST['additional_info_month_seats'],
                 'additional_info_week_duration' => $_POST['additional_info_week_duration'],
                 'additional_info_week_seats' => $_POST['additional_info_week_seats'],
+                'desktop_width' => $_POST['desktop_width'],
                 'desktop_month_quantity_trainings' => $_POST['desktop_month_quantity_trainings'],
                 'desktop_week_quantity_trainings' => $_POST['desktop_week_quantity_trainings'],
                 'desktop_month_more_text' => $_POST['desktop_month_more_text'],
@@ -156,6 +157,9 @@ function intacalendar_admin(){
                 <option <?php if($result->additional_info_week_seats == "0"){echo "selected='selected'";}?> value="0">Не показывать</option>
             </select>
             - дополнительная информация Неделя (свободные места) <br />
+
+            <input type="text" name="desktop_width" value="<?=$result->desktop_width;?>">
+            - Максимальная ширина календаря(можно указывать в px или %)<br />
 
             <input type="text" name="desktop_month_quantity_trainings" value="<?=$result->desktop_month_quantity_trainings;?>">
             - Количество тренировок которое показывается в одной клетке - Месяц<br />
@@ -438,6 +442,11 @@ function instasport_shortcodes_init()
     font-size: <?=$result->desktop_event_title_time_font;?>!important;  
 }
 
+#intaCallendar .dw-calendar,
+#intaCallendar .dm-calendar{
+    max-width: <?=$result->desktop_width;?>!important; 
+}
+
 #intaCallendar .dm-calendar .dm-duration,
 #intaCallendar .dm-calendar .dm-seats,
 #intaCallendar .dw-calendar .dw-seats,
@@ -503,6 +512,7 @@ function instasport_shortcodes_init()
         "desktopSettings": {
             "useApiColors": !!<?=$result->use_api_colors;?>,
             "defaultView": "<?=$result->default_view_to_show;?>",
+            "desktopWidth": "<?=$result->desktop_width;?>",
             "filters": { 
                 "train": !!<?=$result->desktop_filter_train_show;?>,
                 "couch": !!<?=$result->desktop_filter_couch_show;?>,
@@ -589,6 +599,7 @@ function intacalendar_create_db(){
       additional_info_month_seats ENUM('1', '0') NOT NULL,
       additional_info_week_duration ENUM('1', '0') NOT NULL,
       additional_info_week_seats ENUM('1', '0') NOT NULL,
+      desktop_width varchar(50) NOT NULL,
       desktop_month_quantity_trainings varchar(50) NOT NULL,
       desktop_week_quantity_trainings varchar(50) NOT NULL,
       desktop_month_more_text varchar(100) NOT NULL,
@@ -642,6 +653,7 @@ function intacalendar_create_db(){
                 'additional_info_month_seats' => '1',
                 'additional_info_week_duration' => '1',
                 'additional_info_week_seats' => '1',
+                'desktop_width' => '900px',
                 'desktop_month_quantity_trainings' => '2',
                 'desktop_week_quantity_trainings' => '2',
                 'desktop_month_more_text' => ' ...',
