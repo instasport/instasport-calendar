@@ -30,7 +30,7 @@ var intaCalendarDesktopWeekClass = function(){
 		}
 
 		if(intaCalendar.initialized){
-			_this.scrollToCalendar();
+			_this.scrollToCalendar(); 
 		}
 
 		// _this.secondInit();
@@ -68,7 +68,8 @@ var intaCalendarDesktopWeekClass = function(){
 		}, 10);
 
 		function scrollToCalendar(){
-			var dwCalendarPosition = jQuery(intaCalendar.divId+" .dw-calendar").position();
+			// var dwCalendarPosition = jQuery(intaCalendar.divId+" .dw-calendar").position();
+			var dwCalendarPosition = jQuery(intaCalendar.divId).position();
 			console.log(dwCalendarPosition);
 			jQuery("html, body").animate({ scrollTop: dwCalendarPosition.top }, 0);
 			// jQuery("body").scrollTop(dwCalendarPosition.top);
@@ -567,7 +568,7 @@ var intaCalendarDesktopWeekClass = function(){
 			var today = ["", "", "", "", "", "", ""];
 
 			if(intaHelper.dateInRange(date, lastDate, intaCalendar.dateToday)){
-				console.log("In range");
+				// console.log("In range");
 				var ind = intaCalendar.dateToday.getDay();
 				if(ind == 0){
 					today[6] = " dw-day_today";
@@ -587,7 +588,7 @@ var intaCalendarDesktopWeekClass = function(){
 			var weekDatesForModal = intaHelper.getWeekDates(date, lastDate, "modal");
 
 			var headTds = jQuery(intaCalendar.divId+" .dw-calendar .dw-for_events table td");
-			console.log(weekDatesForHead);
+			// console.log(weekDatesForHead);
 			for(i=1; i<headTds.length; i++){
 				// jQuery(headTds[i]).find("div").text(weekDatesForHead[i-1]);
 				jQuery(headTds[i]).html(intaHelper.weekTitles[i-1]+"<div>"+weekDatesForHead[i-1]+"</div>"); 

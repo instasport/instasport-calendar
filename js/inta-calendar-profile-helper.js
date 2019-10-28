@@ -72,9 +72,9 @@ var intaProfileHelperClass = function(){
 
 		if(jQuery.cookie(_this.cookieTokenName)){
 			_this.token = jQuery.cookie(_this.cookieTokenName);
-			console.log("Authorized: "+_this.token);
+			// console.log("Authorized: "+_this.token);
 		}else{
-			console.log("Non authorized"); 
+			// console.log("Non authorized"); 
 		}
 	}
 

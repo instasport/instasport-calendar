@@ -568,7 +568,9 @@ jQuery(document).ready(function($){
 			jQuery(_this.divId).on("click", ".dm-calendar .dm-filters .dm-row_1 .dm-view a.dm-filter-item", function(e){
 				e.preventDefault();
 				var toView = jQuery(this).attr("view");
-				// console.log("Change view to "+view);
+				
+				// console.log("Change view to "+toView);
+				// return false;
 
 				switchDesktopView(toView);
 			});
@@ -577,6 +579,9 @@ jQuery(document).ready(function($){
 				e.preventDefault();
 				var toView = jQuery(this).attr("view");
 				// console.log("Change view to "+view);
+
+				// console.log("Change view to "+toView);
+				// return false;
 
 				switchDesktopView(toView);
 			});
@@ -892,7 +897,7 @@ jQuery(document).ready(function($){
 					// console.log("We have first day of month");
 					// var day = copyFirstDate.getDate();
 					var month = copyFirstDate.getMonth();
-					var year = copyFirstDate.getFullYear();
+					var year = copyFirstDate.getFullYear(); 
 					firstMonthDay = new Date(year, (month + 1), 1);
 				}
 
@@ -936,7 +941,7 @@ jQuery(document).ready(function($){
 		this.browserWindowResize = function(){
 			var _this = this;
 
-			console.log(777);
+			// console.log(777);
 
 			if(_this.breakPointCalendarType > _this.browserWindowWidth){
 				jQuery("#intaProfileModal").removeClass("desktop");
@@ -1128,9 +1133,9 @@ jQuery(document).ready(function($){
 					if(widthDmTitle < widthA){
 						// jQuery(allDmTitles[i]).css({"background-color":"red"});
 						jQuery(allDmTitles[i]).find(".three-dots").show();
-						console.log(i); 
+						// console.log(i); 
 					}else{
-						console.log("no"); 
+						// console.log("no"); 
 						jQuery(allDmTitles[i]).find(".three-dots").hide();
 					}
 				}
@@ -1350,7 +1355,7 @@ jQuery(document).ready(function($){
 	
 
 	var intaCalendarInterval = setInterval(function(){
-		console.log(111);
+		// console.log(111);
 		if (typeof configData !== 'undefined' &&
 			typeof intaHelper !== 'undefined' && intaHelper !== null &&
 				typeof intaLocale !== 'undefined' &&

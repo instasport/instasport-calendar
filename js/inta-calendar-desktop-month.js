@@ -80,7 +80,8 @@ var intaCalendarDesktopMonthClass = function(){
 		}, 10);
 
 		function scrollToCalendar(){
-			var dwCalendarPosition = jQuery(intaCalendar.divId+" .dm-calendar").position();
+			// var dwCalendarPosition = jQuery(intaCalendar.divId+" .dm-calendar").position();
+			var dwCalendarPosition = jQuery(intaCalendar.divId).position();
 			// console.log(dwCalendarPosition);
 			jQuery("html, body").animate({ scrollTop: dwCalendarPosition.top }, 0);
 			// jQuery("body").scrollTop(dwCalendarPosition.top);

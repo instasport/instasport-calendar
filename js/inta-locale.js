@@ -49,7 +49,7 @@ var intaLocaleClass = function(){
 
 		_this.tr = _this.getTranslates();
 
-		console.log(_this.tr);
+		// console.log(_this.tr);
 
 		_this.initialized = true; 
 	}
