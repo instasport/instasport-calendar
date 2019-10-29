@@ -69,9 +69,9 @@ var intaCalendarDesktopWeekClass = function(){
 
 		function scrollToCalendar(){
 			// var dwCalendarPosition = jQuery(intaCalendar.divId+" .dw-calendar").position();
-			var dwCalendarPosition = jQuery(intaCalendar.divId).position();
+			var dwCalendarPosition = jQuery(intaCalendar.divId).offset();
 			console.log(dwCalendarPosition);
-			jQuery("html, body").animate({ scrollTop: dwCalendarPosition.top }, 0);
+			jQuery("html, body").animate({ scrollTop: (dwCalendarPosition.top - 50) }, 0);
 			// jQuery("body").scrollTop(dwCalendarPosition.top);
 		}
 	}
