@@ -133,7 +133,27 @@ jQuery(document).ready(function(e){
 
 					jQuery(intaCalendar.divId+" .description_window").hide();
 
-					intaProfileHelper.checkedEvent = jQuery(this).context.dataset;
+					intaProfileHelper.checkedEvent = {
+						id: jQuery(this).attr('data-id'),
+						begining: jQuery(this).attr('data-begining'),
+						instructorName: jQuery(this).attr('data-instructor-name'),
+						instructorId: jQuery(this).attr('data-instructor-id'),
+						duration: jQuery(this).attr('data-duration'),
+						durationModal: jQuery(this).attr('data-duration-modal'),
+						title: jQuery(this).attr('data-title'),
+						hall: jQuery(this).attr('data-hall'),
+						price: jQuery(this).attr('data-price'),
+						template: jQuery(this).attr('data-template'),
+						apiDate: jQuery(this).attr('data-api-date'),
+						seats: jQuery(this).attr('data-seats'),
+						activity: jQuery(this).attr('data-activity'),
+						color: jQuery(this).attr('data-color'),
+						background: jQuery(this).attr('data-background'),
+						description: jQuery(this).attr('data-description')
+					};
+					// console.log(jQuery(this).context.dataset);
+					// intaProfileHelper.checkedEvent = jQuery(this).context.dataset;
+
 
 					if(intaProfileHelper.token == null){
 						intaProfileHelper.resetEnterForms();
